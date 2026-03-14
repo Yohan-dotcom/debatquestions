@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -501,6 +500,55 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
 .shake{animation:shake .42s ease}
 canvas#sc{display:none}
 
+/* ── SPLASH SCREEN ── */
+#splash{position:fixed;inset:0;background:var(--bg);z-index:9000;display:flex;flex-direction:column;align-items:center;justify-content:center;animation:splashOut 0s ease 2.2s forwards}
+@keyframes splashOut{0%{opacity:1;pointer-events:all}100%{opacity:0;pointer-events:none;display:none}}
+#splash.gone{display:none}
+.splash-flame{font-size:100px;filter:drop-shadow(0 0 48px rgba(249,115,22,.8));animation:flm 2.5s ease-in-out infinite}
+.splash-title{font-family:'Syne',sans-serif;font-size:52px;font-weight:800;letter-spacing:-2.5px;line-height:.88;text-align:center;margin-top:16px;animation:pgIn .6s ease .3s both}
+.splash-title em{font-style:normal;background:linear-gradient(135deg,var(--vl),var(--o));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.splash-sub{font-size:14px;color:var(--text2);margin-top:12px;animation:pgIn .6s ease .7s both;text-align:center}
+
+
+/* ── SECRET SCREEN ── */
+.secret-screen{display:none;background:var(--bg2);border:1px solid var(--border);border-radius:26px;padding:32px 24px;text-align:center;margin-bottom:10px;animation:pgIn .25s ease}
+.secret-screen.on{display:block}
+.ss-ico{font-size:48px;display:block;margin-bottom:14px}
+.ss-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
+.ss-sub{font-size:14px;color:var(--text2);line-height:1.55;margin-bottom:20px}
+.ss-btn{width:100%;background:linear-gradient(135deg,var(--v),var(--vd));border:none;border-radius:16px;padding:16px;color:#fff;font-family:'Syne',sans-serif;font-size:16px;font-weight:700;cursor:pointer}
+.ss-btn:active{transform:scale(.98)}
+/* ── PROFILE PLAYER TOGGLE ── */
+.prof-toggle{display:flex;background:var(--bg3);border-radius:14px;padding:4px;margin-bottom:16px;gap:4px}
+.pt-pill{flex:1;padding:10px;border-radius:11px;text-align:center;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;cursor:pointer;color:var(--text3);transition:all .2s}
+.pt-pill.on{background:var(--card);color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,.3)}
+/* ── MODE SWITCHER ── */
+.mode-switcher{display:flex;align-items:center;gap:8px;padding:8px 20px;margin-bottom:2px;overflow-x:auto;scrollbar-width:none}
+.mode-switcher::-webkit-scrollbar{display:none}
+.ms-pill{padding:6px 13px;border-radius:20px;border:1.5px solid var(--border);background:var(--card);color:var(--text3);font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;font-family:'Syne',sans-serif;transition:all .2s;flex-shrink:0}
+.ms-pill.on{border-color:var(--v);background:rgba(124,58,237,.12);color:var(--vl)}
+.ms-pill.on.grp{border-color:var(--green);background:rgba(16,185,129,.08);color:var(--green)}
+.ms-pill.on.td{border-color:var(--o);background:rgba(249,115,22,.08);color:var(--o)}
+/* ── SHARE REVEAL BUTTON ── */
+.rv-share-row{display:none;gap:10px;margin:8px 0;max-width:320px;width:100%}
+.rv-share-row.on{display:flex}
+.rv-share-img{flex:1;background:linear-gradient(135deg,var(--v),var(--o));border:none;border-radius:13px;padding:11px;color:#fff;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;cursor:pointer}
+.rv-share-img:active{transform:scale(.97)}
+.rv-copy-btn{background:var(--bg3);border:1px solid var(--border2);border-radius:13px;padding:11px 14px;color:var(--text2);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap}
+/* ── SWIPE HINT ── */
+.swipe-hint{font-size:11px;color:var(--text3);text-align:center;margin-top:6px;opacity:.7}
+/* ── DISCORD STREAK BANNER ── */
+.discord-banner{display:none;align-items:center;gap:10px;background:rgba(244,63,94,.08);border:1px solid rgba(244,63,94,.22);border-radius:14px;padding:10px 14px;margin-bottom:10px;animation:pgIn .3s ease}
+.discord-banner.on{display:flex}
+.discord-banner-txt{font-size:13px;color:var(--red);font-weight:600}
+/* ── SESSION RECAP CARD ── */
+.recap-share{margin:0 20px 10px;background:linear-gradient(135deg,rgba(124,58,237,.1),rgba(249,115,22,.06));border:1px solid rgba(124,58,237,.2);border-radius:20px;padding:16px;cursor:pointer;display:flex;align-items:center;gap:12px}
+.recap-share:active{opacity:.85}
+.recap-share-ico{font-size:28px;flex-shrink:0}
+.recap-share-txt{flex:1}
+.recap-share-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:2px}
+.recap-share-sub{font-size:12px;color:var(--text2)}
+
 /* v12 additions */
 .ob-cdots{display:flex;gap:7px;justify-content:center;margin-bottom:16px}
 .ocd{width:7px;height:7px;border-radius:50%;background:var(--border2);transition:all .3s}
@@ -567,6 +615,12 @@ canvas#sc{display:none}
 </style>
 </head>
 <body>
+<!-- SPLASH INTRO -->
+<div id="splash">
+  <span class="splash-flame">🔥</span>
+  <div class="splash-title">Débat<br><em>Intense</em></div>
+  <div class="splash-sub">Questions qui révèlent ce que vous pensez vraiment</div>
+</div>
 <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3" id="o3"></div>
 <div id="tst" class="toast"></div>
 <canvas id="sc" width="1080" height="1920"></canvas>
@@ -578,7 +632,7 @@ canvas#sc{display:none}
   <div id="ob-carousel-wrap" style="width:100%;display:flex;flex-direction:column;align-items:center">
     <div class="ob-carousel">
       <div class="ob-slides" id="ob-slides">
-        <div class="ob-slide"><span class="obs-ico">🔥</span><div class="obs-title">Débat <em style="font-style:normal;background:linear-gradient(135deg,var(--vl),var(--o));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Intense</em></div><div class="obs-desc">Des questions qui révèlent ce que vous pensez vraiment — amour, argent, morale.</div></div>
+        <div class="ob-slide"><span class="ob-flame" style="font-size:88px">🔥</span><div class="obs-title" style="font-size:38px;letter-spacing:-2px">Débat <em style="font-style:normal;background:linear-gradient(135deg,var(--vl),var(--o));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Intense</em></div><div class="obs-desc">Des questions qui révèlent ce que vous pensez vraiment.</div></div>
         <div class="ob-slide"><span class="obs-ico">⚔️</span><div class="obs-title">Votez en secret</div><div class="obs-desc">Chaque joueur répond en cachant son écran. Révélation simultanée. Le vrai débat commence là.</div></div>
         <div class="ob-slide"><span class="obs-ico">🎲</span><div class="obs-title">Vérité ou Défi</div><div class="obs-desc">Pour chaque question, choisissez : répondre honnêtement, ou relever un défi physique devant le groupe.</div></div>
       </div>
@@ -609,18 +663,47 @@ canvas#sc{display:none}
   </div><!-- /ob-setup -->
 </div><!-- /pg-onboard -->
 
-<!-- TOURNAMENT OVERLAY -->
+<!-- TOURNAMENT OVERLAY — Le Grand Débat -->
 <div class="tourn-ov" id="tourn-ov">
   <div class="tourn-wrap">
-    <div class="tourn-hd"><div class="bk" onclick="closeTournament()">←</div><div class="tourn-h1">🏆 Mode Tournoi</div></div>
-    <div class="tr-champ" id="tr-champ"><span class="tr-champ-ico">👑</span><div class="tr-champ-lbl">Champion de la soirée</div><div class="tr-champ-name" id="tr-champ-name">—</div></div>
-    <div class="bracket" id="bracket"></div>
-    <div class="tr-q" id="tr-q">
-      <div class="tr-q-lbl">⚡ Question du duel</div>
-      <div class="tr-q-txt" id="tr-q-txt">Question ici</div>
-      <div class="tr-q-btns"><button class="tr-q-btn" id="tr-btn-p1" onclick="tournWin(0)">—</button><button class="tr-q-btn" id="tr-btn-p2" onclick="tournWin(1)">—</button></div>
+    <div class="tourn-hd"><div class="bk" onclick="closeTournament()">←</div><div class="tourn-h1">🏆 Le Grand Débat</div></div>
+    <!-- Champion screen -->
+    <div class="tr-champ" id="tr-champ">
+      <span class="tr-champ-ico">👑</span>
+      <div class="tr-champ-lbl">Champion de la soirée</div>
+      <div class="tr-champ-name" id="tr-champ-name">—</div>
+      <div style="font-size:14px;color:var(--text2);margin-top:10px;line-height:1.5" id="tr-champ-sub">Le débatteur le plus convaincant !</div>
     </div>
-    <button class="btn-v" onclick="startTournament()">⚡ Lancer le tournoi</button>
+    <!-- Bracket -->
+    <div class="bracket" id="bracket"></div>
+    <!-- Current duel -->
+    <div class="tr-q" id="tr-q">
+      <div class="tr-q-lbl">⚔️ Duel en cours</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+        <div style="font-family:Syne,sans-serif;font-size:16px;font-weight:800;color:var(--vl)" id="tr-p1-name">—</div>
+        <div style="font-size:13px;color:var(--text3);font-weight:700">VS</div>
+        <div style="font-family:Syne,sans-serif;font-size:16px;font-weight:800;color:var(--o)" id="tr-p2-name">—</div>
+      </div>
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:8px">💬 Question du duel</div>
+      <div class="tr-q-txt" id="tr-q-txt">La question s'affiche ici</div>
+      <!-- Phase indicator -->
+      <div style="font-size:12px;color:var(--text3);margin-bottom:12px;text-align:center" id="tr-phase-lbl">Chaque joueur répond en secret, puis le groupe vote</div>
+      <!-- Vote phase: group votes who was most convincing -->
+      <div id="tr-vote-phase" style="display:none">
+        <div style="font-size:13px;color:var(--vl);font-weight:700;text-align:center;margin-bottom:12px">🗳️ Qui a donné la réponse la plus honnête / courageuse ?</div>
+        <div class="tr-q-btns">
+          <button class="tr-q-btn" id="tr-btn-p1" onclick="tournVoteFor(0)">—</button>
+          <button class="tr-q-btn" id="tr-btn-p2" onclick="tournVoteFor(1)">—</button>
+        </div>
+        <div style="font-size:11px;color:var(--text3);text-align:center;margin-top:8px" id="tr-vote-count">0 / 0 votes</div>
+      </div>
+      <!-- Players answer phase -->
+      <div id="tr-answer-phase">
+        <div style="font-size:13px;color:var(--text2);text-align:center;margin-bottom:12px">Chaque joueur répond à tour de rôle en cachant son écran</div>
+        <button class="btn-v" onclick="tournStartAnswers()" id="tr-start-btn">▶ Commencer les réponses</button>
+      </div>
+    </div>
+    <button class="btn-v" id="tr-launch-btn" onclick="startTournament()" style="margin-top:4px">⚡ Lancer le Grand Débat</button>
   </div>
 </div>
 
@@ -654,7 +737,7 @@ canvas#sc{display:none}
     <span class="ib-x" onclick="dismissInstall()">✕</span>
   </div>
   <div class="pills">
-    <div class="pill p-sk" id="pill-sk" onclick="openStreak()">🔥&nbsp;<span class="pn" id="pn-sk">1</span>&nbsp;jours</div>
+    <div class="pill p-sk" id="pill-sk" onclick="openStreak()">🔥&nbsp;<span class="pn" id="pn-sk">0</span>&nbsp;jours</div>
     <div class="pill p-pts">⭐&nbsp;<span class="pn" id="pn-pts">0</span>&nbsp;pts</div>
     <div class="pill p-tri" id="pill-tri">✨&nbsp;<span>7</span>j Premium</div>
   </div>
@@ -672,14 +755,29 @@ canvas#sc{display:none}
       <button class="cat" data-c="religion" onclick="pickCat(this)">✨ Religion</button>
     </div>
   </div>
+  <!-- Mode switcher (in-game) -->
+  <div class="mode-switcher" id="mode-switcher">
+    <span style="font-size:11px;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:.5px;flex-shrink:0">Mode :</span>
+    <div class="ms-pill on" id="ms-classic" onclick="switchMode('classic',this)">👥 Classique</div>
+    <div class="ms-pill grp" id="ms-group" onclick="switchMode('group',this)">🎉 Groupe</div>
+    <div class="ms-pill td" id="ms-td" onclick="switchMode('truth_dare',this)">🎲 V ou D</div>
+  </div>
   <div class="qarea">
+    <div class="discord-banner" id="discord-banner"><span style="font-size:20px;flex-shrink:0">⚔️</span><span class="discord-banner-txt" id="discord-banner-txt">3 désaccords d'affilée — le débat est en feu !</span></div>
     <div class="bomb-banner" id="bbanner"><span style="font-size:22px;flex-shrink:0">💥</span><span class="bomb-txt">Question Bombe — La plus intense de la session.</span></div>
     <div class="qcard" id="qcard">
       <div class="qcard-stripe"></div>
       <!-- Hot seat bar -->
       <div class="hsbar" id="hsbar"><span class="hs-em" id="hs-em">🔥</span><div><span class="hs-lbl">Siège Chaud :</span> <span class="hs-name" id="hs-name">Joueur 1</span></div><span class="hs-badge">ton tour</span></div>
       <!-- Vote round header -->
-      <div class="vrh" id="vrh"><div class="vrh-left"><span id="vrh-em">🔥</span><span id="vrh-name">Joueur 1, vote en secret</span></div><div class="vrh-dots" id="vrh-dots"></div></div>
+      <!-- Secret screen between voters -->
+    <div class="secret-screen" id="secret-screen">
+      <span class="ss-ico" id="ss-emoji">🔥</span>
+      <div class="ss-title" id="ss-title">Passe le téléphone !</div>
+      <div class="ss-sub" id="ss-sub">Les autres ferment les yeux. Vote en secret.</div>
+      <button class="ss-btn" onclick="hideSecretScreen()">Je suis prêt — Voir la question →</button>
+    </div>
+    <div class="vrh" id="vrh"><div class="vrh-left"><span id="vrh-em">🔥</span><span id="vrh-name">Joueur 1, vote en secret</span></div><div class="vrh-dots" id="vrh-dots"></div></div>
       <div class="qcard-top"><span class="qcbadge" id="qcbadge">💑 COUPLE</span><div class="qtag-wrap"><span class="qtag w" id="qtag">WARM UP</span><span id="qheat">🌡️🌡️</span></div></div>
       <div class="qtext" id="qtext">Appuie sur <strong>Nouvelle Question</strong> pour démarrer 🔥</div>
       <div class="ans-area">
@@ -767,6 +865,14 @@ canvas#sc{display:none}
     <div class="pt-meta"><span>Votes</span><span id="pt-lbl">0 / 10</span></div>
     <div class="pbar"><div class="pbar-f" id="pt-bar" style="width:0%;background:linear-gradient(90deg,var(--v),var(--o))"></div></div>
   </div>
+  <div class="recap-share" onclick="genRecapCard()">
+    <span class="recap-share-ico">🎴</span>
+    <div class="recap-share-txt">
+      <div class="recap-share-title">Partager la session</div>
+      <div class="recap-share-sub">Carte de résultats à envoyer à vos amis</div>
+    </div>
+    <span style="color:var(--text3);font-size:18px">→</span>
+  </div>
   <div class="end-btns">
     <button class="btn-v" onclick="newSession()">🔥 Nouvelle Session</button>
     <button class="btn-g" style="margin-top:9px" onclick="goTo('pg-profil')">🧠 Mon profil</button>
@@ -778,12 +884,16 @@ canvas#sc{display:none}
 <div id="pg-profil" class="page">
   <div class="inner">
     <div class="scr-hd"><div class="bk" onclick="goTo('pg-home')">←</div><div class="scr-title">Mon Profil 🧠</div></div>
+    <div class="prof-toggle" id="prof-toggle" style="display:none">
+      <div class="pt-pill on" id="pt-p1" onclick="switchProfile(0)">🔥 <span id="pt-p1-name">Joueur 1</span></div>
+      <div class="pt-pill" id="pt-p2" onclick="switchProfile(1)">⚡ <span id="pt-p2-name">Joueur 2</span></div>
+    </div>
     <div class="arch-box" id="arch-box"></div>
     <div class="radar-box"><h3>Positions par thème</h3><div id="radar"></div></div>
     <div class="sgrid">
       <div class="sc hl"><div class="scv" id="p-q">0</div><div class="scl">Questions</div></div>
       <div class="sc hl"><div class="scv" id="p-pts">0</div><div class="scl">Points</div></div>
-      <div class="sc"><div class="scv" id="p-str">1</div><div class="scl">🔥 Streak</div></div>
+      <div class="sc"><div class="scv" id="p-str">0</div><div class="scl">🔥 Streak</div></div>
       <div class="sc"><div class="scv" id="p-fav">0</div><div class="scl">❤️ Favoris</div></div>
     </div>
     <div class="daily">
@@ -845,12 +955,12 @@ canvas#sc{display:none}
       <div class="wk-qlbl">⚡ Question #1 · Couple</div>
       <div class="wk-qtxt">Si ton/ta partenaire te proposait de tout quitter pour vivre à l'autre bout du monde, accepterais-tu sans condition ?</div>
       <div class="cbars">
-        <div class="cbars-title">📊 Communauté · <span id="wk-tot">12 847</span> votes</div>
+        <div class="cbars-title">📊 Communauté · <span id="wk-tot">0</span> vote</div>
         <div class="bars-wrap">
-          <div class="bar-col"><div class="bar y" id="b-yes" style="height:62%"></div><div class="barpct" id="bp-y" style="color:var(--green)">67%</div><div class="barlbl">✅ Oui</div></div>
-          <div class="bar-col"><div class="bar n" id="b-no" style="height:28%"></div><div class="barpct" id="bp-n" style="color:var(--red)">33%</div><div class="barlbl">❌ Non</div></div>
+          <div class="bar-col"><div class="bar y" id="b-yes" style="height:0%;transition:height 1s ease"></div><div class="barpct" id="bp-y" style="color:var(--green)">0%</div><div class="barlbl">✅ Oui</div></div>
+          <div class="bar-col"><div class="bar n" id="b-no" style="height:0%;transition:height 1s ease"></div><div class="barpct" id="bp-n" style="color:var(--red)">0%</div><div class="barlbl">❌ Non</div></div>
         </div>
-        <div class="bartot" id="b-st">Ton vote n'est pas encore comptabilisé</div>
+        <div class="bartot" id="b-st">Sois le premier à voter cette semaine !</div>
       </div>
       <div class="wk-vrow">
         <button class="wvb y" id="wvb-y" onclick="voteWeek('oui')">✅ Oui, j'irais</button>
@@ -860,10 +970,11 @@ canvas#sc{display:none}
     </div>
     <div class="lb">
       <h3>🏅 Top Débatteurs</h3>
-      <div class="lbi"><span class="lbr g">1</span><span style="font-size:14px">👑</span><span class="lbn">AlexDebat</span><span class="lbp">+340 pts</span></div>
-      <div class="lbi"><span class="lbr s">2</span><span style="font-size:14px">🥈</span><span class="lbn">SophieVrai</span><span class="lbp">+280 pts</span></div>
-      <div class="lbi"><span class="lbr b">3</span><span style="font-size:14px">🥉</span><span class="lbn">MaxFire</span><span class="lbp">+245 pts</span></div>
-      <div class="lbi"><span class="lbr">5</span><span style="font-size:14px">🔥</span><span class="lbn" id="my-lbn">Vous</span><span class="lbp">+<span id="my-wk">0</span> pts</span></div>
+      <div id="lb-list" style="text-align:center;padding:20px 0;color:var(--text3);font-size:14px">
+        🔮 Le classement s'affichera avec les premiers joueurs.<br><br>
+        <span style="font-size:12px">Votez cette semaine pour apparaître ici !</span>
+      </div>
+      <div class="lbi" style="border-top:1px solid var(--border);margin-top:8px"><span class="lbr">🔥</span><span class="lbn" id="my-lbn" style="font-weight:600">Toi</span><span class="lbp">+<span id="my-wk">0</span> pts cette semaine</span></div>
     </div>
     <div class="bsp"></div>
   </div>
@@ -925,7 +1036,7 @@ canvas#sc{display:none}
 </div>
 
 <!-- REVEAL OVERLAY -->
-<div class="rv-ov" id="rv-ov">
+<div class="rv-ov" id="rv-ov" onclick="tapReveal(event)">
   <div class="rv-title">⚔️ RÉVÉLATION</div>
   <div class="rv-q" id="rv-q"></div>
   <div class="rv-count" id="rv-count">3</div>
@@ -936,6 +1047,10 @@ canvas#sc{display:none}
     <span class="rv-res-sub" id="rv-sub-txt"></span>
   </div>
   <div class="rv-spark" id="rv-spark"><div class="rv-spark-lbl">💡 Pour débattre</div><div class="rv-spark-txt" id="rv-spark-txt"></div></div>
+  <div class="rv-share-row" id="rv-share-row">
+    <button class="rv-share-img" onclick="genRevealImg()">📸 Partager cette révélation</button>
+    <button class="rv-copy-btn" onclick="copyRevealResult()">📋</button>
+  </div>
   <button class="rv-next" id="rv-next" onclick="closeReveal()">Continuer →</button>
 </div>
 
@@ -1165,7 +1280,7 @@ var S = {
   roundVotes:{},
   curVoterIdx:0,
   pendingVote:null,
-  apiKey:"",pts:0,streak:1,freezes:2,
+  apiKey:"",pts:0,streak:0,freezes:2,lastSessionDate:null,
   tQ:0,sess:0,sQ:0,sV:[],sH:[],
   aV:{couple:[],sexualite:[],morale:[],jalousie:[],argent:[],religion:[]},
   favs:[],curQ:"",curQObj:null,curCat:"couple",
@@ -1263,9 +1378,14 @@ function startApp() {
   S.roundVotes = {};
   S.curVoterIdx = 0;
   S.pendingVote = null;
+  ensurePlayerAV();
   ge("pg-onboard").style.display = "none";
   renderStrip();
   ge("my-lbn").textContent = P1();
+  // Sync mode switcher
+  var ms = {classic:"ms-classic",group:"ms-group",truth_dare:"ms-td"};
+  ["ms-classic","ms-group","ms-td"].forEach(function(id){var b=ge(id);if(b){b.className="ms-pill";if(id.indexOf("group")>=0)b.className="ms-pill grp";if(id.indexOf("td")>=0)b.className="ms-pill td";}});
+  var activeMs = ms[S.gameMode]; if(activeMs){var ab=ge(activeMs);if(ab)ab.className+=" on";}
   goTo("pg-home");
   setTimeout(function(){nextQ();}, 420);
 }
@@ -1478,7 +1598,12 @@ function castVote(value, label) {
       S.pts = Math.max(0, S.pts - 3);
     }
     S.sV.push(value);
-    if (value === "oui" || value === "non") S.aV[S.curCat].push(value);
+    if (value === "oui" || value === "non") {
+      S.aV[S.curCat].push(value);
+      // Also track in player's own aV
+      var p0b = S.players[0];
+      if (p0b) { if(!p0b.aV) p0b.aV={couple:[],sexualite:[],morale:[],jalousie:[],argent:[],religion:[]}; p0b.aV[S.curCat].push(value); }
+    }
     if (last) { last.vote = value; last.voteLabel = label || value; }
     var p0 = S.players[0];
     if (p0) { p0.pts += 3; if (value === "oui") p0.ouiV = (p0.ouiV||0) + 1; p0.totalV = (p0.totalV||0) + 1; }
@@ -1499,6 +1624,9 @@ function confirmVote() {
   if (last && !last.vote) { last.vote = value; last.voteLabel = label || value; }
   var p = S.players[S.curVoterIdx];
   if (p) { p.pts += 3; if (value === "oui") p.ouiV = (p.ouiV||0) + 1; p.totalV = (p.totalV||0) + 1; }
+  // Track vote in player's own aV
+  if (!p.aV) p.aV = {couple:[],sexualite:[],morale:[],jalousie:[],argent:[],religion:[]};
+  if (value === "oui" || value === "non") p.aV[S.curCat].push(value);
   S.roundVotes[S.curVoterIdx] = {value:value, label:label, player:{name:p.name, emoji:p.emoji}};
   addPts(3); renderRadar();
   updateChip(S.curVoterIdx);
@@ -1507,7 +1635,6 @@ function confirmVote() {
   var cb = ge("confirm-btn");
   var scb = ge("st-confirm-btn");
   if (S.curVoterIdx < S.players.length) {
-    updateVoteHeader();
     if (cb) { cb.classList.remove("on"); cb.style.display = "none"; }
     if (scb) { scb.classList.remove("on"); scb.style.display = "none"; }
     var wids = ["ans-widget","st-ans-widget"];
@@ -1517,7 +1644,8 @@ function confirmVote() {
       var btns = w.querySelectorAll(".abt,.sbt,.choice-btn,.dvb");
       for (var bi = 0; bi < btns.length; bi++) btns[bi].classList.remove("lit");
     }
-    toast("✅ Vote de " + S.players[S.curVoterIdx-1].name + " enregistre ! A " + S.players[S.curVoterIdx].name);
+    toast("✅ Vote de " + S.players[S.curVoterIdx-1].name + " enregistré !");
+    setTimeout(function(){ showSecretScreen(); }, 350);
   } else {
     if (cb) { cb.classList.remove("on"); cb.style.display = "none"; }
     if (scb) { scb.classList.remove("on"); scb.style.display = "none"; }
@@ -1598,11 +1726,12 @@ function triggerReveal() {
   ov.classList.add("on");
   var c = 3;
   ge("rv-count").textContent = c;
-  var t = setInterval(function() {
+  playTick();
+  _revealCountdownTimer = setInterval(function() {
     c--;
-    if (c > 0) { ge("rv-count").textContent = c; }
+    if (c > 0) { ge("rv-count").textContent = c; playTick(); }
     else {
-      clearInterval(t);
+      clearInterval(_revealCountdownTimer); _revealCountdownTimer = null;
       ge("rv-count").style.display = "none";
       showRevealPills();
     }
@@ -1652,11 +1781,14 @@ function showRevealResult() {
     ge("rv-spark-txt").textContent = starters[Math.floor(Math.random() * starters.length)];
     ge("rv-spark").classList.add("on");
   }
+  var shareRow = ge("rv-share-row"); if(shareRow) shareRow.classList.add("on");
   ge("rv-next").style.display = "block";
+  checkDiscordStreak(allSame);
 }
 
 function closeReveal() {
   ge("rv-ov").classList.remove("on");
+  var sr = ge("rv-share-row"); if(sr) sr.classList.remove("on");
   var votes = Object.values(S.roundVotes);
   if (votes.length && !votes.every(function(v){return v.value === votes[0].value;})) {
     addPts(5); toast("⚔️ Desaccord bonus +5 pts !");
@@ -1878,9 +2010,24 @@ function endSession() {
     ge("pt-name").textContent = "En revelation…";
     ge("pt-desc").textContent = "Vote encore " + (10-tv) + " fois !";
   }
-  S.streak++;
-  ge("p-str") && (ge("p-str").textContent = S.streak);
-  if (S.streak >= 3) { addPts(S.streak >= 7 ? 40 : 15); toast("🔥 " + S.streak + " jours ! Bonus pts !"); }
+  // Real streak: only increment if new day
+  var today = new Date().toDateString();
+  if (S.lastSessionDate === today) {
+    // Same day, no increment
+  } else if (!S.lastSessionDate) {
+    // First ever session
+    S.streak = 1;
+  } else {
+    var lastD = new Date(S.lastSessionDate);
+    var diff = Math.floor((new Date() - lastD) / 86400000);
+    if (diff === 1) { S.streak++; } // Consecutive day
+    else if (diff > 1) { S.streak = 1; } // Streak broken
+    // diff === 0 = same day, already handled above
+  }
+  S.lastSessionDate = today;
+  var pstr = ge("p-str"); if(pstr) pstr.textContent = S.streak;
+  var pnsk = ge("pn-sk"); if(pnsk) pnsk.textContent = S.streak;
+  if (S.streak >= 3) { addPts(S.streak >= 7 ? 40 : 15); toast("🔥 " + S.streak + " jours de suite ! Bonus !"); }
   ge("ndot").classList.remove("on");
   saveState();
   goTo("pg-end");
@@ -1927,8 +2074,18 @@ function getArch() {
 }
 
 function renderProfil() {
+  // Show player toggle if 2+ players
+  var toggle = ge("prof-toggle");
+  if (toggle) {
+    if (S.players && S.players.length > 1) {
+      toggle.style.display = "flex";
+      var p1name = ge("pt-p1-name"); if(p1name) p1name.textContent = S.players[0].name;
+      var p2name = ge("pt-p2-name"); if(p2name) p2name.textContent = S.players[1] ? S.players[1].name : "Joueur 2";
+    } else toggle.style.display = "none";
+  }
+  var viewP = (_viewingPlayer < S.players.length) ? S.players[_viewingPlayer] : S.players[0];
   ge("p-q").textContent = S.tQ;
-  ge("p-pts").textContent = S.pts;
+  ge("p-pts").textContent = viewP ? (viewP.pts||0) : S.pts;
   ge("p-str").textContent = S.streak;
   ge("p-fav").textContent = S.favs.length;
   var dp = Math.min(100, (S.tQ/5)*100);
@@ -1961,13 +2118,16 @@ function renderProfil() {
 function renderRadar() {
   var el = ge("radar");
   if (!el) return;
+  // Use per-player aV if available
+  var viewP = (S.players && _viewingPlayer < S.players.length) ? S.players[_viewingPlayer] : null;
+  var avSource = (viewP && viewP.aV) ? viewP.aV : S.aV;
   var cats = ["couple","sexualite","morale","jalousie","argent","religion"];
   var cols = {couple:"var(--vl)",sexualite:"var(--pink)",morale:"var(--blue)",jalousie:"var(--red)",argent:"var(--gold)",religion:"var(--green)"};
   var html = "";
   for (var i = 0; i < cats.length; i++) {
     var c = cats[i];
-    var p = pct(S.aV[c], "oui");
-    var n = S.aV[c].length;
+    var p = pct(avSource[c]||[], "oui");
+    var n = (avSource[c]||[]).length;
     html += '<div class="rrow"><div class="rlbl">' + CE[c] + " " + c + '</div>'
       + '<div class="rtrack"><div class="rfill" style="width:' + p + '%;background:' + cols[c] + '"></div></div>'
       + '<div class="rpct">' + (n > 0 ? p + "%" : "–") + '</div></div>';
@@ -2131,7 +2291,7 @@ function openSettings() { openSheet("ov-st","sht-st"); }
 function saveAPI() {
   S.apiKey = ge("api-key").value.trim();
   saveState();
-  toast(S.apiKey ? "🔑 Cle API sauvegardee !" : "⚠️ Mode demo active");
+  toast(S.apiKey ? "🔑 Clé API sauvegardée !" : "⚠️ Mode démo activé");
   closeSheet("ov-st","sht-st");
 }
 
@@ -2162,18 +2322,28 @@ function joinRoom() {
 
 // ── SEMAINE ──
 function voteWeek(v) {
-  if (S.weekVoted) { toast("✅ Deja vote !"); return; }
+  if (S.weekVoted) { toast("✅ Déjà voté !"); return; }
   S.weekVoted = true;
-  var ny = v === "oui" ? 68 : 66, nn = 100 - ny;
-  ge("bp-y").textContent = ny + "%"; ge("bp-n").textContent = nn + "%";
-  ge("wk-tot").textContent = "12 848";
-  ge("b-st").textContent = "✅ Ton vote est comptabilise !";
-  ge("wvb-y").classList.add(v === "oui" ? "voted" : "");
-  ge("wvb-n").classList.add(v === "non" ? "voted" : "");
-  if (v === "oui") ge("wvb-y").classList.add("y"); else ge("wvb-n").classList.add("n");
-  setTimeout(animBars, 100);
+  var curY = S.wkVotesY || 0;
+  var curN = S.wkVotesN || 0;
+  if (v === "oui") curY++; else curN++;
+  S.wkVotesY = curY;
+  S.wkVotesN = curN;
+  var tot = curY + curN;
+  var pctY = Math.round(curY / tot * 100);
+  var pctN = 100 - pctY;
+  S.wkYpct = pctY; S.wkNpct = pctN; S.wkTot = tot;
+  var by = ge("b-yes"); if(by) { by.style.transition="height 1s ease"; by.style.height=(pctY*.88)+"%"; }
+  var bn = ge("b-no");  if(bn) { bn.style.transition="height 1s ease"; bn.style.height=(pctN*.88)+"%"; }
+  var bpy = ge("bp-y"); if(bpy) bpy.textContent = pctY+"%";
+  var bpn = ge("bp-n"); if(bpn) bpn.textContent = pctN+"%";
+  var wt = ge("wk-tot"); if(wt) wt.textContent = tot+(tot===1?" vote":" votes");
+  var bs = ge("b-st"); if(bs) bs.textContent = "✅ Ton vote est comptabilisé !";
+  if (v === "oui") { ge("wvb-y").classList.add("voted"); ge("wvb-y").classList.add("y"); }
+  else { ge("wvb-n").classList.add("voted"); ge("wvb-n").classList.add("n"); }
   addPts(20);
-  toast(v === "oui" ? "✅ Tu rejoins les 68% !" : "❌ Dans la minorite courageuse (32%) !");
+  saveState();
+  toast(v==="oui"?"✅ Voté OUI ("+pctY+"%) !":"❌ Voté NON ("+pctN+"%) !");
   confetti();
 }
 function animBars() {
@@ -2346,7 +2516,12 @@ function obSlideNext() {
 }
 function showObSetup() {
   var cw = ge("ob-carousel-wrap"); if(cw) cw.style.display="none";
-  var setup = ge("ob-setup"); if(setup) { setup.style.display="flex"; }
+  var setup = ge("ob-setup");
+  if(setup) {
+    setup.style.display="flex";
+    setup.style.animation="pgIn .5s ease";
+    setTimeout(function(){setup.style.animation="";},500);
+  }
   try { localStorage.setItem("seen_onboard","1"); } catch(e){}
 }
 function checkCarousel() {
@@ -2465,7 +2640,7 @@ function showChampion(p){
   var cn=ge("tr-champ-name"); if(cn)cn.textContent=p.emoji+" "+p.name;
   ge("tr-champ").classList.add("on"); ge("tr-q").style.display="none";
   renderBracket(); confetti(); playRevealSound();
-  toast("🏆 "+p.name+" est le champion de la soirée !"); addPts(50);
+  toast("🏆 "+p.name+" est le champion de la soirée !"); addPts(50); saveState();
 }
 
 // ── OVERRIDE shareReveal WITH VIRAL IMAGE ──
@@ -2538,23 +2713,35 @@ function v12Boot() {
   v12SoundsActive = true;
 }
 
+// ════════════════════════════════════
+//  V13 PATCHES
+// ════════════════════════════════════
 
 // ── PERSISTENCE ──
 function saveState() {
   try {
     var d = {
       pts:S.pts, streak:S.streak, freezes:S.freezes,
-      tQ:S.tQ, sess:S.sess, aV:S.aV, favs:S.favs,
+      tQ:S.tQ, sess:S.sess, favs:S.favs,
       isPremium:S.isPremium, weekVoted:S.weekVoted,
-      apiKey:S.apiKey, lastPlayed:new Date().toDateString()
+      wkYpct:S.wkYpct, wkNpct:S.wkNpct, wkTot:S.wkTot, wkVotesY:S.wkVotesY||0, wkVotesN:S.wkVotesN||0,
+      apiKey:S.apiKey,
+      lastSessionDate:S.lastSessionDate,
+      lastPlayed:new Date().toDateString()
     };
-    localStorage.setItem("di_save", JSON.stringify(d));
-  } catch(e) {}
+    // Save per-player aV
+    if (S.players && S.players.length) {
+      d.playerProfiles = S.players.map(function(p) {
+        return {name:p.name, emoji:p.emoji, aV:p.aV||{couple:[],sexualite:[],morale:[],jalousie:[],argent:[],religion:[]}};
+      });
+    }
+    localStorage.setItem("di_v13", JSON.stringify(d));
+  } catch(e){}
 }
 
 function loadSave() {
   try {
-    var raw = localStorage.getItem("di_save");
+    var raw = localStorage.getItem("di_v13");
     if (!raw) return;
     var d = JSON.parse(raw);
     if (d.pts != null) S.pts = d.pts;
@@ -2562,23 +2749,656 @@ function loadSave() {
     if (d.freezes != null) S.freezes = d.freezes;
     if (d.tQ) S.tQ = d.tQ;
     if (d.sess) S.sess = d.sess;
-    if (d.aV) S.aV = d.aV;
     if (d.favs) S.favs = d.favs;
     if (d.isPremium) S.isPremium = d.isPremium;
     if (d.weekVoted) S.weekVoted = d.weekVoted;
+    if (d.wkYpct) S.wkYpct = d.wkYpct;
+    if (d.wkVotesY) S.wkVotesY = d.wkVotesY;
+    if (d.wkVotesN) S.wkVotesN = d.wkVotesN;
+    if (d.wkNpct) S.wkNpct = d.wkNpct;
+    if (d.wkTot) S.wkTot = d.wkTot;
     if (d.apiKey) S.apiKey = d.apiKey;
-    if (d.lastPlayed) {
-      var diff = Math.floor((new Date() - new Date(d.lastPlayed)) / 86400000);
-      if (diff > 1) S.streak = 1;
+    // Restore week state
+    if (d.weekVoted) {
+      var yp = d.wkYpct || 100, np = d.wkNpct || 0;
+      var tot = d.wkTot || 1;
+      var by = ge("bp-y"); if(by) by.textContent = yp+"%";
+      var bn = ge("bp-n"); if(bn) bn.textContent = np+"%";
+      var bt = ge("wk-tot"); if(bt) bt.textContent = tot;
+      var bs = ge("b-st"); if(bs) bs.textContent = "✅ Ton vote est comptabilisé !";
     }
-  } catch(e) {}
+    if (d.lastSessionDate) S.lastSessionDate = d.lastSessionDate;
+    // Streak continuity checked in endSession, not here
+  } catch(e){}
+}
+
+// ── PER-PLAYER aV ──
+// Ensure each player has their own aV
+function ensurePlayerAV() {
+  if (!S.players) return;
+  for (var i = 0; i < S.players.length; i++) {
+    if (!S.players[i].aV) {
+      S.players[i].aV = {couple:[],sexualite:[],morale:[],jalousie:[],argent:[],religion:[]};
+    }
+  }
+}
+
+// Track which profile we're viewing
+var _viewingPlayer = 0;
+
+function switchProfile(idx) {
+  _viewingPlayer = idx;
+  var p1 = ge("pt-p1"); var p2 = ge("pt-p2");
+  if (p1) p1.className = "pt-pill" + (idx===0?" on":"");
+  if (p2) p2.className = "pt-pill" + (idx===1?" on":"");
+  renderProfil();
+}
+
+// ── IN-GAME MODE SWITCHER ──
+function switchMode(mode, el) {
+  S.gameMode = mode;
+  gameMode = mode;
+  // Update pill states
+  var ms = ["ms-classic","ms-group","ms-td"];
+  for (var i = 0; i < ms.length; i++) {
+    var b = ge(ms[i]); if(b) b.className = "ms-pill" + (b.id==="ms-"+mode.replace("_","-")?" on":"");
+  }
+  // Fix group/td class
+  var grp = ge("ms-group"); if(grp&&mode==="group") grp.className="ms-pill grp on";
+  var td = ge("ms-td"); if(td&&mode==="truth_dare") td.className="ms-pill td on";
+  toast("Mode " + {classic:"Classique 👥",group:"Groupe 🎉",truth_dare:"Vérité ou Défi 🎲"}[mode] + " activé");
+  // Reset round
+  S.hotSeat = 0;
+  renderStrip();
+  var hsbar = ge("hsbar");
+  if (hsbar) {
+    if ((mode==="group"||mode==="truth_dare") && S.players.length > 1) {
+      var hs = hotP();
+      ge("hs-em").textContent = hs.emoji;
+      ge("hs-name").textContent = hs.name;
+      hsbar.classList.add("on");
+    } else hsbar.classList.remove("on");
+  }
+  saveState();
+}
+
+function updateModeSwitcher() {
+  var mode = S.gameMode || "classic";
+  var ids = {classic:"ms-classic",group:"ms-group",truth_dare:"ms-td"};
+  ["ms-classic","ms-group","ms-td"].forEach(function(id) {
+    var b = ge(id); if(!b) return;
+    b.className = "ms-pill";
+    if (id==="ms-group") b.className = "ms-pill grp";
+    if (id==="ms-td") b.className = "ms-pill td";
+  });
+  var active = ids[mode]; if(active) {
+    var b = ge(active); if(b) b.className += " on";
+  }
+}
+
+// ── SECRET SCREEN ──
+function showSecretScreen() {
+  var nextP = S.players[S.curVoterIdx];
+  if (!nextP) return;
+  var ss = ge("secret-screen");
+  var card = ge("qcard");
+  var story = ge("story-card");
+  if (ss) {
+    ge("ss-emoji").textContent = nextP.emoji;
+    ge("ss-title").textContent = nextP.name + ", c'est ton tour !";
+    ge("ss-sub").textContent = "Passe le téléphone à " + nextP.name + ". Les autres ferment les yeux. 👀";
+    ss.classList.add("on");
+  }
+  if (card) card.style.visibility = "hidden";
+  if (story) story.style.visibility = "hidden";
+}
+
+function hideSecretScreen() {
+  var ss = ge("secret-screen");
+  var card = ge("qcard");
+  var story = ge("story-card");
+  if (ss) ss.classList.remove("on");
+  if (card) card.style.visibility = "visible";
+  if (story) story.style.visibility = "visible";
+  updateVoteHeader();
+}
+
+// ── TAP TO SKIP REVEAL ──
+var _revealSkippable = false;
+var _revealCountdownTimer = null;
+
+function tapReveal(e) {
+  // Only skip on tap of background, not buttons
+  if (e.target.tagName === "BUTTON") return;
+  if (!_revealSkippable) return;
+  // Skip to result immediately
+  if (_revealCountdownTimer) { clearInterval(_revealCountdownTimer); _revealCountdownTimer = null; }
+  var cnt = ge("rv-count"); if(cnt) cnt.style.display = "none";
+  // Show pills immediately
+  var pills = ge("rv-pills");
+  if (pills && pills.style.display === "none") {
+    showRevealPills();
+  } else {
+    // If pills showing, skip to result
+    showRevealResult();
+  }
+}
+
+// ── DISCORD STREAK TRACKER ──
+var _discordStreak = 0;
+
+function checkDiscordStreak(allSame) {
+  if (!allSame) {
+    _discordStreak++;
+    if (_discordStreak >= 3) {
+      var banner = ge("discord-banner");
+      var txt = ge("discord-banner-txt");
+      if (banner && txt) {
+        txt.textContent = _discordStreak + " désaccords d'affilée — vous êtes vraiment différents 🔥";
+        banner.classList.add("on");
+        setTimeout(function(){banner.classList.remove("on");}, 5000);
+      }
+    }
+  } else {
+    _discordStreak = 0;
+  }
+}
+
+// ── SWIPE GESTURES ON QCARD ──
+function setupSwipe() {
+  var card = ge("qcard");
+  if (!card) return;
+  var startX = 0, startY = 0;
+  card.addEventListener('touchstart', function(e) {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+  }, {passive:true});
+  card.addEventListener('touchend', function(e) {
+    if (!S.curQObj || S.curQObj.type !== "binary") return;
+    if (!S.curQ) return;
+    var dx = e.changedTouches[0].clientX - startX;
+    var dy = e.changedTouches[0].clientY - startY;
+    if (Math.abs(dx) < 60 || Math.abs(dy) > Math.abs(dx)) return; // not a swipe
+    if (dx > 0) {
+      castVote('oui','✅ Oui');
+      card.style.transform = "translateX(8px)";
+      setTimeout(function(){card.style.transform="";},300);
+    } else {
+      castVote('non','❌ Non');
+      card.style.transform = "translateX(-8px)";
+      setTimeout(function(){card.style.transform="";},300);
+    }
+    var hint = ge("vote-hint");
+    if (hint) hint.textContent = dx>0 ? "👉 Swipé OUI !" : "👈 Swipé NON !";
+  }, {passive:true});
+}
+
+// ── REVEAL IMAGE GENERATOR ──
+function genRevealImg() {
+  var votes = Object.values(S.roundVotes);
+  if (!votes.length) { toast("Pas encore de votes à partager !"); return; }
+  var allSame = votes.every(function(v){return v.value===votes[0].value;});
+  var cv = document.createElement("canvas");
+  var W=1080, H=1080; cv.width=W; cv.height=H;
+  var ctx = cv.getContext("2d");
+  // Background
+  var bg = ctx.createLinearGradient(0,0,W,H);
+  bg.addColorStop(0, allSame?"#041404":"#140404");
+  bg.addColorStop(1,"#09080F");
+  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+  var gv = ctx.createRadialGradient(W/2,H*.25,0,W/2,H*.25,480);
+  gv.addColorStop(0, allSame?"rgba(16,185,129,.3)":"rgba(244,63,94,.3)");
+  gv.addColorStop(1,"rgba(0,0,0,0)");
+  ctx.fillStyle=gv; ctx.fillRect(0,0,W,H);
+  // App name
+  ctx.font="600 40px sans-serif"; ctx.fillStyle="rgba(255,255,255,.5)"; ctx.textAlign="center";
+  ctx.fillText("🔥 DÉBAT INTENSE", W/2, 80);
+  // Question
+  ctx.font="700 52px sans-serif"; ctx.fillStyle="#EDE9FF"; ctx.textAlign="center";
+  var words=(S.curQ||"").split(" "); var line="",lines=[];
+  for(var i=0;i<words.length;i++){var t=line+(line?" ":"")+words[i];if(ctx.measureText(t).width>940){if(line)lines.push(line);line=words[i];}else line=t;}
+  if(line)lines.push(line);
+  for(var li=0;li<Math.min(lines.length,4);li++) ctx.fillText(lines[li],W/2,200+li*72);
+  // Divider
+  var divY=200+Math.min(lines.length,4)*72+40;
+  ctx.strokeStyle=allSame?"rgba(16,185,129,.4)":"rgba(244,63,94,.4)";
+  ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(80,divY); ctx.lineTo(W-80,divY); ctx.stroke();
+  // Players
+  var colW=W/Math.max(votes.length,1);
+  var vY=divY+80;
+  for(var vi=0;vi<votes.length;vi++){
+    var rv=votes[vi]; var cx=colW*vi+colW/2;
+    ctx.font="700 80px sans-serif"; ctx.textAlign="center"; ctx.fillText(rv.player.emoji,cx,vY);
+    ctx.font="700 38px sans-serif"; ctx.fillStyle="rgba(255,255,255,.85)"; ctx.fillText(rv.player.name,cx,vY+75);
+    var vc=rv.value==="oui"?"#10B981":(rv.value==="non"?"#F43F5E":"#F59E0B");
+    ctx.fillStyle=vc+"30";
+    var bw=Math.min(colW-40,260),bh=64,bx=cx-bw/2,by=vY+95;
+    ctx.beginPath(); ctx.roundRect?ctx.roundRect(bx,by,bw,bh,14):ctx.rect(bx,by,bw,bh); ctx.fill();
+    ctx.strokeStyle=vc+"80"; ctx.lineWidth=2.5; ctx.stroke();
+    ctx.font="700 32px sans-serif"; ctx.fillStyle=vc;
+    ctx.fillText(rv.label||rv.value,cx,by+42);
+  }
+  // Verdict
+  ctx.font="900 72px sans-serif"; ctx.fillStyle=allSame?"#10B981":"#F43F5E"; ctx.textAlign="center";
+  ctx.fillText(allSame?"✅ CONSENSUS":"⚔️ DÉSACCORD TOTAL",W/2,vY+230);
+  ctx.font="500 28px sans-serif"; ctx.fillStyle="rgba(255,255,255,.2)";
+  ctx.fillText("débatintense.app",W/2,H-40);
+  var lk=document.createElement("a"); lk.download="debat-reveal.png"; lk.href=cv.toDataURL(); lk.click();
+  toast("📸 Image téléchargée !");
+}
+
+function copyRevealResult() {
+  var votes=Object.values(S.roundVotes); if(!votes.length) return;
+  var allSame=votes.every(function(v){return v.value===votes[0].value;});
+  var lines=votes.map(function(v){return v.player.emoji+" "+v.player.name+" : "+(v.label||v.value);});
+  var text="🔥 Débat Intense\n\""+S.curQ.substring(0,60)+"…\"\n\n"+lines.join("\n")+"\n\n"+(allSame?"✅ CONSENSUS":"⚔️ DÉSACCORD TOTAL")+"\ndébatintense.app";
+  navigator.clipboard.writeText(text).then(function(){toast("📋 Résultat copié !");}).catch(function(){toast("📤 Prêt !");});
+}
+
+// ── SESSION RECAP CARD ──
+function genRecapCard() {
+  var cv = document.createElement("canvas");
+  var W=1080, H=1350; cv.width=W; cv.height=H;
+  var ctx=cv.getContext("2d");
+  var bg=ctx.createLinearGradient(0,0,W,H);
+  bg.addColorStop(0,"#09080F"); bg.addColorStop(.5,"#1A0840"); bg.addColorStop(1,"#09080F");
+  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+  var gv=ctx.createRadialGradient(W*.7,H*.2,0,W*.7,H*.2,500);
+  gv.addColorStop(0,"rgba(124,58,237,.3)"); gv.addColorStop(1,"rgba(0,0,0,0)");
+  ctx.fillStyle=gv; ctx.fillRect(0,0,W,H);
+  // Title
+  ctx.font="700 46px sans-serif"; ctx.fillStyle="rgba(255,255,255,.5)"; ctx.textAlign="center";
+  ctx.fillText("🔥 DÉBAT INTENSE — Récap session",W/2,80);
+  // Players + stats
+  var yes=S.sV.filter(function(v){return v==="oui";}).length;
+  var no=S.sV.filter(function(v){return v==="non";}).length;
+  var total=S.sV.length||1;
+  var agreePct=Math.round(yes/total*100);
+  ctx.font="800 120px sans-serif"; ctx.textAlign="center"; ctx.fillStyle="#EDE9FF";
+  ctx.fillText(agreePct+"%", W/2, 240);
+  ctx.font="600 40px sans-serif"; ctx.fillStyle="rgba(255,255,255,.6)";
+  ctx.fillText("d'accord sur "+total+" votes", W/2, 300);
+  // Horizontal bar
+  ctx.fillStyle="rgba(16,185,129,.3)"; ctx.fillRect(80,340,Math.round((W-160)*yes/total),40);
+  ctx.fillStyle="rgba(244,63,94,.3)"; ctx.fillRect(80+Math.round((W-160)*yes/total),340,Math.round((W-160)*no/total),40);
+  ctx.strokeStyle="rgba(255,255,255,.1)"; ctx.lineWidth=1; ctx.strokeRect(80,340,W-160,40);
+  // Questions
+  var items=S.sH.slice(-5);
+  var qY=430;
+  ctx.font="700 32px sans-serif"; ctx.fillStyle="rgba(167,139,250,.9)"; ctx.textAlign="left";
+  ctx.fillText("Questions débattues :", 80, qY);
+  for(var i=0;i<items.length;i++){
+    var h=items[i]; var y=qY+50+i*110;
+    ctx.fillStyle=h.vote==="oui"?"rgba(16,185,129,.2)":(h.vote==="non"?"rgba(244,63,94,.2)":"rgba(100,100,100,.15)");
+    if(ctx.roundRect) ctx.roundRect(80,y-36,W-160,90,14); else ctx.rect(80,y-36,W-160,90);
+    ctx.fill();
+    ctx.font="500 30px sans-serif"; ctx.fillStyle="rgba(255,255,255,.8)"; ctx.textAlign="left";
+    ctx.fillText((i+1)+". "+(h.q||"").substring(0,50)+(h.q&&h.q.length>50?"…":""),100,y+4);
+    var vc=h.vote==="oui"?"#10B981":(h.vote==="non"?"#F43F5E":"#888");
+    ctx.font="700 28px sans-serif"; ctx.fillStyle=vc; ctx.textAlign="right";
+    ctx.fillText(h.voteLabel||"–",W-100,y+4);
+  }
+  ctx.font="500 28px sans-serif"; ctx.fillStyle="rgba(255,255,255,.2)"; ctx.textAlign="center";
+  ctx.fillText("débatintense.app",W/2,H-40);
+  var lk=document.createElement("a"); lk.download="debat-recap.png"; lk.href=cv.toDataURL(); lk.click();
+  toast("🎴 Récap téléchargé !");
+}
+
+// ── PWA ──
+function injectPWA() {
+  try {
+    var manifest={name:"Débat Intense",short_name:"Débat 🔥",start_url:"./",display:"standalone",background_color:"#09080F",theme_color:"#7C3AED",orientation:"portrait",icons:[{src:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='40' fill='%23090810'/%3E%3Ctext y='140' font-size='130' text-anchor='middle' x='96'%3E%F0%9F%94%A5%3C/text%3E%3C/svg%3E",sizes:"192x192",type:"image/svg+xml"}]};
+    var blob=new Blob([JSON.stringify(manifest)],{type:"application/json"});
+    var link=document.createElement("link"); link.rel="manifest"; link.href=URL.createObjectURL(blob); document.head.appendChild(link);
+    var m1=document.createElement("meta"); m1.name="theme-color"; m1.content="#7C3AED"; document.head.appendChild(m1);
+    var m2=document.createElement("meta"); m2.name="apple-mobile-web-app-capable"; m2.content="yes"; document.head.appendChild(m2);
+  } catch(e){}
+}
+
+function registerSW() {
+  try {
+    if(!navigator.serviceWorker) return;
+    var sw='var C="di-v13";self.addEventListener("install",function(e){e.waitUntil(caches.open(C).then(function(c){return c.addAll([location.href]);}));self.skipWaiting();});self.addEventListener("fetch",function(e){e.respondWith(caches.match(e.request).then(function(r){return r||fetch(e.request).catch(function(){return caches.match(e.request);});}));});';
+    var blob=new Blob([sw],{type:"application/javascript"});
+    navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(function(){});
+  } catch(e){}
+}
+
+var _deferredPrompt=null;
+function setupInstallListeners() {
+  try {
+    window.addEventListener('beforeinstallprompt',function(e){
+      e.preventDefault(); _deferredPrompt=e;
+      var b=ge("install-banner");
+      if(b){try{if(!localStorage.getItem("pwa_dismissed"))setTimeout(function(){b.classList.add("on");},4000);}catch(ex){}}
+    });
+    window.addEventListener('appinstalled',function(){
+      var b=ge("install-banner"); if(b)b.classList.remove("on");
+      toast("✅ App installée !");
+    });
+  } catch(e){}
+}
+function installPWA(){if(_deferredPrompt){_deferredPrompt.prompt();_deferredPrompt.userChoice.then(function(){_deferredPrompt=null;dismissInstall();});}else{toast("📱 Safari → Partager → Sur l'écran d'accueil");}}
+function dismissInstall(){var b=ge("install-banner");if(b)b.classList.remove("on");try{localStorage.setItem("pwa_dismissed","1");}catch(e){}}
+
+// ── AUDIO ──
+var _ac=null;
+function getAC(){try{if(!_ac)_ac=new(window.AudioContext||window.webkitAudioContext)();}catch(e){}return _ac;}
+function playTone(freq,dur,type,vol){var ctx=getAC();if(!ctx)return;try{var o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.frequency.value=freq;o.type=type||"sine";g.gain.setValueAtTime(vol||.25,ctx.currentTime);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+dur);o.start(ctx.currentTime);o.stop(ctx.currentTime+dur);}catch(e){}}
+function playTick(){playTone(880,.08,"sine",.2);}
+function playRevealSound(){[523,659,784,1047].forEach(function(f,i){setTimeout(function(){playTone(f,.2,"sine",.2);},i*80);});}
+function playDisagreeSound(){[440,370,310].forEach(function(f,i){setTimeout(function(){playTone(f,.15,"sawtooth",.12);},i*100);});}
+function playSuccessSound(){[523,659,784].forEach(function(f,i){setTimeout(function(){playTone(f,.25,"sine",.18);},i*100);});}
+
+// ── ONBOARDING CAROUSEL ──
+var _obIdx=0;
+function obUpdateUI(){
+  var slides=ge("ob-slides"); if(slides) slides.style.transform="translateX(-"+(_obIdx*100)+"%)";
+  for(var i=0;i<3;i++){var d=ge("ocd-"+i);if(d)d.className="ocd"+(i===_obIdx?" on":"");}
+  var back=ge("ob-back"); if(back){back.style.opacity=_obIdx>0?"1":"0";back.style.pointerEvents=_obIdx>0?"auto":"none";}
+  var next=ge("ob-next"); if(next){next.textContent=_obIdx===2?"C'est parti ! 🔥":"Suivant →";}
+}
+function obSlide(dir){_obIdx=Math.max(0,Math.min(2,_obIdx+dir));playTick();obUpdateUI();}
+function obSlideNext(){if(_obIdx===2){showObSetup();return;}obSlide(1);}
+function showObSetup(){
+  var cw=ge("ob-carousel-wrap");if(cw)cw.style.display="none";
+  var setup=ge("ob-setup");if(setup)setup.style.display="flex";
+  try{localStorage.setItem("seen_onboard","1");}catch(e){}
+}
+function checkCarousel(){try{if(localStorage.getItem("seen_onboard"))showObSetup();}catch(e){showObSetup();}}
+
+// ── QR ──
+var _qrDone=false;
+function showQR(){
+  if(!S.roomCode){toast("⚠️ Crée une salle d'abord !");return;}
+  var val=ge("qr-code-val");if(val)val.textContent=S.roomCode;
+  if(!_qrDone&&typeof QRCode!=="undefined"){var c=ge("qr-canvas");if(c){c.innerHTML="";new QRCode(c,{text:"DEBAT:"+S.roomCode,width:148,height:148,colorDark:"#09080F",colorLight:"#FFFFFF"});_qrDone=true;}}
+  var m=ge("qr-modal");if(m)m.classList.add("on");
+}
+function closeQR(){var m=ge("qr-modal");if(m)m.classList.remove("on");}
+
+// ── LE GRAND DÉBAT — Tournament Mode ──
+// Concept: bracket tournament where each duel = 1 debate question.
+// Both dueling players answer in secret. Then ALL other players vote
+// on who gave the most honest/courageous/surprising answer.
+// Winner advances. Champion = most convincing debater of the night.
+var T = {
+  players:[], rounds:[], curR:0, curM:0,
+  curQ:null, curAnswers:{}, curVoters:[], curVoterIdx:0, votes:{}
+};
+
+function openTournament() {
+  if (!S.players || S.players.length < 2) { toast("⚠️ Ajoute au moins 2 joueurs !"); return; }
+  ge("tourn-ov").classList.add("on");
+  ge("tr-champ").classList.remove("on");
+  ge("tr-q").style.display = "none";
+  ge("tr-launch-btn").style.display = "block";
+  T.players = S.players.slice();
+  buildBracket();
+}
+
+function closeTournament() { ge("tourn-ov").classList.remove("on"); }
+
+function buildBracket() {
+  var n = T.players.length, size = 2;
+  while (size < n) size *= 2;
+  var padded = T.players.slice();
+  while (padded.length < size) padded.push(null);
+  T.rounds = [];
+  var cur = padded;
+  while (cur.length > 1) {
+    var ms = [];
+    for (var i = 0; i < cur.length; i += 2) ms.push({p1:cur[i],p2:cur[i+1],w:null,votes:[0,0]});
+    T.rounds.push(ms);
+    cur = new Array(ms.length).fill(null);
+  }
+  renderBracket();
+}
+
+function renderBracket() {
+  var el = ge("bracket"); if (!el) return;
+  var rnames = ["Quarts de finale","Demi-finales","Finale","Grande Finale"];
+  var rcls = ["br-r0","br-r1","br-r2","br-r3"];
+  var html = "";
+  for (var ri = 0; ri < T.rounds.length; ri++) {
+    var rnd = T.rounds[ri];
+    var rn = T.rounds.length === 1 ? "Finale" : (rnames[ri] || "Tour "+(ri+1));
+    html += '<div class="br-round '+rcls[ri]+'"><div class="br-lbl">'+rn+'</div>';
+    for (var mi = 0; mi < rnd.length; mi++) {
+      var m = rnd[mi];
+      var p1n = m.p1 ? (m.p1.emoji+" "+m.p1.name) : "—";
+      var p2n = m.p2 ? (m.p2.emoji+" "+m.p2.name) : "Bye";
+      var v1 = m.votes ? m.votes[0] : 0;
+      var v2 = m.votes ? m.votes[1] : 0;
+      var c1 = "br-p"+(m.w===0?" w":(m.w===1?" l":""));
+      var c2 = "br-p"+(m.w===1?" w":(m.w===0?" l":""));
+      if (!m.p2) { c1="br-p w"; c2="br-p l"; }
+      var v1txt = (m.w!==null&&m.p1&&m.p2) ? (' <small style="opacity:.6;font-size:10px">'+v1+'v</small>') : "";
+      var v2txt = (m.w!==null&&m.p1&&m.p2) ? (' <small style="opacity:.6;font-size:10px">'+v2+'v</small>') : "";
+      html += '<div class="br-match"><div class="'+c1+'">'+p1n+v1txt+'</div>'
+        + '<div class="br-vs">VS</div>'
+        + '<div class="'+c2+'">'+p2n+v2txt+'</div></div>';
+    }
+    html += '</div>';
+  }
+  el.innerHTML = html;
+}
+
+function startTournament() {
+  ge("tr-launch-btn").style.display = "none";
+  // Auto-advance byes
+  for (var ri = 0; ri < T.rounds.length; ri++) {
+    for (var mi = 0; mi < T.rounds[ri].length; mi++) {
+      var m = T.rounds[ri][mi];
+      if (!m.p2 && m.p1) { m.w = 0; advanceTR(ri,mi,m.p1); }
+      else if (!m.p1 && m.p2) { m.w = 1; advanceTR(ri,mi,m.p2); }
+    }
+  }
+  T.curR = 0; T.curM = 0;
+  nextTournMatch();
+}
+
+function nextTournMatch() {
+  for (var ri = 0; ri < T.rounds.length; ri++) {
+    for (var mi = 0; mi < T.rounds[ri].length; mi++) {
+      var m = T.rounds[ri][mi];
+      if (m.w === null && m.p1 && m.p2) {
+        T.curR = ri; T.curM = mi;
+        setupTournDuel(ri, mi);
+        return;
+      }
+    }
+  }
+  // All matches done
+  var fm = T.rounds[T.rounds.length-1][0];
+  if (fm && fm.w !== null) {
+    var ch = fm.w === 0 ? fm.p1 : fm.p2;
+    if (ch) showChampion(ch);
+  }
+}
+
+function setupTournDuel(ri, mi) {
+  var m = T.rounds[ri][mi];
+  var q = fromBank();
+  T.curQ = q;
+  T.curAnswers = {};
+  T.votes = {0:0, 1:0};
+  // Voters = all players NOT in the duel (or both if only 2 players)
+  if (T.players.length <= 2) {
+    // With only 2 players, they vote for each other after seeing both answers
+    T.curVoters = [T.players[0], T.players[1]];
+  } else {
+    T.curVoters = T.players.filter(function(p){return p!==m.p1&&p!==m.p2;});
+  }
+  T.curVoterIdx = 0;
+  // Update UI
+  var p1el = ge("tr-p1-name"); if(p1el) p1el.textContent = m.p1.emoji+" "+m.p1.name;
+  var p2el = ge("tr-p2-name"); if(p2el) p2el.textContent = m.p2.emoji+" "+m.p2.name;
+  var qtxt = ge("tr-q-txt"); if(qtxt) qtxt.textContent = inject(q.q);
+  var phlbl = ge("tr-phase-lbl");
+  if (phlbl) phlbl.textContent = "1. Les deux joueurs répondent en secret → 2. Le groupe vote";
+  ge("tr-answer-phase").style.display = "block";
+  ge("tr-vote-phase").style.display = "none";
+  var startBtn = ge("tr-start-btn"); if(startBtn) startBtn.textContent = "▶ "+m.p1.emoji+" "+m.p1.name+", réponds en premier";
+  ge("tr-q").style.display = "block";
+  renderBracket();
+  playTick();
+}
+
+function tournStartAnswers() {
+  var m = T.rounds[T.curR][T.curM];
+  var answerOrder = [m.p1, m.p2];
+  var ansIdx = Object.keys(T.curAnswers).length;
+  if (ansIdx < 2) {
+    // Show secret screen for next answerer
+    var nextP = answerOrder[ansIdx];
+    // Temporarily use secret screen
+    var ss = ge("secret-screen");
+    var qcard = ge("qcard");
+    var tq = ge("tr-q");
+    if (ss) {
+      ge("ss-emoji").textContent = nextP.emoji;
+      ge("ss-title").textContent = nextP.name + ", c'est ton tour !";
+      ge("ss-sub").textContent = "Lis la question ci-dessus et mémorise ta réponse. Les autres ferment les yeux.";
+      ss.classList.add("on");
+      // Override the ss button
+      ge("tr-q").style.visibility = "hidden";
+      var ssBtn = ss.querySelector(".ss-btn");
+      if (ssBtn) {
+        ssBtn.textContent = "J'ai lu ma question — je suis prêt";
+        ssBtn.onclick = function() {
+          ss.classList.remove("on");
+          ge("tr-q").style.visibility = "visible";
+          // Mark as answered (we trust they read it)
+          T.curAnswers[ansIdx] = {player: nextP, noted: true};
+          if (ansIdx === 0) {
+            var sb = ge("tr-start-btn");
+            if (sb) sb.textContent = "▶ "+m.p2.emoji+" "+m.p2.name+", réponds maintenant";
+          } else {
+            // Both answered, move to vote phase
+            startTournVoting();
+          }
+        };
+      }
+    }
+  }
+}
+
+function startTournVoting() {
+  var phlbl = ge("tr-phase-lbl");
+  if (phlbl) phlbl.textContent = "Chacun vote pour la réponse la plus convaincante";
+  ge("tr-answer-phase").style.display = "none";
+  ge("tr-vote-phase").style.display = "block";
+  var m = T.rounds[T.curR][T.curM];
+  var b1 = ge("tr-btn-p1"); if(b1) { b1.textContent = m.p1.emoji+" "+m.p1.name; b1.className="tr-q-btn"; }
+  var b2 = ge("tr-btn-p2"); if(b2) { b2.textContent = m.p2.emoji+" "+m.p2.name; b2.className="tr-q-btn"; }
+  T.curVoterIdx = 0;
+  updateTournVoteHeader();
+}
+
+function updateTournVoteHeader() {
+  var vc = ge("tr-vote-count");
+  if (!vc) return;
+  var total = T.curVoters.length;
+  var done = T.curVoterIdx;
+  if (done < total) {
+    var v = T.curVoters[done];
+    vc.textContent = v.emoji+" "+v.name+" vote — ("+done+"/"+total+")";
+  } else {
+    vc.textContent = "Tous les votes sont comptabilisés";
+  }
+}
+
+function tournVoteFor(side) {
+  T.votes[side] = (T.votes[side]||0) + 1;
+  var b = ge(side===0?"tr-btn-p1":"tr-btn-p2");
+  if (b) b.className = "tr-q-btn "+(side===0?"p1w":"p2w");
+  T.curVoterIdx++;
+  if (T.curVoterIdx < T.curVoters.length) {
+    updateTournVoteHeader();
+    // Reset buttons for next voter
+    setTimeout(function(){
+      var b1=ge("tr-btn-p1");var b2=ge("tr-btn-p2");
+      if(b1)b1.className="tr-q-btn";if(b2)b2.className="tr-q-btn";
+    },600);
+  } else {
+    // All voted — determine winner
+    var m = T.rounds[T.curR][T.curM];
+    m.votes = [T.votes[0]||0, T.votes[1]||0];
+    var winner, winSide;
+    if ((T.votes[0]||0) >= (T.votes[1]||0)) { winner=m.p1; winSide=0; }
+    else { winner=m.p2; winSide=1; }
+    // Tiebreak: random
+    if ((T.votes[0]||0) === (T.votes[1]||0)) {
+      winSide = Math.random()>0.5?1:0;
+      winner = winSide===0?m.p1:m.p2;
+      toast("🎲 Égalité ! "+winner.emoji+" "+winner.name+" avance par tirage au sort");
+    } else {
+      toast("🏆 "+winner.emoji+" "+winner.name+" remporte le duel !");
+    }
+    m.w = winSide;
+    winner.pts = (winner.pts||0) + 20;
+    advanceTR(T.curR, T.curM, winner);
+    renderBracket();
+    playRevealSound();
+    setTimeout(function(){
+      ge("tr-q").style.display = "none";
+      nextTournMatch();
+    },1500);
+  }
+}
+
+function advanceTR(ri, mi, winner) {
+  var nri = ri+1; if (nri >= T.rounds.length) return;
+  var nmi = Math.floor(mi/2); if (nmi >= T.rounds[nri].length) return;
+  var nm = T.rounds[nri][nmi];
+  if (mi%2===0) nm.p1 = winner; else nm.p2 = winner;
+}
+
+function showChampion(p) {
+  var cn = ge("tr-champ-name"); if(cn) cn.textContent = p.emoji+" "+p.name;
+  var cs = ge("tr-champ-sub"); if(cs) cs.textContent = p.pts+" points · Le débatteur le plus convaincant de la soirée !";
+  ge("tr-champ").classList.add("on");
+  ge("tr-q").style.display = "none";
+  renderBracket();
+  confetti(); playRevealSound();
+  toast("👑 "+p.name+" est le Grand Débatteur de la soirée !");
+  p.pts = (p.pts||0) + 50;
+  renderStrip();
+  saveState();
+}
+
+// ── VIEWPORT FIX ──
+function setupViewportFix(){
+  try{
+    if(!window.visualViewport)return;
+    window.visualViewport.addEventListener('resize',function(){
+      var offset=window.innerHeight-window.visualViewport.height;
+      var a=ge("app");if(a)a.style.paddingBottom=offset>50?(offset+10)+"px":"";
+    });
+  }catch(e){}
+}
+
+// ── V13 BOOT ──
+function v13Boot() {
+  injectPWA();
+  registerSW();
+  setupInstallListeners();
+  setupViewportFix();
+  checkCarousel();
+  setupSwipe();
+  // Dismiss splash after animation
+  setTimeout(function() {
+    var s = ge("splash");
+    if (s) s.classList.add("gone");
+  }, 2200);
+  updateModeSwitcher();
+  _revealSkippable = true;
 }
 
 function boot() {
   loadSave();
-  // Sync UI with loaded state
-  var _ppts = ge("pn-pts"); if(_ppts) _ppts.textContent = S.pts;
-  var _psk = ge("pn-sk"); if(_psk) _psk.textContent = S.streak;
+  v13Boot();
   if (!S.isPremium) {
     LOCKED.forEach(function(c) {
       var b = qs(".cat[data-c='" + c + "']");
