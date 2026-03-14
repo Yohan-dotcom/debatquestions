@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -1881,6 +1882,7 @@ function endSession() {
   ge("p-str") && (ge("p-str").textContent = S.streak);
   if (S.streak >= 3) { addPts(S.streak >= 7 ? 40 : 15); toast("🔥 " + S.streak + " jours ! Bonus pts !"); }
   ge("ndot").classList.remove("on");
+  saveState();
   goTo("pg-end");
   confetti();
 }
@@ -2014,6 +2016,7 @@ function toggleFav() {
     if (S.curQ) S.favs.push(S.curQ);
     addPts(2); checkBadges(); toast("❤️ Favori !");
   }
+  saveState();
 }
 
 function flagQ() { toast("🚩 Signale — merci !"); }
@@ -2127,6 +2130,7 @@ async function genPerso() {
 function openSettings() { openSheet("ov-st","sht-st"); }
 function saveAPI() {
   S.apiKey = ge("api-key").value.trim();
+  saveState();
   toast(S.apiKey ? "🔑 Cle API sauvegardee !" : "⚠️ Mode demo active");
   closeSheet("ov-st","sht-st");
 }
@@ -2461,7 +2465,7 @@ function showChampion(p){
   var cn=ge("tr-champ-name"); if(cn)cn.textContent=p.emoji+" "+p.name;
   ge("tr-champ").classList.add("on"); ge("tr-q").style.display="none";
   renderBracket(); confetti(); playRevealSound();
-  toast("🏆 "+p.name+" est le champion de la soirée !"); addPts(50); saveState();
+  toast("🏆 "+p.name+" est le champion de la soirée !"); addPts(50);
 }
 
 // ── OVERRIDE shareReveal WITH VIRAL IMAGE ──
@@ -2534,7 +2538,47 @@ function v12Boot() {
   v12SoundsActive = true;
 }
 
+
+// ── PERSISTENCE ──
+function saveState() {
+  try {
+    var d = {
+      pts:S.pts, streak:S.streak, freezes:S.freezes,
+      tQ:S.tQ, sess:S.sess, aV:S.aV, favs:S.favs,
+      isPremium:S.isPremium, weekVoted:S.weekVoted,
+      apiKey:S.apiKey, lastPlayed:new Date().toDateString()
+    };
+    localStorage.setItem("di_save", JSON.stringify(d));
+  } catch(e) {}
+}
+
+function loadSave() {
+  try {
+    var raw = localStorage.getItem("di_save");
+    if (!raw) return;
+    var d = JSON.parse(raw);
+    if (d.pts != null) S.pts = d.pts;
+    if (d.streak) S.streak = d.streak;
+    if (d.freezes != null) S.freezes = d.freezes;
+    if (d.tQ) S.tQ = d.tQ;
+    if (d.sess) S.sess = d.sess;
+    if (d.aV) S.aV = d.aV;
+    if (d.favs) S.favs = d.favs;
+    if (d.isPremium) S.isPremium = d.isPremium;
+    if (d.weekVoted) S.weekVoted = d.weekVoted;
+    if (d.apiKey) S.apiKey = d.apiKey;
+    if (d.lastPlayed) {
+      var diff = Math.floor((new Date() - new Date(d.lastPlayed)) / 86400000);
+      if (diff > 1) S.streak = 1;
+    }
+  } catch(e) {}
+}
+
 function boot() {
+  loadSave();
+  // Sync UI with loaded state
+  var _ppts = ge("pn-pts"); if(_ppts) _ppts.textContent = S.pts;
+  var _psk = ge("pn-sk"); if(_psk) _psk.textContent = S.streak;
   if (!S.isPremium) {
     LOCKED.forEach(function(c) {
       var b = qs(".cat[data-c='" + c + "']");
