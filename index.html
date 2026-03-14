@@ -1,0 +1,2557 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Débat Intense 🔥</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --v:#7C3AED;--vl:#A78BFA;--vd:#4C1D95;
+  --o:#F97316;--ol:#FB923C;
+  --bg:#09080F;--bg2:#110F1A;--bg3:#181624;
+  --card:#1D1B29;--border:#2C293C;--border2:#3C394F;
+  --text:#EDE9FF;--text2:#918DB0;--text3:#524F6A;
+  --red:#F43F5E;--green:#10B981;--pink:#EC4899;--gold:#F59E0B;--blue:#818CF8;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{height:100%;background:var(--bg)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100%;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.4;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")}
+.orb{position:fixed;border-radius:50%;filter:blur(110px);pointer-events:none;z-index:0}
+.o1{width:500px;height:500px;top:-150px;right:-150px;background:radial-gradient(circle,rgba(124,58,237,.22) 0%,transparent 70%)}
+.o2{width:450px;height:450px;bottom:-100px;left:-140px;background:radial-gradient(circle,rgba(249,115,22,.12) 0%,transparent 70%)}
+.o3{width:300px;height:300px;top:38%;left:18%;background:radial-gradient(circle,rgba(244,63,94,.1) 0%,transparent 70%);opacity:0;transition:opacity 1.8s}
+#app{max-width:430px;margin:0 auto;min-height:100vh;position:relative;z-index:1}
+.page{display:none;padding-bottom:90px}
+.page.show{display:block;animation:pgIn .25s ease}
+@keyframes pgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── ONBOARD ── */
+#pg-onboard{min-height:100vh;padding:44px 24px 90px;overflow-y:auto;display:flex;flex-direction:column;align-items:center}
+.ob-flame{font-size:80px;filter:drop-shadow(0 0 32px rgba(249,115,22,.6));animation:flm 2.5s ease-in-out infinite;margin-bottom:14px}
+@keyframes flm{0%,100%{transform:scale(1) rotate(-3deg)}50%{transform:scale(1.1) rotate(3deg)}}
+.ob-h1{font-family:'Syne',sans-serif;font-size:48px;font-weight:800;letter-spacing:-2.5px;line-height:.88;text-align:center;margin-bottom:8px}
+.ob-h1 em{font-style:normal;background:linear-gradient(135deg,var(--vl),var(--o));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ob-sub{font-size:14px;color:var(--text2);text-align:center;line-height:1.6;margin-bottom:24px;max-width:260px}
+/* Mode pills */
+.mode-row{display:flex;gap:8px;width:100%;margin-bottom:6px}
+.mpill{flex:1;padding:11px 6px;border-radius:14px;border:2px solid var(--border);background:var(--card);color:var(--text3);font-family:'Syne',sans-serif;font-size:11px;font-weight:700;cursor:pointer;text-align:center;transition:all .2s;line-height:1.3}
+.mpill:active{transform:scale(.96)}
+.mpill.on{border-color:var(--v);background:rgba(124,58,237,.12);color:var(--vl)}
+.mpill.on.grp{border-color:var(--green);background:rgba(16,185,129,.08);color:var(--green)}
+.mpill.on.td{border-color:var(--o);background:rgba(249,115,22,.08);color:var(--o)}
+.mode-desc{font-size:12px;color:var(--text3);text-align:center;margin-bottom:20px;height:16px}
+/* Players */
+.pl-title{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;width:100%;text-align:left}
+.pl-list{display:flex;flex-direction:column;gap:9px;width:100%;margin-bottom:12px}
+.pl-row{display:flex;align-items:center;gap:9px}
+.pl-em{width:40px;height:40px;background:var(--card);border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;flex-shrink:0}
+.pl-em:active{transform:scale(.9)}
+.pl-inp{flex:1;background:var(--card);border:1.5px solid var(--border);border-radius:13px;padding:12px 14px;color:var(--text);font-size:15px;font-family:'Syne',sans-serif;font-weight:700;outline:none;transition:all .2s}
+.pl-inp:focus{border-color:var(--v)}
+.pl-inp::placeholder{color:var(--text3);font-weight:400;font-family:'DM Sans',sans-serif;font-size:13px}
+.pl-del{width:36px;height:36px;background:rgba(244,63,94,.1);border:1px solid rgba(244,63,94,.2);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;flex-shrink:0}
+.pl-add{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;background:var(--bg3);border:1.5px dashed var(--border2);border-radius:13px;padding:11px;color:var(--text3);font-size:13px;font-weight:600;cursor:pointer;margin-bottom:16px}
+.pl-add:active{background:var(--border)}
+.ob-badge{display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.18);border-radius:12px;padding:10px 16px;font-size:12px;color:var(--green);font-weight:600;width:100%;margin-bottom:14px}
+.ob-btn{width:100%;background:linear-gradient(135deg,var(--v),var(--vd));border:none;border-radius:20px;padding:19px;color:#fff;font-family:'Syne',sans-serif;font-size:18px;font-weight:800;cursor:pointer;box-shadow:0 12px 44px rgba(124,58,237,.45),inset 0 1px 0 rgba(255,255,255,.1);position:relative;overflow:hidden}
+.ob-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.07),transparent 55%);pointer-events:none}
+.ob-btn:active{transform:scale(.97)}
+.ob-skip{font-size:12px;color:var(--text3);cursor:pointer;padding:8px;margin-top:4px}
+
+/* ── HOME ── */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:50px 20px 14px}
+.tlogo{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;letter-spacing:-.8px;background:linear-gradient(135deg,var(--vl),var(--o));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.tright{display:flex;gap:7px}
+.ib{width:40px;height:40px;background:var(--card);border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:17px;position:relative;flex-shrink:0}
+.ib:active{background:var(--border2)}
+.ndot{position:absolute;top:7px;right:7px;width:7px;height:7px;background:var(--red);border-radius:50%;border:2px solid var(--bg);display:none}
+.ndot.on{display:block}
+/* Player strip */
+.pstrip{padding:0 20px 12px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.pstrip::-webkit-scrollbar{display:none}
+.pchip{display:flex;align-items:center;gap:6px;padding:7px 11px 7px 8px;border-radius:30px;border:2px solid var(--border);background:var(--card);flex-shrink:0;transition:all .2s}
+.pchip.hot{border-color:var(--v);background:rgba(124,58,237,.1)}
+.pchip.voted{border-color:rgba(16,185,129,.35);background:rgba(16,185,129,.07)}
+.pchip-em{font-size:14px}
+.pchip-name{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;max-width:68px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text2)}
+.pchip.hot .pchip-name{color:var(--vl)}
+.pchip.voted .pchip-name{color:var(--green)}
+.pchip-pts{font-size:10px;color:var(--text3)}
+/* Pills */
+.pills{display:flex;gap:7px;padding:0 20px 14px;overflow-x:auto;scrollbar-width:none}
+.pills::-webkit-scrollbar{display:none}
+.pill{display:flex;align-items:center;gap:5px;padding:6px 11px;border-radius:30px;font-size:13px;font-weight:700;white-space:nowrap;border:1.5px solid transparent;flex-shrink:0;cursor:pointer}
+.p-sk{background:rgba(249,115,22,.1);border-color:rgba(249,115,22,.22);color:var(--o)}
+.p-sk.danger{background:rgba(244,63,94,.1);border-color:rgba(244,63,94,.4);color:var(--red);animation:pd 1.5s ease infinite}
+@keyframes pd{0%,100%{box-shadow:none}50%{box-shadow:0 0 0 5px rgba(244,63,94,.1)}}
+.p-pts{background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.2);color:var(--gold)}
+.p-tri{background:rgba(16,185,129,.1);border-color:rgba(16,185,129,.2);color:var(--green)}
+.pn{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;line-height:1}
+/* Dots */
+.sess{padding:0 20px 14px}
+.sess-head{display:flex;justify-content:space-between;margin-bottom:10px}
+.sess-lbl{font-size:11px;font-weight:700;color:var(--text3);letter-spacing:1px;text-transform:uppercase}
+.sess-n{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--vl)}
+.dots{display:flex;gap:5px}
+.dot{flex:1;height:5px;border-radius:3px;background:var(--border);transition:all .4s}
+.dot.done{background:linear-gradient(90deg,var(--v),var(--vl))}
+.dot.cur{background:linear-gradient(90deg,var(--vl),var(--ol));box-shadow:0 0 8px rgba(167,139,250,.4);animation:dp 1.3s ease infinite}
+@keyframes dp{0%,100%{opacity:1}50%{opacity:.5}}
+.dot.bomb{background:linear-gradient(90deg,var(--red),var(--o))}
+/* Cats */
+.cats-wrap{padding:0 20px 14px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.cats-wrap::-webkit-scrollbar{display:none}
+.cats-row{display:flex;gap:8px;width:max-content}
+.cat{padding:9px 16px;border-radius:30px;border:1.5px solid var(--border);background:var(--card);color:var(--text2);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:'DM Sans',sans-serif;transition:all .2s;display:flex;align-items:center;gap:6px}
+.cat:active{opacity:.7}
+.cat.on{border-color:transparent;color:#fff;font-weight:700}
+.cat.locked::after{content:' 🔒';font-size:10px}
+.cat[data-c="couple"].on{background:linear-gradient(135deg,#6D28D9,#8B5CF6);box-shadow:0 4px 16px rgba(109,40,217,.4)}
+.cat[data-c="sexualite"].on{background:linear-gradient(135deg,#9D174D,#EC4899);box-shadow:0 4px 16px rgba(157,23,77,.4)}
+.cat[data-c="morale"].on{background:linear-gradient(135deg,#3730A3,#6366F1);box-shadow:0 4px 16px rgba(55,48,163,.4)}
+.cat[data-c="jalousie"].on{background:linear-gradient(135deg,#9F1239,#F43F5E);box-shadow:0 4px 16px rgba(159,18,57,.4)}
+.cat[data-c="argent"].on{background:linear-gradient(135deg,#92400E,#F59E0B);box-shadow:0 4px 16px rgba(146,64,14,.4)}
+.cat[data-c="religion"].on{background:linear-gradient(135deg,#065F46,#10B981);box-shadow:0 4px 16px rgba(6,95,70,.4)}
+/* Q area */
+.qarea{padding:0 20px 12px}
+.bomb-banner{display:none;align-items:center;gap:10px;background:rgba(244,63,94,.08);border:1px solid rgba(244,63,94,.2);border-radius:14px;padding:11px 14px;margin-bottom:10px}
+.bomb-banner.on{display:flex;animation:pgIn .3s ease}
+.bomb-txt{font-size:13px;color:rgba(244,63,94,.9);font-weight:500}
+/* Hot seat */
+.hsbar{display:none;align-items:center;gap:9px;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.16);border-radius:13px;padding:10px 14px;margin-bottom:10px}
+.hsbar.on{display:flex;animation:pgIn .3s ease}
+.hs-em{font-size:18px}
+.hs-lbl{font-size:12px;color:var(--text3);font-weight:600}
+.hs-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:var(--vl)}
+.hs-badge{margin-left:auto;font-size:10px;background:rgba(124,58,237,.18);border-radius:6px;padding:3px 8px;color:var(--vl);font-weight:700}
+/* Vote header */
+.vrh{display:none;align-items:center;justify-content:space-between;margin-bottom:10px}
+.vrh.on{display:flex}
+.vrh-left{display:flex;align-items:center;gap:7px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--vl)}
+.vrh-dots{display:flex;gap:5px}
+.vrd{width:8px;height:8px;border-radius:50%;background:var(--border);transition:all .25s}
+.vrd.done{background:var(--green)}
+.vrd.cur{background:var(--v);box-shadow:0 0 6px rgba(124,58,237,.4)}
+/* QCard */
+.qcard{background:var(--card);border:1px solid var(--border);border-radius:26px;padding:22px 22px 20px;position:relative;overflow:hidden}
+.qcard-stripe{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--v),var(--o));border-radius:26px 26px 0 0}
+.qcard.hot .qcard-stripe{background:linear-gradient(90deg,var(--red),var(--o))}
+.qcard.hot{border-color:rgba(249,115,22,.18)}
+.qcard.bomb{border-color:rgba(244,63,94,.28);box-shadow:0 0 40px rgba(244,63,94,.1)}
+.qcard.bomb .qcard-stripe{background:linear-gradient(90deg,var(--red),var(--pink),var(--o));animation:bs 1.8s linear infinite;background-size:200%}
+@keyframes bs{0%{background-position:0%}100%{background-position:200%}}
+.qcard-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.qcbadge{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:8px;background:rgba(124,58,237,.12);color:var(--vl);border:1px solid rgba(124,58,237,.18)}
+.qtag-wrap{display:flex;align-items:center;gap:6px}
+.qtag{font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:700;padding:4px 8px;border-radius:6px}
+.qtag.w{background:rgba(124,58,237,.1);color:var(--vl);border:1px solid rgba(124,58,237,.16)}
+.qtag.f{background:rgba(249,115,22,.1);color:var(--o);border:1px solid rgba(249,115,22,.16)}
+.qtag.b{background:rgba(244,63,94,.12);color:var(--red);border:1px solid rgba(244,63,94,.22)}
+.qtext{font-family:'Syne',sans-serif;font-size:23px;font-weight:700;line-height:1.35;color:var(--text);min-height:88px;display:flex;align-items:center;margin-bottom:18px}
+.qtext.loading{flex-direction:column;justify-content:center;gap:11px}
+.qspinner{width:30px;height:30px;border:3px solid var(--border2);border-top-color:var(--v);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.qloadtxt{font-size:13px;color:var(--text3)}
+/* Answer area */
+.ans-area{border-top:1px solid var(--border);padding-top:14px}
+.ans-label{font-size:12px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}
+.binary-row{display:flex;gap:8px}
+.abt{flex:1;padding:12px 10px;border-radius:12px;border:2px solid var(--border);background:var(--bg3);color:var(--text2);font-size:14px;font-weight:700;cursor:pointer;transition:all .18s;text-align:center}
+.abt:active{transform:scale(.96)}
+.abt.oui.lit{background:rgba(16,185,129,.13);border-color:rgba(16,185,129,.45);color:var(--green)}
+.abt.non.lit{background:rgba(244,63,94,.13);border-color:rgba(244,63,94,.45);color:var(--red)}
+.scale-row{display:flex;gap:6px}
+.sbt{flex:1;padding:10px 4px;border-radius:11px;border:2px solid var(--border);background:var(--bg3);color:var(--text3);font-size:13px;font-weight:700;cursor:pointer;transition:all .18s;text-align:center}
+.sbt.lit{background:rgba(124,58,237,.15);border-color:rgba(124,58,237,.4);color:var(--vl)}
+.choices{display:flex;flex-direction:column;gap:7px}
+.choice-btn{padding:11px 14px;border-radius:12px;border:2px solid var(--border);background:var(--bg3);color:var(--text2);font-size:14px;cursor:pointer;transition:all .18s;text-align:left;font-family:'DM Sans',sans-serif;font-weight:500}
+.choice-btn:active{opacity:.7}
+.choice-btn.lit{background:rgba(124,58,237,.12);border-color:rgba(124,58,237,.4);color:var(--vl);font-weight:600}
+/* Discuss mode */
+.discuss-box{background:rgba(124,58,237,.06);border:1px solid rgba(124,58,237,.13);border-radius:14px;padding:14px;margin-bottom:10px}
+.discuss-title{font-size:11px;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:9px}
+.discuss-item{font-size:14px;color:var(--text2);line-height:1.55;padding:7px 0;border-bottom:1px solid var(--border)}
+.discuss-item:last-child{border-bottom:none;padding-bottom:0}
+.discuss-spark{margin-top:9px;padding-top:9px;border-top:1px solid var(--border);font-size:12px;color:var(--vl);font-weight:600}
+.discuss-conclude{font-size:12px;font-weight:700;color:var(--text3);text-align:center;margin-bottom:8px;text-transform:uppercase;letter-spacing:.4px}
+.discuss-votes{display:flex;gap:7px}
+.dvb{flex:1;padding:11px 5px;border-radius:12px;border:2px solid var(--border);background:var(--bg3);color:var(--text2);font-size:13px;font-weight:700;cursor:pointer;text-align:center;transition:all .18s}
+.dvb:active{transform:scale(.95)}
+.dvb.oui.lit{background:rgba(16,185,129,.13);border-color:rgba(16,185,129,.4);color:var(--green)}
+.dvb.non.lit{background:rgba(244,63,94,.13);border-color:rgba(244,63,94,.4);color:var(--red)}
+.dvb.mid.lit{background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.35);color:var(--gold)}
+/* Confirm btn */
+.confirm-btn{width:100%;margin-top:10px;background:linear-gradient(135deg,rgba(124,58,237,.14),rgba(249,115,22,.08));border:2px solid rgba(124,58,237,.28);border-radius:13px;padding:12px;color:var(--vl);font-family:'Syne',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;display:none}
+.confirm-btn.on{display:block;animation:pgIn .25s ease}
+.confirm-btn:active{transform:scale(.98)}
+/* Card bottom */
+.qcard-bot{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+.qactions{display:flex;gap:7px}
+.qab{width:36px;height:36px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all .15s}
+.qab:active{transform:scale(.9)}
+.qab.fav.on{background:rgba(236,72,153,.12);border-color:rgba(236,72,153,.3)}
+.vote-hint{font-size:12px;color:var(--text3)}
+/* Story card */
+.story-card{display:none;background:linear-gradient(160deg,#12002A,#1A0840 50%,#0D1A10);border:1px solid rgba(167,139,250,.2);border-radius:26px;overflow:hidden;margin-top:10px}
+.story-card.on{display:block;animation:pgIn .4s ease}
+.st-hdr{background:linear-gradient(90deg,rgba(124,58,237,.32),rgba(249,115,22,.16));padding:10px 18px;display:flex;align-items:center;gap:9px;border-bottom:1px solid rgba(167,139,250,.1)}
+.st-hdr-lbl{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(167,139,250,.9);flex:1}
+.st-hdr-tag{font-size:10px;background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.2);border-radius:6px;padding:3px 8px;color:var(--vl);font-weight:700}
+.st-body{padding:16px 18px 14px}
+.st-scene{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-bottom:8px}
+.st-narrative{font-size:14px;line-height:1.75;color:rgba(237,233,255,.8);font-style:italic;margin-bottom:12px;padding-left:12px;border-left:2px solid var(--vl)}
+.st-qlbl{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--o);margin-bottom:7px}
+.st-q{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;line-height:1.38;color:var(--text);margin-bottom:12px}
+.st-chars{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+.st-char{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:5px 10px;font-size:12px;color:var(--text2)}
+.st-vote{border-top:1px solid rgba(167,139,250,.1);padding-top:13px}
+/* Dare card */
+.dare-card{display:none;background:linear-gradient(135deg,rgba(249,115,22,.09),rgba(220,38,38,.05));border:1.5px solid rgba(249,115,22,.26);border-radius:24px;padding:20px;margin-top:10px}
+.dare-card.on{display:block;animation:pgIn .35s ease}
+.dare-hd{display:flex;align-items:center;gap:9px;margin-bottom:12px}
+.dare-hd-lbl{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--o)}
+.dare-txt{font-family:'Syne',sans-serif;font-size:19px;font-weight:700;line-height:1.38;color:var(--text);margin-bottom:14px}
+.dare-pts-lbl{font-size:13px;color:var(--o);font-weight:600;margin-bottom:13px}
+.dare-done{width:100%;background:linear-gradient(135deg,var(--o),#C2410C);border:none;border-radius:13px;padding:13px;color:#fff;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:8px}
+.dare-done:active{transform:scale(.97)}
+.dare-fail{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:13px;padding:10px;color:var(--text3);font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer}
+/* CTA + modes */
+.mcta{display:flex;align-items:center;justify-content:center;gap:9px;margin:12px 20px 0;background:linear-gradient(135deg,var(--v),var(--vd));border:none;border-radius:20px;padding:18px;color:#fff;font-family:'Syne',sans-serif;font-size:18px;font-weight:800;cursor:pointer;letter-spacing:-.3px;box-shadow:0 10px 36px rgba(124,58,237,.4),inset 0 1px 0 rgba(255,255,255,.1);width:calc(100% - 40px);position:relative;overflow:hidden}
+.mcta::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.07),transparent 55%);pointer-events:none}
+.mcta:active{transform:scale(.98)}
+.modes{display:flex;gap:9px;padding:11px 20px 0}
+.mcard{flex:1;background:var(--card);border:1.5px solid var(--border);border-radius:17px;padding:11px 7px;text-align:center;cursor:pointer;transition:all .18s}
+.mcard:active{opacity:.7;transform:scale(.97)}
+.mcard .mi{font-size:20px;display:block;margin-bottom:4px}
+.mcard .ml{font-size:10px;font-weight:700;color:var(--text3);letter-spacing:.3px;text-transform:uppercase}
+.mc-live{border-color:rgba(249,115,22,.2)}.mc-live .ml{color:var(--o)}
+.mc-perso{border-color:rgba(129,140,248,.2)}.mc-perso .ml{color:var(--blue)}
+.mc-story{border-color:rgba(236,72,153,.2)}.mc-story .ml{color:var(--pink)}
+.mc-story.on{border-color:rgba(236,72,153,.5);background:rgba(236,72,153,.07)}
+.mc-week{border-color:rgba(245,158,11,.2)}.mc-week .ml{color:var(--gold)}
+/* T/D overlay */
+.td-ov{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:400;display:none;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(8px)}
+.td-ov.on{display:flex;animation:pgIn .3s ease}
+.td-inner{width:100%;max-width:380px;text-align:center}
+.td-preview{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:16px;margin-bottom:20px}
+.td-prev-lbl{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:6px}
+.td-prev-txt{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;line-height:1.35;color:var(--text)}
+.td-who{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:4px;color:var(--vl)}
+.td-sub{font-size:14px;color:var(--text2);margin-bottom:22px}
+.td-btns{display:flex;gap:12px}
+.td-btn{flex:1;border:none;border-radius:20px;padding:20px 12px;cursor:pointer;transition:all .18s}
+.td-btn:active{transform:scale(.95)}
+.td-v{background:linear-gradient(135deg,var(--v),var(--vd));box-shadow:0 8px 26px rgba(124,58,237,.4)}
+.td-d{background:linear-gradient(135deg,var(--o),#C2410C);box-shadow:0 8px 26px rgba(249,115,22,.4)}
+.td-ico{font-size:30px;display:block;margin-bottom:7px}
+.td-name{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:#fff;display:block;margin-bottom:3px}
+.td-desc{font-size:11px;color:rgba(255,255,255,.7);display:block}
+/* Reveal overlay */
+.rv-ov{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:400;display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(10px)}
+.rv-ov.on{display:flex;animation:pgIn .3s ease}
+.rv-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:8px}
+.rv-q{font-size:15px;color:var(--text2);text-align:center;max-width:320px;margin-bottom:20px;line-height:1.4}
+.rv-count{font-family:'Syne',sans-serif;font-size:90px;font-weight:800;background:linear-gradient(135deg,var(--vl),var(--o));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:cpulse .8s ease infinite;display:none}
+@keyframes cpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.rv-pills{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:340px;width:100%;min-height:70px;display:none}
+.rv-pill{display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0;transform:scale(.3);transition:all .45s cubic-bezier(.34,1.56,.64,1)}
+.rv-pill.pop{opacity:1;transform:scale(1)}
+.rv-p-em{font-size:26px}
+.rv-p-nm{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:var(--text2);text-align:center;max-width:70px}
+.rv-p-vote{font-family:'Syne',sans-serif;font-size:13px;font-weight:800;padding:5px 11px;border-radius:10px}
+.rv-p-vote.oui{background:rgba(16,185,129,.15);border:2px solid rgba(16,185,129,.35);color:var(--green)}
+.rv-p-vote.non{background:rgba(244,63,94,.15);border:2px solid rgba(244,63,94,.35);color:var(--red)}
+.rv-p-vote.mid{background:rgba(245,158,11,.12);border:2px solid rgba(245,158,11,.3);color:var(--gold)}
+.rv-p-vote.z{background:var(--border);border:2px solid var(--border2);color:var(--text3)}
+.rv-result{text-align:center;opacity:0;transition:opacity .5s;margin:16px 0}
+.rv-result.on{opacity:1}
+.rv-res-ico{font-size:44px;display:block;margin-bottom:8px}
+.rv-res-title{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;display:block;margin-bottom:5px}
+.rv-res-sub{font-size:14px;color:var(--text2);display:block;max-width:280px;margin:0 auto;line-height:1.5}
+.rv-spark{background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.16);border-radius:14px;padding:12px 16px;max-width:320px;width:100%;margin:10px 0;text-align:center;display:none}
+.rv-spark.on{display:block}
+.rv-spark-lbl{font-size:10px;color:var(--vl);font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.rv-spark-txt{font-size:14px;color:var(--text2);line-height:1.55}
+.rv-next{background:linear-gradient(135deg,var(--v),var(--vd));border:none;border-radius:18px;padding:14px 44px;color:#fff;font-family:'Syne',sans-serif;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 8px 24px rgba(124,58,237,.36);display:none;margin-top:4px}
+.rv-next:active{transform:scale(.97)}
+/* Scoreboard */
+.scoreboard{margin:12px 20px;background:var(--card);border:1px solid var(--border);border-radius:24px;overflow:hidden;position:relative;display:none}
+.scoreboard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--v),var(--o))}
+.sb-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;padding:15px 20px 11px}
+.sb-row{display:flex;align-items:center;gap:10px;padding:10px 20px;border-top:1px solid var(--border)}
+.sb-rank{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;width:22px;flex-shrink:0;color:var(--text3)}
+.sb-rank.g{color:var(--gold)}.sb-rank.s{color:#94A3B8}.sb-rank.b{color:#D97706}
+.sb-em{font-size:20px;flex-shrink:0}
+.sb-name{flex:1;font-family:'Syne',sans-serif;font-size:14px;font-weight:700}
+.sb-pts{font-size:14px;font-weight:700;color:var(--vl)}
+.sb-bar{width:48px;height:4px;background:var(--border);border-radius:2px;overflow:hidden;flex-shrink:0}
+.sb-bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--v),var(--vl));transition:width .8s ease}
+/* END / PROFIL */
+#pg-end .inner{padding:50px 20px 0;text-align:center}
+.se-emoji{font-size:60px;display:block;animation:pop .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes pop{0%{transform:scale(.2);opacity:0}60%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+.se-title{font-family:'Syne',sans-serif;font-size:30px;font-weight:800;letter-spacing:-1px;margin-top:10px}
+.se-sub{font-size:14px;color:var(--text2);margin-top:4px;margin-bottom:18px}
+.ring-wrap{position:relative;width:148px;height:148px;margin:0 auto 6px}
+.ring-svg{width:148px;height:148px;transform:rotate(-90deg)}
+.r-bg{fill:none;stroke:var(--border2);stroke-width:10}
+.r-fill{fill:none;stroke:url(#rg);stroke-width:10;stroke-linecap:round;stroke-dasharray:377;stroke-dashoffset:377;transition:stroke-dashoffset 1.2s cubic-bezier(.34,1.56,.64,1)}
+.ring-c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring-n{font-family:'Syne',sans-serif;font-size:38px;font-weight:800;background:linear-gradient(135deg,var(--vl),var(--o));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.ring-l{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 20px;margin:12px 0}
+.vgcard{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:17px;text-align:center}
+.vgn{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;letter-spacing:-1px}
+.vgl{font-size:12px;color:var(--text3);margin-top:2px}
+.vgcard.y .vgn{color:var(--green)}.vgcard.n .vgn{color:var(--red)}
+.replay{margin:0 20px 12px;background:var(--card);border:1px solid var(--border);border-radius:24px;overflow:hidden;position:relative}
+.replay::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--v),var(--o))}
+.replay-hd{display:flex;align-items:center;justify-content:space-between;padding:15px 20px 11px}
+.replay-hd-t{font-family:'Syne',sans-serif;font-size:15px;font-weight:700}
+.replay-sh{background:var(--bg3);border:1px solid var(--border2);border-radius:9px;padding:6px 11px;cursor:pointer;font-size:12px;font-weight:600;color:var(--text2)}
+.ri{display:flex;align-items:center;gap:9px;padding:10px 20px;border-top:1px solid var(--border)}
+.ri-q{font-size:13px;color:var(--text2);flex:1;line-height:1.4}
+.ri-v{font-size:11px;font-weight:800;padding:3px 9px;border-radius:7px;white-space:nowrap;flex-shrink:0}
+.ri-v.y{background:rgba(16,185,129,.14);color:var(--green)}
+.ri-v.n{background:rgba(244,63,94,.14);color:var(--red)}
+.ri-v.z{background:var(--border);color:var(--text3)}
+.replay-ft{background:rgba(249,115,22,.06);padding:11px 20px;text-align:center}
+.rf-big{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--o)}
+.rf-lbl{font-size:12px;color:var(--text3);margin-top:2px}
+.pt-box{margin:0 20px 12px;background:linear-gradient(135deg,rgba(124,58,237,.09),rgba(249,115,22,.05));border:1px solid rgba(124,58,237,.2);border-radius:24px;padding:22px;cursor:pointer;text-align:center}
+.pt-box:active{opacity:.85}
+.pt-lbl{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--vl);font-weight:700;margin-bottom:9px}
+.pt-ico{font-size:44px;display:block;margin-bottom:9px;animation:fl 3s ease-in-out infinite}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.pt-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;letter-spacing:-.5px;margin-bottom:5px}
+.pt-desc{font-size:13px;color:var(--text2);line-height:1.5;margin-bottom:12px}
+.pt-meta{display:flex;justify-content:space-between;font-size:12px;color:var(--text3);margin-bottom:7px}
+.pbar{height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.pbar-f{height:100%;border-radius:3px;transition:width .7s ease}
+.end-btns{display:flex;flex-direction:column;gap:9px;padding:0 20px}
+/* PROFIL */
+#pg-profil .inner{padding:50px 20px 0}
+.scr-hd{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.scr-title{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;letter-spacing:-.5px}
+.arch-box{background:var(--card);border:1px solid var(--border);border-radius:26px;padding:26px 22px;margin-bottom:14px;text-align:center;position:relative;overflow:hidden}
+.arch-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--v),var(--o))}
+.arch-ico{font-size:60px;display:block;margin-bottom:13px;animation:fl 3s ease-in-out infinite;position:relative;z-index:1}
+.arch-name{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;letter-spacing:-.8px;background:linear-gradient(135deg,var(--vl),var(--o));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:9px;position:relative;z-index:1}
+.arch-desc{font-size:14px;color:var(--text2);line-height:1.65;margin-bottom:16px;position:relative;z-index:1}
+.arch-traits{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-bottom:18px;position:relative;z-index:1}
+.trait{padding:6px 13px;border-radius:20px;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.2);font-size:13px;color:var(--vl);font-weight:600}
+.arch-share{width:100%;background:linear-gradient(135deg,var(--v),var(--o));border:none;border-radius:14px;padding:13px;color:#fff;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;cursor:pointer;position:relative;z-index:1}
+.arch-share:active{transform:scale(.98)}
+.radar-box{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:20px;margin-bottom:14px}
+.radar-box h3{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:14px}
+.rrow{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.rrow:last-child{margin-bottom:0}
+.rlbl{font-size:13px;color:var(--text2);width:90px;flex-shrink:0}
+.rtrack{flex:1;height:7px;background:var(--border);border-radius:4px;overflow:hidden}
+.rfill{height:100%;border-radius:4px;transition:width .9s ease}
+.rpct{font-size:12px;font-weight:700;color:var(--text3);width:30px;text-align:right;flex-shrink:0}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;text-align:center}
+.scv{font-family:'Syne',sans-serif;font-size:30px;font-weight:800;letter-spacing:-1px}
+.scl{font-size:11px;color:var(--text3);margin-top:3px}
+.sc.hl{background:linear-gradient(135deg,rgba(124,58,237,.09),rgba(249,115,22,.04));border-color:rgba(124,58,237,.18)}
+.sc.hl .scv{background:linear-gradient(135deg,var(--vl),var(--o));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.daily{background:linear-gradient(135deg,rgba(245,158,11,.08),rgba(249,115,22,.04));border:1px solid rgba(245,158,11,.2);border-radius:22px;padding:18px;margin-bottom:14px}
+.dlbl{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px}
+.dtitle{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:3px}
+.ddesc{font-size:13px;color:var(--text2);line-height:1.5;margin-bottom:12px}
+.dmeta{display:flex;justify-content:space-between;font-size:12px;color:var(--text3);margin-bottom:7px}
+.btitle{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:12px}
+.bgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-bottom:4px}
+.bdg{text-align:center}
+.bdgi{width:52px;height:52px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 5px;border:2px solid transparent}
+.bdgi.on{background:linear-gradient(135deg,rgba(124,58,237,.16),rgba(249,115,22,.07));border-color:rgba(124,58,237,.28);box-shadow:0 4px 14px rgba(124,58,237,.16)}
+.bdgi.off{background:var(--bg3);opacity:.28;filter:grayscale(1)}
+.bdgn{font-size:10px;color:var(--text3);font-weight:500}
+/* SHARED */
+.btn-v{background:linear-gradient(135deg,var(--v),var(--vd));border:none;border-radius:16px;padding:15px;color:#fff;font-family:'Syne',sans-serif;font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 8px 24px rgba(124,58,237,.32);width:100%}
+.btn-v:active{transform:scale(.98)}
+.btn-g{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:13px;color:var(--text2);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;width:100%}
+.btn-g:active{background:var(--border2)}
+.bk{width:40px;height:40px;background:var(--card);border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:var(--text2);flex-shrink:0}
+.bk:active{background:var(--border2)}
+.fi{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:12px 14px;color:var(--text);font-size:14px;outline:none;transition:border-color .2s;font-family:'DM Sans',sans-serif;margin-bottom:12px}
+.fi:focus{border-color:var(--v)}
+.fi::placeholder{color:var(--text3)}
+.fl{font-size:13px;font-weight:600;color:var(--text2);margin-bottom:7px;display:block}
+.bsp{height:30px}
+/* LIVE/WEEK/PAY */
+#pg-live .inner,#pg-week .inner,#pg-pay .inner{padding:50px 20px 0}
+.lsteps{display:flex;flex-direction:column;gap:9px;margin-bottom:16px}
+.ls{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:13px;display:flex;gap:12px;align-items:flex-start}
+.lsn{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:var(--vl);line-height:1.1;flex-shrink:0}
+.lsh{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:2px}
+.lsp{font-size:12px;color:var(--text2);line-height:1.4}
+.room-box{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:22px;margin-bottom:14px;text-align:center;position:relative;overflow:hidden}
+.room-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--v))}
+.room-lbl{font-size:11px;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.room-code{font-family:'Syne',sans-serif;font-size:48px;font-weight:800;letter-spacing:10px;background:linear-gradient(135deg,var(--vl),var(--o));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:10px 0 5px}
+.room-st{font-size:13px;color:var(--text3);margin-bottom:13px}
+.room-btns{display:flex;gap:8px}
+.rbtn{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:11px;padding:10px 7px;color:var(--text2);font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;font-family:'DM Sans',sans-serif}
+.rbtn:active{background:var(--border)}
+.or-sep{text-align:center;color:var(--text3);font-size:13px;margin:13px 0;display:flex;align-items:center;gap:10px}
+.or-sep::before,.or-sep::after{content:'';flex:1;height:1px;background:var(--border)}
+.join-r{display:flex;gap:9px;margin-bottom:20px}
+.jinp{flex:1;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:13px;color:var(--text);font-size:20px;font-family:'Syne',sans-serif;font-weight:800;text-align:center;letter-spacing:6px;outline:none;transition:border-color .2s;text-transform:uppercase}
+.jinp:focus{border-color:var(--v)}
+.jbtn{background:linear-gradient(135deg,var(--v),var(--vd));border:none;border-radius:12px;padding:13px 16px;color:#fff;font-family:'Syne',sans-serif;font-weight:700;cursor:pointer;font-size:13px}
+.wk-hero{text-align:center;margin-bottom:16px}
+.wk-crown{font-size:50px;display:block;margin-bottom:10px;animation:fl 3s ease-in-out infinite}
+.wk-title{font-family:'Syne',sans-serif;font-size:25px;font-weight:800;letter-spacing:-.5px;margin-bottom:5px}
+.wk-sub{font-size:14px;color:var(--text2);line-height:1.55}
+.cd-bar{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:14px 18px;margin-bottom:15px;display:flex;align-items:center;justify-content:space-between}
+.cd-lbl{font-size:11px;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+.cd-val{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--o);letter-spacing:1px}
+.wk-q{background:var(--card);border:1px solid rgba(245,158,11,.22);border-radius:24px;padding:20px;margin-bottom:15px;position:relative;overflow:hidden}
+.wk-q::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--o))}
+.wk-qlbl{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:9px}
+.wk-qtxt{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;letter-spacing:-.4px;line-height:1.32;margin-bottom:15px}
+.cbars{background:var(--bg3);border-radius:14px;padding:13px;margin-bottom:12px}
+.cbars-title{font-size:11px;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px}
+.bars-wrap{display:flex;gap:18px;align-items:flex-end;height:80px;margin-bottom:9px}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px}
+.bar{width:100%;border-radius:7px;min-height:8px;transition:height .9s ease}
+.bar.y{background:linear-gradient(180deg,var(--green),rgba(16,185,129,.3))}
+.bar.n{background:linear-gradient(180deg,var(--red),rgba(244,63,94,.3))}
+.barpct{font-family:'Syne',sans-serif;font-size:20px;font-weight:800}
+.barlbl{font-size:12px;color:var(--text3);font-weight:600}
+.bartot{font-size:12px;color:var(--text3);text-align:center;margin-top:3px}
+.wk-vrow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:13px}
+.wvb{border:2px solid var(--border);background:var(--bg3);border-radius:16px;padding:15px;color:var(--text2);font-family:'Syne',sans-serif;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px}
+.wvb:active{transform:scale(.97)}
+.wvb.y.voted{border-color:rgba(16,185,129,.42);color:var(--green);background:rgba(16,185,129,.09);pointer-events:none}
+.wvb.n.voted{border-color:rgba(244,63,94,.42);color:var(--red);background:rgba(244,63,94,.09);pointer-events:none}
+.lb{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:18px;margin-bottom:13px}
+.lb h3{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:12px}
+.lbi{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border)}
+.lbi:last-child{border-bottom:none;padding-bottom:0}
+.lbr{font-family:'Syne',sans-serif;font-weight:800;font-size:13px;color:var(--text3);width:20px;flex-shrink:0}
+.lbr.g{color:var(--gold)}.lbr.s{color:#94A3B8}.lbr.b{color:#D97706}
+.lbn{flex:1;font-size:14px;font-weight:500}
+.lbp{font-size:13px;color:var(--vl);font-weight:700}
+.pw-crown{font-size:52px;display:block;margin-bottom:12px;animation:fl 3s ease-in-out infinite}
+.pw-title{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;letter-spacing:-1px;background:linear-gradient(135deg,var(--gold),var(--o));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:7px}
+.pw-sub{font-size:14px;color:var(--text2);line-height:1.6;max-width:280px;margin:0 auto 18px}
+.pw-plan{background:linear-gradient(135deg,rgba(245,158,11,.09),rgba(249,115,22,.04));border:2px solid rgba(245,158,11,.35);border-radius:24px;padding:22px;margin-bottom:12px;text-align:left;position:relative;overflow:hidden}
+.pw-plan::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--o))}
+.pw-best{position:absolute;top:0;right:20px;background:linear-gradient(135deg,var(--gold),var(--o));border-radius:0 0 10px 10px;padding:4px 11px;font-size:11px;font-weight:800;color:#fff}
+.pw-pn{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;letter-spacing:-.4px;margin-bottom:11px}
+.pw-price{display:flex;align-items:baseline;gap:6px;margin-bottom:13px}
+.pw-big{font-family:'Syne',sans-serif;font-size:34px;font-weight:800;color:var(--gold);letter-spacing:-1px}
+.pw-per{font-size:13px;color:var(--text3)}
+.pw-feats{display:flex;flex-direction:column;gap:7px}
+.pw-feat{font-size:14px;color:var(--text2);display:flex;gap:8px}
+.pw-feat::before{content:'✓';color:var(--green);font-weight:800;font-size:14px;flex-shrink:0}
+.pw-sec{font-size:13px;color:var(--text3);cursor:pointer;margin:10px 0 12px}
+.pw-cta{width:100%;background:linear-gradient(135deg,var(--gold),var(--o));border:none;border-radius:18px;padding:18px;color:#fff;font-family:'Syne',sans-serif;font-size:17px;font-weight:800;cursor:pointer;box-shadow:0 10px 32px rgba(245,158,11,.34);margin-bottom:8px}
+.pw-cta:active{transform:scale(.98)}
+.pw-fine{font-size:12px;color:var(--text3);margin-bottom:18px}
+.packs-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:10px;text-align:left}
+.packs-g{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.pack{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:16px;cursor:pointer;text-align:center}
+.pack:active{transform:scale(.97)}
+.pack-ico{font-size:26px;margin-bottom:7px;display:block}
+.pack-n{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:4px}
+.pack-p{font-size:15px;font-weight:700;color:var(--o)}
+.pack-c{font-size:11px;color:var(--text3);margin-top:2px}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:200;display:none;backdrop-filter:blur(5px)}
+.ov.on{display:block}
+.sht{position:fixed;bottom:0;left:50%;transform:translateX(-50%) translateY(100%);width:100%;max-width:430px;background:var(--bg2);border:1px solid var(--border);border-bottom:none;border-radius:26px 26px 0 0;padding:20px 24px 48px;z-index:201;transition:transform .36s cubic-bezier(.34,1.56,.64,1)}
+.sht.on{transform:translateX(-50%) translateY(0)}
+.sht-handle{width:36px;height:4px;background:var(--border2);border-radius:2px;margin:0 auto 20px}
+.sht-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;letter-spacing:-.3px;margin-bottom:4px}
+.sht-sub{font-size:13px;color:var(--text2);margin-bottom:18px;line-height:1.5}
+.sh-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-bottom:13px}
+.shi{display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer}
+.shi:active{opacity:.7}
+.shi-ico{width:55px;height:55px;border-radius:17px;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.shi span{font-size:11px;color:var(--text2);font-weight:600}
+.sk-miles{display:flex;justify-content:space-around;background:var(--bg3);border-radius:14px;padding:14px;margin-bottom:14px}
+.skm{text-align:center}
+.skm-i{font-size:19px;margin-bottom:4px}
+.skm-p{font-size:11px;color:var(--text3);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+.chip{padding:7px 12px;border-radius:20px;border:1.5px solid var(--border);background:var(--card);color:var(--text2);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.chip:active{opacity:.7}
+.chip.on{border-color:var(--v);background:rgba(124,58,237,.11);color:var(--vl);font-weight:700}
+.bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:rgba(9,8,15,.97);border-top:1px solid var(--border);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;padding:10px 0 26px;z-index:100}
+.ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:6px 0;border:none;background:none;font-family:'DM Sans',sans-serif}
+.ni:active{opacity:.7}
+.ni-i{font-size:21px;line-height:1;transition:transform .2s}
+.ni-l{font-size:10px;font-weight:700;color:var(--text3);letter-spacing:.2px}
+.ni.on .ni-l{color:var(--vl)}
+.ni.on .ni-i{transform:scale(1.17);filter:drop-shadow(0 0 8px rgba(167,139,250,.5))}
+.toast{position:fixed;top:52px;left:50%;transform:translateX(-50%) translateY(-10px);background:rgba(37,35,56,.97);border:1px solid var(--border2);border-radius:14px;padding:10px 18px;font-size:14px;font-weight:600;color:var(--text);z-index:600;opacity:0;transition:all .3s cubic-bezier(.34,1.56,.64,1);pointer-events:none;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.cf{position:fixed;pointer-events:none;z-index:999;animation:cfall 2.4s ease-out forwards}
+@keyframes cfall{0%{transform:translateY(0) rotate(0);opacity:1}85%{opacity:1}100%{transform:translateY(105vh) rotate(680deg);opacity:0}}
+@keyframes flip{0%{transform:rotateY(0)}40%{transform:rotateY(90deg);opacity:0}60%{transform:rotateY(-90deg);opacity:0}100%{transform:rotateY(0);opacity:1}}
+.flip{animation:flip .52s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+.shake{animation:shake .42s ease}
+canvas#sc{display:none}
+
+/* v12 additions */
+.ob-cdots{display:flex;gap:7px;justify-content:center;margin-bottom:16px}
+.ocd{width:7px;height:7px;border-radius:50%;background:var(--border2);transition:all .3s}
+.ocd.on{width:20px;border-radius:4px;background:var(--v)}
+.ob-carousel{width:100%;overflow:hidden;margin-bottom:16px}
+.ob-slides{display:flex;transition:transform .42s cubic-bezier(.4,0,.2,1)}
+.ob-slide{min-width:100%;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 4px}
+.obs-ico{font-size:58px;margin-bottom:12px;animation:fl 3s ease-in-out infinite}
+.obs-title{font-family:'Syne',sans-serif;font-size:21px;font-weight:800;letter-spacing:-.5px;margin-bottom:7px}
+.obs-desc{font-size:13px;color:var(--text2);line-height:1.6;max-width:260px}
+.ob-cnav{display:flex;gap:10px;width:100%;margin-bottom:12px}
+.ob-back-btn{width:46px;height:46px;background:var(--card);border:1px solid var(--border);border-radius:13px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;flex-shrink:0;transition:opacity .2s}
+.ob-next-btn{flex:1;background:linear-gradient(135deg,var(--v),var(--vd));border:none;border-radius:13px;padding:14px;color:#fff;font-family:'Syne',sans-serif;font-size:16px;font-weight:700;cursor:pointer}
+.ob-next-btn:active{transform:scale(.98)}
+.install-banner{margin:0 20px 10px;background:linear-gradient(135deg,rgba(124,58,237,.1),rgba(249,115,22,.06));border:1px solid rgba(124,58,237,.22);border-radius:16px;padding:12px 14px;display:none;align-items:center;gap:10px}
+.install-banner.on{display:flex;animation:pgIn .4s ease}
+.ib-txt{flex:1}
+.ib-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:2px}
+.ib-desc{font-size:11px;color:var(--text2)}
+.ib-install-btn{background:linear-gradient(135deg,var(--v),var(--vd));border:none;border-radius:9px;padding:8px 12px;color:#fff;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0}
+.ib-x{font-size:16px;color:var(--text3);cursor:pointer;flex-shrink:0;padding:4px}
+.qr-modal{position:fixed;inset:0;background:rgba(0,0,0,.87);z-index:450;display:none;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(8px)}
+.qr-modal.on{display:flex;animation:pgIn .3s ease}
+.qr-inner{background:var(--bg2);border:1px solid var(--border);border-radius:22px;padding:26px;text-align:center;width:100%;max-width:310px}
+.qr-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;margin-bottom:4px}
+.qr-sub{font-size:13px;color:var(--text2);margin-bottom:16px}
+.qr-canvas-wrap{background:#fff;border-radius:14px;padding:12px;display:inline-block;margin-bottom:14px}
+.qr-code-val{font-family:'Syne',sans-serif;font-size:34px;font-weight:800;letter-spacing:8px;background:linear-gradient(135deg,var(--vl),var(--o));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px}
+.qr-code-lbl{font-size:11px;color:var(--text3);margin-bottom:14px}
+.qr-close-btn{width:100%;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px;color:var(--text2);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer}
+.tourn-ov{position:fixed;inset:0;background:var(--bg);z-index:300;display:none;overflow-y:auto}
+.tourn-ov.on{display:block;animation:pgIn .3s ease}
+.tourn-wrap{max-width:430px;margin:0 auto;padding:52px 20px 90px}
+.tourn-hd{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.tourn-h1{font-family:'Syne',sans-serif;font-size:22px;font-weight:800}
+.bracket{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+.br-round{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:14px;position:relative;overflow:hidden}
+.br-round::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:18px 18px 0 0}
+.br-r0::before{background:var(--border2)}
+.br-r1::before{background:linear-gradient(90deg,var(--vl),var(--v))}
+.br-r2::before,.br-r3::before{background:linear-gradient(90deg,var(--gold),var(--o))}
+.br-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:9px}
+.br-match{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--border)}
+.br-match:last-child{border-bottom:none;padding-bottom:0}
+.br-p{flex:1;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;padding:9px 10px;border-radius:10px;cursor:pointer;border:2px solid var(--border);background:var(--bg3);color:var(--text2);text-align:center;transition:all .18s}
+.br-p:active{transform:scale(.95)}
+.br-p.w{border-color:var(--v);background:rgba(124,58,237,.12);color:var(--vl)}
+.br-p.l{opacity:.3;pointer-events:none}
+.br-p.champ{border-color:var(--gold);background:rgba(245,158,11,.12);color:var(--gold)}
+.br-vs{font-size:11px;font-weight:800;color:var(--text3);flex-shrink:0}
+.tr-champ{background:linear-gradient(135deg,rgba(245,158,11,.1),rgba(249,115,22,.06));border:1px solid rgba(245,158,11,.28);border-radius:20px;padding:22px;text-align:center;margin-bottom:14px;display:none}
+.tr-champ.on{display:block;animation:pgIn .4s ease}
+.tr-champ-ico{font-size:52px;display:block;margin-bottom:9px;animation:fl 3s ease-in-out infinite}
+.tr-champ-lbl{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:5px}
+.tr-champ-name{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--gold)}
+.tr-q{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:16px;margin-bottom:12px;display:none}
+.tr-q-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--vl);margin-bottom:7px}
+.tr-q-txt{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;line-height:1.38;margin-bottom:12px}
+.tr-q-btns{display:flex;gap:8px}
+.tr-q-btn{flex:1;padding:12px;border-radius:11px;border:2px solid var(--border);background:var(--bg3);font-family:'Syne',sans-serif;font-size:13px;font-weight:700;cursor:pointer;text-align:center;transition:all .18s;color:var(--text2)}
+.tr-q-btn:active{transform:scale(.96)}
+.tr-q-btn.p1w{border-color:var(--v);background:rgba(124,58,237,.12);color:var(--vl)}
+.tr-q-btn.p2w{border-color:var(--o);background:rgba(249,115,22,.1);color:var(--o)}
+</style>
+</head>
+<body>
+<div class="orb o1"></div><div class="orb o2"></div><div class="orb o3" id="o3"></div>
+<div id="tst" class="toast"></div>
+<canvas id="sc" width="1080" height="1920"></canvas>
+<div id="app">
+
+<!-- ONBOARD -->
+<div id="pg-onboard">
+  <!-- Carousel (3 slides) — hidden after first visit -->
+  <div id="ob-carousel-wrap" style="width:100%;display:flex;flex-direction:column;align-items:center">
+    <div class="ob-carousel">
+      <div class="ob-slides" id="ob-slides">
+        <div class="ob-slide"><span class="obs-ico">🔥</span><div class="obs-title">Débat <em style="font-style:normal;background:linear-gradient(135deg,var(--vl),var(--o));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Intense</em></div><div class="obs-desc">Des questions qui révèlent ce que vous pensez vraiment — amour, argent, morale.</div></div>
+        <div class="ob-slide"><span class="obs-ico">⚔️</span><div class="obs-title">Votez en secret</div><div class="obs-desc">Chaque joueur répond en cachant son écran. Révélation simultanée. Le vrai débat commence là.</div></div>
+        <div class="ob-slide"><span class="obs-ico">🎲</span><div class="obs-title">Vérité ou Défi</div><div class="obs-desc">Pour chaque question, choisissez : répondre honnêtement, ou relever un défi physique devant le groupe.</div></div>
+      </div>
+    </div>
+    <div class="ob-cdots"><div class="ocd on" id="ocd-0"></div><div class="ocd" id="ocd-1"></div><div class="ocd" id="ocd-2"></div></div>
+    <div class="ob-cnav">
+      <div class="ob-back-btn" id="ob-back" onclick="obSlide(-1)" style="opacity:0;pointer-events:none">←</div>
+      <button class="ob-next-btn" id="ob-next" onclick="obSlideNext()">Suivant →</button>
+    </div>
+  </div>
+  <!-- Setup (shown after carousel or on return visits) -->
+  <div id="ob-setup" style="width:100%;display:none;flex-direction:column;align-items:center">
+  <span class="ob-flame">🔥</span>
+  <div class="ob-h1">Débat<br><em>Intense</em></div>
+  <div class="ob-sub">Questions qui révèlent ce que vous pensez vraiment</div>
+  <div class="mode-row">
+    <button class="mpill on" id="mp-classic" onclick="setMode('classic',this)">👥 Classique<br><span style="font-weight:400;font-size:10px;color:var(--text3)">1-2 joueurs</span></button>
+    <button class="mpill grp" id="mp-group" onclick="setMode('group',this)">🎉 Groupe<br><span style="font-weight:400;font-size:10px;color:var(--text3)">3-8 joueurs</span></button>
+    <button class="mpill td" id="mp-td" onclick="setMode('truth_dare',this)">🎲 V ou D<br><span style="font-weight:400;font-size:10px;color:var(--text3)">Vérité/Défi</span></button>
+  </div>
+  <div class="mode-desc" id="mode-desc">1 à 2 joueurs — votes révélés simultanément</div>
+  <div class="pl-title">Joueurs</div>
+  <div class="pl-list" id="pl-list"></div>
+  <button class="pl-add" id="pl-add" onclick="addPlayer()">＋ Ajouter un joueur <span id="pl-max" style="font-size:11px">(2/2)</span></button>
+  <div class="ob-badge">✨ 7 jours Premium gratuits · Aucune carte</div>
+  <button class="ob-btn" onclick="startApp()">⚡ Commencer à débattre</button>
+  <div class="ob-skip" onclick="startApp()">Jouer seul/e →</div>
+  </div><!-- /ob-setup -->
+</div><!-- /pg-onboard -->
+
+<!-- TOURNAMENT OVERLAY -->
+<div class="tourn-ov" id="tourn-ov">
+  <div class="tourn-wrap">
+    <div class="tourn-hd"><div class="bk" onclick="closeTournament()">←</div><div class="tourn-h1">🏆 Mode Tournoi</div></div>
+    <div class="tr-champ" id="tr-champ"><span class="tr-champ-ico">👑</span><div class="tr-champ-lbl">Champion de la soirée</div><div class="tr-champ-name" id="tr-champ-name">—</div></div>
+    <div class="bracket" id="bracket"></div>
+    <div class="tr-q" id="tr-q">
+      <div class="tr-q-lbl">⚡ Question du duel</div>
+      <div class="tr-q-txt" id="tr-q-txt">Question ici</div>
+      <div class="tr-q-btns"><button class="tr-q-btn" id="tr-btn-p1" onclick="tournWin(0)">—</button><button class="tr-q-btn" id="tr-btn-p2" onclick="tournWin(1)">—</button></div>
+    </div>
+    <button class="btn-v" onclick="startTournament()">⚡ Lancer le tournoi</button>
+  </div>
+</div>
+
+<!-- QR MODAL -->
+<div class="qr-modal" id="qr-modal">
+  <div class="qr-inner">
+    <div class="qr-title">Rejoindre la salle</div>
+    <div class="qr-sub">Scannez le QR ou entrez le code</div>
+    <div class="qr-canvas-wrap"><div id="qr-canvas"></div></div>
+    <div class="qr-code-val" id="qr-code-val">----</div>
+    <div class="qr-code-lbl">Code de salle</div>
+    <button class="qr-close-btn" onclick="closeQR()">Fermer</button>
+  </div>
+</div>
+
+<!-- HOME -->
+<div id="pg-home" class="page">
+  <div class="topbar">
+    <div class="tlogo">🔥 Débat</div>
+    <div class="tright">
+      <div class="ib" onclick="openStreak()">⏰<span class="ndot" id="ndot"></span></div>
+      <div class="ib" onclick="openSettings()">⚙️</div>
+      <div class="ib" onclick="goTo('pg-profil')">🧠</div>
+    </div>
+  </div>
+  <div class="pstrip" id="pstrip"></div>
+  <div class="install-banner" id="install-banner">
+    <span style="font-size:24px;flex-shrink:0">📱</span>
+    <div class="ib-txt"><div class="ib-title">Installer l'app</div><div class="ib-desc">Accès rapide depuis votre écran</div></div>
+    <button class="ib-install-btn" onclick="installPWA()">Installer</button>
+    <span class="ib-x" onclick="dismissInstall()">✕</span>
+  </div>
+  <div class="pills">
+    <div class="pill p-sk" id="pill-sk" onclick="openStreak()">🔥&nbsp;<span class="pn" id="pn-sk">1</span>&nbsp;jours</div>
+    <div class="pill p-pts">⭐&nbsp;<span class="pn" id="pn-pts">0</span>&nbsp;pts</div>
+    <div class="pill p-tri" id="pill-tri">✨&nbsp;<span>7</span>j Premium</div>
+  </div>
+  <div class="sess">
+    <div class="sess-head"><span class="sess-lbl">Session</span><span class="sess-n" id="sess-n">Question 0 / 5</span></div>
+    <div class="dots" id="dots"></div>
+  </div>
+  <div class="cats-wrap">
+    <div class="cats-row">
+      <button class="cat on" data-c="couple" onclick="pickCat(this)">💑 Couple</button>
+      <button class="cat" data-c="sexualite" onclick="pickCat(this)">🌶️ Sexualité</button>
+      <button class="cat" data-c="morale" onclick="pickCat(this)">⚖️ Morale</button>
+      <button class="cat" data-c="jalousie" onclick="pickCat(this)">💚 Jalousie</button>
+      <button class="cat" data-c="argent" onclick="pickCat(this)">💰 Argent</button>
+      <button class="cat" data-c="religion" onclick="pickCat(this)">✨ Religion</button>
+    </div>
+  </div>
+  <div class="qarea">
+    <div class="bomb-banner" id="bbanner"><span style="font-size:22px;flex-shrink:0">💥</span><span class="bomb-txt">Question Bombe — La plus intense de la session.</span></div>
+    <div class="qcard" id="qcard">
+      <div class="qcard-stripe"></div>
+      <!-- Hot seat bar -->
+      <div class="hsbar" id="hsbar"><span class="hs-em" id="hs-em">🔥</span><div><span class="hs-lbl">Siège Chaud :</span> <span class="hs-name" id="hs-name">Joueur 1</span></div><span class="hs-badge">ton tour</span></div>
+      <!-- Vote round header -->
+      <div class="vrh" id="vrh"><div class="vrh-left"><span id="vrh-em">🔥</span><span id="vrh-name">Joueur 1, vote en secret</span></div><div class="vrh-dots" id="vrh-dots"></div></div>
+      <div class="qcard-top"><span class="qcbadge" id="qcbadge">💑 COUPLE</span><div class="qtag-wrap"><span class="qtag w" id="qtag">WARM UP</span><span id="qheat">🌡️🌡️</span></div></div>
+      <div class="qtext" id="qtext">Appuie sur <strong>Nouvelle Question</strong> pour démarrer 🔥</div>
+      <div class="ans-area">
+        <div class="ans-label" id="ans-label">Ta réponse</div>
+        <div id="ans-widget">
+          <div class="binary-row"><button class="abt oui" onclick="castVote('oui','✅ Oui')">✅ Oui</button><button class="abt non" onclick="castVote('non','❌ Non')">❌ Non</button></div>
+        </div>
+      </div>
+      <button class="confirm-btn" id="confirm-btn" onclick="confirmVote()">✓ Confirmer → joueur suivant</button>
+      <div class="qcard-bot">
+        <div class="qactions">
+          <div class="qab fav" id="fav-btn" onclick="toggleFav()">🤍</div>
+          <div class="qab" onclick="openShare()">📤</div>
+          <div class="qab" onclick="flagQ()">🚩</div>
+        </div>
+        <span class="vote-hint" id="vote-hint"></span>
+      </div>
+    </div>
+    <!-- Story card -->
+    <div class="story-card" id="story-card">
+      <div class="st-hdr"><span style="font-size:14px">📖</span><span class="st-hdr-lbl">Storytelling</span><span class="st-hdr-tag" id="st-tag">SCÈNE 1</span></div>
+      <div class="st-body">
+        <div class="st-scene" id="st-scene">SITUATION</div>
+        <div class="st-narrative" id="st-narrative"></div>
+        <div class="st-qlbl">💬 La question</div>
+        <div class="st-q" id="st-q"></div>
+        <div class="st-chars" id="st-chars"></div>
+        <div class="st-vote">
+          <div class="ans-label" id="st-ans-label">Ta réponse</div>
+          <div id="st-ans-widget"></div>
+          <button class="confirm-btn" id="st-confirm-btn" onclick="confirmVote()" style="margin-top:10px">✓ Confirmer → joueur suivant</button>
+        </div>
+      </div>
+    </div>
+    <!-- Dare card -->
+    <div class="dare-card" id="dare-card">
+      <div class="dare-hd"><span style="font-size:22px">🎲</span><span class="dare-hd-lbl">Défi en cours</span></div>
+      <div class="dare-txt" id="dare-txt">Le défi s'affiche ici</div>
+      <div class="dare-pts-lbl">⭐ +<span id="dare-pts">15</span> pts si relevé</div>
+      <button class="dare-done" onclick="dareDone()">🔥 Défi relevé ! +<span id="dare-pts2">15</span> pts</button>
+      <button class="dare-fail" onclick="dareFail()">Passer ce tour (−5 pts)</button>
+    </div>
+  </div>
+  <button class="mcta" id="mcta" onclick="nextQ()"><span id="cta-ico">⚡</span> <span id="cta-lbl">Nouvelle Question</span></button>
+  <div class="modes">
+    <div class="mcard mc-live" onclick="goTo('pg-live')"><span class="mi">⚔️</span><span class="ml">Live</span></div>
+    <div class="mcard mc-perso" onclick="openPerso()"><span class="mi">🎯</span><span class="ml">Perso</span></div>
+    <div class="mcard mc-story" id="story-btn" onclick="toggleStory()"><span class="mi">📖</span><span class="ml" id="story-ml">Story</span></div>
+    <div class="mcard mc-week" onclick="goTo('pg-week')"><span class="mi">📅</span><span class="ml">Semaine</span></div>
+    <div class="mcard" style="border-color:rgba(245,158,11,.2)" onclick="openTournament()"><span class="mi">🏆</span><span class="ml" style="color:var(--gold)">Tournoi</span></div>
+  </div>
+  <div class="bsp"></div>
+</div>
+
+<!-- END -->
+<div id="pg-end" class="page">
+  <div class="inner">
+    <span class="se-emoji" id="se-emoji">🎉</span>
+    <div class="se-title" id="se-title">Session terminée !</div>
+    <div class="se-sub" id="se-sub">5 questions débattues</div>
+    <div class="ring-wrap">
+      <svg class="ring-svg" viewBox="0 0 148 148">
+        <defs><linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#A78BFA"/><stop offset="100%" stop-color="#F97316"/></linearGradient></defs>
+        <circle class="r-bg" cx="74" cy="74" r="60"/>
+        <circle class="r-fill" id="r-fill" cx="74" cy="74" r="60"/>
+      </svg>
+      <div class="ring-c"><div class="ring-n" id="ring-n">0</div><div class="ring-l">pts</div></div>
+    </div>
+  </div>
+  <div class="scoreboard" id="scoreboard"></div>
+  <div class="vgrid">
+    <div class="vgcard y"><div class="vgn" id="se-yes">0</div><div class="vgl">✅ OUI</div></div>
+    <div class="vgcard n"><div class="vgn" id="se-no">0</div><div class="vgl">❌ NON</div></div>
+  </div>
+  <div class="replay">
+    <div class="replay-hd"><div class="replay-hd-t">📋 Replay</div><div class="replay-sh" onclick="shareReplay()">📸</div></div>
+    <div id="replay-list"></div>
+    <div class="replay-ft"><div class="rf-big" id="rf-big">0</div><div class="rf-lbl" id="rf-lbl">votes</div></div>
+  </div>
+  <div class="pt-box" onclick="goTo('pg-profil')">
+    <div class="pt-lbl">🧠 Archétype</div>
+    <span class="pt-ico" id="pt-ico">🔮</span>
+    <div class="pt-name" id="pt-name">En révélation…</div>
+    <div class="pt-desc" id="pt-desc">Vote encore pour débloquer</div>
+    <div class="pt-meta"><span>Votes</span><span id="pt-lbl">0 / 10</span></div>
+    <div class="pbar"><div class="pbar-f" id="pt-bar" style="width:0%;background:linear-gradient(90deg,var(--v),var(--o))"></div></div>
+  </div>
+  <div class="end-btns">
+    <button class="btn-v" onclick="newSession()">🔥 Nouvelle Session</button>
+    <button class="btn-g" style="margin-top:9px" onclick="goTo('pg-profil')">🧠 Mon profil</button>
+  </div>
+  <div class="bsp"></div>
+</div>
+
+<!-- PROFIL -->
+<div id="pg-profil" class="page">
+  <div class="inner">
+    <div class="scr-hd"><div class="bk" onclick="goTo('pg-home')">←</div><div class="scr-title">Mon Profil 🧠</div></div>
+    <div class="arch-box" id="arch-box"></div>
+    <div class="radar-box"><h3>Positions par thème</h3><div id="radar"></div></div>
+    <div class="sgrid">
+      <div class="sc hl"><div class="scv" id="p-q">0</div><div class="scl">Questions</div></div>
+      <div class="sc hl"><div class="scv" id="p-pts">0</div><div class="scl">Points</div></div>
+      <div class="sc"><div class="scv" id="p-str">1</div><div class="scl">🔥 Streak</div></div>
+      <div class="sc"><div class="scv" id="p-fav">0</div><div class="scl">❤️ Favoris</div></div>
+    </div>
+    <div class="daily">
+      <div class="dlbl">⚡ Défi du jour</div>
+      <div class="dtitle">Compléter une session de 5</div>
+      <div class="ddesc">Terminez une session complète et gagnez 50 pts bonus !</div>
+      <div class="dmeta"><span id="d-prog">0 / 5</span><span id="d-pct">0%</span></div>
+      <div class="pbar"><div class="pbar-f" id="d-fill" style="width:0%;background:linear-gradient(90deg,var(--gold),var(--o))"></div></div>
+    </div>
+    <div class="btitle">Badges</div>
+    <div class="bgrid" id="bgrid"></div>
+    <div class="bsp"></div>
+  </div>
+</div>
+
+<!-- LIVE -->
+<div id="pg-live" class="page">
+  <div class="inner">
+    <div class="scr-hd"><div class="bk" onclick="goTo('pg-home')">←</div><div class="scr-title">Live Débat ⚔️</div></div>
+    <div class="lsteps">
+      <div class="ls"><span class="lsn">1</span><div><div class="lsh">Créer une salle</div><div class="lsp">Code 4 lettres partageable</div></div></div>
+      <div class="ls"><span class="lsn">2</span><div><div class="lsh">Inviter</div><div class="lsp">L'adversaire rejoint avec le code</div></div></div>
+      <div class="ls"><span class="lsn">3</span><div><div class="lsh">Révélation</div><div class="lsp">Votes simultanés. Le débat explose.</div></div></div>
+    </div>
+    <div class="room-box">
+      <div class="room-lbl">Code de salle</div>
+      <div class="room-code" id="room-code">----</div>
+      <div class="room-st" id="room-st">Crée une salle pour commencer</div>
+      <div class="room-btns">
+        <button class="rbtn" onclick="genRoom()">🎲 Créer</button>
+        <button class="rbtn" onclick="copyRoom()">📋 Copier</button>
+        <button class="rbtn" onclick="showQR()">⬛ QR</button>
+        <button class="rbtn" onclick="shareRoom()">📤 WA</button>
+      </div>
+    </div>
+    <div class="or-sep">rejoindre</div>
+    <div class="join-r">
+      <input type="text" class="jinp" id="jinp" placeholder="CODE" maxlength="4"/>
+      <button class="jbtn" onclick="joinRoom()">→</button>
+    </div>
+    <div class="bsp"></div>
+  </div>
+</div>
+
+<!-- SEMAINE -->
+<div id="pg-week" class="page">
+  <div class="inner">
+    <div class="scr-hd"><div class="bk" onclick="goTo('pg-home')">←</div><div class="scr-title">Cette Semaine 📅</div></div>
+    <div class="wk-hero">
+      <span class="wk-crown">🏆</span>
+      <div class="wk-title">Question de la Semaine</div>
+      <div class="wk-sub">Toute la communauté vote.</div>
+    </div>
+    <div class="cd-bar">
+      <div><div class="cd-lbl">Prochaine dans</div><div style="font-size:11px;color:var(--text3);margin-top:2px">Lundi minuit</div></div>
+      <div class="cd-val" id="cd-val">--:--:--</div>
+    </div>
+    <div class="wk-q">
+      <div class="wk-qlbl">⚡ Question #1 · Couple</div>
+      <div class="wk-qtxt">Si ton/ta partenaire te proposait de tout quitter pour vivre à l'autre bout du monde, accepterais-tu sans condition ?</div>
+      <div class="cbars">
+        <div class="cbars-title">📊 Communauté · <span id="wk-tot">12 847</span> votes</div>
+        <div class="bars-wrap">
+          <div class="bar-col"><div class="bar y" id="b-yes" style="height:62%"></div><div class="barpct" id="bp-y" style="color:var(--green)">67%</div><div class="barlbl">✅ Oui</div></div>
+          <div class="bar-col"><div class="bar n" id="b-no" style="height:28%"></div><div class="barpct" id="bp-n" style="color:var(--red)">33%</div><div class="barlbl">❌ Non</div></div>
+        </div>
+        <div class="bartot" id="b-st">Ton vote n'est pas encore comptabilisé</div>
+      </div>
+      <div class="wk-vrow">
+        <button class="wvb y" id="wvb-y" onclick="voteWeek('oui')">✅ Oui, j'irais</button>
+        <button class="wvb n" id="wvb-n" onclick="voteWeek('non')">❌ Non, jamais</button>
+      </div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.65;padding-top:12px;border-top:1px solid var(--border)">💡 <strong>Point de débat :</strong> l'amour peut-il tout justifier, même renoncer à sa vie construite ?</div>
+    </div>
+    <div class="lb">
+      <h3>🏅 Top Débatteurs</h3>
+      <div class="lbi"><span class="lbr g">1</span><span style="font-size:14px">👑</span><span class="lbn">AlexDebat</span><span class="lbp">+340 pts</span></div>
+      <div class="lbi"><span class="lbr s">2</span><span style="font-size:14px">🥈</span><span class="lbn">SophieVrai</span><span class="lbp">+280 pts</span></div>
+      <div class="lbi"><span class="lbr b">3</span><span style="font-size:14px">🥉</span><span class="lbn">MaxFire</span><span class="lbp">+245 pts</span></div>
+      <div class="lbi"><span class="lbr">5</span><span style="font-size:14px">🔥</span><span class="lbn" id="my-lbn">Vous</span><span class="lbp">+<span id="my-wk">0</span> pts</span></div>
+    </div>
+    <div class="bsp"></div>
+  </div>
+</div>
+
+<!-- PAY -->
+<div id="pg-pay" class="page">
+  <div class="inner" style="text-align:center">
+    <span class="pw-crown">👑</span>
+    <div class="pw-title">Premium</div>
+    <div class="pw-sub">Accès illimité · Groupe jusqu'à 8 · Vérité ou Défi complet</div>
+    <div class="pw-plan">
+      <div class="pw-best">⭐ –72%</div>
+      <div class="pw-pn">Premium Annuel</div>
+      <div class="pw-price"><span class="pw-big">19,99€</span><span class="pw-per">/ an · 1,66€/mois</span></div>
+      <div class="pw-feats">
+        <div class="pw-feat">Questions illimitées, toutes catégories</div>
+        <div class="pw-feat">Mode Groupe jusqu'à 8 joueurs</div>
+        <div class="pw-feat">Mode Vérité ou Défi complet</div>
+        <div class="pw-feat">Profil archétype & badges exclusifs</div>
+        <div class="pw-feat">Streak Freeze ×5 inclus / mois</div>
+      </div>
+    </div>
+    <div class="pw-sec" onclick="switchMonthly()">Plan mensuel à 2,99€/mois →</div>
+    <button class="pw-cta" onclick="goPremium()">👑 7 jours gratuits puis Premium</button>
+    <div class="pw-fine">Annulez à tout moment · Aucun engagement</div>
+    <div class="packs-title">Packs à l'unité</div>
+    <div class="packs-g">
+      <div class="pack" onclick="buyPack('Soiree')"><span class="pack-ico">🎉</span><div class="pack-n">Soirée</div><div class="pack-p">3,99€</div><div class="pack-c">200 questions</div></div>
+      <div class="pack" onclick="buyPack('Couple')"><span class="pack-ico">💑</span><div class="pack-n">Couple</div><div class="pack-p">3,99€</div><div class="pack-c">200 questions</div></div>
+      <div class="pack" onclick="buyPack('Extreme')"><span class="pack-ico">🔞</span><div class="pack-n">Extrême</div><div class="pack-p">4,99€</div><div class="pack-c">150 questions 💥</div></div>
+      <div class="pack" onclick="buyPack('Pro')"><span class="pack-ico">💼</span><div class="pack-n">Pro</div><div class="pack-p">2,99€</div><div class="pack-c">150 questions</div></div>
+    </div>
+    <div class="bsp"></div>
+  </div>
+</div>
+
+</div><!-- #app -->
+
+<div class="bnav">
+  <button class="ni on" id="ni-home" onclick="goTo('pg-home')"><span class="ni-i">🔥</span><span class="ni-l">Débat</span></button>
+  <button class="ni" id="ni-live" onclick="goTo('pg-live')"><span class="ni-i">⚔️</span><span class="ni-l">Live</span></button>
+  <button class="ni" id="ni-week" onclick="goTo('pg-week')"><span class="ni-i">📅</span><span class="ni-l">Semaine</span></button>
+  <button class="ni" id="ni-profil" onclick="goTo('pg-profil')"><span class="ni-i">🧠</span><span class="ni-l">Profil</span></button>
+  <button class="ni" id="ni-pay" onclick="goTo('pg-pay')"><span class="ni-i">👑</span><span class="ni-l">Premium</span></button>
+</div>
+
+<!-- T/D OVERLAY -->
+<div class="td-ov" id="td-ov">
+  <div class="td-inner">
+    <div class="td-preview"><div class="td-prev-lbl">Question de ce tour</div><div class="td-prev-txt" id="td-prev-txt"></div></div>
+    <div class="td-who" id="td-who">Joueur 1</div>
+    <div class="td-sub">choisit son mode</div>
+    <div class="td-btns">
+      <div class="td-btn td-v" onclick="chooseTD('truth')"><span class="td-ico">💬</span><span class="td-name">VÉRITÉ</span><span class="td-desc">Répondre honnêtement</span></div>
+      <div class="td-btn td-d" onclick="chooseTD('dare')"><span class="td-ico">🎲</span><span class="td-name">DÉFI</span><span class="td-desc">Relever le challenge</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- REVEAL OVERLAY -->
+<div class="rv-ov" id="rv-ov">
+  <div class="rv-title">⚔️ RÉVÉLATION</div>
+  <div class="rv-q" id="rv-q"></div>
+  <div class="rv-count" id="rv-count">3</div>
+  <div class="rv-pills" id="rv-pills"></div>
+  <div class="rv-result" id="rv-result">
+    <span class="rv-res-ico" id="rv-ico">⚡</span>
+    <span class="rv-res-title" id="rv-title-txt"></span>
+    <span class="rv-res-sub" id="rv-sub-txt"></span>
+  </div>
+  <div class="rv-spark" id="rv-spark"><div class="rv-spark-lbl">💡 Pour débattre</div><div class="rv-spark-txt" id="rv-spark-txt"></div></div>
+  <button class="rv-next" id="rv-next" onclick="closeReveal()">Continuer →</button>
+</div>
+
+<!-- SHEETS -->
+<div class="ov" id="ov-sh" onclick="closeSheet('ov-sh','sht-sh')"></div>
+<div class="sht" id="sht-sh">
+  <div class="sht-handle"></div>
+  <div class="sht-title">Partager 📤</div>
+  <div class="sht-sub">Partage cette question avec tes amis</div>
+  <div class="sh-grid">
+    <div class="shi" onclick="shareTo('whatsapp')"><div class="shi-ico" style="background:#25D366">💬</div><span>WhatsApp</span></div>
+    <div class="shi" onclick="shareTo('instagram')"><div class="shi-ico" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#bc1888)">📸</div><span>Instagram</span></div>
+    <div class="shi" onclick="shareTo('tiktok')"><div class="shi-ico" style="background:#010101;border:1px solid #333">🎵</div><span>TikTok</span></div>
+    <div class="shi" onclick="shareTo('sms')"><div class="shi-ico" style="background:#007AFF">💌</div><span>SMS</span></div>
+  </div>
+  <button class="btn-g" style="margin-bottom:9px" onclick="genStoryImg()">📸 Créer ma Story 9:16</button>
+  <button class="btn-g" onclick="copyQ()">📋 Copier la question</button>
+</div>
+<div class="ov" id="ov-sk" onclick="closeSheet('ov-sk','sht-sk')"></div>
+<div class="sht" id="sht-sk">
+  <div class="sht-handle"></div>
+  <div style="text-align:center;margin-bottom:18px">
+    <div style="font-size:50px;margin-bottom:8px">🔥</div>
+    <div style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;letter-spacing:-1px;margin-bottom:4px"><span id="sk-n">1</span> jours de suite</div>
+    <div style="font-size:14px;color:var(--text2)" id="sk-msg">Revenez demain pour garder votre flame !</div>
+  </div>
+  <div class="sk-miles">
+    <div class="skm"><div class="skm-i">3🔥</div><div class="skm-p">+15 pts</div></div>
+    <div class="skm"><div class="skm-i">7🔥</div><div class="skm-p">+40 pts</div></div>
+    <div class="skm"><div class="skm-i">14🔥</div><div class="skm-p">+100 pts</div></div>
+    <div class="skm"><div class="skm-i">30🔥</div><div class="skm-p">Badge 👑</div></div>
+  </div>
+  <div style="background:var(--bg3);border-radius:13px;padding:14px;margin-bottom:13px">
+    <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">❄️ Streak Freeze</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.5;margin-bottom:10px">Protège ton streak si tu rates un jour.</div>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div style="font-size:14px">❄️ <strong id="sk-fr">2</strong> disponibles</div>
+      <button class="btn-g" style="width:auto;padding:8px 13px;font-size:13px" onclick="buyFreeze()">+ 50 pts</button>
+    </div>
+  </div>
+  <button class="btn-v" onclick="closeSheet('ov-sk','sht-sk')">Compris 💪</button>
+</div>
+<div class="ov" id="ov-po" onclick="closeSheet('ov-po','sht-po')"></div>
+<div class="sht" id="sht-po">
+  <div class="sht-handle"></div>
+  <div class="sht-title">🎯 Question Personnalisée</div>
+  <div class="sht-sub">L'IA adapte la question à votre contexte exact</div>
+  <label class="fl">Tranche d'âge</label>
+  <div class="chips">
+    <div class="chip" data-g="age" data-v="18-25" onclick="pc(this)">18–25</div>
+    <div class="chip" data-g="age" data-v="25-35" onclick="pc(this)">25–35</div>
+    <div class="chip" data-g="age" data-v="35-50" onclick="pc(this)">35–50</div>
+    <div class="chip on" data-g="age" data-v="tous" onclick="pc(this)">Tous âges</div>
+  </div>
+  <label class="fl">Contexte</label>
+  <div class="chips">
+    <div class="chip on" data-g="evt" data-v="soiree" onclick="pc(this)">🎉 Soirée</div>
+    <div class="chip" data-g="evt" data-v="couple" onclick="pc(this)">💑 Couple</div>
+    <div class="chip" data-g="evt" data-v="amis" onclick="pc(this)">👥 Amis</div>
+    <div class="chip" data-g="evt" data-v="famille" onclick="pc(this)">👨‍👩‍👧 Famille</div>
+  </div>
+  <label class="fl">Intensité</label>
+  <div class="chips">
+    <div class="chip" data-g="int" data-v="douce" onclick="pc(this)">😊 Douce</div>
+    <div class="chip on" data-g="int" data-v="moyenne" onclick="pc(this)">🌶️ Moyenne</div>
+    <div class="chip" data-g="int" data-v="intense" onclick="pc(this)">🔥 Intense</div>
+    <div class="chip" data-g="int" data-v="extreme" onclick="pc(this)">💥 Extrême</div>
+  </div>
+  <label class="fl">Contexte libre</label>
+  <input type="text" class="fi" id="perso-ctx" placeholder="Ex: EVJF, premier rendez-vous…"/>
+  <button class="btn-v" id="perso-btn" onclick="genPerso()" style="background:linear-gradient(135deg,var(--v),var(--o))">✨ Générer ma question</button>
+</div>
+<div class="ov" id="ov-st" onclick="closeSheet('ov-st','sht-st')"></div>
+<div class="sht" id="sht-st">
+  <div class="sht-handle"></div>
+  <div class="sht-title">⚙️ Paramètres</div>
+  <div class="sht-sub">Clé API pour questions générées en temps réel</div>
+  <label class="fl">🔑 Clé API (optionnel)</label>
+  <input type="password" class="fi" id="api-key" placeholder="sk-proj-…"/>
+  <button class="btn-v" onclick="saveAPI()" style="margin-bottom:14px">Sauvegarder</button>
+  <button class="btn-g" onclick="closeSheet('ov-st','sht-st');document.getElementById('pg-onboard').style.display='flex'">Changer les joueurs →</button>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════
+//  DÉBAT INTENSE v10 — Clean build, no nested literals
+// ═══════════════════════════════════════════════════
+
+// ── QUESTION BANK ──
+const QB = {
+  couple:[
+    {q:"{{P1}}, tu trouves un relevé bancaire : {{P2}} a un compte secret avec 23 000€. Tu fais quoi dans l'heure ?",type:"choice",choices:["J'affronte directement","J'enquête discrètement","Je fais pareil de mon côté","Je mets fin à la relation"],discuss_starters:["Pourquoi garderait-on de l'argent caché ?","Est-ce une trahison ou de la prudence ?","Quelle serait ta limite avant de partir ?"],story:{scene:"VENDREDI SOIR, 23H42",narrative:"{{P1}} cherche un document. Une enveloppe tombe. Le nom de {{P2}} est dessus — 23 847€ dans une banque inconnue. {{P2}} ferme la porte de la salle de bain.",chars:[{i:"✉️",n:"L'enveloppe tombée"},{i:"🚿",n:"{{P2}}, dans la pièce d'à côté"}]}},
+    {q:"{{P2}} a un meilleur ami de l'autre sexe. Ils se textos chaque soir jusqu'à minuit. {{P1}}, tu réagis comment vraiment ?",type:"binary",discuss_starters:["Où s'arrête l'amitié et où commence l'infidélité émotionnelle ?","La transparence totale est-elle possible avec un ami de genre différent ?"],story:{scene:"DIMANCHE MATIN",narrative:"L'écran de {{P2}} s'allume encore. 'Bonne nuit ❤️' — troisième fois cette semaine. {{P2}} retourne son téléphone sans regarder.",chars:[{i:"📱",n:"Le message de minuit"},{i:"📖",n:"{{P1}} qui fait semblant de lire"}]}},
+    {q:"Si la science pouvait prédire avec 95% de certitude si {{P1}} et {{P2}} resteraient ensemble 5 ans — vous voudriez savoir ?",type:"binary",discuss_starters:["L'incertitude est-elle nécessaire à l'amour ?","Changeriez-vous quelque chose si vous saviez ?"],story:{scene:"APPLICATION EN LIGNE",narrative:"Une startup propose un test de compatibilité à long terme. {{P1}} tombe dessus un soir. Le test est gratuit. Il faut juste entrer deux prénoms.",chars:[{i:"💻",n:"L'algorithme"},{i:"❓",n:"Savoir ou ne pas savoir ?"}]}},
+    {q:"Un couple qui ne se dispute jamais — c'est sain ou suspect ?",type:"binary",discuss_starters:["Peut-on s'aimer sans jamais se heurter ?","La dispute est-elle une preuve d'investissement ?"],story:{scene:"DÎNER CHEZ DES AMIS",narrative:"{{P1}} et {{P2}} rentrent d'un dîner où leurs amis se sont violemment disputés. Sur le chemin, {{P2}} dit : 'Nous, on ne fait jamais ça.'",chars:[{i:"🍽️",n:"La dispute des amis"},{i:"💬",n:"La phrase de {{P2}}"}]}},
+    {q:"{{P2}} prend une décision de vie majeure sans consulter {{P1}}, persuadé/e que c'est la bonne pour vous deux. Amour ou manque de respect ?",type:"binary",discuss_starters:["Les grandes décisions doivent-elles toujours être partagées ?","Agir pour le bien de l'autre est-il paternaliste ?"],story:{scene:"LUNDI MATIN, 8H",narrative:"{{P1}} trouve un bail signé sur la table. {{P2}} a choisi un appartement — surprise. {{P1}} avait prévu autre chose pour cette période.",chars:[{i:"📋",n:"Le bail signé"},{i:"😶",n:"{{P1}}, qui réalise"}]}},
+    {q:"Peut-on vraiment pardonner une infidélité, ou se ment-on à soi-même ?",type:"binary",discuss_starters:["Le pardon est-il possible ou juste différé ?","Que signifie vraiment 'oublier' ?"],story:{scene:"6 MOIS APRÈS",narrative:"{{P1}} et {{P2}} ont décidé de reconstruire. Ce soir, {{P2}} rentre tard encore une fois. {{P1}} dit que ça va. {{P2}} sait que ce n'est pas vrai.",chars:[{i:"⏰",n:"6 mois de reconstruction"},{i:"🔄",n:"La même scène qui recommence"}]}},
+    {q:"{{P1}}, si tu lisais tous les messages de {{P2}} des 3 dernières années, quelque chose changerait dans votre relation ?",type:"binary",discuss_starters:["La transparence totale est-elle une invasion ou une preuve de confiance ?","Savoir ou ignorer — que préfèrerais-tu vraiment ?"],story:{scene:"3H DU MATIN",narrative:"{{P2}} a oublié son téléphone déverrouillé sur la table. {{P1}} se lève boire de l'eau. L'écran s'allume tout seul sur une conversation.",chars:[{i:"📱",n:"L'écran allumé"},{i:"🌙",n:"3h du matin"}]}},
+    {q:"La passion dans un couple : ça se maintient naturellement ou ça se travaille activement ?",type:"binary",discuss_starters:["L'effort tue-t-il la spontanéité ?","Comment savoir si on travaille l'amour ou si on le force ?"],story:{scene:"5EME ANNIVERSAIRE",narrative:"{{P1}} et {{P2}} sont dans le même restaurant qu'au premier soir. Mais cette fois ils consultent leur téléphone en attendant les plats.",chars:[{i:"🕯️",n:"Le même restaurant"},{i:"📅",n:"5 ans, et puis quoi ?"}]}},
+    {q:"La jalousie dans un couple : jusqu'à quel degré est-elle encore une preuve d'amour ?",type:"scale",discuss_starters:["La jalousie protège-t-elle ou empoisonne-t-elle ?","Peut-on aimer sans ressentir de jalousie ?"],story:{scene:"SOIREE D'ANNIVERSAIRE",narrative:"{{P2}} rit fort avec quelqu'un que {{P1}} ne connaît pas. Depuis 20 minutes. {{P1}} remplit son verre et observe depuis l'autre côté de la pièce.",chars:[{i:"🥂",n:"La soirée"},{i:"👀",n:"Le regard de {{P1}}"}]}},
+    {q:"Faut-il tout se dire dans un couple — passé, pensées, doutes ?",type:"choice",choices:["Oui, absolument tout","Non, certaines choses se taisent","Tout sauf le passé","Tout sauf les fantasmes"],discuss_starters:["Le silence peut-il être une forme de respect ?","L'honnêteté totale est-elle possible ?"]},
+    {q:"La routine entre {{P1}} et {{P2}} : piège insidieux ou signe de solidité ?",type:"binary",discuss_starters:["La sécurité vaut-elle ce qu'on sacrifie en imprévisibilité ?","Faut-il casser la routine ou l'accepter ?"],story:{scene:"MERCREDI, COMME TOUS LES MERCREDIS",narrative:"{{P1}} commande la même pizza. {{P2}} met le même film. Ils sont bien. {{P1}} se souvient pourtant que le premier soir, tout était électrique.",chars:[{i:"🍕",n:"La même commande"},{i:"📺",n:"Le même film, encore"}]}},
+    {q:"Peut-on construire une relation solide avec quelqu'un dont les convictions politiques sont radicalement opposées ?",type:"binary",discuss_starters:["Les valeurs politiques révèlent-elles les valeurs profondes ?","L'amour peut-il transcender les désaccords fondamentaux ?"]},
+    {q:"{{P1}}, ton partenaire gagne 3 fois plus que toi. Dans les décisions financières, voix égale ou proportionnelle ?",type:"choice",choices:["Voix égale — c'est un couple","Proportionnelle au revenu","Ca dépend de la décision","Je refuserais cette situation"],discuss_starters:["L'argent crée-t-il forcément un déséquilibre de pouvoir ?","Comment maintenir l'égalité face aux inégalités financières ?"]},
+    {q:"L'amour romantique peut-il durer toute une vie, ou finit-il toujours par se transformer en autre chose ?",type:"binary",discuss_starters:["Qu'est-ce qui remplace la passion sur le long terme ?","La transformation est-elle une fin ou une évolution ?"]},
+    {q:"{{P1}} et {{P2}} : qui s'adapte quand vos projets de vie divergent vraiment ?",type:"choice",choices:["Celui qui aime le plus","Le moins ambitieux","On negocie ensemble","Ni l'un ni l'autre"],discuss_starters:["L'amour doit-il primer sur les ambitions personnelles ?","Peut-on construire une relation a distance ?"],story:{scene:"AEROPORT, TERMINAL 2E",narrative:"{{P1}} a son vol dans 40 minutes. Mutation a Toronto — 2 ans. {{P2}} est la avec sa valise. Aucun des deux n'a dit clairement ce qu'il attend.",chars:[{i:"✈️",n:"Toronto, 2 ans"},{i:"💔",n:"{{P2}}, sur le quai"}]}}
+  ],
+  sexualite:[
+    {q:"{{P1}}, sur une echelle de 0 a 5, la pornographie de {{P2}} te pose quel probleme ?",type:"scale",discuss_starters:["La pornographie cree-t-elle des attentes irrealistes ?","Peut-on en consommer sans que ca impacte son couple ?"],story:{scene:"CONVERSATION FRANCHE",narrative:"{{P2}} decide d'etre totalement transparent. Il/elle le dit simplement. {{P1}} prend une seconde avant de repondre.",chars:[{i:"💬",n:"L'aveu de {{P2}}"},{i:"⏱️",n:"3 secondes de silence"}]}},
+    {q:"{{P2}} propose une relation ouverte a {{P1}} 'juste pour essayer'. Quelle est la vraie premiere reaction de {{P1}} ?",type:"discuss",discuss_starters:["Peut-on vraiment separer amour et desir ?","La jalousie est-elle incompatible avec la non-monogamie ?","Qui propose ce genre de chose, et pourquoi ?"],story:{scene:"VACANCES, JOUR 4",narrative:"{{P2}} dit : 'Je t'ai toujours admire pour ton ouverture d'esprit.' Puis la phrase arrive. {{P1}} fixe la mer.",chars:[{i:"🌊",n:"La conversation en vacances"},{i:"💑",n:"{{P2}}, qui attend"}]}},
+    {q:"Le manque de desir de {{P2}} envers {{P1}} apres 5 ans : signe de probleme ou evolution normale ?",type:"binary",discuss_starters:["Le desir s'entretient-il ou se decouvre-t-il toujours ?","Comment parler de ce sujet sans blesser ?"],story:{scene:"CHAMBRE, LUNDI SOIR",narrative:"{{P1}} s'approche. Un leger recul de {{P2}}. 'Fatigue.' 4eme fois ce mois. {{P1}} se retourne sans rien dire.",chars:[{i:"😶",n:"Le recul de {{P2}}"},{i:"🌙",n:"La question non posee"}]}},
+    {q:"Y a-t-il des desirs qu'on devrait toujours garder pour soi, meme dans un couple tres complice ?",type:"binary",discuss_starters:["Le jardin secret est-il une liberte ou une barriere ?","Tout partager peut-il fragiliser une relation ?"]},
+    {q:"L'attirance physique de {{P1}} pour quelqu'un d'autre — normale, inevitable, ou problematique ?",type:"choice",choices:["Normale et inevitable","Normale mais a gerer","Signe d'un manque","Problematique si recurrente"],discuss_starters:["L'attraction est-elle involontaire ou controlable ?","Doit-on en parler a son partenaire ?"],story:{scene:"SOIREE ENTRE AMIS",narrative:"Un inconnu s'assied a cote de {{P1}}. La conversation est brillante. {{P2}} observe depuis l'autre cote de la salle.",chars:[{i:"✨",n:"La soiree et l'inconnu"},{i:"👀",n:"{{P2}} qui observe"}]}},
+    {q:"La fidelite physique est-elle plus importante que la fidelite emotionnelle ?",type:"binary",discuss_starters:["Laquelle vous blesserait davantage ?","La frontiere emotionnelle est-elle plus floue ?"]},
+    {q:"{{P2}} te dit : 'J'ai besoin qu'on explore de nouvelles choses ensemble.' {{P1}}, comment tu l'interpretes ?",type:"choice",choices:["Une invitation excitante","Un signal de manque","Je veux savoir quoi exactement","Je me sens juge"],discuss_starters:["Comment exprimer des besoins sans blesser ?","La curiosite peut-elle etre un moteur positif ?"]},
+    {q:"{{P1}} decouvre que {{P2}} a un desir profond qu'il/elle n'a jamais revele depuis 3 ans. Comment {{P1}} reagit ?",type:"discuss",discuss_starters:["Pourquoi garde-t-on des desirs caches ?","La honte joue-t-elle un role et comment la depasser ?","Que dit-on sur la securite dans le couple ?"],story:{scene:"LA NUIT DES AVEUX",narrative:"Ils ont bu un peu. {{P2}} commence : 'Il y a quelque chose que je n'ai jamais dit a personne.' La phrase suivante change la facon dont {{P1}} regarde {{P2}}.",chars:[{i:"🕯️",n:"La nuit des aveux"},{i:"🔐",n:"3 ans de secret"}]}},
+    {q:"Peut-on avoir une relation durable et epanouie avec une incompatibilite physique reconnue des deux cotes ?",type:"binary",discuss_starters:["L'intimite physique est-elle indispensable ?","Peut-on construire autre chose a la place ?"]},
+    {q:"La nudite quotidienne en couple renforce ou erode le desir sur le long terme ?",type:"binary",discuss_starters:["La familiarite tue-t-elle le mystere ?","Comment maintenir le desir face au quotidien ?"]},
+    {q:"Doit-on se forcer a avoir des rapports quand l'envie n'est pas la, par amour pour l'autre ?",type:"binary",discuss_starters:["L'effort est-il de l'amour ou du sacrifice ?","Ou s'arrete l'amour et ou commence la contrainte ?"]},
+    {q:"Une rencontre physique d'un soir sans sentiment — trahison aussi grave qu'une liaison amoureuse durable ?",type:"binary",discuss_starters:["Le corps et le coeur sont-ils dissociables ?","Laquelle vous blesserait davantage, honnetement ?"]},
+    {q:"L'ennui dans la vie intime d'un couple est-il plus difficile a admettre que l'incompatibilite totale ?",type:"binary",discuss_starters:["Pourquoi est-il si difficile d'en parler ?","Que faire quand on s'ennuie mais qu'on s'aime ?"]},
+    {q:"Le sexe peut-il etre une facon valide de faire la paix apres une dispute, ou c'est esquiver le probleme ?",type:"binary",discuss_starters:["Peut-on separer la resolution de conflit de l'intimite ?","Faut-il regler le verbal avant le physique ?"]},
+    {q:"{{P2}} suit des dizaines de comptes tres seduisants sur Instagram. {{P1}}, sur une echelle de 0 a 5, ca te pose probleme ?",type:"scale",discuss_starters:["Les reseaux sociaux sont-ils une zone de tension dans le couple ?","Peut-on avoir une vie publique seduisante sans impact sur le couple ?"],story:{scene:"LUNDI MATIN",narrative:"{{P1}} voit le feed de {{P2}} par-dessus son epaule. 400 likes en 3 heures. Un commentaire d'un inconnu. {{P2}} repond avec un emoji.",chars:[{i:"📱",n:"Le feed de {{P2}}"},{i:"💬",n:"Le commentaire de l'inconnu"}]}}
+  ],
+  morale:[
+    {q:"Un ami commun confie a {{P1}} qu'il trompe sa femme depuis 2 ans. Sa femme est aussi votre amie. {{P1}} fait quoi ?",type:"choice",choices:["Je lui dis directement","J'exige qu'il l'avoue","Je garde le secret","Je prends mes distances"],discuss_starters:["Quelle est l'obligation morale envers un ami vs une autre amie ?","Interferer dans un couple est-il toujours une erreur ?"],story:{scene:"CAFE, MARDI MIDI",narrative:"L'ami baisse la voix. Ce qu'il dit ensuite va changer le diner du vendredi — celui ou tout le monde se retrouve.",chars:[{i:"🤐",n:"L'aveu de l'ami"},{i:"📅",n:"Le diner de vendredi qui approche"}]}},
+    {q:"{{P1}} voit quelqu'un perdre son portefeuille. 800€ dedans. Personne ne regarde. {{P1}}, qu'est-ce qu'il fait vraiment ?",type:"choice",choices:["Je le rends integralement","Je garde l'argent, je rends le reste","Je le garde","Je le remets a un commerce"],discuss_starters:["La propriete d'un objet trouve est-elle nulle ?","L'anonymat change-t-il notre comportement moral ?"],story:{scene:"RUE COMMERÇANTE, MIDI",narrative:"La personne trebuche, le portefeuille glisse sous une voiture. Elle continue sans s'en apercevoir. {{P1}} le ramasse. 8 billets de 100€.",chars:[{i:"👴",n:"La personne qui ne sait pas"},{i:"💶",n:"800€ dans les mains"}]}},
+    {q:"Mentir pour proteger {{P2}} — acte d'amour ou lachete qui finira par tout detruire ?",type:"binary",discuss_starters:["Le mensonge protecteur est-il toujours justifie ?","Que se passe-t-il quand la verite finit par sortir ?"],story:{scene:"BUREAU DU PATRON, 17H",narrative:"Le patron demande directement a {{P1}} : '{{P2}} etait avec vous vendredi ?' {{P2}} n'etait pas la. {{P1}} a 3 secondes.",chars:[{i:"💼",n:"Le bureau du patron"},{i:"⏱️",n:"3 secondes pour decider"}]}},
+    {q:"La peine de mort peut-elle etre moralement defendable dans certaines circonstances ?",type:"binary",discuss_starters:["La justice peut-elle legitimement ôter la vie ?","La rehabilitation est-elle toujours possible ?","Quand une societe renonce-t-elle a ses valeurs ?"]},
+    {q:"{{P1}} peut sauver 1 proche OU 5 inconnus. Quelques secondes pour decider. La vraie reponse honnete ?",type:"binary",discuss_starters:["La logique utilitariste doit-elle s'appliquer aux emotions ?","Peut-on vraiment decider en quelques secondes ?","Le devoir prime-t-il sur l'attachement ?"]},
+    {q:"L'honnetete absolue de {{P1}} en toutes circonstances : vertu ou forme de brutalite sociale ?",type:"binary",discuss_starters:["La verite est-elle toujours bienveillante ?","Y a-t-il des situations ou le mensonge est plus humain ?"]},
+    {q:"Face a une loi injuste, la desobeissance civile est-elle un droit, un devoir, ou une lachete ?",type:"choice",choices:["Un droit fondamental","Un devoir moral","Une lachete deguisee","Ca depend de la cause"],discuss_starters:["Quand la loi perd-elle sa legitimite ?","La resistance pacifique est-elle toujours efficace ?"]},
+    {q:"{{P1}} sait quelque chose depuis 3 mois qui ferait du mal a {{P2}} mais sans impact concret. {{P1}} le dit ?",type:"binary",discuss_starters:["Le droit de savoir prime-t-il toujours ?","Qui decide de ce qui 'compte' vraiment ?"],story:{scene:"SOIREE CALME",narrative:"{{P1}} porte ce secret depuis 3 mois. Ce n'est pas grave — mais {{P2}} aurait voulu savoir. Ce soir, l'occasion est parfaite.",chars:[{i:"🤐",n:"3 mois de secret"},{i:"🌙",n:"Ce soir, l'occasion ideale"}]}},
+    {q:"Ton collegue vole regulierement de petites fournitures au bureau. 'Tout le monde le fait.' Tu denonces ?",type:"binary",discuss_starters:["Le 'tout le monde le fait' est-il une justification valide ?","Denoncer est-il trahir ou etre integre ?"]},
+    {q:"Si {{P1}} savait qu'il ne serait jamais pris, y a-t-il quelque chose d'illegal qu'il ferait ?",type:"discuss",discuss_starters:["La morale depend-elle du risque de punition ?","Quelles sont les 'infractions acceptables' selon vous ?","Que revele cette reponse sur nos vraies valeurs ?"],story:{scene:"HYPOTHESE DU SOIR",narrative:"{{P2}} pose la question innocemment. {{P1}} sourit. Mais il y a quelque chose qui passe dans ses yeux avant le sourire.",chars:[{i:"🎲",n:"La question du jeu"},{i:"👀",n:"Ce que {{P2}} a vu"}]}},
+    {q:"Peut-on etre heureux dans une societe profondement injuste sans en etre complice ?",type:"binary",discuss_starters:["Qu'est-ce que la complicite passive ?","La resignation est-elle une forme d'acceptation ?"]},
+    {q:"L'amour peut-il justifier une action normalement inacceptable ?",type:"binary",discuss_starters:["L'amour donne-t-il des droits supplementaires ?","Ou s'arrete la justification par l'amour ?"]},
+    {q:"Y a-t-il des actes absolument imperdomnables, ou tout merite une deuxieme chance ?",type:"binary",discuss_starters:["Pardonner, c'est pour qui — pour l'autre ou pour soi ?","Certains actes sont-ils reellement imperdomnables ?"]},
+    {q:"La culpabilite de {{P1}} : outil moral utile ou autopunition improductive ?",type:"binary",discuss_starters:["La culpabilite pousse-t-elle au changement ou paralyse-t-elle ?","Peut-on choisir de ne plus culpabiliser ?"]},
+    {q:"{{P1}} peut temoigner en disant la verite qui condamne un proche, ou mentir pour l'innocenter. Que choisit {{P1}} ?",type:"binary",discuss_starters:["La loyaute prime-t-elle sur la justice ?","Peut-on etre complice par amour ?"]}
+  ],
+  jalousie:[
+    {q:"{{P2}} recoit un message a 23h : 'Bonne nuit coeur' d'un inconnu. Il/elle l'ignore. {{P1}}, tu fais quoi ?",type:"choice",choices:["Je lui demande calmement","Je surveille discretement","Je lui fais totalement confiance","Ca declenche une dispute"],discuss_starters:["Fait-on confiance ou surveille-t-on ?","La confiance s'impose-t-elle ou se merite-t-elle ?"],story:{scene:"VENDREDI SOIR, CANAPE",narrative:"{{P1}} et {{P2}} regardent une serie. L'ecran de {{P2}} vibre. {{P2}} le retourne sans regarder. {{P1}} a vu le nom avant.",chars:[{i:"📱",n:"Le message de minuit"},{i:"📺",n:"{{P1}} et la serie, au fond"}]}},
+    {q:"{{P2}} poste une photo tres seduisante. 400 likes dont 80 d'inconnus. {{P1}}, ta reaction interne ?",type:"discuss",discuss_starters:["Les reseaux sociaux sont-ils une zone de tension ?","Peut-on avoir une vie publique seduisante sans impact sur le couple ?","Est-ce de la jalousie ou de l'insecurite ?"],story:{scene:"LUNDI MATIN, INSTAGRAM",narrative:"{{P1}} voit la notif. 400 likes en 3 heures. Un commentaire d'un profil inconnu. {{P2}} repond avec un emoji.",chars:[{i:"📸",n:"La photo de {{P2}}"},{i:"💬",n:"Le commentaire de l'inconnu"}]}},
+    {q:"La jalousie retrospective — etre perturbe par les ex de {{P2}} — est-elle surmontable ?",type:"binary",discuss_starters:["Peut-on etre jaloux de quelqu'un qu'on n'a jamais rencontre ?","La jalousie retrospective vient-elle d'un manque de confiance ?"],story:{scene:"PHOTO D'ARCHIVES",narrative:"{{P1}} tombe sur une vieille photo de {{P2}} avec un ex. Ils semblent tellement heureux. {{P1}} n'etait pas la. Il/elle n'existait pas encore dans la vie de {{P2}}.",chars:[{i:"📷",n:"La photo d'avant"},{i:"💭",n:"{{P1}} et les pensees qui viennent"}]}},
+    {q:"{{P2}} est plus proche de son ex que de {{P1}}. 'On est juste amis.' {{P1}} y croit, sur une echelle de 0 a 5 ?",type:"scale",discuss_starters:["Peut-on vraiment rester ami avec un ex ?","La proximite emotionnelle est-elle plus menacante que la proximite physique ?"],story:{scene:"SOIREE A TROIS",narrative:"{{P2}} a invite son ex pour 'que vous vous connaissiez'. Ils se finissent les phrases. Rient a des blagues que {{P1}} ne comprend pas.",chars:[{i:"🍻",n:"La soiree a trois"},{i:"👁️",n:"{{P1}} qui observe"}]}},
+    {q:"Surveiller le telephone de son partenaire sans permission — jamais acceptable ou parfois necessaire ?",type:"binary",discuss_starters:["La curiosite justifie-t-elle l'intrusion ?","Que dit ce geste sur l'etat de la relation ?"]},
+    {q:"La jalousie peut-elle etre transformee en carburant positif, ou est-elle toujours destructrice ?",type:"binary",discuss_starters:["Peut-on sublimer une emotion negative ?","La jalousie est-elle un signal a ecouter ?"]},
+    {q:"{{P1}} reussit mieux que {{P2}} dans votre domaine commun. Comment {{P2}} le vit vraiment ?",type:"scale",discuss_starters:["La jalousie professionnelle peut-elle cohabiter avec l'amour ?","Faut-il en parler ou le taire ?"],story:{scene:"LA PROMOTION DE {{P1}}",narrative:"{{P2}} applaudit sincerement. Mais en voiture, seul, {{P2}} a une pensee qu'il n'avouera a personne.",chars:[{i:"🎉",n:"La promotion de {{P1}}"},{i:"🚗",n:"{{P2}} seul en voiture"}]}},
+    {q:"{{P1}} a cree une situation pour tester la fidelite de {{P2}}. Le resultat etait bon. {{P2}} doit-il savoir ?",type:"binary",discuss_starters:["Le test de loyaute est-il une forme de trahison lui aussi ?","Que dit ce geste sur la confiance existante ?"]},
+    {q:"Ta meilleure amie fait un compliment sincere a {{P2}} sur son apparence. Comment {{P1}} se sent-il ?",type:"choice",choices:["Fier et serein","Legerement inconfortable","Tres jaloux","Je surveille la suite"],discuss_starters:["Les compliments des proches sont-ils plus ou moins menacants ?","La securite interieure peut-elle eliminer la jalousie ?"]},
+    {q:"{{P2}} envoie des messages a son ex 'juste pour prendre des nouvelles'. {{P1}}, c'est inoffensif ou dangereux ?",type:"binary",discuss_starters:["Garder le contact avec ses ex est-il dangereux par definition ?","Le secret est-il le probleme ou le contact lui-meme ?"],story:{scene:"DIMANCHE APRES-MIDI",narrative:"{{P1}} voit la conversation par hasard. '{{P2}} a son ex : Comment tu vas ?' L'heure d'envoi : hier soir, 22h47.",chars:[{i:"💬",n:"Le message de {{P2}}"},{i:"⏰",n:"22h47, hier soir"}]}},
+    {q:"Peut-on etre jaloux d'un deuil que {{P2}} porte encore pour quelqu'un de decede ?",type:"binary",discuss_starters:["Comment une presence absente peut-elle creer de la jalousie ?","Doit-on respecter le deuil sans limite de temps ?"]},
+    {q:"L'absence totale de jalousie de {{P1}} — ca rassure ou inquiete {{P2}} ?",type:"binary",discuss_starters:["L'indifference est-elle rassurante ou un signe de desengagement ?","Faut-il montrer sa jalousie pour prouver son amour ?"]},
+    {q:"{{P1}} a laisse la jalousie lui faire perdre quelque chose d'important. Il le referait autrement ?",type:"binary",discuss_starters:["La jalousie est-elle toujours le probleme ou parfois un signal pertinent ?","Que ferait-on differemment ?"]},
+    {q:"Peut-on aimer profondement sans jamais ressentir de jalousie pour cette personne ?",type:"binary",discuss_starters:["La jalousie est-elle inherente a l'attachement ?","Peut-on etre attache sans etre possessif ?"]},
+    {q:"La jalousie entre freres et soeurs pour l'attention des parents — cicatrise-t-elle vraiment a l'age adulte ?",type:"binary",discuss_starters:["Les blessures d'enfance influencent-elles nos relations adultes ?","Peut-on guerir d'une jalousie non nommee ?"]}
+  ],
+  argent:[
+    {q:"{{P1}} trouve 47 000€ de dettes cachees par {{P2}} depuis 2 ans. {{P1}}, tu fais quoi ?",type:"choice",choices:["J'affronte directement","Je fais semblant de ne pas savoir","Je consulte un avocat","Je mets fin a la relation"],discuss_starters:["Les dettes cachees sont-elles une trahison ?","Peut-on comprendre l'intention de proteger meme si le moyen etait mauvais ?"],story:{scene:"CUISINE, 20H",narrative:"{{P2}} recoit une lettre recommandee. {{P1}} la voit avant. 47 000€ de dettes. Tout gere seul 'pour ne pas inquieter'.",chars:[{i:"✉️",n:"La lettre recommandee"},{i:"😶",n:"{{P1}}, 2 heures apres"}]}},
+    {q:"{{P1}} et {{P2}} emmenagent ensemble. Quel modele financier choisissent-ils ?",type:"choice",choices:["Tout en commun","Tout separe","Compte commun + persos","Chacun selon ses revenus"],discuss_starters:["L'argent separe preserve-t-il l'independance ou cree-t-il de la mefiance ?","Quelle est la 'bonne' structure pour un couple ?"],story:{scene:"NOTAIRE, AVANT EMMENAGEMENT",narrative:"Le notaire demande la structure financiere. {{P1}} et {{P2}} se regardent. Ils n'en avaient jamais parle.",chars:[{i:"⚖️",n:"Le notaire qui attend"},{i:"🔄",n:"Deux visions de l'argent"}]}},
+    {q:"{{P2}} demande 3 000€ a {{P1}} pour eviter une saisie. {{P1}} sait que {{P2}} est mauvais gestionnaire. {{P1}} le fait ?",type:"binary",discuss_starters:["Aider financierement peut-il perpetuer un probleme ?","Quand l'amour cesse-t-il d'etre une raison valable ?"],story:{scene:"APPEL TELEPHONIQUE, 18H",narrative:"La voix de {{P2}} est tendue. '3 000€ avant vendredi ou ils saisissent.' {{P1}} a l'argent. Et le souvenir des 2 dernieres fois.",chars:[{i:"📞",n:"L'appel de {{P2}}"},{i:"💳",n:"3 000€ et les souvenirs"}]}},
+    {q:"{{P1}} cache une epargne personnelle a {{P2}} 'au cas ou'. C'est de la prudence ou de la malhonnetete ?",type:"binary",discuss_starters:["Avoir un plan B financier est-il une trahison ou de la lucidite ?","La transparence financiere totale est-elle possible ?"],story:{scene:"LE COMPTE QUE {{P2}} NE CONNAIT PAS",narrative:"{{P1}} a un compte que {{P2}} ne connait pas. Par precaution. En cas de separation. {{P1}} se demande ce que ca dit de leur confiance.",chars:[{i:"🏦",n:"Le compte secret"},{i:"🔐",n:"La prudence ou la mefiance ?"}]}},
+    {q:"{{P2}} depense 800€ en vetements sans le dire. Vous avez le meme salaire. {{P1}}, c'est un probleme ?",type:"binary",discuss_starters:["Doit-on tout declarer meme avec un compte commun ?","L'argent personnel existe-t-il dans un couple ?"],story:{scene:"LE VIREMENT QUI N'EST PAS LA",narrative:"{{P1}} regarde le compte commun. 800€ manquent. {{P2}} rentre avec un grand sac. 'Ca me plaisait vraiment.'",chars:[{i:"🛍️",n:"Les sacs de {{P2}}"},{i:"📊",n:"Le compte commun"}]}},
+    {q:"L'argent change-t-il vraiment les gens, ou revele-t-il simplement qui ils sont ?",type:"binary",discuss_starters:["Avez-vous un exemple personnel ou de votre entourage ?","La richesse soudaine est-elle un test de caractere ?"]},
+    {q:"{{P1}} herite de 180 000€. {{P2}} ne sait pas encore. {{P1}} le dit immediatement ?",type:"binary",discuss_starters:["L'heritage est-il personnel ou appartient-il au couple ?","Le timing de la revelation change-t-il quelque chose ?"],story:{scene:"SORTIE DU NOTAIRE",narrative:"{{P1}} sort du bureau du notaire. L'heritage est reel. Il pense a {{P2}} — et a la derniere dispute sur l'argent, il y a 3 semaines.",chars:[{i:"📋",n:"La sortie du notaire"},{i:"🏠",n:"{{P2}} qui attend"}]}},
+    {q:"Les ultra-riches ont-ils une obligation morale de redistribuer, selon {{P1}} ?",type:"binary",discuss_starters:["La richesse meritee change-t-elle l'equation ?","La philanthropie volontaire est-elle suffisante ?"]},
+    {q:"Si {{P1}} gagnait au loto demain, qu'est-ce qui changerait vraiment dans sa relation avec {{P2}} ?",type:"discuss",discuss_starters:["L'argent revele-t-il les vraies attentes dans une relation ?","Voudrait-on que ca change ou reste identique ?","L'argent peut-il creer une distance ?"],story:{scene:"LE TICKET DE LOTERIE",narrative:"{{P1}} verifie les numeros. 2,4 millions. {{P2}} dort a cote. La premiere pensee de {{P1}} n'est pas 'on achete une maison.'",chars:[{i:"🎫",n:"Le ticket gagnant"},{i:"😴",n:"{{P2}} qui dort"}]}},
+    {q:"{{P1}} sacrifierait une carriere de reve pour ne pas mettre {{P2}} en difficulte financiere ?",type:"binary",discuss_starters:["Sacrifice ou erreur que l'on regrettera ?","Comment negocier entre ambition et amour ?"],story:{scene:"L'OFFRE DE CARRIERE",narrative:"{{P1}} vient de recevoir l'offre de sa vie. Mais ca veut dire 60h/semaine. {{P2}} n'est pas en grande forme en ce moment. {{P1}} a 72h pour repondre.",chars:[{i:"📧",n:"L'offre de carriere"},{i:"⏰",n:"72 heures pour decider"}]}},
+    {q:"Un job tres bien paye mais contraire a ses valeurs — {{P1}} le prend pour sortir sa famille de la precarite ?",type:"binary",discuss_starters:["Les valeurs sont-elles un luxe qu'on ne peut pas toujours se permettre ?","Ou s'arrete le compromis acceptable ?"]},
+    {q:"Peut-on etre vraiment heureux avec peu d'argent dans notre societe actuelle ?",type:"binary",discuss_starters:["Le bonheur a-t-il un cout minimum ?","La societe cree-t-elle de faux besoins ?"]},
+    {q:"L'inegalite salariale dans le couple entre {{P1}} et {{P2}} genere-t-elle forcement un desequilibre de pouvoir ?",type:"binary",discuss_starters:["L'argent est-il synonyme de pouvoir dans une relation ?","Comment neutraliser cette dynamique ?"]},
+    {q:"{{P1}} refuse de preter de l'argent a {{P2}} pour 'proteger la relation'. C'est sage ou manque de confiance ?",type:"binary",discuss_starters:["Les prets entre proches detruisent-ils toujours la relation ?","Peut-on definir des regles claires a l'avance ?"]},
+    {q:"A partir de quelle somme un cadeau de {{P2}} devient-il une tentative d'influence sur {{P1}} ?",type:"discuss",discuss_starters:["Les cadeaux couteux creent-ils un sentiment de dette ?","Peut-on donner sans attente de retour ?","L'intention compte-t-elle plus que la valeur ?"]}
+  ],
+  religion:[
+    {q:"{{P1}} rencontre quelqu'un de parfait — mais pratiquant d'une religion qu'il ne respecte pas. {{P1}} va plus loin ?",type:"binary",discuss_starters:["Les valeurs religieuses sont-elles compatibles sans religion partagee ?","L'amour peut-il transcender les croyances ?"],story:{scene:"PREMIER RENDEZ-VOUS",narrative:"{{P1}} est avec quelqu'un de brillant, drole, attentionne. Au dessert, la personne mentionne naturellement sa pratique religieuse.",chars:[{i:"☕",n:"Le premier rendez-vous parfait"},{i:"🔮",n:"La revelation du dessert"}]}},
+    {q:"{{P1}} eleverait-il ses enfants dans une religion si {{P2}} n'a pas la meme foi ?",type:"choice",choices:["Oui, dans ma religion","Non, laicite totale","Les deux — ils choisissent","On leur laisse choisir a 18 ans"],discuss_starters:["Imposer une religion est-il conditionner ou transmettre ?","Peut-on preparer un enfant a choisir sans lui imposer ?"],story:{scene:"NURSERIE, AVANT LA NAISSANCE",narrative:"{{P1}} et {{P2}} peignent la chambre du bebe. La question arrive. {{P2}} pensait que {{P1}} partageait sa vision. Cinq ans de desaccord silencieux.",chars:[{i:"👶",n:"Le bebe qui arrive"},{i:"🖌️",n:"La chambre a peindre"}]}},
+    {q:"Un parent refuse un soin medical pour son enfant pour raisons religieuses. L'Etat doit-il intervenir ?",type:"binary",discuss_starters:["La liberte religieuse a-t-elle des limites quand elle affecte un tiers ?","Comment arbitrer entre droit parental et protection de l'enfant ?"]},
+    {q:"La religion comme consolation face a la mort — bequille necessaire ou deni de realite ?",type:"binary",discuss_starters:["La croyance en un apres-mort facilite-t-elle le deuil ?","Le reconfort justifie-t-il la croyance ?"],story:{scene:"APRES L'ENTERREMENT",narrative:"{{P1}} et {{P2}} rentrent. {{P2}} dit : 'Au moins, il est dans un meilleur endroit.' {{P1}} pense quelque chose de tres different.",chars:[{i:"🌹",n:"L'enterrement"},{i:"💬",n:"La phrase de {{P2}}"}]}},
+    {q:"{{P1}}, peut-on critiquer ouvertement la religion de {{P2}} si {{P2}} la pratique sincerement ?",type:"binary",discuss_starters:["La critique respectueuse est-elle possible ?","Respecter une personne oblige-t-il a respecter ses croyances ?"],story:{scene:"CONVERSATION DU DIMANCHE",narrative:"{{P1}} vient de lire un article critique sur la religion de {{P2}}. {{P2}} rentre de la mosquee/eglise/synagogue, le sourire aux levres.",chars:[{i:"📰",n:"L'article que {{P1}} a lu"},{i:"😊",n:"{{P2}} qui rentre, serein"}]}},
+    {q:"La foi religieuse rend-elle les gens meilleurs moralement, ou c'est independant ?",type:"binary",discuss_starters:["Existe-t-il une morale sans religion ?","La peur de la punition divine change-t-elle les comportements ?"]},
+    {q:"Si on prouvait scientifiquement l'existence d'un Dieu createur demain matin, la vie de {{P1}} changerait ?",type:"discuss",discuss_starters:["La preuve changerait-elle vraiment quelque chose dans votre vie ?","Peut-on croire par raisonnement plutot que par foi ?","Qu'est-ce que ca changerait pour la societe ?"],story:{scene:"BREAKING NEWS, MATIN",narrative:"{{P1}} allume la radio en faisant du cafe. 'Des scientifiques de 40 pays viennent de prouver l'existence d'une intelligence creatrice.' {{P2}} entre dans la cuisine.",chars:[{i:"📻",n:"La radio du matin"},{i:"☕",n:"{{P1}} avec son cafe"}]}},
+    {q:"La laicite protege-t-elle vraiment les croyants, ou les exclut-elle ?",type:"binary",discuss_starters:["La neutralite de l'Etat est-elle possible ?","La laicite favorise-t-elle certaines religions ?"]},
+    {q:"{{P1}} et {{P2}} ont des croyances opposees. Quelle education religieuse pour leurs enfants ?",type:"choice",choices:["La religion de {{P1}}","La religion de {{P2}}","Les deux — ils choisissent","Aucune — a 18 ans"],discuss_starters:["Peut-on eduquer sans transmettre une vision du monde ?","L'absence de religion est-elle elle-meme une position ?"]},
+    {q:"Peut-on etre profondement spirituel sans adherer a aucune religion institutionnelle ?",type:"binary",discuss_starters:["La spiritualite sans structure est-elle plus libre ou moins profonde ?","Que signifie 'croire' sans cadre institutionnel ?"],story:{scene:"COUCHER DE SOLEIL, MONTAGNE",narrative:"{{P1}} est seul face a un coucher de soleil extraordinaire. Il ressent quelque chose d'immense. En redescendant, {{P2}} demande : 'Tu crois en quoi, toi, vraiment ?'",chars:[{i:"🌅",n:"Le coucher de soleil"},{i:"❓",n:"La question de {{P2}}"}]}},
+    {q:"Un militant athee qui tente de convaincre des croyants — aussi intolerant qu'un proselyte religieux ?",type:"binary",discuss_starters:["La conviction peut-elle justifier l'imposition ?","Y a-t-il une difference entre defendre et imposer ?"]},
+    {q:"{{P1}} est laique. {{P2}} veut un mariage religieux. Qui cede ?",type:"choice",choices:["{{P1}} accepte par amour","{{P2}} renonce par amour","On cherche un compromis","C'est redhibitoire"],discuss_starters:["Un mariage religieux peut-il avoir une valeur symbolique sans foi ?","Faut-il que les deux soient sinceres ?"]},
+    {q:"La religion peut-elle coexister pacifiquement avec la liberte sexuelle dans une meme societe ?",type:"binary",discuss_starters:["La cohabitation implique-t-elle un compromis des deux cotes ?","Qui definit les limites de la liberte de l'autre ?"]},
+    {q:"{{P1}} peut-il respecter sincerement la religion de {{P2}}, ou juste la tolerer ?",type:"binary",discuss_starters:["La tolerance est-elle inferieure au respect ?","Peut-on respecter ce qu'on ne comprend pas ?"],story:{scene:"APRES 3 ANS",narrative:"{{P1}} dit toujours 'je respecte ta foi.' {{P2}} demande ce soir : 'Mais est-ce que tu comprends ce que ca represente pour moi ?'",chars:[{i:"💬",n:"La question directe de {{P2}}"},{i:"🕰️",n:"3 ans de cohabitation"}]}},
+    {q:"Dieu est-il une necessite psychologique humaine ou une realite objective ?",type:"binary",discuss_starters:["La croyance peut-elle etre vraie et psychologiquement construite en meme temps ?","Qu'est-ce que ca change si c'est 'seulement' une construction ?"]}
+  ]
+};
+
+const DARES = {
+  couple:[{d:"Decris ton partenaire ideal en 3 mots precis. Le groupe vote si c'est vraiment toi.",pts:15},{d:"Lis le dernier message romantique que tu as envoye a voix haute.",pts:20},{d:"Confesse une habitude que tu as quand ton partenaire n'est pas la.",pts:15},{d:"Imite la facon dont un ex se comportait en couple. Sois precis.",pts:20},{d:"Dis sincerement a la personne en face ce que tu apprecies le plus chez elle.",pts:15}],
+  sexualite:[{d:"Revele le vrai compliment physique que tu aurais sur quelqu'un ici sans le nommer.",pts:20},{d:"Decris ton 'type' en 30 secondes, sans filtre.",pts:15},{d:"Revele la celebrite qui est ton 'autorisation'. Justifie.",pts:20},{d:"Confesse le dernier film que tu regardes seul et n'avouais pas.",pts:15},{d:"Revele le compliment physique le plus memorable qu'on t'ait fait.",pts:15}],
+  morale:[{d:"Confesse la plus petite chose illegale que tu aies faite. Soyez honnete.",pts:15},{d:"Dis une opinion impopulaire que tu assumes totalement.",pts:20},{d:"Raconte une fois ou tu as menti a quelqu'un de proche sans jamais t'en excuser.",pts:20},{d:"Revele quelque chose que tu as fait dont tu n'es pas fier mais que tu recommencerais.",pts:20},{d:"Dis a la personne de ton choix ce que tu penses vraiment d'elle, sans filtre.",pts:25}],
+  jalousie:[{d:"Revele la plus grande jalousie que tu aies ressentie ce mois-ci. Sois precis.",pts:15},{d:"Confesse si tu as deja espionne les reseaux d'un partenaire ou ex.",pts:20},{d:"Revele un moment ou tu etais jaloux mais tu n'as rien dit. Pourquoi ?",pts:15},{d:"Dis sincerement ce que tu envies chez la personne a ta gauche.",pts:15},{d:"Imite la personne que tu jalouses le plus professionnellement.",pts:20}],
+  argent:[{d:"Dis approximativement ton salaire mensuel a 500€ pres. Tout le monde ecoute.",pts:25},{d:"Revele ta plus grande depense inutile du mois dernier. Montant precis.",pts:20},{d:"Confesse si tu as deja menti sur ton salaire. De combien ?",pts:20},{d:"Revele la somme que tu as sur ton compte en ce moment a 500€ pres.",pts:20},{d:"Decris ta relation a l'argent en 3 mots honnetes.",pts:15}],
+  religion:[{d:"Confesse le moment ou tu t'es senti le plus proche d'une forme de spiritualite.",pts:15},{d:"Dis une croyance que tu gardes secrete en public.",pts:20},{d:"Revele si tu as deja prie pour quelque chose d'egoiste. Pour quoi ?",pts:15},{d:"Raconte quelque chose qui t'est arrive que tu ne peux pas expliquer rationnellement.",pts:20},{d:"Imite une ceremonie religieuse que tu connais mal. Le groupe vote si c'est reconnaissable.",pts:20}]
+};
+
+const DISCUSS_SPARKS = [
+  "Commencez par : 'Pour moi la question c'est surtout...'",
+  "Regle : 30 secondes chacun sans interruption, puis debat libre",
+  "Surprenez le groupe avec une position inattendue",
+  "Posez la question : 'Et si tu etais dans la situation inverse ?'",
+  "Commencez par la personne la plus en desaccord avec les autres"
+];
+
+const ARCHS=[{id:"pragmatiste",icon:"🧠",name:"Le Pragmatiste Romantique",desc:"Tu sacrifierais la passion pour la securite, mais jamais ta liberte. Tu aimes profondement, avec une tete froide.",traits:["Realiste","Protecteur","Stratege"]},{id:"rebelle",icon:"🔥",name:"Le Rebelle Idealiste",desc:"Tu defies les conventions pour de bonnes raisons. Tu crois en un monde plus juste et tu te bats pour ca.",traits:["Passionne","Independant","Integre"]},{id:"gardien",icon:"⚖️",name:"Le Gardien des Valeurs",desc:"Tu es l'ancre morale du groupe. Tes convictions sont solides, parfois rigides, mais toujours sinceres.",traits:["Fiable","Moral","Loyal"]},{id:"libertin",icon:"🌶️",name:"Le Libertin Curieux",desc:"L'inconnu t'attire. Tu questionnes tout, tu explores tout. Une energie rare qui fascine.",traits:["Explorateur","Audacieux","Ouvert"]},{id:"stratege",icon:"💡",name:"Le Stratege Emotionnel",desc:"Tu calcules sans etre froid. Tu lis les emotions comme un livre.",traits:["Analytique","Empathique","Perspicace"]},{id:"anarchiste",icon:"🌪️",name:"L'Anarchiste Bienveillant",desc:"Tu renverses les regles etablies, avec le coeur au bon endroit.",traits:["Charismatique","Provocateur","Genereux"]}];
+const BDEFS=[{ico:"🔥",nm:"Allumeur",fn:function(s){return s.tQ>=1;}},{ico:"💬",nm:"Orateur",fn:function(s){return s.sess>=2;}},{ico:"⚡",nm:"x10 Questions",fn:function(s){return s.tQ>=10;}},{ico:"🏆",nm:"x50 Questions",fn:function(s){return s.tQ>=50;}},{ico:"❤️",nm:"Romantique",fn:function(s){return s.favs.length>=5;}},{ico:"⚔️",nm:"Guerrier Live",fn:function(s){return s.liveUsed;}},{ico:"📖",nm:"Storyteller",fn:function(s){return s.storyUsed;}},{ico:"🔥🔥",nm:"Streak 7j",fn:function(s){return s.streak>=7;}}];
+const CE={couple:"💑",sexualite:"🌶️",morale:"⚖️",jalousie:"💚",argent:"💰",religion:"✨"};
+const LOCKED=["sexualite","jalousie"];
+const EMOJIS=["🔥","⚡","💜","🎯","🌶️","💎","🚀","🌙"];
+const MODE_DESC={classic:"1 a 2 joueurs — votes reveles simultanement",group:"3 a 8 joueurs — siege chaud rotatif",truth_dare:"Chaque joueur choisit : Verite ou Defi"};
+
+// ── STATE ──
+var obPlayers = [{name:"",emoji:"🔥"},{name:"",emoji:"⚡"}];
+var gameMode = "classic";
+
+var S = {
+  players:[{name:"Joueur 1",emoji:"🔥",pts:0,ouiV:0,totalV:0}],
+  gameMode:"classic",
+  hotSeat:0,
+  roundVotes:{},
+  curVoterIdx:0,
+  pendingVote:null,
+  apiKey:"",pts:0,streak:1,freezes:2,
+  tQ:0,sess:0,sQ:0,sV:[],sH:[],
+  aV:{couple:[],sexualite:[],morale:[],jalousie:[],argent:[],religion:[]},
+  favs:[],curQ:"",curQObj:null,curCat:"couple",
+  storyMode:false,storyUsed:false,isPremium:false,weekVoted:false,
+  roomCode:null,liveUsed:false,
+  perso:{age:"tous",evt:"soiree",int:"moyenne"},
+  recent:[]
+};
+var bState = BDEFS.map(function(){return false;});
+
+// ── HELPERS ──
+function inject(text) {
+  if (!text) return text;
+  var p1 = S.players[0] ? S.players[0].name : "Joueur 1";
+  var p2 = S.players[1] ? S.players[1].name : (S.players[0] ? S.players[0].name : "Joueur 2");
+  return text.replace(/\{\{P1\}\}/g, p1).replace(/\{\{P2\}\}/g, p2);
+}
+function P1() { return S.players[0] ? S.players[0].name : "Joueur 1"; }
+function P2() { return S.players[1] ? S.players[1].name : (S.players[0] ? S.players[0].name : "Joueur 2"); }
+function hotP() { return S.players[S.hotSeat] || S.players[0]; }
+function ge(id) { return document.getElementById(id); }
+function qs(sel) { return document.querySelector(sel); }
+function qsa(sel) { return document.querySelectorAll(sel); }
+function sleep(ms) { return new Promise(function(r){setTimeout(r,ms);}); }
+
+// ── ONBOARD: mode + players ──
+function setMode(mode, el) {
+  gameMode = mode;
+  qsa(".mpill").forEach(function(p){p.classList.remove("on");});
+  el.classList.add("on");
+  ge("mode-desc").textContent = MODE_DESC[mode] || "";
+  var maxP = mode === "classic" ? 2 : 8;
+  if (mode !== "classic" && obPlayers.length < 3) {
+    obPlayers.push({name:"",emoji:EMOJIS[2]});
+  }
+  v12Boot();
+  renderObPlayers();
+}
+
+function renderObPlayers() {
+  var maxP = gameMode === "classic" ? 2 : 8;
+  var list = ge("pl-list");
+  if (!list) return;
+  var html = "";
+  for (var i = 0; i < obPlayers.length; i++) {
+    var p = obPlayers[i];
+    var delBtn = i > 0
+      ? '<div class="pl-del" onclick="delPlayer(' + i + ')">✕</div>'
+      : '<div style="width:36px"></div>';
+    var inp2class = i === 1 ? " p2" : "";
+    html += '<div class="pl-row">'
+      + '<div class="pl-em" onclick="cycleEmoji(' + i + ')">' + p.emoji + '</div>'
+      + '<input class="pl-inp' + inp2class + '" id="pl-inp-' + i + '" value="' + p.name + '" placeholder="Joueur ' + (i+1) + '" maxlength="14" oninput="obPlayers[' + i + '].name=this.value"/>'
+      + delBtn
+      + '</div>';
+  }
+  list.innerHTML = html;
+  var addBtn = ge("pl-add");
+  var maxEl = ge("pl-max");
+  if (addBtn) addBtn.style.display = obPlayers.length >= maxP ? "none" : "flex";
+  if (maxEl) maxEl.textContent = "(" + obPlayers.length + "/" + maxP + ")";
+}
+
+function addPlayer() {
+  var maxP = gameMode === "classic" ? 2 : 8;
+  if (obPlayers.length >= maxP) return;
+  obPlayers.push({name:"", emoji:EMOJIS[obPlayers.length % EMOJIS.length]});
+  renderObPlayers();
+}
+
+function delPlayer(i) {
+  if (obPlayers.length <= 1) return;
+  obPlayers.splice(i, 1);
+  renderObPlayers();
+}
+
+function cycleEmoji(i) {
+  var idx = EMOJIS.indexOf(obPlayers[i].emoji);
+  obPlayers[i].emoji = EMOJIS[(idx + 1) % EMOJIS.length];
+  renderObPlayers();
+}
+
+function startApp() {
+  // Read final names from inputs
+  for (var i = 0; i < obPlayers.length; i++) {
+    var inp = ge("pl-inp-" + i);
+    if (inp) obPlayers[i].name = inp.value.trim() || ("Joueur " + (i+1));
+  }
+  // Build players array
+  S.players = obPlayers.map(function(p) {
+    return {name:p.name, emoji:p.emoji, pts:0, ouiV:0, totalV:0};
+  });
+  S.gameMode = gameMode;
+  S.hotSeat = 0;
+  S.roundVotes = {};
+  S.curVoterIdx = 0;
+  S.pendingVote = null;
+  ge("pg-onboard").style.display = "none";
+  renderStrip();
+  ge("my-lbn").textContent = P1();
+  goTo("pg-home");
+  setTimeout(function(){nextQ();}, 420);
+}
+
+// ── ROUTING ──
+var NAVMAP = {
+  "pg-home":"ni-home","pg-live":"ni-live",
+  "pg-week":"ni-week","pg-profil":"ni-profil","pg-pay":"ni-pay"
+};
+function goTo(id) {
+  qsa(".page").forEach(function(p){p.classList.remove("show");});
+  ge(id).classList.add("show");
+  qsa(".ni").forEach(function(n){n.classList.remove("on");});
+  if (NAVMAP[id]) ge(NAVMAP[id]).classList.add("on");
+  if (id === "pg-profil") renderProfil();
+  if (id === "pg-week") setTimeout(animBars, 300);
+  window.scrollTo(0, 0);
+}
+
+// ── CATEGORIES ──
+function pickCat(btn) {
+  var c = btn.dataset.c;
+  if (!S.isPremium && LOCKED.indexOf(c) >= 0) {
+    toast("🔒 Categorie Premium — essai 7j gratuit !");
+    setTimeout(function(){goTo("pg-pay");}, 1200);
+    return;
+  }
+  qsa(".cat").forEach(function(b){b.classList.remove("on");});
+  btn.classList.add("on");
+  S.curCat = c;
+  toast(CE[c] + " " + c.charAt(0).toUpperCase() + c.slice(1) + " selectionne");
+}
+
+// ── DOTS ──
+function renderDots() {
+  var w = ge("dots");
+  if (!w) return;
+  var html = "";
+  for (var i = 0; i < 5; i++) {
+    var cls = "dot";
+    if (i < S.sQ) cls += (i === 3) ? " bomb done" : " done";
+    else if (i === S.sQ) cls += (i === 3) ? " bomb cur" : " cur";
+    html += '<div class="' + cls + '"></div>';
+  }
+  w.innerHTML = html;
+}
+
+// ── PLAYER STRIP ──
+function renderStrip() {
+  var strip = ge("pstrip");
+  if (!strip) return;
+  if (S.players.length < 2) { strip.style.display = "none"; return; }
+  strip.style.display = "flex";
+  var html = "";
+  for (var i = 0; i < S.players.length; i++) {
+    var p = S.players[i];
+    var cls = "pchip";
+    if (i === S.hotSeat) cls += " hot";
+    if (S.roundVotes[i]) cls += " voted";
+    html += '<div class="' + cls + '" id="pchip-' + i + '">'
+      + '<span class="pchip-em">' + p.emoji + '</span>'
+      + '<div><div class="pchip-name">' + p.name + '</div>'
+      + '<div class="pchip-pts">' + p.pts + 'pts</div></div>'
+      + '</div>';
+  }
+  strip.innerHTML = html;
+}
+
+function updateChip(i) {
+  var chip = ge("pchip-" + i);
+  if (!chip) return;
+  var p = S.players[i];
+  var cls = "pchip";
+  if (i === S.hotSeat) cls += " hot";
+  if (S.roundVotes[i]) cls += " voted";
+  chip.className = cls;
+  var ptsEl = chip.querySelector(".pchip-pts");
+  if (ptsEl) ptsEl.textContent = p.pts + "pts";
+}
+
+// ── VOTE HEADER ──
+function updateVoteHeader() {
+  var vrh = ge("vrh");
+  if (!vrh) return;
+  if (S.players.length < 2) { vrh.classList.remove("on"); return; }
+  vrh.classList.add("on");
+  var p = S.players[S.curVoterIdx];
+  if (!p) return;
+  ge("vrh-em").textContent = p.emoji;
+  ge("vrh-name").textContent = p.name + ", vote en secret 👁️";
+  var dots = ge("vrh-dots");
+  var dHtml = "";
+  for (var i = 0; i < S.players.length; i++) {
+    var cls = "vrd";
+    if (i < S.curVoterIdx) cls += " done";
+    else if (i === S.curVoterIdx) cls += " cur";
+    dHtml += '<div class="' + cls + '"></div>';
+  }
+  dots.innerHTML = dHtml;
+}
+
+// ── INIT ROUND ──
+function initRound() {
+  S.roundVotes = {};
+  S.curVoterIdx = 0;
+  S.pendingVote = null;
+  var cb = ge("confirm-btn");
+  if (cb) { cb.classList.remove("on"); cb.style.display = "none"; }
+  var scb = ge("st-confirm-btn");
+  if (scb) { scb.classList.remove("on"); scb.style.display = "none"; }
+  updateVoteHeader();
+  renderStrip();
+}
+
+// ── ANSWER WIDGET ──
+function renderWidget(qObj, wid, lid) {
+  if (!wid) wid = "ans-widget";
+  if (!lid) lid = "ans-label";
+  var w = ge(wid);
+  var l = ge(lid);
+  if (!qObj || !w) {
+    if (w) w.innerHTML = '<div class="binary-row"><button class="abt oui" onclick="castVote(\'oui\',\'✅ Oui\')">✅ Oui</button><button class="abt non" onclick="castVote(\'non\',\'❌ Non\')">❌ Non</button></div>';
+    return;
+  }
+  var labels = {binary:"Ta position",scale:"Ton niveau (1=non · 5=oui total)",choice:"Ta reponse",discuss:"Ta conclusion apres debat"};
+  if (l) l.textContent = labels[qObj.type] || "Ta reponse";
+  if (qObj.type === "binary") {
+    w.innerHTML = '<div class="binary-row"><button class="abt oui" onclick="castVote(\'oui\',\'✅ Oui\')">✅ Oui</button><button class="abt non" onclick="castVote(\'non\',\'❌ Non\')">❌ Non</button></div>';
+  } else if (qObj.type === "scale") {
+    var html = '<div class="scale-row">';
+    for (var n = 1; n <= 5; n++) {
+      html += '<button class="sbt" onclick="castVote(\'' + n + '\',\'' + n + '/5\')">' + n + '</button>';
+    }
+    html += '</div>';
+    w.innerHTML = html;
+  } else if (qObj.type === "choice") {
+    var choices = qObj.choices || [];
+    var html = '<div class="choices">';
+    for (var i = 0; i < choices.length; i++) {
+      html += '<button class="choice-btn" onclick="castVoteIdx(' + i + ')">' + inject(choices[i]) + '</button>';
+    }
+    html += '</div>';
+    w.innerHTML = html;
+  } else if (qObj.type === "discuss" || qObj.type === "open") {
+    var starters = qObj.discuss_starters || [];
+    var spark = DISCUSS_SPARKS[Math.floor(Math.random() * DISCUSS_SPARKS.length)];
+    var sHtml = "";
+    if (starters.length) {
+      sHtml = '<div class="discuss-box"><div class="discuss-title">Pour alimenter le debat :</div>';
+      for (var si = 0; si < Math.min(starters.length, 3); si++) {
+        sHtml += '<div class="discuss-item">' + starters[si] + '</div>';
+      }
+      sHtml += '<div class="discuss-spark">' + spark + '</div></div>';
+    }
+    w.innerHTML = sHtml
+      + '<div class="discuss-conclude">Ta conclusion :</div>'
+      + '<div class="discuss-votes">'
+      + '<button class="dvb oui" onclick="castVote(\'oui\',\'✅ Oui\')">✅ Oui</button>'
+      + '<button class="dvb mid" onclick="castVote(\'mid\',\'🤷 Mitige\')">🤷</button>'
+      + '<button class="dvb non" onclick="castVote(\'non\',\'❌ Non\')">❌ Non</button>'
+      + '</div>';
+  } else {
+    w.innerHTML = '<div class="binary-row"><button class="abt oui" onclick="castVote(\'oui\',\'✅ Oui\')">✅ Oui</button><button class="abt non" onclick="castVote(\'non\',\'❌ Non\')">❌ Non</button></div>';
+  }
+}
+
+function castVoteIdx(i) {
+  if (!S.curQObj || !S.curQObj.choices) return;
+  castVote("c" + i, inject(S.curQObj.choices[i]).substring(0, 40));
+}
+
+// ── CAST VOTE (selectable, re-selectable) ──
+function castVote(value, label) {
+  if (!S.curQ) { toast("⚠️ Genere une question d'abord !"); return; }
+  S.pendingVote = {value:value, label:label};
+  // Highlight the selected button, clear others
+  var wids = ["ans-widget","st-ans-widget"];
+  for (var wi = 0; wi < wids.length; wi++) {
+    var w = ge(wids[wi]);
+    if (!w) continue;
+    var btns = w.querySelectorAll(".abt,.sbt,.choice-btn,.dvb");
+    for (var bi = 0; bi < btns.length; bi++) btns[bi].classList.remove("lit");
+    // Find the matching button
+    for (var bi = 0; bi < btns.length; bi++) {
+      var oc = btns[bi].getAttribute("onclick") || "";
+      var shortVal = value.replace(/['"]/g,"").substring(0, 8);
+      if (oc.indexOf(shortVal) >= 0) { btns[bi].classList.add("lit"); break; }
+    }
+  }
+  if (S.players.length > 1) {
+    var cb = ge("confirm-btn");
+    var scb = ge("st-confirm-btn");
+    var nextIdx = S.curVoterIdx + 1;
+    var isLast = nextIdx >= S.players.length;
+    var btnTxt = isLast ? "✓ Confirmer → REVELER 🔥" : ("✓ Confirmer — passer a " + (S.players[nextIdx] ? S.players[nextIdx].name : "suivant") + " →");
+    if (cb) { cb.classList.add("on"); cb.style.display = "block"; cb.textContent = btnTxt; }
+    if (scb) { scb.classList.add("on"); scb.style.display = "block"; scb.textContent = btnTxt; }
+    ge("vote-hint").textContent = "";
+  } else {
+    // Single player: auto-commit, re-selectable
+    var last = S.sH[S.sH.length - 1];
+    if (last && last.vote) {
+      // Remove previous vote
+      var pi = S.sV.lastIndexOf(last.vote);
+      if (pi >= 0) S.sV.splice(pi, 1);
+      if (last.vote === "oui" || last.vote === "non") {
+        var ai = S.aV[S.curCat].lastIndexOf(last.vote);
+        if (ai >= 0) S.aV[S.curCat].splice(ai, 1);
+      }
+      S.pts = Math.max(0, S.pts - 3);
+    }
+    S.sV.push(value);
+    if (value === "oui" || value === "non") S.aV[S.curCat].push(value);
+    if (last) { last.vote = value; last.voteLabel = label || value; }
+    var p0 = S.players[0];
+    if (p0) { p0.pts += 3; if (value === "oui") p0.ouiV = (p0.ouiV||0) + 1; p0.totalV = (p0.totalV||0) + 1; }
+    addPts(3); renderRadar();
+    ge("vote-hint").textContent = "✅ Reponse enregistree — modifiable";
+  }
+}
+
+// ── CONFIRM VOTE (multi-player) ──
+function confirmVote() {
+  if (!S.pendingVote) { toast("⚠️ Selectionnez une reponse !"); return; }
+  var value = S.pendingVote.value;
+  var label = S.pendingVote.label;
+  // Commit vote for current player
+  var last = S.sH[S.sH.length - 1];
+  S.sV.push(value);
+  if (value === "oui" || value === "non") S.aV[S.curCat].push(value);
+  if (last && !last.vote) { last.vote = value; last.voteLabel = label || value; }
+  var p = S.players[S.curVoterIdx];
+  if (p) { p.pts += 3; if (value === "oui") p.ouiV = (p.ouiV||0) + 1; p.totalV = (p.totalV||0) + 1; }
+  S.roundVotes[S.curVoterIdx] = {value:value, label:label, player:{name:p.name, emoji:p.emoji}};
+  addPts(3); renderRadar();
+  updateChip(S.curVoterIdx);
+  S.curVoterIdx++;
+  S.pendingVote = null;
+  var cb = ge("confirm-btn");
+  var scb = ge("st-confirm-btn");
+  if (S.curVoterIdx < S.players.length) {
+    updateVoteHeader();
+    if (cb) { cb.classList.remove("on"); cb.style.display = "none"; }
+    if (scb) { scb.classList.remove("on"); scb.style.display = "none"; }
+    var wids = ["ans-widget","st-ans-widget"];
+    for (var wi = 0; wi < wids.length; wi++) {
+      var w = ge(wids[wi]);
+      if (!w) continue;
+      var btns = w.querySelectorAll(".abt,.sbt,.choice-btn,.dvb");
+      for (var bi = 0; bi < btns.length; bi++) btns[bi].classList.remove("lit");
+    }
+    toast("✅ Vote de " + S.players[S.curVoterIdx-1].name + " enregistre ! A " + S.players[S.curVoterIdx].name);
+  } else {
+    if (cb) { cb.classList.remove("on"); cb.style.display = "none"; }
+    if (scb) { scb.classList.remove("on"); scb.style.display = "none"; }
+    triggerReveal();
+  }
+}
+
+// ── TRUTH OR DARE ──
+function showTDOverlay(qObj) {
+  var hs = hotP();
+  var q = inject(qObj.q);
+  ge("td-prev-txt").textContent = q.length > 100 ? q.substring(0,100) + "…" : q;
+  ge("td-who").textContent = hs.emoji + " " + hs.name;
+  ge("td-ov").classList.add("on");
+}
+
+function chooseTD(type) {
+  ge("td-ov").classList.remove("on");
+  if (type === "dare") { launchDare(); }
+  else { doDisplayQ(S.curQObj); }
+}
+
+function launchDare() {
+  var pool = DARES[S.curCat] || DARES.couple;
+  var d = pool[Math.floor(Math.random() * pool.length)];
+  var hs = hotP();
+  ge("dare-txt").textContent = hs.emoji + " " + hs.name + " : " + inject(d.d);
+  ge("dare-pts").textContent = d.pts;
+  ge("dare-pts2").textContent = d.pts;
+  S._darePts = d.pts;
+  ge("qcard").style.display = "none";
+  ge("story-card").classList.remove("on");
+  ge("dare-card").classList.add("on");
+}
+
+function dareDone() {
+  var pts = S._darePts || 15;
+  var hs = hotP();
+  hs.pts += pts;
+  addPts(pts);
+  renderStrip();
+  toast("🎲 " + hs.name + " releve le defi ! +" + pts + " pts 🔥");
+  confetti();
+  ge("dare-card").classList.remove("on");
+  ge("qcard").style.display = "";
+  advHot();
+  nextQ();
+}
+
+function dareFail() {
+  var hs = hotP();
+  hs.pts = Math.max(0, hs.pts - 5);
+  addPts(-5);
+  renderStrip();
+  toast("😅 " + hs.name + " passe son tour. -5 pts");
+  ge("dare-card").classList.remove("on");
+  ge("qcard").style.display = "";
+  advHot();
+  nextQ();
+}
+
+function advHot() {
+  S.hotSeat = (S.hotSeat + 1) % S.players.length;
+  renderStrip();
+}
+
+// ── REVEAL OVERLAY ──
+function triggerReveal() {
+  if (S.players.length < 2) return;
+  var ov = ge("rv-ov");
+  var q = S.curQ || "";
+  ge("rv-q").textContent = q.length > 90 ? q.substring(0,90) + "…" : q;
+  ge("rv-count").style.display = "block";
+  ge("rv-pills").style.display = "none";
+  ge("rv-result").classList.remove("on");
+  ge("rv-spark").classList.remove("on");
+  ge("rv-next").style.display = "none";
+  ov.classList.add("on");
+  var c = 3;
+  ge("rv-count").textContent = c;
+  var t = setInterval(function() {
+    c--;
+    if (c > 0) { ge("rv-count").textContent = c; }
+    else {
+      clearInterval(t);
+      ge("rv-count").style.display = "none";
+      showRevealPills();
+    }
+  }, 900);
+}
+
+function showRevealPills() {
+  var pillsEl = ge("rv-pills");
+  pillsEl.style.display = "flex";
+  var html = "";
+  var keys = Object.keys(S.roundVotes);
+  for (var ki = 0; ki < keys.length; ki++) {
+    var rv = S.roundVotes[keys[ki]];
+    var vcls = rv.value === "oui" ? "oui" : (rv.value === "non" ? "non" : (rv.value === "mid" ? "mid" : "z"));
+    html += '<div class="rv-pill" id="rvp-' + keys[ki] + '">'
+      + '<span class="rv-p-em">' + rv.player.emoji + '</span>'
+      + '<span class="rv-p-nm">' + rv.player.name + '</span>'
+      + '<span class="rv-p-vote ' + vcls + '">' + (rv.label || rv.value) + '</span>'
+      + '</div>';
+  }
+  pillsEl.innerHTML = html;
+  for (var ki = 0; ki < keys.length; ki++) {
+    (function(idx, delay) {
+      setTimeout(function() {
+        var el = ge("rvp-" + idx);
+        if (el) el.classList.add("pop");
+      }, delay);
+    })(keys[ki], ki * 220);
+  }
+  var delay = keys.length * 230 + 500;
+  setTimeout(showRevealResult, delay);
+}
+
+function showRevealResult() {
+  var votes = Object.values(S.roundVotes);
+  if (!votes.length) return;
+  var allSame = votes.every(function(v){return v.value === votes[0].value;});
+  ge("rv-ico").textContent = allSame ? "✅" : "⚔️";
+  ge("rv-title-txt").textContent = allSame ? "Consensus !" : "Desaccord !";
+  ge("rv-sub-txt").textContent = allSame
+    ? "Vous etes d'accord — mais vos raisons le sont-elles aussi ?"
+    : "Le vrai debat commence. Defendez vos positions !";
+  ge("rv-result").classList.add("on");
+  if (!allSame) confetti();
+  if (S.curQObj && S.curQObj.discuss_starters && S.curQObj.discuss_starters.length) {
+    var starters = S.curQObj.discuss_starters;
+    ge("rv-spark-txt").textContent = starters[Math.floor(Math.random() * starters.length)];
+    ge("rv-spark").classList.add("on");
+  }
+  ge("rv-next").style.display = "block";
+}
+
+function closeReveal() {
+  ge("rv-ov").classList.remove("on");
+  var votes = Object.values(S.roundVotes);
+  if (votes.length && !votes.every(function(v){return v.value === votes[0].value;})) {
+    addPts(5); toast("⚔️ Desaccord bonus +5 pts !");
+  }
+  if (S.gameMode === "group" || S.gameMode === "truth_dare") advHot();
+}
+
+// ── STORY MODE ──
+function toggleStory() {
+  S.storyMode = !S.storyMode;
+  S.storyUsed = true;
+  var btn = ge("story-btn");
+  ge("story-ml").textContent = S.storyMode ? "Story ✨" : "Story";
+  if (S.storyMode) {
+    btn.classList.add("on");
+    if (S.curQObj && S.curQObj.story) showStoryCard(S.curQObj);
+    toast("📖 Mode Story : chaque question, sa mise en scene unique !");
+  } else {
+    btn.classList.remove("on");
+    ge("qcard").style.display = "";
+    ge("story-card").classList.remove("on");
+    toast("📖 Mode Story desactive");
+  }
+}
+
+function showStoryCard(qObj) {
+  var story = qObj.story;
+  if (!story) { hideStoryCard(); return; }
+  ge("st-tag").textContent = "SCENE " + S.sQ;
+  ge("st-scene").textContent = story.scene;
+  ge("st-narrative").textContent = inject(story.narrative);
+  ge("st-q").textContent = inject(qObj.q);
+  var charsEl = ge("st-chars");
+  var cHtml = "";
+  var chars = story.chars || [];
+  for (var ci = 0; ci < chars.length; ci++) {
+    cHtml += '<div class="st-char"><span>' + chars[ci].i + '</span>' + inject(chars[ci].n) + '</div>';
+  }
+  charsEl.innerHTML = cHtml;
+  renderWidget(qObj, "st-ans-widget", "st-ans-label");
+  ge("st-confirm-btn").classList.remove("on");
+  ge("st-confirm-btn").style.display = "none";
+  ge("qcard").style.display = "none";
+  ge("story-card").classList.add("on");
+}
+
+function hideStoryCard() {
+  ge("story-card").classList.remove("on");
+  ge("qcard").style.display = "";
+}
+
+// ── NEXT QUESTION ──
+async function nextQ() {
+  if (S.sQ >= 5) { endSession(); return; }
+  var card = ge("qcard");
+  card.classList.add("flip");
+  setTimeout(function(){card.classList.remove("flip");}, 520);
+  card.style.display = "";
+  ge("story-card").classList.remove("on");
+  ge("dare-card").classList.remove("on");
+  var bb = ge("bbanner");
+  if (S.sQ === 3) {
+    bb.classList.add("on");
+    ge("o3").style.opacity = "1";
+    setTimeout(function(){ bb.classList.remove("on"); ge("o3").style.opacity = "0"; }, 5000);
+  } else bb.classList.remove("on");
+  var qt = ge("qtext");
+  qt.className = "qtext loading";
+  qt.innerHTML = '<div class="qspinner"></div><div class="qloadtxt">L\'IA prepare ta question…</div>';
+  var qObj = S.apiKey ? await fromAPI() : fromBank();
+  S.curQObj = qObj;
+  if (S.gameMode === "truth_dare") {
+    showTDOverlay(qObj);
+  } else {
+    doDisplayQ(qObj);
+  }
+}
+
+function doDisplayQ(qObj) {
+  S.curQ = inject(qObj.q);
+  S.sQ++;
+  S.tQ++;
+  S.sH.push({q:S.curQ, cat:S.curCat, vote:null, voteLabel:null});
+  var qt = ge("qtext");
+  qt.className = "qtext";
+  qt.textContent = S.curQ;
+  ge("qcbadge").textContent = CE[S.curCat] + " " + S.curCat.toUpperCase();
+  var tags = ["WARM UP","CHAUFFE","EN FEU","💥 BOMBE","VERDICT"];
+  var tagC = ["w","w","f","b","b"];
+  var tag = ge("qtag");
+  tag.textContent = tags[S.sQ-1] || "EN FEU";
+  tag.className = "qtag " + (tagC[S.sQ-1] || "f");
+  var heats = ["🌡️🌡️","🌡️🌡️🌡️","🔥🔥","🔥🔥🔥","💥💥💥"];
+  ge("qheat").textContent = heats[S.sQ-1] || "🔥🔥🔥";
+  ge("qcard").className = S.sQ === 4 ? "qcard bomb" : (S.sQ >= 3 ? "qcard hot" : "qcard");
+  if (S.sQ >= 3) {
+    setTimeout(function() {
+      var c = ge("qcard");
+      c.classList.add("shake");
+      setTimeout(function(){c.classList.remove("shake");}, 440);
+    }, 80);
+  }
+  // Hot seat bar
+  var hsbar = ge("hsbar");
+  if (hsbar && S.players.length > 1 && (S.gameMode === "group" || S.gameMode === "truth_dare")) {
+    var hs = hotP();
+    ge("hs-em").textContent = hs.emoji;
+    ge("hs-name").textContent = hs.name;
+    hsbar.classList.add("on");
+  } else if (hsbar) hsbar.classList.remove("on");
+  initRound();
+  renderWidget(qObj, "ans-widget", "ans-label");
+  ge("vote-hint").textContent = "";
+  ge("sess-n").textContent = "Question " + S.sQ + " / 5";
+  renderDots();
+  ge("cta-lbl").textContent = S.sQ === 5 ? "Voir les resultats 🏆" : "Nouvelle Question";
+  ge("cta-ico").textContent = S.sQ === 5 ? "🏆" : "⚡";
+  ge("fav-btn").className = "qab fav";
+  if (S.storyMode && qObj.story) showStoryCard(qObj);
+  else if (S.storyMode && !qObj.story) hideStoryCard();
+  addPts(5);
+  checkBadges();
+}
+
+function fromBank() {
+  var pool = QB[S.curCat];
+  var fresh = pool.filter(function(q){return S.recent.indexOf(q.q) < 0;});
+  var src = fresh.length ? fresh : pool;
+  var qObj = src[Math.floor(Math.random() * src.length)];
+  S.recent.push(qObj.q);
+  if (S.recent.length > 25) S.recent.shift();
+  return qObj;
+}
+
+async function fromAPI() {
+  var names = {couple:"couple",sexualite:"sexualite",morale:"morale",jalousie:"jalousie",argent:"argent",religion:"religion"};
+  var ints = ["echauffement","tension legere","intense","ultra-polemique","verdict final"];
+  var p1 = P1(), p2 = P2();
+  var prompt = "Genere une question de debat originale en francais sur " + names[S.curCat] + ". Les joueurs s'appellent " + p1 + " et " + p2 + ". Utilise leurs prenoms. Intensite : " + (ints[S.sQ] || "intense") + ". Concrete, 1-2 phrases max. UNIQUEMENT la question.";
+  try {
+    var r = await fetch("https://api.anthropic.com/v1/messages", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:200,messages:[{role:"user",content:prompt}]})
+    });
+    var d = await r.json();
+    if (d.content && d.content[0] && d.content[0].text) {
+      var q = d.content[0].text.trim();
+      S.recent.push(q);
+      return {q:q, type:"binary", story:null};
+    }
+  } catch(e) {}
+  return fromBank();
+}
+
+// ── END SESSION ──
+function endSession() {
+  S.sess++;
+  var yes = S.sV.filter(function(v){return v==="oui";}).length;
+  var no  = S.sV.filter(function(v){return v==="non";}).length;
+  var pts = S.sQ * 5 + S.sV.length * 3;
+  ge("ring-n").textContent = pts;
+  setTimeout(function(){ge("r-fill").style.strokeDashoffset = 377*(1-Math.min(1,pts/60));}, 350);
+  ge("se-yes").textContent = yes;
+  ge("se-no").textContent = no;
+  ge("se-emoji").textContent = pts >= 40 ? "🎉" : (pts >= 20 ? "👍" : "💪");
+  ge("se-title").textContent = pts >= 40 ? ("Bravo " + P1() + " !") : "Session terminee !";
+  ge("se-sub").textContent = S.players.length > 1
+    ? S.players.map(function(p){return p.name;}).join(" & ") + " ont debate 🔥"
+    : P1() + " a debate " + S.sQ + " questions";
+  // Scoreboard
+  var sb = ge("scoreboard");
+  if (S.players.length > 1) {
+    sb.style.display = "block";
+    var sorted = S.players.slice().sort(function(a,b){return b.pts - a.pts;});
+    var maxPts = Math.max(sorted[0].pts, 1);
+    var ranks = ["g","s","b"];
+    var html = '<div class="sb-title">🏆 Classement</div>';
+    for (var i = 0; i < sorted.length; i++) {
+      var p = sorted[i];
+      html += '<div class="sb-row">'
+        + '<span class="sb-rank ' + (ranks[i]||"") + '">' + (i+1) + '</span>'
+        + '<span class="sb-em">' + p.emoji + '</span>'
+        + '<span class="sb-name">' + p.name + '</span>'
+        + '<span class="sb-pts">' + p.pts + ' pts</span>'
+        + '<div class="sb-bar"><div class="sb-bar-fill" style="width:' + Math.round(p.pts/maxPts*100) + '%"></div></div>'
+        + '</div>';
+    }
+    sb.innerHTML = html;
+  } else { sb.style.display = "none"; }
+  // Replay
+  var list = ge("replay-list");
+  var items = S.sH.slice(-5);
+  var rHtml = "";
+  for (var ii = 0; ii < items.length; ii++) {
+    var h = items[ii];
+    var vcls = h.vote === "oui" ? "y" : (h.vote === "non" ? "n" : "z");
+    rHtml += '<div class="ri">'
+      + '<div class="ri-q">' + h.q.substring(0,72) + (h.q.length > 72 ? "…" : "") + '</div>'
+      + '<div class="ri-v ' + vcls + '">' + (h.voteLabel || "–") + '</div>'
+      + '</div>';
+  }
+  list.innerHTML = rHtml;
+  var voted = items.filter(function(h){return h.vote;}).length;
+  ge("rf-big").textContent = voted;
+  ge("rf-lbl").textContent = voted === 1 ? "vote" : (voted > 1 ? "votes" : "aucun vote");
+  // Archetype teaser
+  var tv = 0;
+  Object.values(S.aV).forEach(function(a){tv += a.length;});
+  ge("pt-lbl").textContent = tv + " / 10";
+  ge("pt-bar").style.width = Math.min(100, (tv/10)*100) + "%";
+  if (tv >= 10) {
+    var a = getArch();
+    ge("pt-ico").textContent = a.icon;
+    ge("pt-name").textContent = a.name;
+    ge("pt-desc").textContent = "Voir mon profil complet →";
+  } else {
+    ge("pt-ico").textContent = "🔮";
+    ge("pt-name").textContent = "En revelation…";
+    ge("pt-desc").textContent = "Vote encore " + (10-tv) + " fois !";
+  }
+  S.streak++;
+  ge("p-str") && (ge("p-str").textContent = S.streak);
+  if (S.streak >= 3) { addPts(S.streak >= 7 ? 40 : 15); toast("🔥 " + S.streak + " jours ! Bonus pts !"); }
+  ge("ndot").classList.remove("on");
+  goTo("pg-end");
+  confetti();
+}
+
+function newSession() {
+  S.sQ = 0; S.sV = []; S.sH = [];
+  S.hotSeat = 0; S.roundVotes = {}; S.curVoterIdx = 0; S.pendingVote = null;
+  S.players.forEach(function(p){p.pts=0; p.ouiV=0; p.totalV=0;});
+  ge("sess-n").textContent = "Question 0 / 5";
+  ge("cta-lbl").textContent = "Nouvelle Question";
+  ge("cta-ico").textContent = "⚡";
+  var qt = ge("qtext");
+  qt.className = "qtext";
+  qt.innerHTML = 'Appuie sur <strong>Nouvelle Question</strong> pour demarrer 🔥';
+  ge("qcard").className = "qcard";
+  ge("qcard").style.display = "";
+  ge("story-card").classList.remove("on");
+  ge("dare-card").classList.remove("on");
+  renderWidget(null, "ans-widget", "ans-label");
+  renderDots();
+  renderStrip();
+  goTo("pg-home");
+  setTimeout(function(){nextQ();}, 420);
+}
+
+// ── ARCHETYPE ──
+function pct(arr, val) { return arr.length ? Math.round(arr.filter(function(v){return v===val;}).length/arr.length*100) : 50; }
+function getArch() {
+  var av = S.aV;
+  var cy=pct(av.couple,"oui"),my=pct(av.morale,"oui"),sy=pct(av.sexualite,"oui"),
+      jy=pct(av.jalousie,"oui"),ay=pct(av.argent,"oui"),ry=pct(av.religion,"oui");
+  var sc={pragmatiste:0,rebelle:0,gardien:0,libertin:0,stratege:0,anarchiste:0};
+  if(cy>60&&my>60)sc.pragmatiste+=3; if(cy>60&&my<50)sc.rebelle+=3;
+  if(my>70&&ry>60)sc.gardien+=3;     if(sy>60&&ry<40)sc.libertin+=3;
+  if(ay>60&&my>50)sc.stratege+=3;    if(jy<40&&ry<40&&sy>50)sc.anarchiste+=3;
+  if(cy>50)sc.pragmatiste++; if(my<40)sc.rebelle++; if(ry>60)sc.gardien++;
+  if(sy>50)sc.libertin++;    if(ay>60)sc.stratege++; if(jy<30)sc.anarchiste++;
+  var entries = Object.entries(sc).sort(function(a,b){return b[1]-a[1];});
+  var winner = entries[0][0];
+  for (var i = 0; i < ARCHS.length; i++) { if (ARCHS[i].id === winner) return ARCHS[i]; }
+  return ARCHS[0];
+}
+
+function renderProfil() {
+  ge("p-q").textContent = S.tQ;
+  ge("p-pts").textContent = S.pts;
+  ge("p-str").textContent = S.streak;
+  ge("p-fav").textContent = S.favs.length;
+  var dp = Math.min(100, (S.tQ/5)*100);
+  ge("d-fill").style.width = dp + "%";
+  ge("d-prog").textContent = Math.min(S.tQ,5) + " / 5";
+  ge("d-pct").textContent = Math.round(dp) + "%";
+  var tv = 0; Object.values(S.aV).forEach(function(a){tv+=a.length;});
+  var ab = ge("arch-box");
+  if (tv >= 10) {
+    var a = getArch();
+    ab.innerHTML = '<span class="arch-ico">' + a.icon + '</span>'
+      + '<div class="arch-name">' + a.name + '</div>'
+      + '<div class="arch-desc">' + a.desc + '</div>'
+      + '<div class="arch-traits">' + a.traits.map(function(t){return '<span class="trait">'+t+'</span>';}).join("") + '</div>'
+      + '<button class="arch-share" onclick="shareProfil()">📸 Partager mon profil</button>';
+  } else {
+    ab.innerHTML = '<div style="text-align:center;padding:10px 0">'
+      + '<span style="font-size:54px;display:block;margin-bottom:12px;filter:grayscale(1);opacity:.5">🔮</span>'
+      + '<div style="font-family:Syne,sans-serif;font-size:19px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px">Profil en revelation</div>'
+      + '<div style="font-size:14px;color:var(--text2);line-height:1.55;margin-bottom:14px">Votez encore <strong>' + (10-tv) + ' fois</strong> pour reveler votre archetype.</div>'
+      + '<div class="pbar"><div class="pbar-f" style="width:' + Math.min(100,(tv/10)*100) + '%;background:linear-gradient(90deg,var(--v),var(--o))"></div></div>'
+      + '<div style="font-size:12px;color:var(--text3);margin-top:8px">' + tv + ' / 10 votes</div>'
+      + '</div>';
+  }
+  renderRadar();
+  checkBadges();
+  renderBadges();
+}
+
+function renderRadar() {
+  var el = ge("radar");
+  if (!el) return;
+  var cats = ["couple","sexualite","morale","jalousie","argent","religion"];
+  var cols = {couple:"var(--vl)",sexualite:"var(--pink)",morale:"var(--blue)",jalousie:"var(--red)",argent:"var(--gold)",religion:"var(--green)"};
+  var html = "";
+  for (var i = 0; i < cats.length; i++) {
+    var c = cats[i];
+    var p = pct(S.aV[c], "oui");
+    var n = S.aV[c].length;
+    html += '<div class="rrow"><div class="rlbl">' + CE[c] + " " + c + '</div>'
+      + '<div class="rtrack"><div class="rfill" style="width:' + p + '%;background:' + cols[c] + '"></div></div>'
+      + '<div class="rpct">' + (n > 0 ? p + "%" : "–") + '</div></div>';
+  }
+  el.innerHTML = html;
+}
+
+// ── GAMIFICATION ──
+function addPts(n) {
+  S.pts = Math.max(0, S.pts + n);
+  ge("pn-pts").textContent = S.pts;
+  ge("my-wk").textContent = S.pts;
+  var pp = ge("p-pts"); if (pp) pp.textContent = S.pts;
+  if (n > 0 && S.pts > 0 && S.pts % 50 === 0) { toast("⭐ " + S.pts + " pts !"); confetti(); }
+}
+
+function checkBadges() {
+  var changed = false;
+  for (var i = 0; i < BDEFS.length; i++) {
+    if (!bState[i] && BDEFS[i].fn(S)) {
+      bState[i] = true; changed = true;
+      toast("🏅 \"" + BDEFS[i].nm + "\" debloque !"); confetti();
+    }
+  }
+  if (changed) renderBadges();
+}
+
+function renderBadges() {
+  var el = ge("bgrid");
+  if (!el) return;
+  var html = "";
+  for (var i = 0; i < BDEFS.length; i++) {
+    html += '<div class="bdg"><div class="bdgi ' + (bState[i]?"on":"off") + '">' + BDEFS[i].ico + '</div><div class="bdgn">' + BDEFS[i].nm + '</div></div>';
+  }
+  el.innerHTML = html;
+}
+
+function toggleFav() {
+  var b = ge("fav-btn");
+  if (b.classList.contains("on")) {
+    b.classList.remove("on"); b.textContent = "🤍";
+    S.favs = S.favs.filter(function(q){return q !== S.curQ;});
+    toast("💔 Retire");
+  } else {
+    b.classList.add("on"); b.textContent = "❤️";
+    if (S.curQ) S.favs.push(S.curQ);
+    addPts(2); checkBadges(); toast("❤️ Favori !");
+  }
+}
+
+function flagQ() { toast("🚩 Signale — merci !"); }
+
+// ── SHARE ──
+function openShare() {
+  if (!S.curQ) { toast("⚠️ Genere une question d'abord !"); return; }
+  openSheet("ov-sh","sht-sh");
+}
+function shareTo(app) {
+  var t = encodeURIComponent("🔥 Debat Intense : \"" + S.curQ + "\" — Reponds si tu oses ! 💥");
+  var u = {whatsapp:"https://api.whatsapp.com/send?text="+t,instagram:"https://www.instagram.com/",tiktok:"https://www.tiktok.com/",sms:"sms:?body="+t};
+  window.open(u[app],"_blank");
+  closeSheet("ov-sh","sht-sh");
+  toast("📤 Partage !");
+}
+function copyQ() {
+  navigator.clipboard.writeText("🔥 \"" + S.curQ + "\" — Debat Intense").then(function(){toast("📋 Copie !");}).catch(function(){toast("📋 Copie !");});
+  closeSheet("ov-sh","sht-sh");
+}
+function genStoryImg() {
+  var cv = ge("sc");
+  var ctx = cv.getContext("2d");
+  var W=1080, H=1920;
+  cv.width=W; cv.height=H;
+  var g = ctx.createLinearGradient(0,0,W,H);
+  g.addColorStop(0,"#09080F"); g.addColorStop(.5,"#1C0A38"); g.addColorStop(1,"#09080F");
+  ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+  var gv = ctx.createRadialGradient(W*.78,H*.15,0,W*.78,H*.15,540);
+  gv.addColorStop(0,"rgba(124,58,237,.4)"); gv.addColorStop(1,"rgba(0,0,0,0)");
+  ctx.fillStyle=gv; ctx.fillRect(0,0,W,H);
+  ctx.font="700 52px sans-serif"; ctx.fillStyle="rgba(255,255,255,.5)"; ctx.textAlign="center";
+  ctx.fillText("🔥 DEBAT INTENSE",W/2,130);
+  ctx.font="800 68px sans-serif"; ctx.fillStyle="#EDE9FF"; ctx.textAlign="center";
+  var words = S.curQ.split(" ");
+  var line = "", lines = [];
+  for (var i = 0; i < words.length; i++) {
+    var t = line + (line?" ":"") + words[i];
+    if (ctx.measureText(t).width > 920) { if(line) lines.push(line); line=words[i]; }
+    else line = t;
+  }
+  if (line) lines.push(line);
+  for (var li = 0; li < lines.length; li++) ctx.fillText(lines[li],W/2,560+li*94);
+  ctx.font="600 32px sans-serif"; ctx.fillStyle="rgba(255,255,255,.22)";
+  ctx.fillText("debatintense.app",W/2,H-180);
+  var lk = document.createElement("a"); lk.download="debat-intense.png"; lk.href=cv.toDataURL(); lk.click();
+  closeSheet("ov-sh","sht-sh"); toast("📸 Story creee !");
+}
+function shareReplay() {
+  var t = S.sH.slice(-5).map(function(h,i){return (i+1)+". \""+h.q.substring(0,55)+"...\" → "+(h.voteLabel||"–");}).join("\n");
+  navigator.clipboard.writeText("🔥 Replay Debat Intense :\n"+t+"\ndebatintense.app").then(function(){toast("📋 Replay copie !");}).catch(function(){toast("📤 Pret !");});
+}
+function shareProfil() {
+  var tv = 0; Object.values(S.aV).forEach(function(a){tv+=a.length;});
+  var a = tv >= 10 ? getArch() : {name:"Debatteur Mysterieux",icon:"🔮"};
+  navigator.clipboard.writeText(a.icon+" "+a.name+"\n"+P1()+" — Debat Intense\n📊 "+S.tQ+" questions · 🔥 "+S.streak+" jours · ⭐ "+S.pts+" pts\ndebatintense.app").then(function(){toast("📋 Profil copie !");}).catch(function(){toast("📤 Pret !");});
+}
+
+// ── STREAK ──
+function openStreak() {
+  ge("sk-n").textContent = S.streak;
+  ge("sk-fr").textContent = S.freezes;
+  var msgs = ["Revenez demain pour garder votre flame !", "En feu — continuez !", S.streak + " jours, imbattable !"];
+  ge("sk-msg").textContent = msgs[Math.min(S.streak-1, 2)];
+  openSheet("ov-sk","sht-sk");
+}
+function buyFreeze() {
+  if (S.pts < 50) { toast("⚠️ 50 pts requis"); return; }
+  S.pts -= 50; S.freezes++;
+  ge("pn-pts").textContent = S.pts;
+  ge("sk-fr").textContent = S.freezes;
+  toast("❄️ Freeze achete !");
+}
+
+// ── PERSO ──
+function openPerso() { openSheet("ov-po","sht-po"); }
+function pc(chip) {
+  qsa(".chip[data-g='" + chip.dataset.g + "']").forEach(function(c){c.classList.remove("on");});
+  chip.classList.add("on");
+  S.perso[chip.dataset.g] = chip.dataset.v;
+}
+async function genPerso() {
+  var btn = ge("perso-btn");
+  btn.textContent = "⏳…"; btn.disabled = true;
+  var age = S.perso.age, evt = S.perso.evt, intensity = S.perso.int;
+  var cx = ge("perso-ctx").value;
+  var qObj;
+  if (S.apiKey) {
+    var p = "Question de debat concrete en francais avec les prenoms " + P1() + " et " + P2() + ". " + age + " ans, " + evt + ", intensite " + intensity + (cx?", situation: "+cx:"") + ". 1-2 phrases. UNIQUEMENT la question.";
+    try {
+      var r = await fetch("https://api.anthropic.com/v1/messages", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:200,messages:[{role:"user",content:p}]})});
+      var d = await r.json();
+      if (d.content && d.content[0] && d.content[0].text) qObj = {q:d.content[0].text.trim(),type:"binary",story:null};
+    } catch(e) {}
+  }
+  if (!qObj) qObj = fromBank();
+  S.curQObj = qObj;
+  S.curQ = inject(qObj.q);
+  S.tQ++;
+  addPts(5);
+  var qt = ge("qtext"); qt.className = "qtext"; qt.textContent = S.curQ;
+  renderWidget(qObj, "ans-widget", "ans-label");
+  closeSheet("ov-po","sht-po");
+  if (S.storyMode && qObj.story) showStoryCard(qObj);
+  toast("✨ Question personnalisee !");
+  btn.textContent = "✨ Generer ma question";
+  btn.disabled = false;
+}
+
+// ── SETTINGS ──
+function openSettings() { openSheet("ov-st","sht-st"); }
+function saveAPI() {
+  S.apiKey = ge("api-key").value.trim();
+  toast(S.apiKey ? "🔑 Cle API sauvegardee !" : "⚠️ Mode demo active");
+  closeSheet("ov-st","sht-st");
+}
+
+// ── LIVE ──
+function genRoom() {
+  var c = Math.random().toString(36).substring(2,6).toUpperCase();
+  S.roomCode = c; S.liveUsed = true;
+  ge("room-code").textContent = c;
+  ge("room-st").textContent = "✅ Salle creee — envoie ce code !";
+  toast("🎲 Salle " + c + " creee !");
+}
+function copyRoom() {
+  if (!S.roomCode) { toast("⚠️ Cree une salle"); return; }
+  navigator.clipboard.writeText(S.roomCode).then(function(){toast("📋 " + S.roomCode + " copie !");}).catch(function(){toast("Code : " + S.roomCode);});
+}
+function shareRoom() {
+  if (!S.roomCode) { toast("⚠️ Cree une salle"); return; }
+  window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent("⚔️ " + P1() + " te defie sur Debat Intense ! Code : " + S.roomCode + " 🔥"), "_blank");
+}
+function joinRoom() {
+  var c = ge("jinp").value.trim().toUpperCase();
+  if (c.length !== 4) { toast("⚠️ Code a 4 lettres"); return; }
+  S.roomCode = c; S.liveUsed = true;
+  ge("room-code").textContent = c;
+  ge("room-st").textContent = "✅ Connecte a la salle " + c;
+  toast("⚔️ Connecte a " + c + " !");
+}
+
+// ── SEMAINE ──
+function voteWeek(v) {
+  if (S.weekVoted) { toast("✅ Deja vote !"); return; }
+  S.weekVoted = true;
+  var ny = v === "oui" ? 68 : 66, nn = 100 - ny;
+  ge("bp-y").textContent = ny + "%"; ge("bp-n").textContent = nn + "%";
+  ge("wk-tot").textContent = "12 848";
+  ge("b-st").textContent = "✅ Ton vote est comptabilise !";
+  ge("wvb-y").classList.add(v === "oui" ? "voted" : "");
+  ge("wvb-n").classList.add(v === "non" ? "voted" : "");
+  if (v === "oui") ge("wvb-y").classList.add("y"); else ge("wvb-n").classList.add("n");
+  setTimeout(animBars, 100);
+  addPts(20);
+  toast(v === "oui" ? "✅ Tu rejoins les 68% !" : "❌ Dans la minorite courageuse (32%) !");
+  confetti();
+}
+function animBars() {
+  ge("b-yes").style.height = (S.weekVoted ? 68 : 67) * .88 + "%";
+  ge("b-no").style.height  = (S.weekVoted ? 32 : 33) * .88 + "%";
+}
+
+// ── PAYWALL ──
+function switchMonthly() {
+  qs(".pw-pn").textContent = "Premium Mensuel";
+  qs(".pw-big").textContent = "2,99€";
+  qs(".pw-per").textContent = "/ mois";
+  qs(".pw-best").style.display = "none";
+  toast("💡 Offre mensuelle selectionnee");
+}
+function goPremium() {
+  S.isPremium = true;
+  LOCKED.forEach(function(c){var b=qs(".cat[data-c='" + c + "']");if(b)b.classList.remove("locked");});
+  var tp = ge("pill-tri");
+  tp.textContent = "👑 Premium";
+  tp.style.background = "rgba(245,158,11,.1)";
+  tp.style.borderColor = "rgba(245,158,11,.25)";
+  tp.style.color = "var(--gold)";
+  toast("👑 Premium active ! Tout debloque 🎉");
+  confetti();
+  goTo("pg-home");
+}
+function buyPack(n) { toast("🛒 Pack \"" + n + "\" — bientot disponible !"); }
+
+// ── COUNTDOWN ──
+function startCD() {
+  function tick() {
+    var now = new Date();
+    var nm = new Date(now);
+    nm.setDate(now.getDate() + ((1 + 7 - now.getDay()) % 7 || 7));
+    nm.setHours(0,0,0,0);
+    var d = nm - now;
+    var el = ge("cd-val");
+    if (el) el.textContent = String(Math.floor(d/3600000)).padStart(2,"0") + ":" + String(Math.floor((d%3600000)/60000)).padStart(2,"0") + ":" + String(Math.floor((d%60000)/1000)).padStart(2,"0");
+  }
+  tick();
+  setInterval(tick, 1000);
+}
+
+// ── SHEETS ──
+function openSheet(o, s) { ge(o).classList.add("on"); ge(s).classList.add("on"); }
+function closeSheet(o, s) { ge(o).classList.remove("on"); ge(s).classList.remove("on"); }
+
+// ── TOAST ──
+function toast(msg) {
+  var t = ge("tst");
+  t.textContent = msg;
+  t.classList.add("on");
+  setTimeout(function(){t.classList.remove("on");}, 2800);
+}
+
+// ── CONFETTI ──
+function confetti() {
+  var colors = ["#7C3AED","#F97316","#EC4899","#F59E0B","#10B981","#A78BFA"];
+  for (var i = 0; i < 26; i++) {
+    (function(ii) {
+      setTimeout(function() {
+        var el = document.createElement("div");
+        el.className = "cf";
+        var sz = 5 + Math.random() * 7;
+        el.style.cssText = "left:" + (Math.random()*100) + "vw;top:-8px;width:" + sz + "px;height:" + sz + "px;background:" + colors[Math.floor(Math.random()*colors.length)] + ";border-radius:" + (Math.random()>.5?"50%":"2px") + ";animation-duration:" + (1.8+Math.random()*.8) + "s;animation-delay:" + (Math.random()*.4) + "s";
+        document.body.appendChild(el);
+        setTimeout(function(){el.remove();}, 3200);
+      }, ii * 32);
+    })(i);
+  }
+}
+
+// ── BOOT ──
+// ═══════════════════════════════════
+//  V12 ADDITIONS — safe, no overrides
+// ═══════════════════════════════════
+
+// ── PWA ──
+function injectPWA() {
+  try {
+    var manifest = {name:"Débat Intense",short_name:"Débat 🔥",start_url:"./",display:"standalone",background_color:"#09080F",theme_color:"#7C3AED",orientation:"portrait",icons:[{src:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='40' fill='%23090810'/%3E%3Ctext y='140' font-size='130' text-anchor='middle' x='96'%3E%F0%9F%94%A5%3C/text%3E%3C/svg%3E",sizes:"192x192",type:"image/svg+xml"}]};
+    var blob = new Blob([JSON.stringify(manifest)], {type:"application/json"});
+    var link = document.createElement("link");
+    link.rel = "manifest"; link.href = URL.createObjectURL(blob);
+    document.head.appendChild(link);
+    var m1 = document.createElement("meta"); m1.name="theme-color"; m1.content="#7C3AED"; document.head.appendChild(m1);
+    var m2 = document.createElement("meta"); m2.name="apple-mobile-web-app-capable"; m2.content="yes"; document.head.appendChild(m2);
+  } catch(e) {}
+}
+
+function registerSW() {
+  try {
+    if (!navigator.serviceWorker) return;
+    var sw = 'var C="di-v12";self.addEventListener("install",function(e){e.waitUntil(caches.open(C).then(function(c){return c.addAll([location.href]);}));self.skipWaiting();});self.addEventListener("fetch",function(e){e.respondWith(caches.match(e.request).then(function(r){return r||fetch(e.request).catch(function(){return caches.match(e.request);});}));});';
+    var blob = new Blob([sw], {type:"application/javascript"});
+    navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(function(){});
+  } catch(e) {}
+}
+
+var _deferredPrompt = null;
+function setupInstallListeners() {
+  try {
+    window.addEventListener('beforeinstallprompt', function(e) {
+      e.preventDefault(); _deferredPrompt = e;
+      var b = ge("install-banner");
+      if (b) { try { if (!localStorage.getItem("pwa_dismissed")) setTimeout(function(){b.classList.add("on");}, 4000); } catch(ex){} }
+    });
+    window.addEventListener('appinstalled', function() {
+      var b = ge("install-banner"); if(b) b.classList.remove("on");
+      toast("✅ App installée !");
+    });
+  } catch(e) {}
+}
+
+function installPWA() {
+  if (_deferredPrompt) {
+    _deferredPrompt.prompt();
+    _deferredPrompt.userChoice.then(function(r){ _deferredPrompt = null; dismissInstall(); });
+  } else {
+    toast("📱 Safari → Partager → Sur l'écran d'accueil");
+  }
+}
+
+function dismissInstall() {
+  var b = ge("install-banner"); if(b) b.classList.remove("on");
+  try { localStorage.setItem("pwa_dismissed","1"); } catch(e) {}
+}
+
+// ── WEB AUDIO ──
+var _ac = null;
+function getAC() { try { if(!_ac) _ac=new(window.AudioContext||window.webkitAudioContext)(); } catch(e){} return _ac; }
+function playTone(freq, dur, type, vol) {
+  var ctx=getAC(); if(!ctx) return;
+  try {
+    var o=ctx.createOscillator(), g=ctx.createGain();
+    o.connect(g); g.connect(ctx.destination);
+    o.frequency.value=freq; o.type=type||"sine";
+    g.gain.setValueAtTime(vol||.25, ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(.001, ctx.currentTime+dur);
+    o.start(ctx.currentTime); o.stop(ctx.currentTime+dur);
+  } catch(e){}
+}
+function playTick() { playTone(880, .08, "sine", .2); }
+function playRevealSound() { [523,659,784,1047].forEach(function(f,i){setTimeout(function(){playTone(f,.2,"sine",.2);},i*80);}); }
+function playDisagreeSound() { [440,370,310].forEach(function(f,i){setTimeout(function(){playTone(f,.15,"sawtooth",.12);},i*100);}); }
+function playSuccessSound() { [523,659,784].forEach(function(f,i){setTimeout(function(){playTone(f,.25,"sine",.18);},i*100);}); }
+
+// ── ONBOARDING CAROUSEL ──
+var _obIdx = 0;
+function obUpdateUI() {
+  var slides = ge("ob-slides");
+  if (slides) slides.style.transform = "translateX(-"+(_obIdx*100)+"%)";
+  for (var i=0;i<3;i++) { var d=ge("ocd-"+i); if(d) d.className="ocd"+(i===_obIdx?" on":""); }
+  var back = ge("ob-back"); if(back) { back.style.opacity=_obIdx>0?"1":"0"; back.style.pointerEvents=_obIdx>0?"auto":"none"; }
+  var next = ge("ob-next");
+  if (next) {
+    if (_obIdx===2) { next.textContent="C'est parti ! 🔥"; }
+    else { next.textContent="Suivant →"; }
+  }
+}
+function obSlide(dir) {
+  _obIdx = Math.max(0, Math.min(2, _obIdx+dir));
+  playTick();
+  obUpdateUI();
+}
+function obSlideNext() {
+  if (_obIdx===2) { showObSetup(); return; }
+  obSlide(1);
+}
+function showObSetup() {
+  var cw = ge("ob-carousel-wrap"); if(cw) cw.style.display="none";
+  var setup = ge("ob-setup"); if(setup) { setup.style.display="flex"; }
+  try { localStorage.setItem("seen_onboard","1"); } catch(e){}
+}
+function checkCarousel() {
+  try { if (localStorage.getItem("seen_onboard")) showObSetup(); }
+  catch(e) { showObSetup(); }
+}
+
+// ── QR CODE ──
+var _qrDone = false;
+function showQR() {
+  if (!S.roomCode) { toast("⚠️ Crée une salle d'abord !"); return; }
+  var val = ge("qr-code-val"); if(val) val.textContent = S.roomCode;
+  if (!_qrDone && typeof QRCode !== "undefined") {
+    var c = ge("qr-canvas"); if(c) { c.innerHTML=""; new QRCode(c,{text:"DEBAT:"+S.roomCode,width:148,height:148,colorDark:"#09080F",colorLight:"#FFFFFF"}); _qrDone=true; }
+  }
+  var m = ge("qr-modal"); if(m) m.classList.add("on");
+}
+function closeQR() { var m=ge("qr-modal"); if(m) m.classList.remove("on"); }
+
+// Reset QR on new room
+var _v12_origGenRoom = genRoom;
+function genRoom() { _qrDone=false; _v12_origGenRoom(); }
+
+// ── TOURNAMENT ──
+var T = { players:[], rounds:[], curR:0, curM:0 };
+
+function openTournament() {
+  if (!S.players||S.players.length<2) { toast("⚠️ Ajoute au moins 2 joueurs !"); return; }
+  ge("tourn-ov").classList.add("on");
+  ge("tr-champ").classList.remove("on");
+  ge("tr-q").style.display="none";
+  T.players = S.players.slice();
+  buildBracket();
+}
+function closeTournament() { ge("tourn-ov").classList.remove("on"); }
+
+function buildBracket() {
+  var n=T.players.length, size=2;
+  while(size<n) size*=2;
+  var padded=T.players.slice();
+  while(padded.length<size) padded.push(null);
+  T.rounds=[];
+  var cur=padded;
+  while(cur.length>1) {
+    var ms=[]; for(var i=0;i<cur.length;i+=2) ms.push({p1:cur[i],p2:cur[i+1],w:null}); T.rounds.push(ms);
+    cur=new Array(ms.length).fill(null);
+  }
+  renderBracket();
+}
+
+function renderBracket() {
+  var el=ge("bracket"); if(!el)return;
+  var rnames=["Quarts de finale","Demi-finales","Finale","Grande Finale"];
+  var rcls=["br-r0","br-r1","br-r2","br-r3"];
+  var html="";
+  for(var ri=0;ri<T.rounds.length;ri++){
+    var rnd=T.rounds[ri];
+    var rn=T.rounds.length===1?"Finale":(rnames[ri]||"Tour "+(ri+1));
+    html+='<div class="br-round '+rcls[ri]+'"><div class="br-lbl">'+rn+'</div>';
+    for(var mi=0;mi<rnd.length;mi++){
+      var m=rnd[mi];
+      var p1n=m.p1?(m.p1.emoji+" "+m.p1.name):"—";
+      var p2n=m.p2?(m.p2.emoji+" "+m.p2.name):"Bye";
+      var c1="br-p"+(m.w===0?" w":(m.w===1?" l":""));
+      var c2="br-p"+(m.w===1?" w":(m.w===0?" l":""));
+      if(!m.p2){c1="br-p w";c2="br-p l";}
+      html+='<div class="br-match"><div class="'+c1+'">'+p1n+'</div><div class="br-vs">VS</div><div class="'+c2+'">'+p2n+'</div></div>';
+    }
+    html+='</div>';
+  }
+  el.innerHTML=html;
+}
+
+function startTournament() {
+  // Auto-advance byes
+  for(var ri=0;ri<T.rounds.length;ri++) for(var mi=0;mi<T.rounds[ri].length;mi++){var m=T.rounds[ri][mi];if(!m.p2&&m.p1){m.w=0;advanceTR(ri,mi,m.p1);}else if(!m.p1&&m.p2){m.w=1;advanceTR(ri,mi,m.p2);}}
+  T.curR=0; T.curM=0; nextTournMatch();
+}
+
+function nextTournMatch(){
+  for(var ri=0;ri<T.rounds.length;ri++) for(var mi=0;mi<T.rounds[ri].length;mi++){
+    var m=T.rounds[ri][mi];
+    if(m.w===null&&m.p1&&m.p2){T.curR=ri;T.curM=mi;showTournMatch(ri,mi);return;}
+  }
+  // Champion
+  var fm=T.rounds[T.rounds.length-1][0];
+  if(fm&&fm.w!==null){var ch=fm.w===0?fm.p1:fm.p2;if(ch)showChampion(ch);}
+}
+
+function showTournMatch(ri,mi){
+  var m=T.rounds[ri][mi];
+  var q=fromBank(); var qtxt=inject(q.q);
+  var txt=ge("tr-q-txt"); if(txt)txt.textContent=qtxt;
+  var b1=ge("tr-btn-p1"); if(b1){b1.textContent=m.p1.emoji+" "+m.p1.name;b1.className="tr-q-btn";}
+  var b2=ge("tr-btn-p2"); if(b2){b2.textContent=m.p2.emoji+" "+m.p2.name;b2.className="tr-q-btn";}
+  ge("tr-q").style.display="block";
+  renderBracket(); playTick();
+}
+
+function tournWin(side){
+  var ri=T.curR, mi=T.curM, m=T.rounds[ri][mi];
+  m.w=side; var winner=side===0?m.p1:m.p2;
+  var b=ge(side===0?"tr-btn-p1":"tr-btn-p2"); if(b)b.className="tr-q-btn "+(side===0?"p1w":"p2w");
+  toast(winner.emoji+" "+winner.name+" remporte le duel !");
+  playSuccessSound(); advanceTR(ri,mi,winner); renderBracket();
+  setTimeout(function(){ge("tr-q").style.display="none"; nextTournMatch();},1200);
+}
+
+function advanceTR(ri,mi,winner){
+  var nri=ri+1; if(nri>=T.rounds.length)return;
+  var nmi=Math.floor(mi/2); if(nmi>=T.rounds[nri].length)return;
+  var nm=T.rounds[nri][nmi]; if(mi%2===0)nm.p1=winner;else nm.p2=winner;
+}
+
+function showChampion(p){
+  var cn=ge("tr-champ-name"); if(cn)cn.textContent=p.emoji+" "+p.name;
+  ge("tr-champ").classList.add("on"); ge("tr-q").style.display="none";
+  renderBracket(); confetti(); playRevealSound();
+  toast("🏆 "+p.name+" est le champion de la soirée !"); addPts(50); saveState();
+}
+
+// ── OVERRIDE shareReveal WITH VIRAL IMAGE ──
+function shareReveal() {
+  var votes=Object.values(S.roundVotes); if(!votes.length)return;
+  var allSame=votes.every(function(v){return v.value===votes[0].value;});
+  var cv=document.createElement("canvas"); var W=1080,H=1080; cv.width=W; cv.height=H;
+  var ctx=cv.getContext("2d");
+  // BG
+  var bg=ctx.createLinearGradient(0,0,W,H);
+  bg.addColorStop(0,allSame?"#041404":"#140404"); bg.addColorStop(1,"#09080F");
+  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+  var gv=ctx.createRadialGradient(W/2,H*.3,0,W/2,H*.3,500);
+  gv.addColorStop(0,allSame?"rgba(16,185,129,.3)":"rgba(244,63,94,.3)"); gv.addColorStop(1,"rgba(0,0,0,0)");
+  ctx.fillStyle=gv; ctx.fillRect(0,0,W,H);
+  // App name
+  ctx.font="600 38px sans-serif"; ctx.fillStyle="rgba(255,255,255,.4)"; ctx.textAlign="center";
+  ctx.fillText("🔥 DÉBAT INTENSE",W/2,80);
+  // Question
+  ctx.font="700 48px sans-serif"; ctx.fillStyle="#EDE9FF"; ctx.textAlign="center";
+  var q=S.curQ||""; var words=q.split(" "); var line="",lines=[];
+  for(var i=0;i<words.length;i++){var t=line+(line?" ":"")+words[i];if(ctx.measureText(t).width>920){if(line)lines.push(line);line=words[i];}else line=t;}
+  if(line)lines.push(line);
+  for(var li=0;li<Math.min(lines.length,4);li++) ctx.fillText(lines[li],W/2,200+li*66);
+  // Players
+  var voteY=420+Math.min(lines.length-1,3)*66;
+  var colW=W/Math.max(votes.length,1);
+  for(var vi=0;vi<votes.length;vi++){
+    var rv=votes[vi]; var cx2=colW*vi+colW/2;
+    ctx.font="700 72px sans-serif"; ctx.textAlign="center"; ctx.fillText(rv.player.emoji,cx2,voteY);
+    ctx.font="700 34px sans-serif"; ctx.fillStyle="rgba(255,255,255,.8)"; ctx.fillText(rv.player.name,cx2,voteY+70);
+    var vc=rv.value==="oui"?"#10B981":(rv.value==="non"?"#F43F5E":"#F59E0B");
+    ctx.fillStyle=vc+"33";
+    var bw=Math.min(colW-30,240),bh=58,bx=cx2-bw/2,by=voteY+90;
+    ctx.beginPath();ctx.roundRect?ctx.roundRect(bx,by,bw,bh,14):ctx.rect(bx,by,bw,bh);ctx.fill();
+    ctx.strokeStyle=vc+"88"; ctx.lineWidth=2.5; ctx.stroke();
+    ctx.font="700 30px sans-serif"; ctx.fillStyle=vc;
+    ctx.fillText(rv.label||rv.value,cx2,by+37);
+  }
+  // Verdict
+  ctx.font="900 64px sans-serif"; ctx.fillStyle=allSame?"#10B981":"#F43F5E"; ctx.textAlign="center";
+  ctx.fillText(allSame?"✅ CONSENSUS":"⚔️ DÉSACCORD",W/2,voteY+210);
+  ctx.font="500 28px sans-serif"; ctx.fillStyle="rgba(255,255,255,.2)"; ctx.fillText("débatintense.app",W/2,H-40);
+  var lk=document.createElement("a"); lk.download="debat-reveal.png"; lk.href=cv.toDataURL(); lk.click();
+  toast("📸 Image téléchargée !");
+}
+
+// ── VIEWPORT FIX ──
+function setupViewportFix() {
+  try {
+    if (!window.visualViewport) return;
+    window.visualViewport.addEventListener('resize', function() {
+      var offset=window.innerHeight-window.visualViewport.height;
+      var a=ge("app"); if(a) a.style.paddingBottom=offset>50?(offset+10)+"px":"";
+    });
+  } catch(e) {}
+}
+
+// ── SOUNDS IN KEY MOMENTS (direct calls, no overrides) ──
+// These are called from within existing functions — we patch at strategic points
+// Tick in countdown — add via wrapper that v12 boot initializes
+var v12SoundsActive = false;
+
+function v12Boot() {
+  injectPWA();
+  registerSW();
+  setupInstallListeners();
+  setupViewportFix();
+  checkCarousel();
+  v12SoundsActive = true;
+}
+
+function boot() {
+  if (!S.isPremium) {
+    LOCKED.forEach(function(c) {
+      var b = qs(".cat[data-c='" + c + "']");
+      if (b) b.classList.add("locked");
+    });
+  }
+  renderObPlayers();
+  renderDots();
+  renderBadges();
+  startCD();
+  setTimeout(function() {
+    ge("ndot").classList.add("on");
+    ge("pill-sk").classList.add("danger");
+  }, 10000);
+}
+
+boot();
+</script>
+</body>
+</html>
