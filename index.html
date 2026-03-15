@@ -2,9 +2,20 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="description" content="Des questions de débat qui révèlent ce que vous pensez vraiment. Jouez en couple, entre amis ou en groupe.">
+<meta name="theme-color" content="#7C3AED">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:title" content="Débat Intense 🔥">
+<meta property="og:description" content="Des questions qui révèlent ce que vous pensez vraiment. Votez, débattez, découvrez vos archétypes.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='40' fill='%23090810'/%3E%3Ctext y='140' font-size='130' text-anchor='middle' x='96'%3E%F0%9F%94%A5%3C/text%3E%3C/svg%3E">
 <title>Débat Intense 🔥</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1140,7 +1151,7 @@ canvas#sc{display:none}
 
 <script>
 // ═══════════════════════════════════════════════════
-//  DÉBAT INTENSE v10 — Clean build, no nested literals
+//  DÉBAT INTENSE v14 — Clean production build
 // ═══════════════════════════════════════════════════
 
 // ── QUESTION BANK ──
@@ -1367,7 +1378,6 @@ function setMode(mode, el) {
   if (mode !== "classic" && obPlayers.length < 3) {
     obPlayers.push({name:"",emoji:EMOJIS[2]});
   }
-  v12Boot();
   renderObPlayers();
 }
 
@@ -1999,7 +2009,7 @@ async function fromAPI() {
   try {
     var r = await fetch("https://api.anthropic.com/v1/messages", {
       method:"POST",
-      headers:{"Content-Type":"application/json"},
+      headers:{"Content-Type":"application/json","x-api-key":S.apiKey,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},
       body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:200,messages:[{role:"user",content:prompt}]})
     });
     var d = await r.json();
@@ -2345,7 +2355,7 @@ async function genPerso() {
   if (S.apiKey) {
     var p = "Question de debat concrete en francais avec les prenoms " + P1() + " et " + P2() + ". " + age + " ans, " + evt + ", intensite " + intensity + (cx?", situation: "+cx:"") + ". 1-2 phrases. UNIQUEMENT la question.";
     try {
-      var r = await fetch("https://api.anthropic.com/v1/messages", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:200,messages:[{role:"user",content:p}]})});
+      var r = await fetch("https://api.anthropic.com/v1/messages", {method:"POST",headers:{"Content-Type":"application/json","x-api-key":S.apiKey,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:200,messages:[{role:"user",content:p}]})});
       var d = await r.json();
       if (d.content && d.content[0] && d.content[0].text) qObj = {q:d.content[0].text.trim(),type:"binary",story:null};
     } catch(e) {}
@@ -2375,6 +2385,7 @@ function saveAPI() {
 
 // ── LIVE ──
 function genRoom() {
+  _qrDone = false;
   var c = Math.random().toString(36).substring(2,6).toUpperCase();
   S.roomCode = c; S.liveUsed = true;
   ge("room-code").textContent = c;
@@ -2495,311 +2506,8 @@ function confetti() {
   }
 }
 
-// ── BOOT ──
-// ═══════════════════════════════════
-//  V12 ADDITIONS — safe, no overrides
-// ═══════════════════════════════════
-
-// ── PWA ──
-function injectPWA() {
-  try {
-    var manifest = {name:"Débat Intense",short_name:"Débat 🔥",start_url:"./",display:"standalone",background_color:"#09080F",theme_color:"#7C3AED",orientation:"portrait",icons:[{src:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='40' fill='%23090810'/%3E%3Ctext y='140' font-size='130' text-anchor='middle' x='96'%3E%F0%9F%94%A5%3C/text%3E%3C/svg%3E",sizes:"192x192",type:"image/svg+xml"}]};
-    var blob = new Blob([JSON.stringify(manifest)], {type:"application/json"});
-    var link = document.createElement("link");
-    link.rel = "manifest"; link.href = URL.createObjectURL(blob);
-    document.head.appendChild(link);
-    var m1 = document.createElement("meta"); m1.name="theme-color"; m1.content="#7C3AED"; document.head.appendChild(m1);
-    var m2 = document.createElement("meta"); m2.name="apple-mobile-web-app-capable"; m2.content="yes"; document.head.appendChild(m2);
-  } catch(e) {}
-}
-
-function registerSW() {
-  try {
-    if (!navigator.serviceWorker) return;
-    var sw = 'var C="di-v12";self.addEventListener("install",function(e){e.waitUntil(caches.open(C).then(function(c){return c.addAll([location.href]);}));self.skipWaiting();});self.addEventListener("fetch",function(e){e.respondWith(caches.match(e.request).then(function(r){return r||fetch(e.request).catch(function(){return caches.match(e.request);});}));});';
-    var blob = new Blob([sw], {type:"application/javascript"});
-    navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(function(){});
-  } catch(e) {}
-}
-
-var _deferredPrompt = null;
-function setupInstallListeners() {
-  try {
-    window.addEventListener('beforeinstallprompt', function(e) {
-      e.preventDefault(); _deferredPrompt = e;
-      var b = ge("install-banner");
-      if (b) { try { if (!localStorage.getItem("pwa_dismissed")) setTimeout(function(){b.classList.add("on");}, 4000); } catch(ex){} }
-    });
-    window.addEventListener('appinstalled', function() {
-      var b = ge("install-banner"); if(b) b.classList.remove("on");
-      toast("✅ App installée !");
-    });
-  } catch(e) {}
-}
-
-function installPWA() {
-  if (_deferredPrompt) {
-    _deferredPrompt.prompt();
-    _deferredPrompt.userChoice.then(function(r){ _deferredPrompt = null; dismissInstall(); });
-  } else {
-    toast("📱 Safari → Partager → Sur l'écran d'accueil");
-  }
-}
-
-function dismissInstall() {
-  var b = ge("install-banner"); if(b) b.classList.remove("on");
-  try { localStorage.setItem("pwa_dismissed","1"); } catch(e) {}
-}
-
-// ── HAPTIC FEEDBACK ──
-function haptic(style) {
-  try {
-    if (navigator.vibrate) navigator.vibrate(style === "heavy" ? [30,20,30] : style === "medium" ? 20 : 10);
-  } catch(e){}
-}
-
-// ── WEB AUDIO ──
-var _ac = null;
-function getAC() { try { if(!_ac) _ac=new(window.AudioContext||window.webkitAudioContext)(); } catch(e){} return _ac; }
-function playTone(freq, dur, type, vol) {
-  var ctx=getAC(); if(!ctx) return;
-  try {
-    var o=ctx.createOscillator(), g=ctx.createGain();
-    o.connect(g); g.connect(ctx.destination);
-    o.frequency.value=freq; o.type=type||"sine";
-    g.gain.setValueAtTime(vol||.25, ctx.currentTime);
-    g.gain.exponentialRampToValueAtTime(.001, ctx.currentTime+dur);
-    o.start(ctx.currentTime); o.stop(ctx.currentTime+dur);
-  } catch(e){}
-}
-function playTick() { playTone(880, .08, "sine", .2); }
-function playRevealSound() { [523,659,784,1047].forEach(function(f,i){setTimeout(function(){playTone(f,.2,"sine",.2);},i*80);}); }
-function playDisagreeSound() { [440,370,310].forEach(function(f,i){setTimeout(function(){playTone(f,.15,"sawtooth",.12);},i*100);}); }
-function playSuccessSound() { [523,659,784].forEach(function(f,i){setTimeout(function(){playTone(f,.25,"sine",.18);},i*100);}); }
-
-// ── ONBOARDING CAROUSEL ──
-var _obIdx = 0;
-function obUpdateUI() {
-  var slides = ge("ob-slides");
-  if (slides) slides.style.transform = "translateX(-"+(_obIdx*100)+"%)";
-  for (var i=0;i<3;i++) { var d=ge("ocd-"+i); if(d) d.className="ocd"+(i===_obIdx?" on":""); }
-  var back = ge("ob-back"); if(back) { back.style.opacity=_obIdx>0?"1":"0"; back.style.pointerEvents=_obIdx>0?"auto":"none"; }
-  var next = ge("ob-next");
-  if (next) {
-    if (_obIdx===2) { next.textContent="C'est parti ! 🔥"; }
-    else { next.textContent="Suivant →"; }
-  }
-}
-function obSlide(dir) {
-  _obIdx = Math.max(0, Math.min(2, _obIdx+dir));
-  playTick();
-  obUpdateUI();
-}
-function obSlideNext() {
-  if (_obIdx===2) { showObSetup(); return; }
-  obSlide(1);
-}
-function showObSetup() {
-  var cw = ge("ob-carousel-wrap"); if(cw) cw.style.display="none";
-  var setup = ge("ob-setup");
-  if(setup) {
-    setup.style.display="flex";
-    setup.style.animation="pgIn .5s ease";
-    setTimeout(function(){setup.style.animation="";},500);
-  }
-  try { localStorage.setItem("seen_onboard","1"); } catch(e){}
-}
-function checkCarousel() {
-  try { if (localStorage.getItem("seen_onboard")) showObSetup(); }
-  catch(e) { showObSetup(); }
-}
-
-// ── QR CODE ──
-var _qrDone = false;
-function showQR() {
-  if (!S.roomCode) { toast("⚠️ Crée une salle d'abord !"); return; }
-  var val = ge("qr-code-val"); if(val) val.textContent = S.roomCode;
-  if (!_qrDone && typeof QRCode !== "undefined") {
-    var c = ge("qr-canvas"); if(c) { c.innerHTML=""; new QRCode(c,{text:"DEBAT:"+S.roomCode,width:148,height:148,colorDark:"#09080F",colorLight:"#FFFFFF"}); _qrDone=true; }
-  }
-  var m = ge("qr-modal"); if(m) m.classList.add("on");
-}
-function closeQR() { var m=ge("qr-modal"); if(m) m.classList.remove("on"); }
-
-// Reset QR on new room
-var _v12_origGenRoom = genRoom;
-function genRoom() { _qrDone=false; _v12_origGenRoom(); }
-
-// ── TOURNAMENT ──
-var T = { players:[], rounds:[], curR:0, curM:0 };
-
-function openTournament() {
-  if (!S.players||S.players.length<2) { toast("⚠️ Ajoute au moins 2 joueurs !"); return; }
-  ge("tourn-ov").classList.add("on");
-  ge("tr-champ").classList.remove("on");
-  ge("tr-q").style.display="none";
-  T.players = S.players.slice();
-  buildBracket();
-}
-function closeTournament() { ge("tourn-ov").classList.remove("on"); }
-
-function buildBracket() {
-  var n=T.players.length, size=2;
-  while(size<n) size*=2;
-  var padded=T.players.slice();
-  while(padded.length<size) padded.push(null);
-  T.rounds=[];
-  var cur=padded;
-  while(cur.length>1) {
-    var ms=[]; for(var i=0;i<cur.length;i+=2) ms.push({p1:cur[i],p2:cur[i+1],w:null}); T.rounds.push(ms);
-    cur=new Array(ms.length).fill(null);
-  }
-  renderBracket();
-}
-
-function renderBracket() {
-  var el=ge("bracket"); if(!el)return;
-  var rnames=["Quarts de finale","Demi-finales","Finale","Grande Finale"];
-  var rcls=["br-r0","br-r1","br-r2","br-r3"];
-  var html="";
-  for(var ri=0;ri<T.rounds.length;ri++){
-    var rnd=T.rounds[ri];
-    var rn=T.rounds.length===1?"Finale":(rnames[ri]||"Tour "+(ri+1));
-    html+='<div class="br-round '+rcls[ri]+'"><div class="br-lbl">'+rn+'</div>';
-    for(var mi=0;mi<rnd.length;mi++){
-      var m=rnd[mi];
-      var p1n=m.p1?(m.p1.emoji+" "+m.p1.name):"—";
-      var p2n=m.p2?(m.p2.emoji+" "+m.p2.name):"Bye";
-      var c1="br-p"+(m.w===0?" w":(m.w===1?" l":""));
-      var c2="br-p"+(m.w===1?" w":(m.w===0?" l":""));
-      if(!m.p2){c1="br-p w";c2="br-p l";}
-      html+='<div class="br-match"><div class="'+c1+'">'+p1n+'</div><div class="br-vs">VS</div><div class="'+c2+'">'+p2n+'</div></div>';
-    }
-    html+='</div>';
-  }
-  el.innerHTML=html;
-}
-
-function startTournament() {
-  // Auto-advance byes
-  for(var ri=0;ri<T.rounds.length;ri++) for(var mi=0;mi<T.rounds[ri].length;mi++){var m=T.rounds[ri][mi];if(!m.p2&&m.p1){m.w=0;advanceTR(ri,mi,m.p1);}else if(!m.p1&&m.p2){m.w=1;advanceTR(ri,mi,m.p2);}}
-  T.curR=0; T.curM=0; nextTournMatch();
-}
-
-function nextTournMatch(){
-  for(var ri=0;ri<T.rounds.length;ri++) for(var mi=0;mi<T.rounds[ri].length;mi++){
-    var m=T.rounds[ri][mi];
-    if(m.w===null&&m.p1&&m.p2){T.curR=ri;T.curM=mi;showTournMatch(ri,mi);return;}
-  }
-  // Champion
-  var fm=T.rounds[T.rounds.length-1][0];
-  if(fm&&fm.w!==null){var ch=fm.w===0?fm.p1:fm.p2;if(ch)showChampion(ch);}
-}
-
-function showTournMatch(ri,mi){
-  var m=T.rounds[ri][mi];
-  var q=fromBank(); var qtxt=inject(q.q);
-  var txt=ge("tr-q-txt"); if(txt)txt.textContent=qtxt;
-  var b1=ge("tr-btn-p1"); if(b1){b1.textContent=m.p1.emoji+" "+m.p1.name;b1.className="tr-q-btn";}
-  var b2=ge("tr-btn-p2"); if(b2){b2.textContent=m.p2.emoji+" "+m.p2.name;b2.className="tr-q-btn";}
-  ge("tr-q").style.display="block";
-  renderBracket(); playTick();
-}
-
-function tournWin(side){
-  var ri=T.curR, mi=T.curM, m=T.rounds[ri][mi];
-  m.w=side; var winner=side===0?m.p1:m.p2;
-  var b=ge(side===0?"tr-btn-p1":"tr-btn-p2"); if(b)b.className="tr-q-btn "+(side===0?"p1w":"p2w");
-  toast(winner.emoji+" "+winner.name+" remporte le duel !");
-  playSuccessSound(); advanceTR(ri,mi,winner); renderBracket();
-  setTimeout(function(){ge("tr-q").style.display="none"; nextTournMatch();},1200);
-}
-
-function advanceTR(ri,mi,winner){
-  var nri=ri+1; if(nri>=T.rounds.length)return;
-  var nmi=Math.floor(mi/2); if(nmi>=T.rounds[nri].length)return;
-  var nm=T.rounds[nri][nmi]; if(mi%2===0)nm.p1=winner;else nm.p2=winner;
-}
-
-function showChampion(p){
-  var cn=ge("tr-champ-name"); if(cn)cn.textContent=p.emoji+" "+p.name;
-  ge("tr-champ").classList.add("on"); ge("tr-q").style.display="none";
-  renderBracket(); confetti(); playRevealSound();
-  toast("🏆 "+p.name+" est le champion de la soirée !"); addPts(50); saveState();
-}
-
-// ── OVERRIDE shareReveal WITH VIRAL IMAGE ──
-function shareReveal() {
-  var votes=Object.values(S.roundVotes); if(!votes.length)return;
-  var allSame=votes.every(function(v){return v.value===votes[0].value;});
-  var cv=document.createElement("canvas"); var W=1080,H=1080; cv.width=W; cv.height=H;
-  var ctx=cv.getContext("2d");
-  // BG
-  var bg=ctx.createLinearGradient(0,0,W,H);
-  bg.addColorStop(0,allSame?"#041404":"#140404"); bg.addColorStop(1,"#09080F");
-  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
-  var gv=ctx.createRadialGradient(W/2,H*.3,0,W/2,H*.3,500);
-  gv.addColorStop(0,allSame?"rgba(16,185,129,.3)":"rgba(244,63,94,.3)"); gv.addColorStop(1,"rgba(0,0,0,0)");
-  ctx.fillStyle=gv; ctx.fillRect(0,0,W,H);
-  // App name
-  ctx.font="600 38px sans-serif"; ctx.fillStyle="rgba(255,255,255,.4)"; ctx.textAlign="center";
-  ctx.fillText("🔥 DÉBAT INTENSE",W/2,80);
-  // Question
-  ctx.font="700 48px sans-serif"; ctx.fillStyle="#EDE9FF"; ctx.textAlign="center";
-  var q=S.curQ||""; var words=q.split(" "); var line="",lines=[];
-  for(var i=0;i<words.length;i++){var t=line+(line?" ":"")+words[i];if(ctx.measureText(t).width>920){if(line)lines.push(line);line=words[i];}else line=t;}
-  if(line)lines.push(line);
-  for(var li=0;li<Math.min(lines.length,4);li++) ctx.fillText(lines[li],W/2,200+li*66);
-  // Players
-  var voteY=420+Math.min(lines.length-1,3)*66;
-  var colW=W/Math.max(votes.length,1);
-  for(var vi=0;vi<votes.length;vi++){
-    var rv=votes[vi]; var cx2=colW*vi+colW/2;
-    ctx.font="700 72px sans-serif"; ctx.textAlign="center"; ctx.fillText(rv.player.emoji,cx2,voteY);
-    ctx.font="700 34px sans-serif"; ctx.fillStyle="rgba(255,255,255,.8)"; ctx.fillText(rv.player.name,cx2,voteY+70);
-    var vc=rv.value==="oui"?"#10B981":(rv.value==="non"?"#F43F5E":"#F59E0B");
-    ctx.fillStyle=vc+"33";
-    var bw=Math.min(colW-30,240),bh=58,bx=cx2-bw/2,by=voteY+90;
-    ctx.beginPath();ctx.roundRect?ctx.roundRect(bx,by,bw,bh,14):ctx.rect(bx,by,bw,bh);ctx.fill();
-    ctx.strokeStyle=vc+"88"; ctx.lineWidth=2.5; ctx.stroke();
-    ctx.font="700 30px sans-serif"; ctx.fillStyle=vc;
-    ctx.fillText(rv.label||rv.value,cx2,by+37);
-  }
-  // Verdict
-  ctx.font="900 64px sans-serif"; ctx.fillStyle=allSame?"#10B981":"#F43F5E"; ctx.textAlign="center";
-  ctx.fillText(allSame?"✅ CONSENSUS":"⚔️ DÉSACCORD",W/2,voteY+210);
-  ctx.font="500 28px sans-serif"; ctx.fillStyle="rgba(255,255,255,.2)"; ctx.fillText("débatintense.app",W/2,H-40);
-  var lk=document.createElement("a"); lk.download="debat-reveal.png"; lk.href=cv.toDataURL(); lk.click();
-  toast("📸 Image téléchargée !");
-}
-
-// ── VIEWPORT FIX ──
-function setupViewportFix() {
-  try {
-    if (!window.visualViewport) return;
-    window.visualViewport.addEventListener('resize', function() {
-      var offset=window.innerHeight-window.visualViewport.height;
-      var a=ge("app"); if(a) a.style.paddingBottom=offset>50?(offset+10)+"px":"";
-    });
-  } catch(e) {}
-}
-
-// ── SOUNDS IN KEY MOMENTS (direct calls, no overrides) ──
-// These are called from within existing functions — we patch at strategic points
-// Tick in countdown — add via wrapper that v12 boot initializes
-var v12SoundsActive = false;
-
-function v12Boot() {
-  injectPWA();
-  registerSW();
-  setupInstallListeners();
-  setupViewportFix();
-  checkCarousel();
-  v12SoundsActive = true;
-}
-
 // ════════════════════════════════════
-//  V13 PATCHES
+//  V13 — FINAL CLEAN BUILD
 // ════════════════════════════════════
 
 // ── PERSISTENCE ──
@@ -3147,7 +2855,7 @@ function injectPWA() {
 function registerSW() {
   try {
     if(!navigator.serviceWorker) return;
-    var sw='var C="di-v13";self.addEventListener("install",function(e){e.waitUntil(caches.open(C).then(function(c){return c.addAll([location.href]);}));self.skipWaiting();});self.addEventListener("fetch",function(e){e.respondWith(caches.match(e.request).then(function(r){return r||fetch(e.request).catch(function(){return caches.match(e.request);});}));});';
+    var sw='var C="di-v14";self.addEventListener("install",function(e){e.waitUntil(caches.open(C).then(function(c){return c.addAll([location.href]);}));self.skipWaiting();});self.addEventListener("fetch",function(e){e.respondWith(caches.match(e.request).then(function(r){return r||fetch(e.request).catch(function(){return caches.match(e.request);});}));});';
     var blob=new Blob([sw],{type:"application/javascript"});
     navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(function(){});
   } catch(e){}
@@ -3169,6 +2877,11 @@ function setupInstallListeners() {
 }
 function installPWA(){if(_deferredPrompt){_deferredPrompt.prompt();_deferredPrompt.userChoice.then(function(){_deferredPrompt=null;dismissInstall();});}else{toast("📱 Safari → Partager → Sur l'écran d'accueil");}}
 function dismissInstall(){var b=ge("install-banner");if(b)b.classList.remove("on");try{localStorage.setItem("pwa_dismissed","1");}catch(e){}}
+
+// ── HAPTIC FEEDBACK ──
+function haptic(style) {
+  try { if (navigator.vibrate) navigator.vibrate(style === "heavy" ? [30,20,30] : style === "medium" ? 20 : 10); } catch(e){}
+}
 
 // ── AUDIO ──
 var _ac=null;
