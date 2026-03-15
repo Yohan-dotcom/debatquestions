@@ -937,21 +937,55 @@ canvas#sc{display:none}
       <div class="ls"><span class="lsn">2</span><div><div class="lsh">Inviter</div><div class="lsp">L'adversaire rejoint avec le code</div></div></div>
       <div class="ls"><span class="lsn">3</span><div><div class="lsh">Révélation</div><div class="lsp">Votes simultanés. Le débat explose.</div></div></div>
     </div>
-    <div class="room-box">
-      <div class="room-lbl">Code de salle</div>
-      <div class="room-code" id="room-code">----</div>
-      <div class="room-st" id="room-st">Crée une salle pour commencer</div>
-      <div class="room-btns">
-        <button class="rbtn" onclick="genRoom()">🎲 Créer</button>
-        <button class="rbtn" onclick="copyRoom()">📋 Copier</button>
-        <button class="rbtn" onclick="showQR()">⬛ QR</button>
-        <button class="rbtn" onclick="shareRoom()">📤 WA</button>
+    <!-- Lobby: create/join -->
+    <div id="live-lobby">
+      <div style="margin-bottom:12px">
+        <input type="text" id="live-nick" class="fi" placeholder="Ton prénom" maxlength="20" style="text-align:center;font-size:14px;font-weight:600"/>
+      </div>
+      <div class="room-box">
+        <div class="room-lbl">Code de salle</div>
+        <div class="room-code" id="room-code">----</div>
+        <div class="room-st" id="room-st">Crée ou rejoins une salle</div>
+        <div class="room-btns">
+          <button class="rbtn" onclick="genRoom()">🎲 Créer</button>
+          <button class="rbtn" onclick="copyRoom()">📋 Copier</button>
+          <button class="rbtn" onclick="showQR()">⬛ QR</button>
+          <button class="rbtn" onclick="shareRoom()">📤 WA</button>
+        </div>
+      </div>
+      <div class="or-sep">rejoindre</div>
+      <div class="join-r">
+        <input type="text" class="jinp" id="jinp" placeholder="CODE" maxlength="4"/>
+        <button class="jbtn" onclick="joinRoom()">→</button>
       </div>
     </div>
-    <div class="or-sep">rejoindre</div>
-    <div class="join-r">
-      <input type="text" class="jinp" id="jinp" placeholder="CODE" maxlength="4"/>
-      <button class="jbtn" onclick="joinRoom()">→</button>
+    <!-- Waiting room -->
+    <div id="live-waiting" style="display:none;text-align:center;padding:20px 0">
+      <div style="font-size:48px;margin-bottom:12px">⏳</div>
+      <div style="font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px">Salle <span id="lw-code" style="color:var(--p)"></span></div>
+      <div id="lw-players" style="font-size:14px;color:var(--text2);margin-bottom:12px"></div>
+      <div id="lw-status" style="font-size:13px;color:var(--text3)">En attente de l'adversaire...</div>
+      <button class="btn-v" id="lw-start" onclick="liveStartGame()" style="display:none;margin-top:14px">Lancer la partie</button>
+      <button class="btn-g" onclick="liveLeaveRoom()" style="margin-top:8px">Quitter la salle</button>
+    </div>
+    <!-- Live game -->
+    <div id="live-game" style="display:none">
+      <div id="lg-q" style="background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:14px">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--text3);margin-bottom:6px" id="lg-cat">Question</div>
+        <div style="font-size:16px;font-weight:600;color:var(--text);line-height:1.5" id="lg-qtxt">...</div>
+      </div>
+      <div id="lg-vote-btns" style="display:flex;gap:10px;margin-bottom:14px">
+        <button class="wvb y" onclick="liveVote('oui')" style="flex:1">✅ Oui</button>
+        <button class="wvb n" onclick="liveVote('non')" style="flex:1">❌ Non</button>
+      </div>
+      <div id="lg-voted" style="display:none;text-align:center;padding:16px 0;font-size:14px;color:var(--text2)">⏳ En attente du vote adverse...</div>
+      <div id="lg-reveal" style="display:none;text-align:center;padding:16px 0">
+        <div style="font-size:24px;margin-bottom:8px" id="lg-reveal-icon"></div>
+        <div style="font-size:15px;font-weight:600;color:var(--text)" id="lg-reveal-txt"></div>
+        <div id="lg-reveal-detail" style="font-size:13px;color:var(--text2);margin-top:6px"></div>
+        <button class="btn-v" onclick="liveNextQ()" style="margin-top:14px" id="lg-next-btn">Question suivante</button>
+      </div>
+      <div style="font-size:12px;color:var(--text3);text-align:center;margin-top:8px" id="lg-score"></div>
     </div>
     <div class="bsp"></div>
   </div>
@@ -980,6 +1014,9 @@ canvas#sc{display:none}
           <div class="bar-col"><div class="bar n" id="b-no" style="height:0%;transition:height 1s ease"></div><div class="barpct" id="bp-n" style="color:var(--red)">0%</div><div class="barlbl">❌ Non</div></div>
         </div>
         <div class="bartot" id="b-st">Sois le premier à voter cette semaine !</div>
+      </div>
+      <div style="margin-bottom:8px">
+        <input type="text" id="wk-nick" class="fi" placeholder="Ton prénom (pour le classement)" maxlength="20" style="text-align:center;font-size:14px;font-weight:600"/>
       </div>
       <div class="wk-vrow">
         <button class="wvb y" id="wvb-y" onclick="voteWeek('oui')">✅ Oui, j'irais</button>
@@ -1204,8 +1241,12 @@ canvas#sc{display:none}
   </div>
   <div style="margin-bottom:14px">
     <label class="fl">Question</label>
-    <textarea id="adm-q" class="fi" rows="3" placeholder="Ex: {{P1}}, si {{P2}} te proposait de..." style="resize:vertical;font-family:inherit"></textarea>
-    <div style="font-size:11px;color:var(--text3);margin-top:4px">Utilise {{P1}} et {{P2}} pour injecter les prénoms des joueurs</div>
+    <textarea id="adm-q" class="fi" rows="3" placeholder="Écris ta question ici, puis clique sur les boutons ci-dessous pour ajouter les prénoms des joueurs où tu veux dans le texte." style="resize:vertical;font-family:inherit"></textarea>
+    <div style="display:flex;gap:8px;margin-top:6px;flex-wrap:wrap;align-items:center">
+      <button type="button" onclick="insertTag('P1')" style="background:var(--p);color:#fff;border:none;border-radius:8px;padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer">+ Joueur 1</button>
+      <button type="button" onclick="insertTag('P2')" style="background:var(--o);color:#fff;border:none;border-radius:8px;padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer">+ Joueur 2</button>
+      <span style="font-size:11px;color:var(--text3)">Clique pour insérer le prénom d'un joueur à l'endroit du curseur</span>
+    </div>
   </div>
   <div style="margin-bottom:14px">
     <label class="fl">Type de réponse</label>
@@ -1299,6 +1340,12 @@ async function loadWeeklyQuestion() {
         var dp = document.querySelector(".wk-q div[style*='border-top']");
         if (dp) dp.innerHTML = "💡 <strong>Point de débat :</strong> " + wq.debate_point;
       }
+      // Pre-fill nickname from localStorage
+      var savedNick = localStorage.getItem("sf_nickname");
+      var nickEl = ge("wk-nick");
+      if (savedNick && nickEl) nickEl.value = savedNick;
+      // Load leaderboard
+      loadWeeklyLeaderboard();
     }
   } catch(e) { console.warn("Weekly question load failed:", e); }
 }
@@ -2738,34 +2785,250 @@ function saveAPI() {
 }
 
 // ── LIVE ──
+var _liveChannel = null;
+var _liveRoom = {code:null, isHost:false, players:[], myNick:"", votes:{}, qIndex:0, scores:{}};
+var _liveQuestions = [];
+
+function getLiveNick() {
+  var n = (ge("live-nick") ? ge("live-nick").value.trim() : "") || localStorage.getItem("sf_nickname") || "";
+  return n;
+}
+
 function genRoom() {
+  var nick = getLiveNick();
+  if (!nick) { toast("⚠️ Entre ton prénom !"); ge("live-nick").focus(); return; }
+  if (!_sb) { toast("⚠️ Connexion serveur indisponible"); return; }
   _qrDone = false;
   var c = Math.random().toString(36).substring(2,6).toUpperCase();
+  _liveRoom.code = c; _liveRoom.isHost = true; _liveRoom.myNick = nick;
   S.roomCode = c; S.liveUsed = true;
+  localStorage.setItem("sf_nickname", nick);
   ge("room-code").textContent = c;
-  ge("room-st").textContent = "✅ Salle creee — envoie ce code !";
-  toast("🎲 Salle " + c + " creee !");
+  ge("room-st").textContent = "✅ Salle créée — envoie ce code !";
+  // Prepare random questions for the game
+  _liveQuestions = pickLiveQuestions(10);
+  liveJoinChannel(c, nick);
+  toast("🎲 Salle " + c + " créée !");
 }
+
 function copyRoom() {
-  if (!S.roomCode) { toast("⚠️ Cree une salle"); return; }
-  navigator.clipboard.writeText(S.roomCode).then(function(){toast("📋 " + S.roomCode + " copie !");}).catch(function(){toast("Code : " + S.roomCode);});
+  if (!_liveRoom.code) { toast("⚠️ Crée une salle"); return; }
+  navigator.clipboard.writeText(_liveRoom.code).then(function(){toast("📋 " + _liveRoom.code + " copié !");}).catch(function(){toast("Code : " + _liveRoom.code);});
 }
+
 function shareRoom() {
-  if (!S.roomCode) { toast("⚠️ Cree une salle"); return; }
-  window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent("⚔️ " + P1() + " te defie sur Sans Filtre ! Code : " + S.roomCode + " 🔥"), "_blank");
+  if (!_liveRoom.code) { toast("⚠️ Crée une salle"); return; }
+  var nick = _liveRoom.myNick || "Quelqu'un";
+  window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent("⚔️ " + nick + " te défie sur Sans Filtre ! Code : " + _liveRoom.code + " 🔥"), "_blank");
 }
+
 function joinRoom() {
+  var nick = getLiveNick();
+  if (!nick) { toast("⚠️ Entre ton prénom !"); ge("live-nick").focus(); return; }
+  if (!_sb) { toast("⚠️ Connexion serveur indisponible"); return; }
   var c = ge("jinp").value.trim().toUpperCase();
-  if (c.length !== 4) { toast("⚠️ Code a 4 lettres"); return; }
+  if (c.length !== 4) { toast("⚠️ Code à 4 lettres"); return; }
+  _liveRoom.code = c; _liveRoom.isHost = false; _liveRoom.myNick = nick;
   S.roomCode = c; S.liveUsed = true;
-  ge("room-code").textContent = c;
-  ge("room-st").textContent = "✅ Connecte a la salle " + c;
-  toast("⚔️ Connecte a " + c + " !");
+  localStorage.setItem("sf_nickname", nick);
+  liveJoinChannel(c, nick);
+  toast("⚔️ Connexion à " + c + "...");
+}
+
+function liveJoinChannel(code, nick) {
+  if (_liveChannel) { _sb.removeChannel(_liveChannel); }
+  _liveChannel = _sb.channel("live-" + code, { config: { presence: { key: getDeviceId() } } });
+
+  _liveChannel.on("presence", {event:"sync"}, function() {
+    var state = _liveChannel.presenceState();
+    var players = [];
+    for (var key in state) {
+      if (state[key] && state[key].length > 0) players.push(state[key][0]);
+    }
+    _liveRoom.players = players;
+    updateLiveWaiting();
+  });
+
+  _liveChannel.on("broadcast", {event:"game_start"}, function(payload) {
+    _liveQuestions = payload.payload.questions || [];
+    _liveRoom.qIndex = 0;
+    _liveRoom.votes = {};
+    _liveRoom.scores = {};
+    showLiveGame();
+  });
+
+  _liveChannel.on("broadcast", {event:"vote"}, function(payload) {
+    var d = payload.payload;
+    _liveRoom.votes[d.nick] = d.value;
+    checkLiveReveal();
+  });
+
+  _liveChannel.on("broadcast", {event:"next_q"}, function(payload) {
+    _liveRoom.qIndex = payload.payload.qIndex || 0;
+    _liveRoom.votes = {};
+    showLiveQuestion();
+  });
+
+  _liveChannel.subscribe(async function(status) {
+    if (status === "SUBSCRIBED") {
+      await _liveChannel.track({nick: nick, device: getDeviceId()});
+      ge("live-lobby").style.display = "none";
+      ge("live-waiting").style.display = "block";
+      ge("lw-code").textContent = code;
+    }
+  });
+}
+
+function updateLiveWaiting() {
+  var el = ge("lw-players");
+  if (!el) return;
+  var names = _liveRoom.players.map(function(p){return p.nick || "?";});
+  el.innerHTML = names.map(function(n){return '<span style="display:inline-block;background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:4px 12px;margin:3px;font-weight:600">' + n + '</span>';}).join("");
+  var st = ge("lw-status");
+  var btn = ge("lw-start");
+  if (_liveRoom.players.length >= 2) {
+    if (st) st.textContent = "✅ " + _liveRoom.players.length + " joueurs connectés !";
+    if (btn && _liveRoom.isHost) btn.style.display = "block";
+  } else {
+    if (st) st.textContent = "En attente de l'adversaire... (" + _liveRoom.players.length + "/2)";
+    if (btn) btn.style.display = "none";
+  }
+}
+
+function liveStartGame() {
+  if (!_liveChannel) return;
+  if (_liveQuestions.length === 0) _liveQuestions = pickLiveQuestions(10);
+  // Serialize questions (just q and type)
+  var qs = _liveQuestions.map(function(q){return {q:q.q, type:q.type, choices:q.choices||null};});
+  _liveChannel.send({type:"broadcast", event:"game_start", payload:{questions:qs}});
+  _liveRoom.qIndex = 0;
+  _liveRoom.votes = {};
+  _liveRoom.scores = {};
+  showLiveGame();
+}
+
+function pickLiveQuestions(n) {
+  var all = [];
+  var cats = Object.keys(QB);
+  for (var i = 0; i < cats.length; i++) {
+    for (var j = 0; j < QB[cats[i]].length; j++) {
+      all.push(QB[cats[i]][j]);
+    }
+  }
+  // Shuffle and pick n
+  for (var k = all.length - 1; k > 0; k--) {
+    var r = Math.floor(Math.random() * (k + 1));
+    var tmp = all[k]; all[k] = all[r]; all[r] = tmp;
+  }
+  return all.slice(0, n);
+}
+
+function showLiveGame() {
+  ge("live-lobby").style.display = "none";
+  ge("live-waiting").style.display = "none";
+  ge("live-game").style.display = "block";
+  showLiveQuestion();
+}
+
+function showLiveQuestion() {
+  var q = _liveQuestions[_liveRoom.qIndex];
+  if (!q) {
+    ge("lg-qtxt").textContent = "Partie terminée !";
+    ge("lg-cat").textContent = "FIN";
+    ge("lg-vote-btns").style.display = "none";
+    ge("lg-voted").style.display = "none";
+    ge("lg-reveal").style.display = "block";
+    ge("lg-reveal-icon").textContent = "🏆";
+    ge("lg-reveal-txt").textContent = "Partie terminée !";
+    var scoreHtml = "";
+    for (var n in _liveRoom.scores) scoreHtml += n + " : " + _liveRoom.scores[n] + " pts | ";
+    ge("lg-reveal-detail").textContent = scoreHtml || "Merci d'avoir joué !";
+    ge("lg-next-btn").style.display = "none";
+    return;
+  }
+  var txt = inject(q.q);
+  ge("lg-qtxt").textContent = txt;
+  ge("lg-cat").textContent = "Question " + (_liveRoom.qIndex + 1) + "/" + _liveQuestions.length;
+  ge("lg-vote-btns").style.display = "flex";
+  ge("lg-voted").style.display = "none";
+  ge("lg-reveal").style.display = "none";
+  ge("lg-next-btn").style.display = _liveRoom.isHost ? "block" : "none";
+  updateLiveScore();
+}
+
+function liveVote(v) {
+  if (!_liveChannel) return;
+  _liveRoom.votes[_liveRoom.myNick] = v;
+  _liveChannel.send({type:"broadcast", event:"vote", payload:{nick:_liveRoom.myNick, value:v}});
+  ge("lg-vote-btns").style.display = "none";
+  ge("lg-voted").style.display = "block";
+  checkLiveReveal();
+}
+
+function checkLiveReveal() {
+  var voteCount = Object.keys(_liveRoom.votes).length;
+  if (voteCount < 2) return;
+  // Reveal
+  ge("lg-voted").style.display = "none";
+  ge("lg-reveal").style.display = "block";
+  var myVote = _liveRoom.votes[_liveRoom.myNick];
+  // Check if everyone agrees
+  var vals = Object.values ? Object.values(_liveRoom.votes) : Object.keys(_liveRoom.votes).map(function(k){return _liveRoom.votes[k];});
+  var allSame = vals.every(function(v){return v === vals[0];});
+  if (allSame) {
+    ge("lg-reveal-icon").textContent = "🤝";
+    ge("lg-reveal-txt").textContent = "Vous êtes d'accord !";
+  } else {
+    ge("lg-reveal-icon").textContent = "⚔️";
+    ge("lg-reveal-txt").textContent = "Désaccord total !";
+  }
+  var detail = "";
+  for (var n in _liveRoom.votes) {
+    var icon = _liveRoom.votes[n] === "oui" ? "✅" : "❌";
+    detail += n + " " + icon + "  ";
+    if (!_liveRoom.scores[n]) _liveRoom.scores[n] = 0;
+    _liveRoom.scores[n] += 5;
+  }
+  ge("lg-reveal-detail").textContent = detail;
+  updateLiveScore();
+  confetti();
+}
+
+function liveNextQ() {
+  if (!_liveChannel || !_liveRoom.isHost) return;
+  _liveRoom.qIndex++;
+  _liveRoom.votes = {};
+  _liveChannel.send({type:"broadcast", event:"next_q", payload:{qIndex:_liveRoom.qIndex}});
+  showLiveQuestion();
+}
+
+function updateLiveScore() {
+  var el = ge("lg-score");
+  if (!el) return;
+  var parts = [];
+  for (var n in _liveRoom.scores) parts.push(n + " : " + _liveRoom.scores[n] + " pts");
+  el.textContent = parts.join(" | ") || "";
+}
+
+function liveLeaveRoom() {
+  if (_liveChannel) { _sb.removeChannel(_liveChannel); _liveChannel = null; }
+  _liveRoom = {code:null, isHost:false, players:[], myNick:"", votes:{}, qIndex:0, scores:{}};
+  ge("live-lobby").style.display = "block";
+  ge("live-waiting").style.display = "none";
+  ge("live-game").style.display = "none";
+  ge("room-code").textContent = "----";
+  ge("room-st").textContent = "Crée ou rejoins une salle";
+  toast("👋 Salle quittée");
 }
 
 // ── SEMAINE ──
 async function voteWeek(v) {
   if (S.weekVoted) { toast("✅ Déjà voté !"); return; }
+  var nickInput = ge("wk-nick");
+  var nick = nickInput ? nickInput.value.trim() : "";
+  if (!nick) { toast("⚠️ Entre ton prénom pour voter !"); if(nickInput) nickInput.focus(); S.weekVoted = false; return; }
+  // Save nickname for next time
+  localStorage.setItem("sf_nickname", nick);
   S.weekVoted = true;
   // Write to Supabase if available
   if (_sb && S._weekQId) {
@@ -2773,7 +3036,8 @@ async function voteWeek(v) {
       await _sb.from("weekly_votes").insert({
         question_id: S._weekQId,
         vote_value: v,
-        device_id: getDeviceId()
+        device_id: getDeviceId(),
+        nickname: nick
       });
       // Reload aggregated results from server
       var votes = await _sb.from("weekly_votes")
@@ -2788,6 +3052,8 @@ async function voteWeek(v) {
         var pctN = 100 - pctY;
         toast(v==="oui"?"✅ Voté OUI ("+pctY+"%) !":"❌ Voté NON ("+pctN+"%) !");
       }
+      // Reload leaderboard
+      loadWeeklyLeaderboard();
     } catch(e) { console.warn("Vote submit failed:", e); }
   } else {
     // Fallback: local only
@@ -2806,6 +3072,38 @@ async function voteWeek(v) {
   addPts(5);
   saveState();
   confetti();
+}
+
+async function loadWeeklyLeaderboard() {
+  if (!_sb || !S._weekQId) return;
+  try {
+    var res = await _sb.from("weekly_votes")
+      .select("nickname, vote_value")
+      .eq("question_id", S._weekQId)
+      .not("nickname", "is", null)
+      .order("created_at", {ascending: false});
+    var el = ge("lb-list");
+    if (!el || !res.data || res.data.length === 0) return;
+    // Count votes per nickname (most recent vote wins)
+    var seen = {};
+    var voters = [];
+    for (var i = 0; i < res.data.length; i++) {
+      var row = res.data[i];
+      var name = (row.nickname || "").trim();
+      if (!name || seen[name.toLowerCase()]) continue;
+      seen[name.toLowerCase()] = true;
+      voters.push({name: name, vote: row.vote_value});
+    }
+    if (voters.length === 0) return;
+    var medals = ["🥇","🥈","🥉"];
+    var html = "";
+    for (var j = 0; j < voters.length && j < 10; j++) {
+      var rank = j < 3 ? medals[j] : (j+1) + ".";
+      var vIcon = voters[j].vote === "oui" ? "✅" : "❌";
+      html += '<div class="lbi"><span class="lbr">' + rank + '</span><span class="lbn">' + voters[j].name + '</span><span class="lbp">' + vIcon + ' a voté</span></div>';
+    }
+    el.innerHTML = html;
+  } catch(e) { console.warn("Leaderboard load failed:", e); }
 }
 function animBars() {
   ge("b-yes").style.height = (S.weekVoted ? 68 : 67) * .88 + "%";
@@ -2884,6 +3182,17 @@ function confetti() {
 
 // ── ADMIN: CUSTOM QUESTIONS ──
 var customQs = [];
+
+function insertTag(tag) {
+  var ta = ge("adm-q");
+  var start = ta.selectionStart;
+  var end = ta.selectionEnd;
+  var val = ta.value;
+  var insert = "{{" + tag + "}}";
+  ta.value = val.substring(0, start) + insert + val.substring(end);
+  ta.selectionStart = ta.selectionEnd = start + insert.length;
+  ta.focus();
+}
 
 function toggleAdmChoices() {
   ge("adm-choices-wrap").style.display = ge("adm-type").value === "choice" ? "block" : "none";
@@ -3657,6 +3966,12 @@ function boot() {
   renderDots();
   renderBadges();
   startCD();
+  // Pre-fill nicknames from localStorage
+  var savedNick = localStorage.getItem("sf_nickname");
+  if (savedNick) {
+    var lnEl = ge("live-nick"); if (lnEl) lnEl.value = savedNick;
+    var wnEl = ge("wk-nick"); if (wnEl) wnEl.value = savedNick;
+  }
   // Load Supabase data after UI is ready
   if (_sb) {
     loadWeeklyQuestion();
