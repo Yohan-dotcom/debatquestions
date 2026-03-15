@@ -44,7 +44,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
 #pg-onboard{min-height:100vh;padding:44px 24px 90px;overflow-y:auto;display:flex;flex-direction:column;align-items:center}
 .ob-flame{font-size:80px;filter:drop-shadow(0 0 32px rgba(249,115,22,.6));animation:flm 2.5s ease-in-out infinite;margin-bottom:14px}
 @keyframes flm{0%,100%{transform:scale(1) rotate(-3deg)}50%{transform:scale(1.1) rotate(3deg)}}
-.ob-h1{font-family:'Syne',sans-serif;font-size:48px;font-weight:800;letter-spacing:-2.5px;line-height:.88;text-align:center;margin-bottom:8px}
+.ob-h1{font-family:'Syne',sans-serif;font-size:48px;font-weight:800;letter-spacing:-2.5px;line-height:1;text-align:center;margin-bottom:8px;padding-bottom:4px}
 .ob-h1 em{font-style:normal;background:linear-gradient(135deg,var(--vl),var(--o));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .ob-sub{font-size:14px;color:var(--text2);text-align:center;line-height:1.6;margin-bottom:24px;max-width:260px}
 /* Mode pills */
@@ -162,7 +162,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
 .qtag.w{background:rgba(124,58,237,.1);color:var(--vl);border:1px solid rgba(124,58,237,.16)}
 .qtag.f{background:rgba(249,115,22,.1);color:var(--o);border:1px solid rgba(249,115,22,.16)}
 .qtag.b{background:rgba(244,63,94,.12);color:var(--red);border:1px solid rgba(244,63,94,.22)}
-.qtext{font-family:'Syne',sans-serif;font-size:23px;font-weight:700;line-height:1.35;color:var(--text);min-height:88px;display:flex;align-items:center;margin-bottom:18px}
+.qtext{font-family:'Syne',sans-serif;font-size:23px;font-weight:700;line-height:1.5;color:var(--text);min-height:88px;display:flex;align-items:center;margin-bottom:18px;padding-bottom:4px}
 .qtext.loading{flex-direction:column;justify-content:center;gap:11px}
 .qspinner{width:30px;height:30px;border:3px solid var(--border2);border-top-color:var(--v);border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -207,6 +207,45 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
 .qab:active{transform:scale(.9)}
 .qab.fav.on{background:rgba(236,72,153,.12);border-color:rgba(236,72,153,.3)}
 .vote-hint{font-size:12px;color:var(--text3)}
+/* Vote Player */
+.vp-grid{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.vp-btn{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 16px;border-radius:14px;border:2px solid var(--border);background:var(--bg3);cursor:pointer;transition:all .2s;min-width:80px}
+.vp-btn:active{transform:scale(.95)}
+.vp-btn.lit{border-color:var(--v);background:rgba(124,58,237,.15);box-shadow:0 0 16px rgba(124,58,237,.2)}
+.vp-em{font-size:28px}
+.vp-nm{font-size:12px;font-weight:700;color:var(--text2)}
+.vp-btn.lit .vp-nm{color:var(--vl)}
+/* Poll */
+.poll-grid{display:flex;flex-direction:column;gap:8px}
+.poll-btn{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:13px;border:2px solid var(--border);background:var(--bg3);cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.poll-btn:active{transform:scale(.97)}
+.poll-btn.lit{border-color:var(--v);background:rgba(124,58,237,.1)}
+.poll-fill{position:absolute;left:0;top:0;bottom:0;background:rgba(124,58,237,.08);border-radius:11px;transition:width .6s}
+.poll-label{font-size:14px;font-weight:600;color:var(--text2);position:relative;z-index:1;flex:1}
+.poll-btn.lit .poll-label{color:var(--vl)}
+.poll-pct{font-size:13px;font-weight:700;color:var(--text3);position:relative;z-index:1}
+/* Vote Reveal Overlay */
+.vr-ov{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:300;display:none;align-items:center;justify-content:center;padding:20px}
+.vr-ov.on{display:flex}
+.vr-card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:28px 20px;max-width:380px;width:100%;text-align:center;animation:pgIn .3s}
+.vr-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:16px}
+.vr-results{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px}
+.vr-item{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:12px 16px;min-width:100px;text-align:center}
+.vr-item-em{font-size:14px}
+.vr-item-name{font-size:11px;color:var(--text3);margin-bottom:4px}
+.vr-item-vote{font-size:14px;font-weight:700;color:var(--text)}
+.vr-item.winner{border-color:var(--gold);background:rgba(245,158,11,.1)}
+.vr-verdict{font-size:15px;font-weight:700;margin-bottom:16px;color:var(--vl)}
+/* Items badge count */
+.qab{position:relative}
+.item-count{position:absolute;top:-4px;right:-4px;background:var(--v);color:#fff;font-size:9px;font-weight:800;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid var(--card)}
+/* Session moments */
+.moments{margin-top:16px}
+.moment{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.moment:last-child{border-bottom:none}
+.moment-ico{font-size:20px;flex-shrink:0}
+.moment-txt{font-size:13px;color:var(--text2);line-height:1.4}
+.moment-txt strong{color:var(--text)}
 /* Story card */
 .story-card{display:none;background:linear-gradient(160deg,#12002A,#1A0840 50%,#0D1A10);border:1px solid rgba(167,139,250,.2);border-radius:26px;overflow:hidden;margin-top:10px}
 .story-card.on{display:block;animation:pgIn .4s ease}
@@ -217,7 +256,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
 .st-scene{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-bottom:8px}
 .st-narrative{font-size:14px;line-height:1.75;color:rgba(237,233,255,.8);font-style:italic;margin-bottom:12px;padding-left:12px;border-left:2px solid var(--vl)}
 .st-qlbl{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--o);margin-bottom:7px}
-.st-q{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;line-height:1.38;color:var(--text);margin-bottom:12px}
+.st-q{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;line-height:1.5;color:var(--text);margin-bottom:12px;padding-bottom:2px}
 .st-chars{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
 .st-char{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:5px 10px;font-size:12px;color:var(--text2)}
 .st-vote{border-top:1px solid rgba(167,139,250,.1);padding-top:13px}
@@ -226,7 +265,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
 .dare-card.on{display:block;animation:pgIn .35s ease}
 .dare-hd{display:flex;align-items:center;gap:9px;margin-bottom:12px}
 .dare-hd-lbl{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--o)}
-.dare-txt{font-family:'Syne',sans-serif;font-size:19px;font-weight:700;line-height:1.38;color:var(--text);margin-bottom:14px}
+.dare-txt{font-family:'Syne',sans-serif;font-size:19px;font-weight:700;line-height:1.5;color:var(--text);margin-bottom:14px;padding-bottom:2px}
 .dare-pts-lbl{font-size:13px;color:var(--o);font-weight:600;margin-bottom:13px}
 .dare-done{width:100%;background:linear-gradient(135deg,var(--o),#C2410C);border:none;border-radius:13px;padding:13px;color:#fff;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:8px}
 .dare-done:active{transform:scale(.97)}
@@ -844,8 +883,8 @@ canvas#sc{display:none}
       <div class="qcard-bot">
         <div class="qactions">
           <div class="qab fav" id="fav-btn" onclick="toggleFav()">🤍</div>
-          <div class="qab" onclick="useSerum()" title="Sérum de Vérité">💉</div>
-          <div class="qab" onclick="useReverse()" title="Uno Reverse">🔄</div>
+          <div class="qab" id="btn-serum" onclick="useSerum()" title="Sérum de Vérité">💉<span class="item-count" id="ic-serum" style="display:none">0</span></div>
+          <div class="qab" id="btn-reverse" onclick="useReverse()" title="Uno Reverse">🔄<span class="item-count" id="ic-reverse" style="display:none">0</span></div>
           <div class="qab" onclick="openShare()">📤</div>
           <div class="qab" onclick="flagQ()">🚩</div>
         </div>
@@ -910,6 +949,10 @@ canvas#sc{display:none}
     <div class="replay-hd"><div class="replay-hd-t">📋 Replay</div><div class="replay-sh" onclick="shareReplay()">📸</div></div>
     <div id="replay-list"></div>
     <div class="replay-ft"><div class="rf-big" id="rf-big">0</div><div class="rf-lbl" id="rf-lbl">votes</div></div>
+  </div>
+  <div class="moments" id="moments" style="display:none">
+    <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:10px">🎬 Moments clés</div>
+    <div id="moments-list"></div>
   </div>
   <div class="pt-box" onclick="goTo('pg-profil')">
     <div class="pt-lbl">🧠 Archétype</div>
@@ -1169,6 +1212,16 @@ canvas#sc{display:none}
   <button class="rv-next" id="rv-next" onclick="closeReveal()">Continuer →</button>
 </div>
 
+<!-- Vote Player Reveal -->
+<div class="vr-ov" id="vr-ov">
+  <div class="vr-card">
+    <div class="vr-title" id="vr-title">🗳️ Résultats du vote</div>
+    <div class="vr-results" id="vr-results"></div>
+    <div class="vr-verdict" id="vr-verdict"></div>
+    <button class="btn-v" onclick="closeVoteReveal()">Continuer →</button>
+  </div>
+</div>
+
 <!-- SHEETS -->
 <div class="ov" id="ov-sh" onclick="closeSheet('ov-sh','sht-sh')"></div>
 <div class="sht" id="sht-sh">
@@ -1359,6 +1412,15 @@ async function loadWeeklyQuestion() {
       var lbl = ge("wk-qlbl"); if(lbl) lbl.textContent = "⚡ Question de la Semaine · " + (wq.category || "Couple");
       var txt = ge("wk-qtxt"); if(txt) txt.textContent = wq.question;
       S._weekQId = wq.id;
+      // Reset weekVoted if question changed
+      var lastWkId = localStorage.getItem("sf_last_wk_id");
+      if (lastWkId !== String(wq.id)) {
+        S.weekVoted = false;
+        localStorage.setItem("sf_last_wk_id", String(wq.id));
+        // Reset vote button states
+        var vy = ge("wvb-y"); if(vy) { vy.classList.remove("voted","y"); }
+        var vn = ge("wvb-n"); if(vn) { vn.classList.remove("voted","n"); }
+      }
       // Load aggregated votes
       var votes = await _sb.from("weekly_votes")
         .select("vote_value")
@@ -1380,10 +1442,9 @@ async function loadWeeklyQuestion() {
           if (v === "oui") { ge("wvb-y").classList.add("voted","y"); }
           else { ge("wvb-n").classList.add("voted","n"); }
           var bs = ge("b-st"); if(bs) bs.textContent = "✅ Ton vote est comptabilisé !";
-          // Show update nickname button if voted without nickname
-          if (!deviceVote.data[0].nickname) {
-            var upBtn = ge("wk-update-nick"); if(upBtn) upBtn.style.display = "block";
-          }
+          // Show update nickname option
+          var upBtn = ge("wk-update-nick");
+          if (upBtn) upBtn.style.display = "block";
         }
       }
       // Update the debate point if available
@@ -1397,6 +1458,9 @@ async function loadWeeklyQuestion() {
       if (savedNick && nickEl) nickEl.value = savedNick;
       // Load leaderboard
       loadWeeklyLeaderboard();
+    } else {
+      // No weekly question found — show fallback
+      var txt = ge("wk-qtxt"); if(txt) txt.textContent = "Aucune question cette semaine — reviens lundi !";
     }
   } catch(e) { console.warn("Weekly question load failed:", e); }
 }
@@ -1522,7 +1586,12 @@ const QB = {
     {q:"{{P1}} a une opportunite de carriere extraordinaire qui exige 2 ans de celibat geographique. {{P2}} dit : 'choisis.' Que fait {{P1}} ?",type:"choice",choices:["La carriere, sans hesiter","Le couple, sans hesiter","Je negocie un compromis","Je romps si on me force a choisir"],discuss_starters:["L'ultimatum est-il une preuve d'amour ou de controle ?","Peut-on demander a l'autre de sacrifier ses ambitions ?"],story:{scene:"APPEL VIDEO, 23H",narrative:"{{P1}} vient d'annoncer la nouvelle. Silence. {{P2}} dit doucement : 'Et nous ?' Le curseur clignote sur le mail de reponse, non envoye.",chars:[{i:"💻",n:"L'offre sur l'ecran"},{i:"📞",n:"Le silence de {{P2}}"}]}},
     {q:"{{P2}} a change physiquement depuis le debut de la relation. {{P1}} est moins attire. On en parle ou on se tait ?",type:"binary",discuss_starters:["L'attraction physique est-elle superficielle ou fondamentale ?","Comment aborder ce sujet sans blesser ?"]},
     {q:"Un couple qui dort dans des chambres separees par choix — evolue ou en crise ?",type:"binary",discuss_starters:["L'intimite du sommeil est-elle necessaire au couple ?","Peut-on etre plus proches en ayant son propre espace ?"]},
-    {q:"{{P1}} et {{P2}} ne sont d'accord sur rien politiquement. Leur couple est-il condamne a long terme ?",type:"binary",discuss_starters:["Les valeurs politiques sont-elles le reflet de valeurs profondes ?","Peut-on vivre avec quelqu'un qui voit le monde differemment ?"],story:{scene:"SOIREE ELECTORALE",narrative:"Les resultats tombent. {{P1}} sourit. {{P2}} se decompose. Ils se regardent. Le silence dure 4 secondes de trop.",chars:[{i:"📺",n:"Les resultats a la tele"},{i:"😶",n:"4 secondes de silence"}]}}
+    {q:"{{P1}} et {{P2}} ne sont d'accord sur rien politiquement. Leur couple est-il condamne a long terme ?",type:"binary",discuss_starters:["Les valeurs politiques sont-elles le reflet de valeurs profondes ?","Peut-on vivre avec quelqu'un qui voit le monde differemment ?"],story:{scene:"SOIREE ELECTORALE",narrative:"Les resultats tombent. {{P1}} sourit. {{P2}} se decompose. Ils se regardent. Le silence dure 4 secondes de trop.",chars:[{i:"📺",n:"Les resultats a la tele"},{i:"😶",n:"4 secondes de silence"}]}},
+    {q:"Qui dans le groupe serait capable de tout plaquer par amour ?",type:"vote_player"},
+    {q:"Votez : qui ici est le ou la plus romantique ?",type:"vote_player"},
+    {q:"Qui serait le plus susceptible de pardonner une infidelite ?",type:"vote_player"},
+    {q:"Faut-il vivre ensemble avant le mariage ?",type:"poll",choices:["Obligatoire","Preferable","Pas necessaire","Surtout pas"]},
+    {q:"Combien de temps avant de dire 'je t'aime' ?",type:"poll",choices:["Moins d'un mois","1 a 3 mois","Quand je le sens","Jamais en premier"]}
   ],
   sexualite:[
     {q:"{{P1}}, sur une echelle de 0 a 5, la pornographie de {{P2}} te pose quel probleme ?",type:"scale",discuss_starters:["La pornographie cree-t-elle des attentes irrealistes ?","Peut-on en consommer sans que ca impacte son couple ?"],story:{scene:"CONVERSATION FRANCHE",narrative:"{{P2}} decide d'etre totalement transparent. Il/elle le dit simplement. {{P1}} prend une seconde avant de repondre.",chars:[{i:"💬",n:"L'aveu de {{P2}}"},{i:"⏱️",n:"3 secondes de silence"}]}},
@@ -1572,7 +1641,10 @@ const QB = {
     {q:"Voler de la nourriture pour nourrir sa famille — crime ou acte de survie ?",type:"binary",discuss_starters:["La loi et la morale sont-elles toujours alignees ?","La societe a-t-elle faillit si on en arrive la ?"]},
     {q:"{{P1}} peut gagner 50 000€ en faisant quelque chose de legal mais ethiquement douteux. Personne ne le saura jamais. {{P1}} le fait ?",type:"binary",discuss_starters:["La morale existe-t-elle quand personne ne regarde ?","L'argent peut-il corrompre n'importe qui si la somme est suffisante ?"],story:{scene:"BUREAU, VENDREDI 18H",narrative:"L'email est la. Un client propose un arrangement. Legal. Opaque. 50 000€ pour {{P1}}. Personne d'autre ne verra cet email.",chars:[{i:"💰",n:"L'email a 50 000€"},{i:"🤫",n:"Le silence du bureau vide"}]}},
     {q:"Devrait-on juger les personnalites du passe avec les valeurs d'aujourd'hui ?",type:"binary",discuss_starters:["Le contexte historique excuse-t-il tout ?","Peut-on admirer l'oeuvre sans admirer l'artiste ?"]},
-    {q:"{{P1}} apprend qu'un produit qu'il utilise chaque jour est fabrique par des enfants. Il continue ?",type:"binary",discuss_starters:["Sommes-nous responsables de ce que nous ignorons volontairement ?","Le boycott individuel a-t-il un impact reel ?"]}
+    {q:"{{P1}} apprend qu'un produit qu'il utilise chaque jour est fabrique par des enfants. Il continue ?",type:"binary",discuss_starters:["Sommes-nous responsables de ce que nous ignorons volontairement ?","Le boycott individuel a-t-il un impact reel ?"]},
+    {q:"Qui dans le groupe a la morale la plus flexible ?",type:"vote_player"},
+    {q:"Votez : qui ici mentirait le mieux a tout le monde ?",type:"vote_player"},
+    {q:"La peine de mort est-elle parfois justifiee ?",type:"poll",choices:["Jamais","Dans des cas extremes","Oui, pour certains crimes","Je ne sais pas"]}
   ],
   jalousie:[
     {q:"{{P2}} recoit un message a 23h : 'Bonne nuit coeur' d'un inconnu. Il/elle l'ignore. {{P1}}, tu fais quoi ?",type:"choice",choices:["Je lui demande calmement","Je surveille discretement","Je lui fais totalement confiance","Ca declenche une dispute"],discuss_starters:["Fait-on confiance ou surveille-t-on ?","La confiance s'impose-t-elle ou se merite-t-elle ?"],story:{scene:"VENDREDI SOIR, CANAPE",narrative:"{{P1}} et {{P2}} regardent une serie. L'ecran de {{P2}} vibre. {{P2}} le retourne sans regarder. {{P1}} a vu le nom avant.",chars:[{i:"📱",n:"Le message de minuit"},{i:"📺",n:"{{P1}} et la serie, au fond"}]}},
@@ -1977,15 +2049,80 @@ function renderWidget(qObj, wid, lid) {
       + '<button class="dvb mid" onclick="castVote(\'mid\',\'🤷 Mitigé\')">🤷</button>'
       + '<button class="dvb non" onclick="castVote(\'non\',\'' + nonLabel + '\')">' + nonLabel + '</button>'
       + '</div>';
+  } else if (effectiveType === "vote_player") {
+    if (l) l.textContent = "Vote pour un joueur";
+    if (S.players.length < 2) {
+      w.innerHTML = '<div class="binary-row"><button class="abt oui" onclick="castVote(\'oui\',\'✅ Oui\')">✅ Oui</button><button class="abt non" onclick="castVote(\'non\',\'❌ Non\')">❌ Non</button></div>';
+    } else {
+      var html = '<div class="vp-grid">';
+      for (var pi = 0; pi < S.players.length; pi++) {
+        var pp = S.players[pi];
+        html += '<button class="vp-btn" onclick="castVotePlayer(' + pi + ')" data-pi="' + pi + '"><span class="vp-em">' + pp.emoji + '</span><span class="vp-nm">' + pp.name + '</span></button>';
+      }
+      html += '</div>';
+      w.innerHTML = html;
+    }
+  } else if (effectiveType === "poll") {
+    if (l) l.textContent = "Sondage anonyme";
+    var choices = qObj.choices || ["Oui","Non","Ca dépend"];
+    var html = '<div class="poll-grid">';
+    for (var i = 0; i < choices.length; i++) {
+      html += '<button class="poll-btn" onclick="castPollVote(' + i + ',this)"><div class="poll-fill" style="width:0%"></div><span class="poll-label">' + inject(choices[i]) + '</span><span class="poll-pct"></span></button>';
+    }
+    html += '</div>';
+    w.innerHTML = html;
   } else {
     w.innerHTML = '<div class="binary-row"><button class="abt oui" onclick="castVote(\'oui\',\'✅ Oui\')">✅ Oui</button><button class="abt non" onclick="castVote(\'non\',\'❌ Non\')">❌ Non</button></div>';
   }
+  updateItemBadges();
 }
 
 function castVoteIdx(i) {
   if (!S.curQObj || !S.curQObj.choices) return;
   castVote("c" + i, inject(S.curQObj.choices[i]).substring(0, 40));
 }
+
+function castVotePlayer(pi) {
+  var p = S.players[pi];
+  if (!p) return;
+  // Highlight selected
+  var btns = document.querySelectorAll(".vp-btn");
+  for (var b = 0; b < btns.length; b++) btns[b].classList.remove("lit");
+  var sel = document.querySelector('.vp-btn[data-pi="'+pi+'"]');
+  if (sel) sel.classList.add("lit");
+  castVote("p" + pi, p.emoji + " " + p.name);
+}
+
+function castPollVote(i, btn) {
+  // Highlight
+  var btns = document.querySelectorAll(".poll-btn");
+  for (var b = 0; b < btns.length; b++) btns[b].classList.remove("lit");
+  btn.classList.add("lit");
+  // Show fake poll results for fun
+  var total = btns.length;
+  var pcts = [];
+  var sum = 0;
+  for (var j = 0; j < total; j++) {
+    var v = j === i ? 40 + Math.floor(Math.random()*25) : 5 + Math.floor(Math.random()*20);
+    pcts.push(v); sum += v;
+  }
+  for (var k = 0; k < total; k++) {
+    var pct = Math.round(pcts[k]/sum*100);
+    btns[k].querySelector(".poll-fill").style.width = pct + "%";
+    btns[k].querySelector(".poll-pct").textContent = pct + "%";
+  }
+  var choices = S.curQObj ? (S.curQObj.choices || []) : [];
+  castVote("poll" + i, choices[i] ? inject(choices[i]).substring(0,40) : ("Option " + (i+1)));
+}
+
+function updateItemBadges() {
+  var ics = ge("ic-serum");
+  var icr = ge("ic-reverse");
+  if (ics) { if (S.serums > 0) { ics.style.display = "flex"; ics.textContent = S.serums; } else ics.style.display = "none"; }
+  if (icr) { if (S.reverses > 0) { icr.style.display = "flex"; icr.textContent = S.reverses; } else icr.style.display = "none"; }
+}
+
+function closeVoteReveal() { ge("vr-ov").classList.remove("on"); }
 
 // Normalize any vote value to oui/non/mid for personality tracking
 function normalizeVote(v) {
@@ -1995,6 +2132,8 @@ function normalizeVote(v) {
   // Scale 1-5: 1-2=non, 3=mid, 4-5=oui
   var n = parseInt(v);
   if (!isNaN(n) && n >= 1 && n <= 5) return n <= 2 ? "non" : (n >= 4 ? "oui" : "mid");
+  // Vote player or poll: return mid
+  if (typeof v === "string" && (v.charAt(0) === "p" || v.substring(0,4) === "poll")) return "mid";
   // Choice: first option tends toward oui, last toward non
   if (typeof v === "string" && v.charAt(0) === "c") {
     var ci = parseInt(v.substring(1));
@@ -2171,6 +2310,11 @@ function advHot() {
 // ── REVEAL OVERLAY ──
 function triggerReveal() {
   if (S.players.length < 2) return;
+  // Vote_player type → special reveal
+  if (S.curQObj && S.curQObj.type === "vote_player") {
+    triggerVotePlayerReveal();
+    return;
+  }
   var ov = ge("rv-ov");
   var q = S.curQ || "";
   ge("rv-q").textContent = q.length > 90 ? q.substring(0,90) + "…" : q;
@@ -2248,8 +2392,48 @@ function closeReveal() {
   var votes = Object.values(S.roundVotes);
   if (votes.length && !votes.every(function(v){return v.value === votes[0].value;})) {
     addPts(2); toast("⚔️ Desaccord bonus +2 pts !");
+    if (!S._moments) S._moments = [];
+    var qShort = (S.curQ || "").substring(0,50);
+    S._moments.push({ico:"⚔️",txt:"Désaccord sur <strong>\"" + qShort + "...\"</strong>"});
   }
   if (S.gameMode === "group" || S.gameMode === "truth_dare") advHot();
+}
+
+function triggerVotePlayerReveal() {
+  var votes = Object.values(S.roundVotes);
+  if (!votes.length) return;
+  // Count votes per player
+  var counts = {};
+  for (var vi = 0; vi < votes.length; vi++) {
+    var v = votes[vi].value;
+    counts[v] = (counts[v] || 0) + 1;
+  }
+  // Find winner
+  var maxCount = 0;
+  var winnerId = null;
+  Object.keys(counts).forEach(function(k) { if (counts[k] > maxCount) { maxCount = counts[k]; winnerId = k; } });
+  // Build results HTML
+  var html = "";
+  for (var i = 0; i < votes.length; i++) {
+    var rv = votes[i];
+    html += '<div class="vr-item"><div class="vr-item-em">' + rv.player.emoji + '</div><div class="vr-item-name">' + rv.player.name + '</div><div class="vr-item-vote">→ ' + (rv.label || rv.value) + '</div></div>';
+  }
+  // Winner card
+  var winnerIdx = winnerId ? parseInt(winnerId.replace("p","")) : 0;
+  var winnerP = S.players[winnerIdx];
+  if (winnerP && maxCount > 1) {
+    html += '<div class="vr-item winner"><div class="vr-item-em" style="font-size:28px">' + winnerP.emoji + '</div><div class="vr-item-name">LE PLUS VOTÉ</div><div class="vr-item-vote" style="color:var(--gold)">' + winnerP.name + ' (' + maxCount + ' votes)</div></div>';
+  }
+  ge("vr-results").innerHTML = html;
+  ge("vr-title").textContent = "🗳️ Qui a été élu ?";
+  var allSame = votes.every(function(v){return v.value === votes[0].value;});
+  ge("vr-verdict").textContent = allSame ? "Unanime ! Tout le monde est d'accord 🤝" : "Votes partagés — le débat est ouvert ⚔️";
+  ge("vr-ov").classList.add("on");
+  if (winnerP) { addPts(2,"Vote joueur"); if (winnerP.pts !== undefined) winnerP.pts += 2; }
+  // Track moment
+  if (!S._moments) S._moments = [];
+  S._moments.push({ico:"🗳️",txt:"<strong>" + (winnerP ? winnerP.name : "?") + "</strong> élu(e) par le groupe"});
+  confetti();
 }
 
 // ── STORY MODE ──
@@ -2525,13 +2709,47 @@ function endSession() {
   var pnsk = ge("pn-sk"); if(pnsk) pnsk.textContent = S.streak;
   if (S.streak >= 3) { addPts(S.streak >= 7 ? 10 : 5); toast("🔥 " + S.streak + " jours de suite ! Bonus !"); }
   ge("ndot").classList.remove("on");
+  // Build moments
+  buildMoments();
   saveState();
   goTo("pg-end");
   confetti();
 }
 
+function buildMoments() {
+  if (!S._moments) S._moments = [];
+  var items = S.sH.slice(-SESSION_LEN);
+  // Auto-generate moments from session data
+  var disagrees = 0;
+  for (var i = 0; i < items.length; i++) {
+    if (items[i].vote === "non") disagrees++;
+  }
+  if (disagrees >= 3) S._moments.push({ico:"🔥",txt:"<strong>" + disagrees + " votes NON</strong> — session sans concession"});
+  if (S.players.length > 1) {
+    var sorted = S.players.slice().sort(function(a,b){return b.pts - a.pts;});
+    if (sorted.length >= 2 && sorted[0].pts > sorted[1].pts) {
+      S._moments.push({ico:"👑",txt:"<strong>" + sorted[0].name + "</strong> domine avec " + sorted[0].pts + " pts"});
+    }
+    if (sorted.length >= 2 && sorted[0].pts === sorted[1].pts) {
+      S._moments.push({ico:"⚔️",txt:"Égalité parfaite entre <strong>" + sorted[0].name + "</strong> et <strong>" + sorted[1].name + "</strong>"});
+    }
+  }
+  if (S.streak >= 3) S._moments.push({ico:"🔥",txt:"<strong>" + S.streak + " jours</strong> de streak — inarrêtable"});
+  // Render moments
+  var mel = ge("moments");
+  var mlist = ge("moments-list");
+  if (mel && mlist && S._moments.length > 0) {
+    mel.style.display = "block";
+    var html = "";
+    for (var m = 0; m < Math.min(S._moments.length, 5); m++) {
+      html += '<div class="moment"><span class="moment-ico">' + S._moments[m].ico + '</span><div class="moment-txt">' + S._moments[m].txt + '</div></div>';
+    }
+    mlist.innerHTML = html;
+  } else if (mel) { mel.style.display = "none"; }
+}
+
 function newSession() {
-  S.sQ = 0; S.sV = []; S.sH = [];
+  S.sQ = 0; S.sV = []; S.sH = []; S._moments = [];
   S.hotSeat = 0; S.roundVotes = {}; S.curVoterIdx = 0; S.pendingVote = null;
   S.players.forEach(function(p){p.pts=0; p.ouiV=0; p.totalV=0;});
   ge("sess-n").textContent = "Question 0 / " + SESSION_LEN;
@@ -3162,19 +3380,19 @@ async function voteWeek(v) {
   if (S.weekVoted) { toast("✅ Déjà voté !"); return; }
   var nickInput = ge("wk-nick");
   var nick = nickInput ? nickInput.value.trim() : "";
-  if (!nick) { toast("⚠️ Entre ton prénom pour voter !"); if(nickInput) nickInput.focus(); S.weekVoted = false; return; }
-  // Save nickname for next time
+  // Allow voting without nickname but encourage it
   localStorage.setItem("sf_nickname", nick);
   S.weekVoted = true;
   // Write to Supabase if available
   if (_sb && S._weekQId) {
     try {
-      await _sb.from("weekly_votes").insert({
+      var insertData = {
         question_id: S._weekQId,
         vote_value: v,
-        device_id: getDeviceId(),
-        nickname: nick
-      });
+        device_id: getDeviceId()
+      };
+      if (nick) insertData.nickname = nick;
+      await _sb.from("weekly_votes").insert(insertData);
       // Reload aggregated results from server
       var votes = await _sb.from("weekly_votes")
         .select("vote_value")
@@ -3188,9 +3406,14 @@ async function voteWeek(v) {
         var pctN = 100 - pctY;
         toast(v==="oui"?"✅ Voté OUI ("+pctY+"%) !":"❌ Voté NON ("+pctN+"%) !");
       }
+      // Show update nickname option
+      var upBtn = ge("wk-update-nick"); if(upBtn) upBtn.style.display = "block";
       // Reload leaderboard
       loadWeeklyLeaderboard();
-    } catch(e) { console.warn("Vote submit failed:", e); }
+    } catch(e) {
+      console.warn("Vote submit failed:", e);
+      toast("⚠️ Erreur réseau — vote sauvegardé localement");
+    }
   } else {
     // Fallback: local only
     var curY = S.wkVotesY || 0;
