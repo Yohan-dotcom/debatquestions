@@ -1142,9 +1142,10 @@ canvas#sc{display:none}
 <div class="sht" id="sht-st">
   <div class="sht-handle"></div>
   <div class="sht-title">⚙️ Paramètres</div>
-  <div class="sht-sub">Clé API pour questions générées en temps réel</div>
-  <label class="fl">🔑 Clé API (optionnel)</label>
-  <input type="password" class="fi" id="api-key" placeholder="sk-proj-…"/>
+  <div class="sht-sub">Clé Google Gemini gratuite pour questions générées par l'IA</div>
+  <label class="fl">🔑 Clé API Gemini (optionnel · gratuit)</label>
+  <input type="password" class="fi" id="api-key" placeholder="AIzaSy…"/>
+  <div style="font-size:11px;color:var(--text3);margin:-8px 0 12px;line-height:1.5">Gratuit · <a href="https://aistudio.google.com/apikey" target="_blank" style="color:var(--vl);text-decoration:underline">Obtenir une clé ici</a></div>
   <button class="btn-v" onclick="saveAPI()" style="margin-bottom:14px">Sauvegarder</button>
   <button class="btn-g" onclick="closeSheet('ov-st','sht-st');document.getElementById('pg-onboard').style.display='flex'">Changer les joueurs →</button>
 </div>
@@ -2002,19 +2003,20 @@ function fromBank() {
 }
 
 async function fromAPI() {
-  var names = {couple:"couple",sexualite:"sexualite",morale:"morale",jalousie:"jalousie",argent:"argent",religion:"religion"};
-  var ints = ["echauffement","tension legere","intense","ultra-polemique","verdict final"];
+  var names = {couple:"couple",sexualite:"sexualité",morale:"morale",jalousie:"jalousie",argent:"argent",religion:"religion"};
+  var ints = ["échauffement","tension légère","intense","ultra-polémique","verdict final"];
   var p1 = P1(), p2 = P2();
-  var prompt = "Genere une question de debat originale en francais sur " + names[S.curCat] + ". Les joueurs s'appellent " + p1 + " et " + p2 + ". Utilise leurs prenoms. Intensite : " + (ints[S.sQ] || "intense") + ". Concrete, 1-2 phrases max. UNIQUEMENT la question.";
+  var prompt = "Génère UNE SEULE question de débat originale en français sur le thème : " + names[S.curCat] + ". Les joueurs s'appellent " + p1 + " et " + p2 + ". Utilise leurs prénoms dans la question. Intensité : " + (ints[S.sQ] || "intense") + ". La question doit être concrète, provocante et personnelle. 1-2 phrases max. Réponds UNIQUEMENT avec la question, sans guillemets ni préambule.";
   try {
-    var r = await fetch("https://api.anthropic.com/v1/messages", {
+    var url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + encodeURIComponent(S.apiKey);
+    var r = await fetch(url, {
       method:"POST",
-      headers:{"Content-Type":"application/json","x-api-key":S.apiKey,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},
-      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:200,messages:[{role:"user",content:prompt}]})
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{maxOutputTokens:200,temperature:0.9}})
     });
     var d = await r.json();
-    if (d.content && d.content[0] && d.content[0].text) {
-      var q = d.content[0].text.trim();
+    if (d.candidates && d.candidates[0] && d.candidates[0].content && d.candidates[0].content.parts && d.candidates[0].content.parts[0]) {
+      var q = d.candidates[0].content.parts[0].text.trim().replace(/^["«]|["»]$/g,"");
       S.recent.push(q);
       return {q:q, type:"binary", story:null};
     }
@@ -2353,11 +2355,12 @@ async function genPerso() {
   var cx = ge("perso-ctx").value;
   var qObj;
   if (S.apiKey) {
-    var p = "Question de debat concrete en francais avec les prenoms " + P1() + " et " + P2() + ". " + age + " ans, " + evt + ", intensite " + intensity + (cx?", situation: "+cx:"") + ". 1-2 phrases. UNIQUEMENT la question.";
+    var p = "Génère UNE SEULE question de débat concrète et personnelle en français avec les prénoms " + P1() + " et " + P2() + ". Tranche d'âge : " + age + ", contexte : " + evt + ", intensité : " + intensity + (cx?", situation spécifique : "+cx:"") + ". 1-2 phrases max. Réponds UNIQUEMENT avec la question, sans guillemets.";
     try {
-      var r = await fetch("https://api.anthropic.com/v1/messages", {method:"POST",headers:{"Content-Type":"application/json","x-api-key":S.apiKey,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:200,messages:[{role:"user",content:p}]})});
+      var url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + encodeURIComponent(S.apiKey);
+      var r = await fetch(url, {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{parts:[{text:p}]}],generationConfig:{maxOutputTokens:200,temperature:0.9}})});
       var d = await r.json();
-      if (d.content && d.content[0] && d.content[0].text) qObj = {q:d.content[0].text.trim(),type:"binary",story:null};
+      if (d.candidates && d.candidates[0] && d.candidates[0].content && d.candidates[0].content.parts && d.candidates[0].content.parts[0]) qObj = {q:d.candidates[0].content.parts[0].text.trim().replace(/^["«]|["»]$/g,""),type:"binary",story:null};
     } catch(e) {}
   }
   if (!qObj) qObj = fromBank();
@@ -2379,7 +2382,7 @@ function openSettings() { openSheet("ov-st","sht-st"); }
 function saveAPI() {
   S.apiKey = ge("api-key").value.trim();
   saveState();
-  toast(S.apiKey ? "🔑 Clé API sauvegardée !" : "⚠️ Mode démo activé");
+  toast(S.apiKey ? "🔑 Clé Gemini sauvegardée — questions IA activées !" : "⚠️ Questions IA désactivées — banque locale active");
   closeSheet("ov-st","sht-st");
 }
 
