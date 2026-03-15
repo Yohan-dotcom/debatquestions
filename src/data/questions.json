@@ -1,0 +1,2072 @@
+{
+  "couple": [
+    {
+      "q": "{{P1}}, tu trouves un relevé bancaire : {{P2}} a un compte secret avec 23 000€. Tu fais quoi dans l'heure ?",
+      "type": "choice",
+      "choices": [
+        "J'affronte directement",
+        "J'enquête discrètement",
+        "Je fais pareil de mon côté",
+        "Je mets fin à la relation"
+      ],
+      "discuss_starters": [
+        "Pourquoi garderait-on de l'argent caché ?",
+        "Est-ce une trahison ou de la prudence ?",
+        "Quelle serait ta limite avant de partir ?"
+      ],
+      "story": {
+        "scene": "VENDREDI SOIR, 23H42",
+        "narrative": "{{P1}} cherche un document. Une enveloppe tombe. Le nom de {{P2}} est dessus — 23 847€ dans une banque inconnue. {{P2}} ferme la porte de la salle de bain.",
+        "chars": [
+          {
+            "i": "✉️",
+            "n": "L'enveloppe tombée"
+          },
+          {
+            "i": "🚿",
+            "n": "{{P2}}, dans la pièce d'à côté"
+          }
+        ]
+      }
+    },
+    {
+      "q": "{{P2}} a un meilleur ami de l'autre sexe. Ils se textos chaque soir jusqu'à minuit. {{P1}}, tu réagis comment vraiment ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Où s'arrête l'amitié et où commence l'infidélité émotionnelle ?",
+        "La transparence totale est-elle possible avec un ami de genre différent ?"
+      ],
+      "story": {
+        "scene": "DIMANCHE MATIN",
+        "narrative": "L'écran de {{P2}} s'allume encore. 'Bonne nuit ❤️' — troisième fois cette semaine. {{P2}} retourne son téléphone sans regarder.",
+        "chars": [
+          {
+            "i": "📱",
+            "n": "Le message de minuit"
+          },
+          {
+            "i": "📖",
+            "n": "{{P1}} qui fait semblant de lire"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Si la science pouvait prédire avec 95% de certitude si {{P1}} et {{P2}} resteraient ensemble 5 ans — vous voudriez savoir ?",
+      "type": "binary",
+      "discuss_starters": [
+        "L'incertitude est-elle nécessaire à l'amour ?",
+        "Changeriez-vous quelque chose si vous saviez ?"
+      ],
+      "story": {
+        "scene": "APPLICATION EN LIGNE",
+        "narrative": "Une startup propose un test de compatibilité à long terme. {{P1}} tombe dessus un soir. Le test est gratuit. Il faut juste entrer deux prénoms.",
+        "chars": [
+          {
+            "i": "💻",
+            "n": "L'algorithme"
+          },
+          {
+            "i": "❓",
+            "n": "Savoir ou ne pas savoir ?"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Un couple qui ne se dispute jamais — c'est sain ou suspect ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Peut-on s'aimer sans jamais se heurter ?",
+        "La dispute est-elle une preuve d'investissement ?"
+      ],
+      "story": {
+        "scene": "DÎNER CHEZ DES AMIS",
+        "narrative": "{{P1}} et {{P2}} rentrent d'un dîner où leurs amis se sont violemment disputés. Sur le chemin, {{P2}} dit : 'Nous, on ne fait jamais ça.'",
+        "chars": [
+          {
+            "i": "🍽️",
+            "n": "La dispute des amis"
+          },
+          {
+            "i": "💬",
+            "n": "La phrase de {{P2}}"
+          }
+        ]
+      }
+    },
+    {
+      "q": "{{P2}} prend une décision de vie majeure sans consulter {{P1}}, persuadé/e que c'est la bonne pour vous deux. Amour ou manque de respect ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Les grandes décisions doivent-elles toujours être partagées ?",
+        "Agir pour le bien de l'autre est-il paternaliste ?"
+      ],
+      "story": {
+        "scene": "LUNDI MATIN, 8H",
+        "narrative": "{{P1}} trouve un bail signé sur la table. {{P2}} a choisi un appartement — surprise. {{P1}} avait prévu autre chose pour cette période.",
+        "chars": [
+          {
+            "i": "📋",
+            "n": "Le bail signé"
+          },
+          {
+            "i": "😶",
+            "n": "{{P1}}, qui réalise"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Peut-on vraiment pardonner une infidélité, ou se ment-on à soi-même ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Le pardon est-il possible ou juste différé ?",
+        "Que signifie vraiment 'oublier' ?"
+      ],
+      "story": {
+        "scene": "6 MOIS APRÈS",
+        "narrative": "{{P1}} et {{P2}} ont décidé de reconstruire. Ce soir, {{P2}} rentre tard encore une fois. {{P1}} dit que ça va. {{P2}} sait que ce n'est pas vrai.",
+        "chars": [
+          {
+            "i": "⏰",
+            "n": "6 mois de reconstruction"
+          },
+          {
+            "i": "🔄",
+            "n": "La même scène qui recommence"
+          }
+        ]
+      }
+    },
+    {
+      "q": "{{P1}}, si tu lisais tous les messages de {{P2}} des 3 dernières années, quelque chose changerait dans votre relation ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La transparence totale est-elle une invasion ou une preuve de confiance ?",
+        "Savoir ou ignorer — que préfèrerais-tu vraiment ?"
+      ],
+      "story": {
+        "scene": "3H DU MATIN",
+        "narrative": "{{P2}} a oublié son téléphone déverrouillé sur la table. {{P1}} se lève boire de l'eau. L'écran s'allume tout seul sur une conversation.",
+        "chars": [
+          {
+            "i": "📱",
+            "n": "L'écran allumé"
+          },
+          {
+            "i": "🌙",
+            "n": "3h du matin"
+          }
+        ]
+      }
+    },
+    {
+      "q": "La passion dans un couple : ça se maintient naturellement ou ça se travaille activement ?",
+      "type": "binary",
+      "discuss_starters": [
+        "L'effort tue-t-il la spontanéité ?",
+        "Comment savoir si on travaille l'amour ou si on le force ?"
+      ],
+      "story": {
+        "scene": "5EME ANNIVERSAIRE",
+        "narrative": "{{P1}} et {{P2}} sont dans le même restaurant qu'au premier soir. Mais cette fois ils consultent leur téléphone en attendant les plats.",
+        "chars": [
+          {
+            "i": "🕯️",
+            "n": "Le même restaurant"
+          },
+          {
+            "i": "📅",
+            "n": "5 ans, et puis quoi ?"
+          }
+        ]
+      }
+    },
+    {
+      "q": "La jalousie dans un couple : jusqu'à quel degré est-elle encore une preuve d'amour ?",
+      "type": "scale",
+      "discuss_starters": [
+        "La jalousie protège-t-elle ou empoisonne-t-elle ?",
+        "Peut-on aimer sans ressentir de jalousie ?"
+      ],
+      "story": {
+        "scene": "SOIREE D'ANNIVERSAIRE",
+        "narrative": "{{P2}} rit fort avec quelqu'un que {{P1}} ne connaît pas. Depuis 20 minutes. {{P1}} remplit son verre et observe depuis l'autre côté de la pièce.",
+        "chars": [
+          {
+            "i": "🥂",
+            "n": "La soirée"
+          },
+          {
+            "i": "👀",
+            "n": "Le regard de {{P1}}"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Faut-il tout se dire dans un couple — passé, pensées, doutes ?",
+      "type": "choice",
+      "choices": [
+        "Oui, absolument tout",
+        "Non, certaines choses se taisent",
+        "Tout sauf le passé",
+        "Tout sauf les fantasmes"
+      ],
+      "discuss_starters": [
+        "Le silence peut-il être une forme de respect ?",
+        "L'honnêteté totale est-elle possible ?"
+      ]
+    },
+    {
+      "q": "La routine entre {{P1}} et {{P2}} : piège insidieux ou signe de solidité ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La sécurité vaut-elle ce qu'on sacrifie en imprévisibilité ?",
+        "Faut-il casser la routine ou l'accepter ?"
+      ],
+      "story": {
+        "scene": "MERCREDI, COMME TOUS LES MERCREDIS",
+        "narrative": "{{P1}} commande la même pizza. {{P2}} met le même film. Ils sont bien. {{P1}} se souvient pourtant que le premier soir, tout était électrique.",
+        "chars": [
+          {
+            "i": "🍕",
+            "n": "La même commande"
+          },
+          {
+            "i": "📺",
+            "n": "Le même film, encore"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Peut-on construire une relation solide avec quelqu'un dont les convictions politiques sont radicalement opposées ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Les valeurs politiques révèlent-elles les valeurs profondes ?",
+        "L'amour peut-il transcender les désaccords fondamentaux ?"
+      ]
+    },
+    {
+      "q": "{{P1}}, ton partenaire gagne 3 fois plus que toi. Dans les décisions financières, voix égale ou proportionnelle ?",
+      "type": "choice",
+      "choices": [
+        "Voix égale — c'est un couple",
+        "Proportionnelle au revenu",
+        "Ca dépend de la décision",
+        "Je refuserais cette situation"
+      ],
+      "discuss_starters": [
+        "L'argent crée-t-il forcément un déséquilibre de pouvoir ?",
+        "Comment maintenir l'égalité face aux inégalités financières ?"
+      ]
+    },
+    {
+      "q": "L'amour romantique peut-il durer toute une vie, ou finit-il toujours par se transformer en autre chose ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Qu'est-ce qui remplace la passion sur le long terme ?",
+        "La transformation est-elle une fin ou une évolution ?"
+      ]
+    },
+    {
+      "q": "{{P1}} et {{P2}} : qui s'adapte quand vos projets de vie divergent vraiment ?",
+      "type": "choice",
+      "choices": [
+        "Celui qui aime le plus",
+        "Le moins ambitieux",
+        "On negocie ensemble",
+        "Ni l'un ni l'autre"
+      ],
+      "discuss_starters": [
+        "L'amour doit-il primer sur les ambitions personnelles ?",
+        "Peut-on construire une relation a distance ?"
+      ],
+      "story": {
+        "scene": "AEROPORT, TERMINAL 2E",
+        "narrative": "{{P1}} a son vol dans 40 minutes. Mutation a Toronto — 2 ans. {{P2}} est la avec sa valise. Aucun des deux n'a dit clairement ce qu'il attend.",
+        "chars": [
+          {
+            "i": "✈️",
+            "n": "Toronto, 2 ans"
+          },
+          {
+            "i": "💔",
+            "n": "{{P2}}, sur le quai"
+          }
+        ]
+      }
+    },
+    {
+      "q": "{{P1}} decouvre que {{P2}} a garde des photos de son ex dans un dossier cache. Acceptable ou trahison ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Le passe numerique appartient-il au couple ?",
+        "Effacer ses souvenirs est-il necessaire pour avancer ?"
+      ],
+      "story": {
+        "scene": "SAMEDI MATIN, RANGEMENT",
+        "narrative": "{{P1}} cherche une photo de vacances dans le telephone de {{P2}}. Un dossier cache. 47 photos. Toutes avec l'ex.",
+        "chars": [
+          {
+            "i": "📂",
+            "n": "Le dossier cache"
+          },
+          {
+            "i": "📸",
+            "n": "47 souvenirs d'avant"
+          }
+        ]
+      }
+    },
+    {
+      "q": "{{P2}} refuse d'afficher sa relation avec {{P1}} sur les reseaux sociaux. Prudence ou honte ?",
+      "type": "choice",
+      "choices": [
+        "Prudence, je comprends",
+        "Un peu suspect",
+        "C'est irrespectueux",
+        "Je m'en fiche des reseaux"
+      ],
+      "discuss_starters": [
+        "Les reseaux sociaux sont-ils une preuve d'engagement ?",
+        "Peut-on vivre son amour sans le montrer au monde ?"
+      ]
+    },
+    {
+      "q": "Apres 10 ans ensemble, {{P1}} et {{P2}} n'ont plus rien a se dire au diner. C'est grave ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Le silence confortable est-il un signe de maturite ou d'ennui ?",
+        "Faut-il forcer la conversation ou accepter le calme ?"
+      ],
+      "story": {
+        "scene": "RESTAURANT HABITUEL, 20H30",
+        "narrative": "Le serveur apporte les plats. {{P1}} et {{P2}} mangent en silence. Autour, les couples parlent fort. {{P2}} sourit quand meme.",
+        "chars": [
+          {
+            "i": "🍽️",
+            "n": "Le silence du diner"
+          },
+          {
+            "i": "😊",
+            "n": "Le sourire de {{P2}}"
+          }
+        ]
+      }
+    },
+    {
+      "q": "{{P1}} apprend que les parents de {{P2}} n'approuvent pas leur relation. {{P2}} doit-il choisir ?",
+      "type": "binary",
+      "discuss_starters": [
+        "L'amour d'un partenaire peut-il compenser la perte d'une famille ?",
+        "A quel point les parents doivent-ils influencer les choix amoureux ?"
+      ]
+    },
+    {
+      "q": "Peut-on aimer deux personnes en meme temps de maniere egale et sincere ?",
+      "type": "binary",
+      "discuss_starters": [
+        "L'amour est-il une ressource limitee ?",
+        "Le polyamour est-il une forme valide de relation ou un manque d'engagement ?"
+      ]
+    },
+    {
+      "q": "{{P1}} a une opportunite de carriere extraordinaire qui exige 2 ans de celibat geographique. {{P2}} dit : 'choisis.' Que fait {{P1}} ?",
+      "type": "choice",
+      "choices": [
+        "La carriere, sans hesiter",
+        "Le couple, sans hesiter",
+        "Je negocie un compromis",
+        "Je romps si on me force a choisir"
+      ],
+      "discuss_starters": [
+        "L'ultimatum est-il une preuve d'amour ou de controle ?",
+        "Peut-on demander a l'autre de sacrifier ses ambitions ?"
+      ],
+      "story": {
+        "scene": "APPEL VIDEO, 23H",
+        "narrative": "{{P1}} vient d'annoncer la nouvelle. Silence. {{P2}} dit doucement : 'Et nous ?' Le curseur clignote sur le mail de reponse, non envoye.",
+        "chars": [
+          {
+            "i": "💻",
+            "n": "L'offre sur l'ecran"
+          },
+          {
+            "i": "📞",
+            "n": "Le silence de {{P2}}"
+          }
+        ]
+      }
+    },
+    {
+      "q": "{{P2}} a change physiquement depuis le debut de la relation. {{P1}} est moins attire. On en parle ou on se tait ?",
+      "type": "binary",
+      "discuss_starters": [
+        "L'attraction physique est-elle superficielle ou fondamentale ?",
+        "Comment aborder ce sujet sans blesser ?"
+      ]
+    },
+    {
+      "q": "Un couple qui dort dans des chambres separees par choix — evolue ou en crise ?",
+      "type": "binary",
+      "discuss_starters": [
+        "L'intimite du sommeil est-elle necessaire au couple ?",
+        "Peut-on etre plus proches en ayant son propre espace ?"
+      ]
+    },
+    {
+      "q": "{{P1}} et {{P2}} ne sont d'accord sur rien politiquement. Leur couple est-il condamne a long terme ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Les valeurs politiques sont-elles le reflet de valeurs profondes ?",
+        "Peut-on vivre avec quelqu'un qui voit le monde differemment ?"
+      ],
+      "story": {
+        "scene": "SOIREE ELECTORALE",
+        "narrative": "Les resultats tombent. {{P1}} sourit. {{P2}} se decompose. Ils se regardent. Le silence dure 4 secondes de trop.",
+        "chars": [
+          {
+            "i": "📺",
+            "n": "Les resultats a la tele"
+          },
+          {
+            "i": "😶",
+            "n": "4 secondes de silence"
+          }
+        ]
+      }
+    }
+  ],
+  "sexualite": [
+    {
+      "q": "{{P1}}, sur une echelle de 0 a 5, la pornographie de {{P2}} te pose quel probleme ?",
+      "type": "scale",
+      "discuss_starters": [
+        "La pornographie cree-t-elle des attentes irrealistes ?",
+        "Peut-on en consommer sans que ca impacte son couple ?"
+      ],
+      "story": {
+        "scene": "CONVERSATION FRANCHE",
+        "narrative": "{{P2}} decide d'etre totalement transparent. Il/elle le dit simplement. {{P1}} prend une seconde avant de repondre.",
+        "chars": [
+          {
+            "i": "💬",
+            "n": "L'aveu de {{P2}}"
+          },
+          {
+            "i": "⏱️",
+            "n": "3 secondes de silence"
+          }
+        ]
+      }
+    },
+    {
+      "q": "{{P2}} propose une relation ouverte a {{P1}} 'juste pour essayer'. Quelle est la vraie premiere reaction de {{P1}} ?",
+      "type": "discuss",
+      "discuss_starters": [
+        "Peut-on vraiment separer amour et desir ?",
+        "La jalousie est-elle incompatible avec la non-monogamie ?",
+        "Qui propose ce genre de chose, et pourquoi ?"
+      ],
+      "story": {
+        "scene": "VACANCES, JOUR 4",
+        "narrative": "{{P2}} dit : 'Je t'ai toujours admire pour ton ouverture d'esprit.' Puis la phrase arrive. {{P1}} fixe la mer.",
+        "chars": [
+          {
+            "i": "🌊",
+            "n": "La conversation en vacances"
+          },
+          {
+            "i": "💑",
+            "n": "{{P2}}, qui attend"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Le manque de desir de {{P2}} envers {{P1}} apres 5 ans : signe de probleme ou evolution normale ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Le desir s'entretient-il ou se decouvre-t-il toujours ?",
+        "Comment parler de ce sujet sans blesser ?"
+      ],
+      "story": {
+        "scene": "CHAMBRE, LUNDI SOIR",
+        "narrative": "{{P1}} s'approche. Un leger recul de {{P2}}. 'Fatigue.' 4eme fois ce mois. {{P1}} se retourne sans rien dire.",
+        "chars": [
+          {
+            "i": "😶",
+            "n": "Le recul de {{P2}}"
+          },
+          {
+            "i": "🌙",
+            "n": "La question non posee"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Y a-t-il des desirs qu'on devrait toujours garder pour soi, meme dans un couple tres complice ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Le jardin secret est-il une liberte ou une barriere ?",
+        "Tout partager peut-il fragiliser une relation ?"
+      ]
+    },
+    {
+      "q": "L'attirance physique de {{P1}} pour quelqu'un d'autre — normale, inevitable, ou problematique ?",
+      "type": "choice",
+      "choices": [
+        "Normale et inevitable",
+        "Normale mais a gerer",
+        "Signe d'un manque",
+        "Problematique si recurrente"
+      ],
+      "discuss_starters": [
+        "L'attraction est-elle involontaire ou controlable ?",
+        "Doit-on en parler a son partenaire ?"
+      ],
+      "story": {
+        "scene": "SOIREE ENTRE AMIS",
+        "narrative": "Un inconnu s'assied a cote de {{P1}}. La conversation est brillante. {{P2}} observe depuis l'autre cote de la salle.",
+        "chars": [
+          {
+            "i": "✨",
+            "n": "La soiree et l'inconnu"
+          },
+          {
+            "i": "👀",
+            "n": "{{P2}} qui observe"
+          }
+        ]
+      }
+    },
+    {
+      "q": "La fidelite physique est-elle plus importante que la fidelite emotionnelle ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Laquelle vous blesserait davantage ?",
+        "La frontiere emotionnelle est-elle plus floue ?"
+      ]
+    },
+    {
+      "q": "{{P2}} te dit : 'J'ai besoin qu'on explore de nouvelles choses ensemble.' {{P1}}, comment tu l'interpretes ?",
+      "type": "choice",
+      "choices": [
+        "Une invitation excitante",
+        "Un signal de manque",
+        "Je veux savoir quoi exactement",
+        "Je me sens juge"
+      ],
+      "discuss_starters": [
+        "Comment exprimer des besoins sans blesser ?",
+        "La curiosite peut-elle etre un moteur positif ?"
+      ]
+    },
+    {
+      "q": "{{P1}} decouvre que {{P2}} a un desir profond qu'il/elle n'a jamais revele depuis 3 ans. Comment {{P1}} reagit ?",
+      "type": "discuss",
+      "discuss_starters": [
+        "Pourquoi garde-t-on des desirs caches ?",
+        "La honte joue-t-elle un role et comment la depasser ?",
+        "Que dit-on sur la securite dans le couple ?"
+      ],
+      "story": {
+        "scene": "LA NUIT DES AVEUX",
+        "narrative": "Ils ont bu un peu. {{P2}} commence : 'Il y a quelque chose que je n'ai jamais dit a personne.' La phrase suivante change la facon dont {{P1}} regarde {{P2}}.",
+        "chars": [
+          {
+            "i": "🕯️",
+            "n": "La nuit des aveux"
+          },
+          {
+            "i": "🔐",
+            "n": "3 ans de secret"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Peut-on avoir une relation durable et epanouie avec une incompatibilite physique reconnue des deux cotes ?",
+      "type": "binary",
+      "discuss_starters": [
+        "L'intimite physique est-elle indispensable ?",
+        "Peut-on construire autre chose a la place ?"
+      ]
+    },
+    {
+      "q": "La nudite quotidienne en couple renforce ou erode le desir sur le long terme ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La familiarite tue-t-elle le mystere ?",
+        "Comment maintenir le desir face au quotidien ?"
+      ]
+    },
+    {
+      "q": "Doit-on se forcer a avoir des rapports quand l'envie n'est pas la, par amour pour l'autre ?",
+      "type": "binary",
+      "discuss_starters": [
+        "L'effort est-il de l'amour ou du sacrifice ?",
+        "Ou s'arrete l'amour et ou commence la contrainte ?"
+      ]
+    },
+    {
+      "q": "Une rencontre physique d'un soir sans sentiment — trahison aussi grave qu'une liaison amoureuse durable ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Le corps et le coeur sont-ils dissociables ?",
+        "Laquelle vous blesserait davantage, honnetement ?"
+      ]
+    },
+    {
+      "q": "L'ennui dans la vie intime d'un couple est-il plus difficile a admettre que l'incompatibilite totale ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Pourquoi est-il si difficile d'en parler ?",
+        "Que faire quand on s'ennuie mais qu'on s'aime ?"
+      ]
+    },
+    {
+      "q": "Le sexe peut-il etre une facon valide de faire la paix apres une dispute, ou c'est esquiver le probleme ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Peut-on separer la resolution de conflit de l'intimite ?",
+        "Faut-il regler le verbal avant le physique ?"
+      ]
+    },
+    {
+      "q": "{{P2}} suit des dizaines de comptes tres seduisants sur Instagram. {{P1}}, sur une echelle de 0 a 5, ca te pose probleme ?",
+      "type": "scale",
+      "discuss_starters": [
+        "Les reseaux sociaux sont-ils une zone de tension dans le couple ?",
+        "Peut-on avoir une vie publique seduisante sans impact sur le couple ?"
+      ],
+      "story": {
+        "scene": "LUNDI MATIN",
+        "narrative": "{{P1}} voit le feed de {{P2}} par-dessus son epaule. 400 likes en 3 heures. Un commentaire d'un inconnu. {{P2}} repond avec un emoji.",
+        "chars": [
+          {
+            "i": "📱",
+            "n": "Le feed de {{P2}}"
+          },
+          {
+            "i": "💬",
+            "n": "Le commentaire de l'inconnu"
+          }
+        ]
+      }
+    },
+    {
+      "q": "{{P1}} decouvre que {{P2}} a simule du plaisir pendant des mois. Trahison ou protection ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Simuler est-il un mensonge ou un acte d'amour maladroit ?",
+        "Comment reconstruire l'honnetete intime apres ca ?"
+      ]
+    },
+    {
+      "q": "Le consentement dans un couple de longue duree doit-il etre explicite a chaque fois ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La routine cree-t-elle un consentement implicite ?",
+        "Peut-on refuser sans justifier apres 10 ans ?"
+      ]
+    },
+    {
+      "q": "{{P1}} fantasme sur quelqu'un de l'entourage de {{P2}}. {{P1}} en parle ou enterre ca ?",
+      "type": "choice",
+      "choices": [
+        "J'en parle honnetement",
+        "J'enterre et ca passe",
+        "J'evite cette personne",
+        "C'est normal, je gere"
+      ],
+      "discuss_starters": [
+        "Le fantasme est-il controlable ?",
+        "La transparence a-t-elle des limites meme dans un couple ?"
+      ],
+      "story": {
+        "scene": "BARBECUE CHEZ DES AMIS",
+        "narrative": "{{P1}} croise le regard de cette personne pour la troisieme fois. {{P2}} rit a cote. {{P1}} sait exactement ce qu'il ressent.",
+        "chars": [
+          {
+            "i": "🔥",
+            "n": "Le barbecue"
+          },
+          {
+            "i": "👀",
+            "n": "Le regard de trop"
+          }
+        ]
+      }
+    },
+    {
+      "q": "L'education sexuelle devrait-elle inclure le plaisir, pas seulement les risques ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Parler de plaisir encourage-t-il ou protege-t-il ?",
+        "Notre education nous a-t-elle prepare a l'intimite ?"
+      ]
+    },
+    {
+      "q": "{{P2}} propose de regarder du contenu pour adultes ensemble. {{P1}}, ca rapproche ou ca complique ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Partager un fantasme renforce-t-il la complicite ?",
+        "Les standards irrealistes influencent-ils le couple ?"
+      ]
+    },
+    {
+      "q": "Apres combien de temps sans intimite un couple devrait-il serieusement s'inquieter ?",
+      "type": "choice",
+      "choices": [
+        "1 mois",
+        "3 mois",
+        "6 mois",
+        "Ca depend du couple"
+      ],
+      "discuss_starters": [
+        "Le temps est-il un indicateur fiable ?",
+        "L'intimite physique est-elle un pilier ou un bonus ?"
+      ]
+    },
+    {
+      "q": "La comparaison avec les ex — inevitable ou destructrice ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Peut-on s'empecher de comparer ?",
+        "La comparaison est-elle un outil d'amelioration ou de destruction ?"
+      ]
+    },
+    {
+      "q": "Un couple qui n'a jamais parle de ses envies profondes apres 5 ans — c'est de la pudeur ou un echec de communication ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Le silence sur l'intimite protege-t-il ou prive-t-il ?",
+        "Comment ouvrir cette conversation sans malaise ?"
+      ]
+    }
+  ],
+  "morale": [
+    {
+      "q": "Un ami commun confie a {{P1}} qu'il trompe sa femme depuis 2 ans. Sa femme est aussi votre amie. {{P1}} fait quoi ?",
+      "type": "choice",
+      "choices": [
+        "Je lui dis directement",
+        "J'exige qu'il l'avoue",
+        "Je garde le secret",
+        "Je prends mes distances"
+      ],
+      "discuss_starters": [
+        "Quelle est l'obligation morale envers un ami vs une autre amie ?",
+        "Interferer dans un couple est-il toujours une erreur ?"
+      ],
+      "story": {
+        "scene": "CAFE, MARDI MIDI",
+        "narrative": "L'ami baisse la voix. Ce qu'il dit ensuite va changer le diner du vendredi — celui ou tout le monde se retrouve.",
+        "chars": [
+          {
+            "i": "🤐",
+            "n": "L'aveu de l'ami"
+          },
+          {
+            "i": "📅",
+            "n": "Le diner de vendredi qui approche"
+          }
+        ]
+      }
+    },
+    {
+      "q": "{{P1}} voit quelqu'un perdre son portefeuille. 800€ dedans. Personne ne regarde. {{P1}}, qu'est-ce qu'il fait vraiment ?",
+      "type": "choice",
+      "choices": [
+        "Je le rends integralement",
+        "Je garde l'argent, je rends le reste",
+        "Je le garde",
+        "Je le remets a un commerce"
+      ],
+      "discuss_starters": [
+        "La propriete d'un objet trouve est-elle nulle ?",
+        "L'anonymat change-t-il notre comportement moral ?"
+      ],
+      "story": {
+        "scene": "RUE COMMERÇANTE, MIDI",
+        "narrative": "La personne trebuche, le portefeuille glisse sous une voiture. Elle continue sans s'en apercevoir. {{P1}} le ramasse. 8 billets de 100€.",
+        "chars": [
+          {
+            "i": "👴",
+            "n": "La personne qui ne sait pas"
+          },
+          {
+            "i": "💶",
+            "n": "800€ dans les mains"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Mentir pour proteger {{P2}} — acte d'amour ou lachete qui finira par tout detruire ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Le mensonge protecteur est-il toujours justifie ?",
+        "Que se passe-t-il quand la verite finit par sortir ?"
+      ],
+      "story": {
+        "scene": "BUREAU DU PATRON, 17H",
+        "narrative": "Le patron demande directement a {{P1}} : '{{P2}} etait avec vous vendredi ?' {{P2}} n'etait pas la. {{P1}} a 3 secondes.",
+        "chars": [
+          {
+            "i": "💼",
+            "n": "Le bureau du patron"
+          },
+          {
+            "i": "⏱️",
+            "n": "3 secondes pour decider"
+          }
+        ]
+      }
+    },
+    {
+      "q": "La peine de mort peut-elle etre moralement defendable dans certaines circonstances ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La justice peut-elle legitimement ôter la vie ?",
+        "La rehabilitation est-elle toujours possible ?",
+        "Quand une societe renonce-t-elle a ses valeurs ?"
+      ]
+    },
+    {
+      "q": "{{P1}} peut sauver 1 proche OU 5 inconnus. Quelques secondes pour decider. La vraie reponse honnete ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La logique utilitariste doit-elle s'appliquer aux emotions ?",
+        "Peut-on vraiment decider en quelques secondes ?",
+        "Le devoir prime-t-il sur l'attachement ?"
+      ]
+    },
+    {
+      "q": "L'honnetete absolue de {{P1}} en toutes circonstances : vertu ou forme de brutalite sociale ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La verite est-elle toujours bienveillante ?",
+        "Y a-t-il des situations ou le mensonge est plus humain ?"
+      ]
+    },
+    {
+      "q": "Face a une loi injuste, la desobeissance civile est-elle un droit, un devoir, ou une lachete ?",
+      "type": "choice",
+      "choices": [
+        "Un droit fondamental",
+        "Un devoir moral",
+        "Une lachete deguisee",
+        "Ca depend de la cause"
+      ],
+      "discuss_starters": [
+        "Quand la loi perd-elle sa legitimite ?",
+        "La resistance pacifique est-elle toujours efficace ?"
+      ]
+    },
+    {
+      "q": "{{P1}} sait quelque chose depuis 3 mois qui ferait du mal a {{P2}} mais sans impact concret. {{P1}} le dit ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Le droit de savoir prime-t-il toujours ?",
+        "Qui decide de ce qui 'compte' vraiment ?"
+      ],
+      "story": {
+        "scene": "SOIREE CALME",
+        "narrative": "{{P1}} porte ce secret depuis 3 mois. Ce n'est pas grave — mais {{P2}} aurait voulu savoir. Ce soir, l'occasion est parfaite.",
+        "chars": [
+          {
+            "i": "🤐",
+            "n": "3 mois de secret"
+          },
+          {
+            "i": "🌙",
+            "n": "Ce soir, l'occasion ideale"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Ton collegue vole regulierement de petites fournitures au bureau. 'Tout le monde le fait.' Tu denonces ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Le 'tout le monde le fait' est-il une justification valide ?",
+        "Denoncer est-il trahir ou etre integre ?"
+      ]
+    },
+    {
+      "q": "Si {{P1}} savait qu'il ne serait jamais pris, y a-t-il quelque chose d'illegal qu'il ferait ?",
+      "type": "discuss",
+      "discuss_starters": [
+        "La morale depend-elle du risque de punition ?",
+        "Quelles sont les 'infractions acceptables' selon vous ?",
+        "Que revele cette reponse sur nos vraies valeurs ?"
+      ],
+      "story": {
+        "scene": "HYPOTHESE DU SOIR",
+        "narrative": "{{P2}} pose la question innocemment. {{P1}} sourit. Mais il y a quelque chose qui passe dans ses yeux avant le sourire.",
+        "chars": [
+          {
+            "i": "🎲",
+            "n": "La question du jeu"
+          },
+          {
+            "i": "👀",
+            "n": "Ce que {{P2}} a vu"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Peut-on etre heureux dans une societe profondement injuste sans en etre complice ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Qu'est-ce que la complicite passive ?",
+        "La resignation est-elle une forme d'acceptation ?"
+      ]
+    },
+    {
+      "q": "L'amour peut-il justifier une action normalement inacceptable ?",
+      "type": "binary",
+      "discuss_starters": [
+        "L'amour donne-t-il des droits supplementaires ?",
+        "Ou s'arrete la justification par l'amour ?"
+      ]
+    },
+    {
+      "q": "Y a-t-il des actes absolument imperdomnables, ou tout merite une deuxieme chance ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Pardonner, c'est pour qui — pour l'autre ou pour soi ?",
+        "Certains actes sont-ils reellement imperdomnables ?"
+      ]
+    },
+    {
+      "q": "La culpabilite de {{P1}} : outil moral utile ou autopunition improductive ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La culpabilite pousse-t-elle au changement ou paralyse-t-elle ?",
+        "Peut-on choisir de ne plus culpabiliser ?"
+      ]
+    },
+    {
+      "q": "{{P1}} peut temoigner en disant la verite qui condamne un proche, ou mentir pour l'innocenter. Que choisit {{P1}} ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La loyaute prime-t-elle sur la justice ?",
+        "Peut-on etre complice par amour ?"
+      ]
+    },
+    {
+      "q": "Denoncer anonymement un collegue qui harcele quelqu'un — courage ou lachete ?",
+      "type": "binary",
+      "discuss_starters": [
+        "L'anonymat est-il necessaire quand on risque sa carriere ?",
+        "Le silence est-il une forme de complicite ?"
+      ]
+    },
+    {
+      "q": "{{P1}} voit un parent gifler son enfant dans un supermarche. {{P1}} intervient ?",
+      "type": "choice",
+      "choices": [
+        "J'interviens directement",
+        "Je filme discretement",
+        "J'alerte un vigile",
+        "Je ne fais rien"
+      ],
+      "discuss_starters": [
+        "A-t-on le droit d'intervenir dans l'education d'un autre ?",
+        "L'inaction face a la violence est-elle acceptable ?"
+      ],
+      "story": {
+        "scene": "SUPERMARCHE, RAYON 7",
+        "narrative": "L'enfant pleure. La gifle part. Fort. Les gens baissent les yeux. {{P1}} est a 3 metres avec son caddie.",
+        "chars": [
+          {
+            "i": "👋",
+            "n": "La gifle"
+          },
+          {
+            "i": "👀",
+            "n": "Les temoins qui detournent le regard"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Mentir sur son CV pour decrocher un emploi quand on est au bout du rouleau — acceptable ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La survie justifie-t-elle la malhonnetete ?",
+        "Que risque-t-on vraiment et pour qui ?"
+      ]
+    },
+    {
+      "q": "Un ami tres proche te confie qu'il conduit regulierement en ayant bu. Tu fais quoi ?",
+      "type": "choice",
+      "choices": [
+        "Je lui parle serieusement",
+        "Je confisque ses cles",
+        "Je previens ses proches",
+        "Ce n'est pas mon probleme"
+      ],
+      "discuss_starters": [
+        "La loyaute envers un ami a-t-elle des limites de securite ?",
+        "Jusqu'ou va notre responsabilite face aux choix des autres ?"
+      ]
+    },
+    {
+      "q": "Voler de la nourriture pour nourrir sa famille — crime ou acte de survie ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La loi et la morale sont-elles toujours alignees ?",
+        "La societe a-t-elle faillit si on en arrive la ?"
+      ]
+    },
+    {
+      "q": "{{P1}} peut gagner 50 000€ en faisant quelque chose de legal mais ethiquement douteux. Personne ne le saura jamais. {{P1}} le fait ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La morale existe-t-elle quand personne ne regarde ?",
+        "L'argent peut-il corrompre n'importe qui si la somme est suffisante ?"
+      ],
+      "story": {
+        "scene": "BUREAU, VENDREDI 18H",
+        "narrative": "L'email est la. Un client propose un arrangement. Legal. Opaque. 50 000€ pour {{P1}}. Personne d'autre ne verra cet email.",
+        "chars": [
+          {
+            "i": "💰",
+            "n": "L'email a 50 000€"
+          },
+          {
+            "i": "🤫",
+            "n": "Le silence du bureau vide"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Devrait-on juger les personnalites du passe avec les valeurs d'aujourd'hui ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Le contexte historique excuse-t-il tout ?",
+        "Peut-on admirer l'oeuvre sans admirer l'artiste ?"
+      ]
+    },
+    {
+      "q": "{{P1}} apprend qu'un produit qu'il utilise chaque jour est fabrique par des enfants. Il continue ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Sommes-nous responsables de ce que nous ignorons volontairement ?",
+        "Le boycott individuel a-t-il un impact reel ?"
+      ]
+    }
+  ],
+  "jalousie": [
+    {
+      "q": "{{P2}} recoit un message a 23h : 'Bonne nuit coeur' d'un inconnu. Il/elle l'ignore. {{P1}}, tu fais quoi ?",
+      "type": "choice",
+      "choices": [
+        "Je lui demande calmement",
+        "Je surveille discretement",
+        "Je lui fais totalement confiance",
+        "Ca declenche une dispute"
+      ],
+      "discuss_starters": [
+        "Fait-on confiance ou surveille-t-on ?",
+        "La confiance s'impose-t-elle ou se merite-t-elle ?"
+      ],
+      "story": {
+        "scene": "VENDREDI SOIR, CANAPE",
+        "narrative": "{{P1}} et {{P2}} regardent une serie. L'ecran de {{P2}} vibre. {{P2}} le retourne sans regarder. {{P1}} a vu le nom avant.",
+        "chars": [
+          {
+            "i": "📱",
+            "n": "Le message de minuit"
+          },
+          {
+            "i": "📺",
+            "n": "{{P1}} et la serie, au fond"
+          }
+        ]
+      }
+    },
+    {
+      "q": "{{P2}} poste une photo tres seduisante. 400 likes dont 80 d'inconnus. {{P1}}, ta reaction interne ?",
+      "type": "discuss",
+      "discuss_starters": [
+        "Les reseaux sociaux sont-ils une zone de tension ?",
+        "Peut-on avoir une vie publique seduisante sans impact sur le couple ?",
+        "Est-ce de la jalousie ou de l'insecurite ?"
+      ],
+      "story": {
+        "scene": "LUNDI MATIN, INSTAGRAM",
+        "narrative": "{{P1}} voit la notif. 400 likes en 3 heures. Un commentaire d'un profil inconnu. {{P2}} repond avec un emoji.",
+        "chars": [
+          {
+            "i": "📸",
+            "n": "La photo de {{P2}}"
+          },
+          {
+            "i": "💬",
+            "n": "Le commentaire de l'inconnu"
+          }
+        ]
+      }
+    },
+    {
+      "q": "La jalousie retrospective — etre perturbe par les ex de {{P2}} — est-elle surmontable ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Peut-on etre jaloux de quelqu'un qu'on n'a jamais rencontre ?",
+        "La jalousie retrospective vient-elle d'un manque de confiance ?"
+      ],
+      "story": {
+        "scene": "PHOTO D'ARCHIVES",
+        "narrative": "{{P1}} tombe sur une vieille photo de {{P2}} avec un ex. Ils semblent tellement heureux. {{P1}} n'etait pas la. Il/elle n'existait pas encore dans la vie de {{P2}}.",
+        "chars": [
+          {
+            "i": "📷",
+            "n": "La photo d'avant"
+          },
+          {
+            "i": "💭",
+            "n": "{{P1}} et les pensees qui viennent"
+          }
+        ]
+      }
+    },
+    {
+      "q": "{{P2}} est plus proche de son ex que de {{P1}}. 'On est juste amis.' {{P1}} y croit, sur une echelle de 0 a 5 ?",
+      "type": "scale",
+      "discuss_starters": [
+        "Peut-on vraiment rester ami avec un ex ?",
+        "La proximite emotionnelle est-elle plus menacante que la proximite physique ?"
+      ],
+      "story": {
+        "scene": "SOIREE A TROIS",
+        "narrative": "{{P2}} a invite son ex pour 'que vous vous connaissiez'. Ils se finissent les phrases. Rient a des blagues que {{P1}} ne comprend pas.",
+        "chars": [
+          {
+            "i": "🍻",
+            "n": "La soiree a trois"
+          },
+          {
+            "i": "👁️",
+            "n": "{{P1}} qui observe"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Surveiller le telephone de son partenaire sans permission — jamais acceptable ou parfois necessaire ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La curiosite justifie-t-elle l'intrusion ?",
+        "Que dit ce geste sur l'etat de la relation ?"
+      ]
+    },
+    {
+      "q": "La jalousie peut-elle etre transformee en carburant positif, ou est-elle toujours destructrice ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Peut-on sublimer une emotion negative ?",
+        "La jalousie est-elle un signal a ecouter ?"
+      ]
+    },
+    {
+      "q": "{{P1}} reussit mieux que {{P2}} dans votre domaine commun. Comment {{P2}} le vit vraiment ?",
+      "type": "scale",
+      "discuss_starters": [
+        "La jalousie professionnelle peut-elle cohabiter avec l'amour ?",
+        "Faut-il en parler ou le taire ?"
+      ],
+      "story": {
+        "scene": "LA PROMOTION DE {{P1}}",
+        "narrative": "{{P2}} applaudit sincerement. Mais en voiture, seul, {{P2}} a une pensee qu'il n'avouera a personne.",
+        "chars": [
+          {
+            "i": "🎉",
+            "n": "La promotion de {{P1}}"
+          },
+          {
+            "i": "🚗",
+            "n": "{{P2}} seul en voiture"
+          }
+        ]
+      }
+    },
+    {
+      "q": "{{P1}} a cree une situation pour tester la fidelite de {{P2}}. Le resultat etait bon. {{P2}} doit-il savoir ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Le test de loyaute est-il une forme de trahison lui aussi ?",
+        "Que dit ce geste sur la confiance existante ?"
+      ]
+    },
+    {
+      "q": "Ta meilleure amie fait un compliment sincere a {{P2}} sur son apparence. Comment {{P1}} se sent-il ?",
+      "type": "choice",
+      "choices": [
+        "Fier et serein",
+        "Legerement inconfortable",
+        "Tres jaloux",
+        "Je surveille la suite"
+      ],
+      "discuss_starters": [
+        "Les compliments des proches sont-ils plus ou moins menacants ?",
+        "La securite interieure peut-elle eliminer la jalousie ?"
+      ]
+    },
+    {
+      "q": "{{P2}} envoie des messages a son ex 'juste pour prendre des nouvelles'. {{P1}}, c'est inoffensif ou dangereux ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Garder le contact avec ses ex est-il dangereux par definition ?",
+        "Le secret est-il le probleme ou le contact lui-meme ?"
+      ],
+      "story": {
+        "scene": "DIMANCHE APRES-MIDI",
+        "narrative": "{{P1}} voit la conversation par hasard. '{{P2}} a son ex : Comment tu vas ?' L'heure d'envoi : hier soir, 22h47.",
+        "chars": [
+          {
+            "i": "💬",
+            "n": "Le message de {{P2}}"
+          },
+          {
+            "i": "⏰",
+            "n": "22h47, hier soir"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Peut-on etre jaloux d'un deuil que {{P2}} porte encore pour quelqu'un de decede ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Comment une presence absente peut-elle creer de la jalousie ?",
+        "Doit-on respecter le deuil sans limite de temps ?"
+      ]
+    },
+    {
+      "q": "L'absence totale de jalousie de {{P1}} — ca rassure ou inquiete {{P2}} ?",
+      "type": "binary",
+      "discuss_starters": [
+        "L'indifference est-elle rassurante ou un signe de desengagement ?",
+        "Faut-il montrer sa jalousie pour prouver son amour ?"
+      ]
+    },
+    {
+      "q": "{{P1}} a laisse la jalousie lui faire perdre quelque chose d'important. Il le referait autrement ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La jalousie est-elle toujours le probleme ou parfois un signal pertinent ?",
+        "Que ferait-on differemment ?"
+      ]
+    },
+    {
+      "q": "Peut-on aimer profondement sans jamais ressentir de jalousie pour cette personne ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La jalousie est-elle inherente a l'attachement ?",
+        "Peut-on etre attache sans etre possessif ?"
+      ]
+    },
+    {
+      "q": "La jalousie entre freres et soeurs pour l'attention des parents — cicatrise-t-elle vraiment a l'age adulte ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Les blessures d'enfance influencent-elles nos relations adultes ?",
+        "Peut-on guerir d'une jalousie non nommee ?"
+      ]
+    },
+    {
+      "q": "{{P1}} compare secretement sa vie a celle de ses amis sur Instagram. Normal ou toxique ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Les reseaux sociaux amplifient-ils la jalousie sociale ?",
+        "Peut-on utiliser la comparaison comme motivation ?"
+      ]
+    },
+    {
+      "q": "{{P2}} parle avec admiration d'un/e collegue brillant/e chaque soir. {{P1}}, sur une echelle de 0 a 5, ca te derange ?",
+      "type": "scale",
+      "discuss_starters": [
+        "L'admiration pour quelqu'un d'autre est-elle une menace ?",
+        "La jalousie intellectuelle est-elle differente de la jalousie physique ?"
+      ],
+      "story": {
+        "scene": "DINER, TOUS LES SOIRS",
+        "narrative": "'Tu sais ce que Marie a fait aujourd'hui ?' C'est la 4eme fois cette semaine. {{P1}} sourit. Mais une pensee revient : pourquoi {{P2}} ne parle jamais de lui comme ca.",
+        "chars": [
+          {
+            "i": "🍽️",
+            "n": "Le diner quotidien"
+          },
+          {
+            "i": "💭",
+            "n": "La pensee de {{P1}}"
+          }
+        ]
+      }
+    },
+    {
+      "q": "{{P1}} a un/e ami/e plus drole, plus intelligent/e, plus seduisant/e que {{P2}}. {{P2}} devrait-il s'inquieter ?",
+      "type": "binary",
+      "discuss_starters": [
+        "L'amitie peut-elle etre une menace pour le couple ?",
+        "La confiance suffit-elle face a l'evidence ?"
+      ]
+    },
+    {
+      "q": "Etre jaloux du succes de son meilleur ami — ca fait de nous une mauvaise personne ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La jalousie et l'amitie peuvent-elles coexister ?",
+        "Comment gerer l'envie envers quelqu'un qu'on aime ?"
+      ],
+      "story": {
+        "scene": "ANNIVERSAIRE DE L'AMI",
+        "narrative": "Le meilleur ami de {{P1}} vient d'acheter sa maison. A 28 ans. {{P1}} applaudit. En rentrant, {{P1}} regarde son studio et serre les dents.",
+        "chars": [
+          {
+            "i": "🏠",
+            "n": "La maison du meilleur ami"
+          },
+          {
+            "i": "🏢",
+            "n": "Le studio de {{P1}}"
+          }
+        ]
+      }
+    },
+    {
+      "q": "{{P2}} a un talent naturel dans un domaine ou {{P1}} travaille dur sans resultat. Comment {{P1}} le vit ?",
+      "type": "choice",
+      "choices": [
+        "Ca me motive",
+        "Ca me frustre",
+        "Ca m'est egal",
+        "Ca me rend jaloux"
+      ],
+      "discuss_starters": [
+        "L'effort sans resultat est-il plus noble que le talent naturel ?",
+        "Comment ne pas comparer quand on vit ensemble ?"
+      ]
+    },
+    {
+      "q": "Les stories Instagram de ton ex montrent qu'il/elle est plus heureux/se que jamais. Honnetement, ca fait quoi ?",
+      "type": "discuss",
+      "discuss_starters": [
+        "Pourquoi le bonheur de l'ex nous affecte-t-il ?",
+        "Faut-il bloquer ses ex pour avancer ?"
+      ]
+    },
+    {
+      "q": "{{P1}} surprend {{P2}} a regarder avec insistance une personne tres seduisante dans la rue. {{P1}} dit quelque chose ?",
+      "type": "choice",
+      "choices": [
+        "Je fais une blague",
+        "Je ne dis rien",
+        "Je fais la meme chose",
+        "Ca me blesse"
+      ],
+      "discuss_starters": [
+        "Regarder est-il naturel ou irrespectueux ?",
+        "La reaction en dit-elle plus sur nous que sur l'autre ?"
+      ]
+    }
+  ],
+  "argent": [
+    {
+      "q": "{{P1}} trouve 47 000€ de dettes cachees par {{P2}} depuis 2 ans. {{P1}}, tu fais quoi ?",
+      "type": "choice",
+      "choices": [
+        "J'affronte directement",
+        "Je fais semblant de ne pas savoir",
+        "Je consulte un avocat",
+        "Je mets fin a la relation"
+      ],
+      "discuss_starters": [
+        "Les dettes cachees sont-elles une trahison ?",
+        "Peut-on comprendre l'intention de proteger meme si le moyen etait mauvais ?"
+      ],
+      "story": {
+        "scene": "CUISINE, 20H",
+        "narrative": "{{P2}} recoit une lettre recommandee. {{P1}} la voit avant. 47 000€ de dettes. Tout gere seul 'pour ne pas inquieter'.",
+        "chars": [
+          {
+            "i": "✉️",
+            "n": "La lettre recommandee"
+          },
+          {
+            "i": "😶",
+            "n": "{{P1}}, 2 heures apres"
+          }
+        ]
+      }
+    },
+    {
+      "q": "{{P1}} et {{P2}} emmenagent ensemble. Quel modele financier choisissent-ils ?",
+      "type": "choice",
+      "choices": [
+        "Tout en commun",
+        "Tout separe",
+        "Compte commun + persos",
+        "Chacun selon ses revenus"
+      ],
+      "discuss_starters": [
+        "L'argent separe preserve-t-il l'independance ou cree-t-il de la mefiance ?",
+        "Quelle est la 'bonne' structure pour un couple ?"
+      ],
+      "story": {
+        "scene": "NOTAIRE, AVANT EMMENAGEMENT",
+        "narrative": "Le notaire demande la structure financiere. {{P1}} et {{P2}} se regardent. Ils n'en avaient jamais parle.",
+        "chars": [
+          {
+            "i": "⚖️",
+            "n": "Le notaire qui attend"
+          },
+          {
+            "i": "🔄",
+            "n": "Deux visions de l'argent"
+          }
+        ]
+      }
+    },
+    {
+      "q": "{{P2}} demande 3 000€ a {{P1}} pour eviter une saisie. {{P1}} sait que {{P2}} est mauvais gestionnaire. {{P1}} le fait ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Aider financierement peut-il perpetuer un probleme ?",
+        "Quand l'amour cesse-t-il d'etre une raison valable ?"
+      ],
+      "story": {
+        "scene": "APPEL TELEPHONIQUE, 18H",
+        "narrative": "La voix de {{P2}} est tendue. '3 000€ avant vendredi ou ils saisissent.' {{P1}} a l'argent. Et le souvenir des 2 dernieres fois.",
+        "chars": [
+          {
+            "i": "📞",
+            "n": "L'appel de {{P2}}"
+          },
+          {
+            "i": "💳",
+            "n": "3 000€ et les souvenirs"
+          }
+        ]
+      }
+    },
+    {
+      "q": "{{P1}} cache une epargne personnelle a {{P2}} 'au cas ou'. C'est de la prudence ou de la malhonnetete ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Avoir un plan B financier est-il une trahison ou de la lucidite ?",
+        "La transparence financiere totale est-elle possible ?"
+      ],
+      "story": {
+        "scene": "LE COMPTE QUE {{P2}} NE CONNAIT PAS",
+        "narrative": "{{P1}} a un compte que {{P2}} ne connait pas. Par precaution. En cas de separation. {{P1}} se demande ce que ca dit de leur confiance.",
+        "chars": [
+          {
+            "i": "🏦",
+            "n": "Le compte secret"
+          },
+          {
+            "i": "🔐",
+            "n": "La prudence ou la mefiance ?"
+          }
+        ]
+      }
+    },
+    {
+      "q": "{{P2}} depense 800€ en vetements sans le dire. Vous avez le meme salaire. {{P1}}, c'est un probleme ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Doit-on tout declarer meme avec un compte commun ?",
+        "L'argent personnel existe-t-il dans un couple ?"
+      ],
+      "story": {
+        "scene": "LE VIREMENT QUI N'EST PAS LA",
+        "narrative": "{{P1}} regarde le compte commun. 800€ manquent. {{P2}} rentre avec un grand sac. 'Ca me plaisait vraiment.'",
+        "chars": [
+          {
+            "i": "🛍️",
+            "n": "Les sacs de {{P2}}"
+          },
+          {
+            "i": "📊",
+            "n": "Le compte commun"
+          }
+        ]
+      }
+    },
+    {
+      "q": "L'argent change-t-il vraiment les gens, ou revele-t-il simplement qui ils sont ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Avez-vous un exemple personnel ou de votre entourage ?",
+        "La richesse soudaine est-elle un test de caractere ?"
+      ]
+    },
+    {
+      "q": "{{P1}} herite de 180 000€. {{P2}} ne sait pas encore. {{P1}} le dit immediatement ?",
+      "type": "binary",
+      "discuss_starters": [
+        "L'heritage est-il personnel ou appartient-il au couple ?",
+        "Le timing de la revelation change-t-il quelque chose ?"
+      ],
+      "story": {
+        "scene": "SORTIE DU NOTAIRE",
+        "narrative": "{{P1}} sort du bureau du notaire. L'heritage est reel. Il pense a {{P2}} — et a la derniere dispute sur l'argent, il y a 3 semaines.",
+        "chars": [
+          {
+            "i": "📋",
+            "n": "La sortie du notaire"
+          },
+          {
+            "i": "🏠",
+            "n": "{{P2}} qui attend"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Les ultra-riches ont-ils une obligation morale de redistribuer, selon {{P1}} ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La richesse meritee change-t-elle l'equation ?",
+        "La philanthropie volontaire est-elle suffisante ?"
+      ]
+    },
+    {
+      "q": "Si {{P1}} gagnait au loto demain, qu'est-ce qui changerait vraiment dans sa relation avec {{P2}} ?",
+      "type": "discuss",
+      "discuss_starters": [
+        "L'argent revele-t-il les vraies attentes dans une relation ?",
+        "Voudrait-on que ca change ou reste identique ?",
+        "L'argent peut-il creer une distance ?"
+      ],
+      "story": {
+        "scene": "LE TICKET DE LOTERIE",
+        "narrative": "{{P1}} verifie les numeros. 2,4 millions. {{P2}} dort a cote. La premiere pensee de {{P1}} n'est pas 'on achete une maison.'",
+        "chars": [
+          {
+            "i": "🎫",
+            "n": "Le ticket gagnant"
+          },
+          {
+            "i": "😴",
+            "n": "{{P2}} qui dort"
+          }
+        ]
+      }
+    },
+    {
+      "q": "{{P1}} sacrifierait une carriere de reve pour ne pas mettre {{P2}} en difficulte financiere ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Sacrifice ou erreur que l'on regrettera ?",
+        "Comment negocier entre ambition et amour ?"
+      ],
+      "story": {
+        "scene": "L'OFFRE DE CARRIERE",
+        "narrative": "{{P1}} vient de recevoir l'offre de sa vie. Mais ca veut dire 60h/semaine. {{P2}} n'est pas en grande forme en ce moment. {{P1}} a 72h pour repondre.",
+        "chars": [
+          {
+            "i": "📧",
+            "n": "L'offre de carriere"
+          },
+          {
+            "i": "⏰",
+            "n": "72 heures pour decider"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Un job tres bien paye mais contraire a ses valeurs — {{P1}} le prend pour sortir sa famille de la precarite ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Les valeurs sont-elles un luxe qu'on ne peut pas toujours se permettre ?",
+        "Ou s'arrete le compromis acceptable ?"
+      ]
+    },
+    {
+      "q": "Peut-on etre vraiment heureux avec peu d'argent dans notre societe actuelle ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Le bonheur a-t-il un cout minimum ?",
+        "La societe cree-t-elle de faux besoins ?"
+      ]
+    },
+    {
+      "q": "L'inegalite salariale dans le couple entre {{P1}} et {{P2}} genere-t-elle forcement un desequilibre de pouvoir ?",
+      "type": "binary",
+      "discuss_starters": [
+        "L'argent est-il synonyme de pouvoir dans une relation ?",
+        "Comment neutraliser cette dynamique ?"
+      ]
+    },
+    {
+      "q": "{{P1}} refuse de preter de l'argent a {{P2}} pour 'proteger la relation'. C'est sage ou manque de confiance ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Les prets entre proches detruisent-ils toujours la relation ?",
+        "Peut-on definir des regles claires a l'avance ?"
+      ]
+    },
+    {
+      "q": "A partir de quelle somme un cadeau de {{P2}} devient-il une tentative d'influence sur {{P1}} ?",
+      "type": "discuss",
+      "discuss_starters": [
+        "Les cadeaux couteux creent-ils un sentiment de dette ?",
+        "Peut-on donner sans attente de retour ?",
+        "L'intention compte-t-elle plus que la valeur ?"
+      ]
+    },
+    {
+      "q": "{{P1}} decouvre que {{P2}} joue aux jeux d'argent en ligne depuis 6 mois. Addiction ou loisir ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Ou commence l'addiction ?",
+        "Le secret est-il plus grave que l'activite elle-meme ?"
+      ],
+      "story": {
+        "scene": "MINUIT, SALLE DE BAIN",
+        "narrative": "{{P1}} entend {{P2}} au telephone. 'Mise de 200.' Depuis 6 mois, les 'heures sup' de {{P2}} ont une autre explication.",
+        "chars": [
+          {
+            "i": "🎰",
+            "n": "L'appli de paris"
+          },
+          {
+            "i": "🤥",
+            "n": "6 mois de mensonges"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Faut-il apprendre a ses enfants a gerer l'argent des le plus jeune age ou les proteger de cette pression ?",
+      "type": "binary",
+      "discuss_starters": [
+        "L'education financiere est-elle une urgence ou un fardeau ?",
+        "A quel age un enfant devrait-il comprendre la valeur de l'argent ?"
+      ]
+    },
+    {
+      "q": "{{P1}} prete 5 000€ a un ami qui ne rembourse jamais. Au bout de combien de temps ca detruit l'amitie ?",
+      "type": "choice",
+      "choices": [
+        "3 mois sans nouvelles",
+        "6 mois, je relance",
+        "1 an, c'est mort",
+        "L'amitie vaut plus que 5000€"
+      ],
+      "discuss_starters": [
+        "L'argent revele-t-il la vraie nature des relations ?",
+        "Peut-on maintenir une amitie apres une dette non remboursee ?"
+      ]
+    },
+    {
+      "q": "Accepter un heritage d'un proche avec qui on etait en froid — hypocrite ou legitime ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La mort efface-t-elle les conflits ?",
+        "Refuser un heritage est-il une forme de dignite ou de betise ?"
+      ]
+    },
+    {
+      "q": "{{P1}} gagne tres bien sa vie mais refuse d'aider financierement sa famille. Egoiste ou dans son droit ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La reussite cree-t-elle une obligation envers les siens ?",
+        "Ou s'arrete la solidarite familiale ?"
+      ],
+      "story": {
+        "scene": "APPEL DE LA MERE",
+        "narrative": "'Ton frere a besoin de 2000€.' C'est la 3eme fois cette annee. {{P1}} gagne 6000€/mois. Son frere n'a jamais rembourse.",
+        "chars": [
+          {
+            "i": "📞",
+            "n": "L'appel de la mere"
+          },
+          {
+            "i": "💸",
+            "n": "2000€ de plus"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Vivre au-dessus de ses moyens pour 'profiter de la vie' — sagesse ou irresponsabilite ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La prudence financiere est-elle ennuyeuse ?",
+        "Qui definit ce que 'profiter' veut dire ?"
+      ]
+    },
+    {
+      "q": "{{P2}} veut un mariage a 40 000€. {{P1}} prefere investir cet argent. Qui a raison ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Le mariage est-il un investissement emotionnel qui merite un budget ?",
+        "La raison et les sentiments sont-ils conciliables ?"
+      ],
+      "story": {
+        "scene": "SALON DU MARIAGE",
+        "narrative": "{{P2}} s'arrete devant la robe/le costume. {{P1}} calcule mentalement. 40 000€. Un apport pour un appartement. Le regard de {{P2}} dit tout.",
+        "chars": [
+          {
+            "i": "💍",
+            "n": "Le salon du mariage"
+          },
+          {
+            "i": "🏠",
+            "n": "L'appartement reve"
+          }
+        ]
+      }
+    }
+  ],
+  "religion": [
+    {
+      "q": "{{P1}} rencontre quelqu'un de parfait — mais pratiquant d'une religion qu'il ne respecte pas. {{P1}} va plus loin ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Les valeurs religieuses sont-elles compatibles sans religion partagee ?",
+        "L'amour peut-il transcender les croyances ?"
+      ],
+      "story": {
+        "scene": "PREMIER RENDEZ-VOUS",
+        "narrative": "{{P1}} est avec quelqu'un de brillant, drole, attentionne. Au dessert, la personne mentionne naturellement sa pratique religieuse.",
+        "chars": [
+          {
+            "i": "☕",
+            "n": "Le premier rendez-vous parfait"
+          },
+          {
+            "i": "🔮",
+            "n": "La revelation du dessert"
+          }
+        ]
+      }
+    },
+    {
+      "q": "{{P1}} eleverait-il ses enfants dans une religion si {{P2}} n'a pas la meme foi ?",
+      "type": "choice",
+      "choices": [
+        "Oui, dans ma religion",
+        "Non, laicite totale",
+        "Les deux — ils choisissent",
+        "On leur laisse choisir a 18 ans"
+      ],
+      "discuss_starters": [
+        "Imposer une religion est-il conditionner ou transmettre ?",
+        "Peut-on preparer un enfant a choisir sans lui imposer ?"
+      ],
+      "story": {
+        "scene": "NURSERIE, AVANT LA NAISSANCE",
+        "narrative": "{{P1}} et {{P2}} peignent la chambre du bebe. La question arrive. {{P2}} pensait que {{P1}} partageait sa vision. Cinq ans de desaccord silencieux.",
+        "chars": [
+          {
+            "i": "👶",
+            "n": "Le bebe qui arrive"
+          },
+          {
+            "i": "🖌️",
+            "n": "La chambre a peindre"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Un parent refuse un soin medical pour son enfant pour raisons religieuses. L'Etat doit-il intervenir ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La liberte religieuse a-t-elle des limites quand elle affecte un tiers ?",
+        "Comment arbitrer entre droit parental et protection de l'enfant ?"
+      ]
+    },
+    {
+      "q": "La religion comme consolation face a la mort — bequille necessaire ou deni de realite ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La croyance en un apres-mort facilite-t-elle le deuil ?",
+        "Le reconfort justifie-t-il la croyance ?"
+      ],
+      "story": {
+        "scene": "APRES L'ENTERREMENT",
+        "narrative": "{{P1}} et {{P2}} rentrent. {{P2}} dit : 'Au moins, il est dans un meilleur endroit.' {{P1}} pense quelque chose de tres different.",
+        "chars": [
+          {
+            "i": "🌹",
+            "n": "L'enterrement"
+          },
+          {
+            "i": "💬",
+            "n": "La phrase de {{P2}}"
+          }
+        ]
+      }
+    },
+    {
+      "q": "{{P1}}, peut-on critiquer ouvertement la religion de {{P2}} si {{P2}} la pratique sincerement ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La critique respectueuse est-elle possible ?",
+        "Respecter une personne oblige-t-il a respecter ses croyances ?"
+      ],
+      "story": {
+        "scene": "CONVERSATION DU DIMANCHE",
+        "narrative": "{{P1}} vient de lire un article critique sur la religion de {{P2}}. {{P2}} rentre de la mosquee/eglise/synagogue, le sourire aux levres.",
+        "chars": [
+          {
+            "i": "📰",
+            "n": "L'article que {{P1}} a lu"
+          },
+          {
+            "i": "😊",
+            "n": "{{P2}} qui rentre, serein"
+          }
+        ]
+      }
+    },
+    {
+      "q": "La foi religieuse rend-elle les gens meilleurs moralement, ou c'est independant ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Existe-t-il une morale sans religion ?",
+        "La peur de la punition divine change-t-elle les comportements ?"
+      ]
+    },
+    {
+      "q": "Si on prouvait scientifiquement l'existence d'un Dieu createur demain matin, la vie de {{P1}} changerait ?",
+      "type": "discuss",
+      "discuss_starters": [
+        "La preuve changerait-elle vraiment quelque chose dans votre vie ?",
+        "Peut-on croire par raisonnement plutot que par foi ?",
+        "Qu'est-ce que ca changerait pour la societe ?"
+      ],
+      "story": {
+        "scene": "BREAKING NEWS, MATIN",
+        "narrative": "{{P1}} allume la radio en faisant du cafe. 'Des scientifiques de 40 pays viennent de prouver l'existence d'une intelligence creatrice.' {{P2}} entre dans la cuisine.",
+        "chars": [
+          {
+            "i": "📻",
+            "n": "La radio du matin"
+          },
+          {
+            "i": "☕",
+            "n": "{{P1}} avec son cafe"
+          }
+        ]
+      }
+    },
+    {
+      "q": "La laicite protege-t-elle vraiment les croyants, ou les exclut-elle ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La neutralite de l'Etat est-elle possible ?",
+        "La laicite favorise-t-elle certaines religions ?"
+      ]
+    },
+    {
+      "q": "{{P1}} et {{P2}} ont des croyances opposees. Quelle education religieuse pour leurs enfants ?",
+      "type": "choice",
+      "choices": [
+        "La religion de {{P1}}",
+        "La religion de {{P2}}",
+        "Les deux — ils choisissent",
+        "Aucune — a 18 ans"
+      ],
+      "discuss_starters": [
+        "Peut-on eduquer sans transmettre une vision du monde ?",
+        "L'absence de religion est-elle elle-meme une position ?"
+      ]
+    },
+    {
+      "q": "Peut-on etre profondement spirituel sans adherer a aucune religion institutionnelle ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La spiritualite sans structure est-elle plus libre ou moins profonde ?",
+        "Que signifie 'croire' sans cadre institutionnel ?"
+      ],
+      "story": {
+        "scene": "COUCHER DE SOLEIL, MONTAGNE",
+        "narrative": "{{P1}} est seul face a un coucher de soleil extraordinaire. Il ressent quelque chose d'immense. En redescendant, {{P2}} demande : 'Tu crois en quoi, toi, vraiment ?'",
+        "chars": [
+          {
+            "i": "🌅",
+            "n": "Le coucher de soleil"
+          },
+          {
+            "i": "❓",
+            "n": "La question de {{P2}}"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Un militant athee qui tente de convaincre des croyants — aussi intolerant qu'un proselyte religieux ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La conviction peut-elle justifier l'imposition ?",
+        "Y a-t-il une difference entre defendre et imposer ?"
+      ]
+    },
+    {
+      "q": "{{P1}} est laique. {{P2}} veut un mariage religieux. Qui cede ?",
+      "type": "choice",
+      "choices": [
+        "{{P1}} accepte par amour",
+        "{{P2}} renonce par amour",
+        "On cherche un compromis",
+        "C'est redhibitoire"
+      ],
+      "discuss_starters": [
+        "Un mariage religieux peut-il avoir une valeur symbolique sans foi ?",
+        "Faut-il que les deux soient sinceres ?"
+      ]
+    },
+    {
+      "q": "La religion peut-elle coexister pacifiquement avec la liberte sexuelle dans une meme societe ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La cohabitation implique-t-elle un compromis des deux cotes ?",
+        "Qui definit les limites de la liberte de l'autre ?"
+      ]
+    },
+    {
+      "q": "{{P1}} peut-il respecter sincerement la religion de {{P2}}, ou juste la tolerer ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La tolerance est-elle inferieure au respect ?",
+        "Peut-on respecter ce qu'on ne comprend pas ?"
+      ],
+      "story": {
+        "scene": "APRES 3 ANS",
+        "narrative": "{{P1}} dit toujours 'je respecte ta foi.' {{P2}} demande ce soir : 'Mais est-ce que tu comprends ce que ca represente pour moi ?'",
+        "chars": [
+          {
+            "i": "💬",
+            "n": "La question directe de {{P2}}"
+          },
+          {
+            "i": "🕰️",
+            "n": "3 ans de cohabitation"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Dieu est-il une necessite psychologique humaine ou une realite objective ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La croyance peut-elle etre vraie et psychologiquement construite en meme temps ?",
+        "Qu'est-ce que ca change si c'est 'seulement' une construction ?"
+      ]
+    },
+    {
+      "q": "Porter un signe religieux au travail — droit fondamental ou provocation ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La neutralite au travail est-elle une forme de discrimination ?",
+        "Peut-on exprimer sa foi sans l'imposer ?"
+      ]
+    },
+    {
+      "q": "{{P1}} prie tous les jours. {{P2}} est athee. Au bout de 10 ans, l'un des deux change-t-il ?",
+      "type": "choice",
+      "choices": [
+        "{{P1}} prie moins",
+        "{{P2}} se questionne",
+        "Aucun ne change",
+        "Les deux evoluent"
+      ],
+      "discuss_starters": [
+        "La cohabitation quotidienne influence-t-elle les croyances ?",
+        "Peut-on coexister sans converger ?"
+      ],
+      "story": {
+        "scene": "10 ANS PLUS TARD",
+        "narrative": "{{P1}} prie comme chaque matin. {{P2}} prepare le cafe en silence. Un jour, {{P2}} demande : 'Tu pries pour quoi exactement ?' C'est la premiere fois en 10 ans.",
+        "chars": [
+          {
+            "i": "🙏",
+            "n": "La priere du matin"
+          },
+          {
+            "i": "☕",
+            "n": "Le cafe de {{P2}}"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Les fetes religieuses commercialisees (Noel, Eid, etc.) — evolution positive ou perte de sens ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Le commerce tue-t-il le sacre ?",
+        "Peut-on celebrer sans croire ?"
+      ]
+    },
+    {
+      "q": "Un ami te dit qu'il a eu une experience mystique qui a change sa vie. Tu le crois ?",
+      "type": "choice",
+      "choices": [
+        "Oui, je respecte",
+        "Je doute mais j'ecoute",
+        "Non, c'est psychologique",
+        "Je veux comprendre"
+      ],
+      "discuss_starters": [
+        "Les experiences mystiques sont-elles reelles ou neurologiques ?",
+        "Doit-on croire ce qu'on ne peut pas prouver ?"
+      ]
+    },
+    {
+      "q": "L'humour sur la religion — liberte absolue ou il y a des limites ?",
+      "type": "binary",
+      "discuss_starters": [
+        "Peut-on rire de tout sans blesser ?",
+        "La satire religieuse est-elle une forme de critique ou de mepris ?"
+      ]
+    },
+    {
+      "q": "{{P2}} se convertit a une religion apres un evenement traumatisant. {{P1}} soutient ou s'inquiete ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La conversion est-elle un choix libre ou un refuge ?",
+        "Comment soutenir sans juger ?"
+      ],
+      "story": {
+        "scene": "3 MOIS APRES L'ACCIDENT",
+        "narrative": "{{P2}} a change. Les livres sur la table, les prieres du soir. {{P1}} ne reconnait plus certains moments. Mais {{P2}} semble apaise.",
+        "chars": [
+          {
+            "i": "📖",
+            "n": "Les nouveaux livres"
+          },
+          {
+            "i": "🕯️",
+            "n": "Les prieres du soir"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Peut-on enseigner la morale sans aucune reference religieuse ? La morale laique est-elle suffisante ?",
+      "type": "binary",
+      "discuss_starters": [
+        "La religion detient-elle le monopole de la morale ?",
+        "Quels fondements pour une ethique sans Dieu ?"
+      ]
+    }
+  ]
+}
