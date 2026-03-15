@@ -2,9 +2,20 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Débat Intense 🔥</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="description" content="Des questions de débat qui révèlent ce que vous pensez vraiment. Jouez en couple, entre amis ou en groupe.">
+<meta name="theme-color" content="#7C3AED">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:title" content="Sans Filtre 🔥">
+<meta property="og:description" content="Le jeu qui révèle ce que vos proches pensent vraiment. Débattez sans filtre, découvrez vos archétypes.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='40' fill='%23090810'/%3E%3Ctext y='140' font-size='130' text-anchor='middle' x='96'%3E%F0%9F%94%A5%3C/text%3E%3C/svg%3E">
+<title>Sans Filtre 🔥</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -620,7 +631,7 @@ canvas#sc{display:none}
 <!-- SPLASH INTRO -->
 <div id="splash">
   <span class="splash-flame">🔥</span>
-  <div class="splash-title">Débat<br><em>Intense</em></div>
+  <div class="splash-title">Sans<br><em>Filtre</em></div>
   <div class="splash-sub">Questions qui révèlent ce que vous pensez vraiment</div>
 </div>
 <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3" id="o3"></div>
@@ -634,7 +645,7 @@ canvas#sc{display:none}
   <div id="ob-carousel-wrap" style="width:100%;display:flex;flex-direction:column;align-items:center">
     <div class="ob-carousel">
       <div class="ob-slides" id="ob-slides">
-        <div class="ob-slide"><span class="ob-flame" style="font-size:88px">🔥</span><div class="obs-title" style="font-size:38px;letter-spacing:-2px">Débat <em style="font-style:normal;background:linear-gradient(135deg,var(--vl),var(--o));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Intense</em></div><div class="obs-desc">Des questions qui révèlent ce que vous pensez vraiment.</div></div>
+        <div class="ob-slide"><span class="ob-flame" style="font-size:88px">🔥</span><div class="obs-title" style="font-size:38px;letter-spacing:-2px">Sans <em style="font-style:normal;background:linear-gradient(135deg,var(--vl),var(--o));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Filtre</em></div><div class="obs-desc">Des questions qui révèlent ce que vous pensez vraiment.</div></div>
         <div class="ob-slide"><span class="obs-ico">⚔️</span><div class="obs-title">Votez en secret</div><div class="obs-desc">Chaque joueur répond en cachant son écran. Révélation simultanée. Le vrai débat commence là.</div></div>
         <div class="ob-slide"><span class="obs-ico">🎲</span><div class="obs-title">Vérité ou Défi</div><div class="obs-desc">Pour chaque question, choisissez : répondre honnêtement, ou relever un défi physique devant le groupe.</div></div>
       </div>
@@ -649,7 +660,7 @@ canvas#sc{display:none}
   <!-- Setup (shown after carousel or on return visits) -->
   <div id="ob-setup" style="width:100%;display:none;flex-direction:column;align-items:center">
   <span class="ob-flame">🔥</span>
-  <div class="ob-h1">Débat<br><em>Intense</em></div>
+  <div class="ob-h1">Sans<br><em>Filtre</em></div>
   <div class="ob-sub">Questions qui révèlent ce que vous pensez vraiment</div>
   <div class="mode-row">
     <button class="mpill on" id="mp-classic" onclick="setMode('classic',this)">👥 Classique<br><span style="font-weight:400;font-size:10px;color:var(--text3)">1-2 joueurs</span></button>
@@ -666,10 +677,10 @@ canvas#sc{display:none}
   </div><!-- /ob-setup -->
 </div><!-- /pg-onboard -->
 
-<!-- TOURNAMENT OVERLAY — Le Grand Débat -->
+<!-- TOURNAMENT OVERLAY — Le Grand Clash -->
 <div class="tourn-ov" id="tourn-ov">
   <div class="tourn-wrap">
-    <div class="tourn-hd"><div class="bk" onclick="closeTournament()">←</div><div class="tourn-h1">🏆 Le Grand Débat</div></div>
+    <div class="tourn-hd"><div class="bk" onclick="closeTournament()">←</div><div class="tourn-h1">🏆 Le Grand Clash</div></div>
     <!-- Champion screen -->
     <div class="tr-champ" id="tr-champ">
       <span class="tr-champ-ico">👑</span>
@@ -706,7 +717,7 @@ canvas#sc{display:none}
         <button class="btn-v" onclick="tournStartAnswers()" id="tr-start-btn">▶ Commencer les réponses</button>
       </div>
     </div>
-    <button class="btn-v" id="tr-launch-btn" onclick="startTournament()" style="margin-top:4px">⚡ Lancer le Grand Débat</button>
+    <button class="btn-v" id="tr-launch-btn" onclick="startTournament()" style="margin-top:4px">⚡ Lancer le Grand Clash</button>
   </div>
 </div>
 
@@ -725,7 +736,7 @@ canvas#sc{display:none}
 <!-- HOME -->
 <div id="pg-home" class="page">
   <div class="topbar">
-    <div class="tlogo">🔥 Débat</div>
+    <div class="tlogo">🔥 Sans Filtre</div>
     <div class="tright">
       <div class="ib" onclick="shareApp()" title="Inviter">📤</div>
       <div class="ib" onclick="openStreak()">⏰<span class="ndot" id="ndot"></span></div>
@@ -794,6 +805,8 @@ canvas#sc{display:none}
       <div class="qcard-bot">
         <div class="qactions">
           <div class="qab fav" id="fav-btn" onclick="toggleFav()">🤍</div>
+          <div class="qab" onclick="useSerum()" title="Sérum de Vérité">💉</div>
+          <div class="qab" onclick="useReverse()" title="Uno Reverse">🔄</div>
           <div class="qab" onclick="openShare()">📤</div>
           <div class="qab" onclick="flagQ()">🚩</div>
         </div>
@@ -916,7 +929,7 @@ canvas#sc{display:none}
 <!-- LIVE -->
 <div id="pg-live" class="page">
   <div class="inner">
-    <div class="scr-hd"><div class="bk" onclick="goTo('pg-home')">←</div><div class="scr-title">Live Débat ⚔️</div></div>
+    <div class="scr-hd"><div class="bk" onclick="goTo('pg-home')">←</div><div class="scr-title">Live Sans Filtre ⚔️</div></div>
     <div class="lsteps">
       <div class="ls"><span class="lsn">1</span><div><div class="lsh">Créer une salle</div><div class="lsp">Code 4 lettres partageable</div></div></div>
       <div class="ls"><span class="lsn">2</span><div><div class="lsh">Inviter</div><div class="lsp">L'adversaire rejoint avec le code</div></div></div>
@@ -973,7 +986,7 @@ canvas#sc{display:none}
       <div style="font-size:13px;color:var(--text2);line-height:1.65;padding-top:12px;border-top:1px solid var(--border)">💡 <strong>Point de débat :</strong> l'amour peut-il tout justifier, même renoncer à sa vie construite ?</div>
     </div>
     <div class="lb">
-      <h3>🏅 Top Débatteurs</h3>
+      <h3>🏅 Top Joueurs</h3>
       <div id="lb-list" style="text-align:center;padding:20px 0;color:var(--text3);font-size:14px">
         🔮 Le classement s'affichera avec les premiers joueurs.<br><br>
         <span style="font-size:12px">Votez cette semaine pour apparaître ici !</span>
@@ -1019,7 +1032,7 @@ canvas#sc{display:none}
 </div><!-- #app -->
 
 <div class="bnav">
-  <button class="ni on" id="ni-home" onclick="goTo('pg-home')"><span class="ni-i">🔥</span><span class="ni-l">Débat</span></button>
+  <button class="ni on" id="ni-home" onclick="goTo('pg-home')"><span class="ni-i">🔥</span><span class="ni-l">Jeu</span></button>
   <button class="ni" id="ni-live" onclick="goTo('pg-live')"><span class="ni-i">⚔️</span><span class="ni-l">Live</span></button>
   <button class="ni" id="ni-week" onclick="goTo('pg-week')"><span class="ni-i">📅</span><span class="ni-l">Semaine</span></button>
   <button class="ni" id="ni-profil" onclick="goTo('pg-profil')"><span class="ni-i">🧠</span><span class="ni-l">Profil</span></button>
@@ -1082,9 +1095,9 @@ canvas#sc{display:none}
     <div style="font-size:14px;color:var(--text2)" id="sk-msg">Revenez demain pour garder votre flame !</div>
   </div>
   <div class="sk-miles">
-    <div class="skm"><div class="skm-i">3🔥</div><div class="skm-p">+15 pts</div></div>
-    <div class="skm"><div class="skm-i">7🔥</div><div class="skm-p">+40 pts</div></div>
-    <div class="skm"><div class="skm-i">14🔥</div><div class="skm-p">+100 pts</div></div>
+    <div class="skm"><div class="skm-i">3🔥</div><div class="skm-p">+5 pts</div></div>
+    <div class="skm"><div class="skm-i">7🔥</div><div class="skm-p">+10 pts</div></div>
+    <div class="skm"><div class="skm-i">14🔥</div><div class="skm-p">+25 pts</div></div>
     <div class="skm"><div class="skm-i">30🔥</div><div class="skm-p">Badge 👑</div></div>
   </div>
   <div style="background:var(--bg3);border-radius:13px;padding:14px;margin-bottom:13px">
@@ -1092,7 +1105,26 @@ canvas#sc{display:none}
     <div style="font-size:13px;color:var(--text2);line-height:1.5;margin-bottom:10px">Protège ton streak si tu rates un jour.</div>
     <div style="display:flex;justify-content:space-between;align-items:center">
       <div style="font-size:14px">❄️ <strong id="sk-fr">2</strong> disponibles</div>
-      <button class="btn-g" style="width:auto;padding:8px 13px;font-size:13px" onclick="buyFreeze()">+ 50 pts</button>
+      <button class="btn-g" style="width:auto;padding:8px 13px;font-size:13px" onclick="buyFreeze()">30 pts</button>
+    </div>
+  </div>
+  <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin:16px 0 8px">Boutique</div>
+  <div style="background:var(--bg3);border-radius:13px;padding:14px;margin-bottom:10px">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div><span style="font-size:16px">🌶️</span> <strong>Pack Pimenté</strong><div style="font-size:11px;color:var(--text3)">Débloque 5 questions ultra-épicées</div></div>
+      <button class="btn-g" style="width:auto;padding:8px 13px;font-size:13px" onclick="buyPack()">20 pts</button>
+    </div>
+  </div>
+  <div style="background:var(--bg3);border-radius:13px;padding:14px;margin-bottom:10px">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div><span style="font-size:16px">💉</span> <strong>Sérum de Vérité</strong><div style="font-size:11px;color:var(--text3)">Le joueur visé DOIT répondre honnêtement</div></div>
+      <button class="btn-g" style="width:auto;padding:8px 13px;font-size:13px" onclick="buySerum()">15 pts</button>
+    </div>
+  </div>
+  <div style="background:var(--bg3);border-radius:13px;padding:14px;margin-bottom:13px">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div><span style="font-size:16px">🔄</span> <strong>Carte Uno Reverse</strong><div style="font-size:11px;color:var(--text3)">Inverse les rôles dans la prochaine question</div></div>
+      <button class="btn-g" style="width:auto;padding:8px 13px;font-size:13px" onclick="buyReverse()">10 pts</button>
     </div>
   </div>
   <button class="btn-v" onclick="closeSheet('ov-sk','sht-sk')">Compris 💪</button>
@@ -1131,16 +1163,17 @@ canvas#sc{display:none}
 <div class="sht" id="sht-st">
   <div class="sht-handle"></div>
   <div class="sht-title">⚙️ Paramètres</div>
-  <div class="sht-sub">Clé API pour questions générées en temps réel</div>
-  <label class="fl">🔑 Clé API (optionnel)</label>
-  <input type="password" class="fi" id="api-key" placeholder="sk-proj-…"/>
+  <div class="sht-sub">Clé Google Gemini gratuite pour questions générées par l'IA</div>
+  <label class="fl">🔑 Clé API Gemini (optionnel · gratuit)</label>
+  <input type="password" class="fi" id="api-key" placeholder="AIzaSy…"/>
+  <div style="font-size:11px;color:var(--text3);margin:-8px 0 12px;line-height:1.5">Gratuit · <a href="https://aistudio.google.com/apikey" target="_blank" style="color:var(--vl);text-decoration:underline">Obtenir une clé ici</a></div>
   <button class="btn-v" onclick="saveAPI()" style="margin-bottom:14px">Sauvegarder</button>
   <button class="btn-g" onclick="closeSheet('ov-st','sht-st');document.getElementById('pg-onboard').style.display='flex'">Changer les joueurs →</button>
 </div>
 
 <script>
 // ═══════════════════════════════════════════════════
-//  DÉBAT INTENSE v10 — Clean build, no nested literals
+//  DÉBAT INTENSE v14 — Clean production build
 // ═══════════════════════════════════════════════════
 
 // ── QUESTION BANK ──
@@ -1296,12 +1329,12 @@ const QB = {
 };
 
 const DARES = {
-  couple:[{d:"Decris ton partenaire ideal en 3 mots precis. Le groupe vote si c'est vraiment toi.",pts:15},{d:"Lis le dernier message romantique que tu as envoye a voix haute.",pts:20},{d:"Confesse une habitude que tu as quand ton partenaire n'est pas la.",pts:15},{d:"Imite la facon dont un ex se comportait en couple. Sois precis.",pts:20},{d:"Dis sincerement a la personne en face ce que tu apprecies le plus chez elle.",pts:15}],
-  sexualite:[{d:"Revele le vrai compliment physique que tu aurais sur quelqu'un ici sans le nommer.",pts:20},{d:"Decris ton 'type' en 30 secondes, sans filtre.",pts:15},{d:"Revele la celebrite qui est ton 'autorisation'. Justifie.",pts:20},{d:"Confesse le dernier film que tu regardes seul et n'avouais pas.",pts:15},{d:"Revele le compliment physique le plus memorable qu'on t'ait fait.",pts:15}],
-  morale:[{d:"Confesse la plus petite chose illegale que tu aies faite. Soyez honnete.",pts:15},{d:"Dis une opinion impopulaire que tu assumes totalement.",pts:20},{d:"Raconte une fois ou tu as menti a quelqu'un de proche sans jamais t'en excuser.",pts:20},{d:"Revele quelque chose que tu as fait dont tu n'es pas fier mais que tu recommencerais.",pts:20},{d:"Dis a la personne de ton choix ce que tu penses vraiment d'elle, sans filtre.",pts:25}],
-  jalousie:[{d:"Revele la plus grande jalousie que tu aies ressentie ce mois-ci. Sois precis.",pts:15},{d:"Confesse si tu as deja espionne les reseaux d'un partenaire ou ex.",pts:20},{d:"Revele un moment ou tu etais jaloux mais tu n'as rien dit. Pourquoi ?",pts:15},{d:"Dis sincerement ce que tu envies chez la personne a ta gauche.",pts:15},{d:"Imite la personne que tu jalouses le plus professionnellement.",pts:20}],
-  argent:[{d:"Dis approximativement ton salaire mensuel a 500€ pres. Tout le monde ecoute.",pts:25},{d:"Revele ta plus grande depense inutile du mois dernier. Montant precis.",pts:20},{d:"Confesse si tu as deja menti sur ton salaire. De combien ?",pts:20},{d:"Revele la somme que tu as sur ton compte en ce moment a 500€ pres.",pts:20},{d:"Decris ta relation a l'argent en 3 mots honnetes.",pts:15}],
-  religion:[{d:"Confesse le moment ou tu t'es senti le plus proche d'une forme de spiritualite.",pts:15},{d:"Dis une croyance que tu gardes secrete en public.",pts:20},{d:"Revele si tu as deja prie pour quelque chose d'egoiste. Pour quoi ?",pts:15},{d:"Raconte quelque chose qui t'est arrive que tu ne peux pas expliquer rationnellement.",pts:20},{d:"Imite une ceremonie religieuse que tu connais mal. Le groupe vote si c'est reconnaissable.",pts:20}]
+  couple:[{d:"Decris ton partenaire ideal en 3 mots precis. Le groupe vote si c'est vraiment toi.",pts:5},{d:"Lis le dernier message romantique que tu as envoye a voix haute.",pts:7},{d:"Confesse une habitude que tu as quand ton partenaire n'est pas la.",pts:5},{d:"Imite la facon dont un ex se comportait en couple. Sois precis.",pts:7},{d:"Dis sincerement a la personne en face ce que tu apprecies le plus chez elle.",pts:5}],
+  sexualite:[{d:"Revele le vrai compliment physique que tu aurais sur quelqu'un ici sans le nommer.",pts:7},{d:"Decris ton 'type' en 30 secondes, sans filtre.",pts:5},{d:"Revele la celebrite qui est ton 'autorisation'. Justifie.",pts:7},{d:"Confesse le dernier film que tu regardes seul et n'avouais pas.",pts:5},{d:"Revele le compliment physique le plus memorable qu'on t'ait fait.",pts:5}],
+  morale:[{d:"Confesse la plus petite chose illegale que tu aies faite. Soyez honnete.",pts:5},{d:"Dis une opinion impopulaire que tu assumes totalement.",pts:7},{d:"Raconte une fois ou tu as menti a quelqu'un de proche sans jamais t'en excuser.",pts:7},{d:"Revele quelque chose que tu as fait dont tu n'es pas fier mais que tu recommencerais.",pts:7},{d:"Dis a la personne de ton choix ce que tu penses vraiment d'elle, sans filtre.",pts:10}],
+  jalousie:[{d:"Revele la plus grande jalousie que tu aies ressentie ce mois-ci. Sois precis.",pts:5},{d:"Confesse si tu as deja espionne les reseaux d'un partenaire ou ex.",pts:7},{d:"Revele un moment ou tu etais jaloux mais tu n'as rien dit. Pourquoi ?",pts:5},{d:"Dis sincerement ce que tu envies chez la personne a ta gauche.",pts:5},{d:"Imite la personne que tu jalouses le plus professionnellement.",pts:7}],
+  argent:[{d:"Dis approximativement ton salaire mensuel a 500€ pres. Tout le monde ecoute.",pts:10},{d:"Revele ta plus grande depense inutile du mois dernier. Montant precis.",pts:7},{d:"Confesse si tu as deja menti sur ton salaire. De combien ?",pts:7},{d:"Revele la somme que tu as sur ton compte en ce moment a 500€ pres.",pts:7},{d:"Decris ta relation a l'argent en 3 mots honnetes.",pts:5}],
+  religion:[{d:"Confesse le moment ou tu t'es senti le plus proche d'une forme de spiritualite.",pts:5},{d:"Dis une croyance que tu gardes secrete en public.",pts:7},{d:"Revele si tu as deja prie pour quelque chose d'egoiste. Pour quoi ?",pts:5},{d:"Raconte quelque chose qui t'est arrive que tu ne peux pas expliquer rationnellement.",pts:7},{d:"Imite une ceremonie religieuse que tu connais mal. Le groupe vote si c'est reconnaissable.",pts:7}]
 };
 
 const DISCUSS_SPARKS = [
@@ -1331,7 +1364,7 @@ var S = {
   roundVotes:{},
   curVoterIdx:0,
   pendingVote:null,
-  apiKey:"",pts:0,streak:0,freezes:2,lastSessionDate:null,
+  apiKey:"",pts:0,streak:0,freezes:2,serums:0,reverses:0,spicyUnlocked:false,lastSessionDate:null,
   tQ:0,sess:0,sQ:0,sV:[],sH:[],
   aV:{couple:[],sexualite:[],morale:[],jalousie:[],argent:[],religion:[]},
   favs:[],curQ:"",curQObj:null,curCat:"couple",
@@ -1349,8 +1382,20 @@ function inject(text) {
   var p2 = S.players[1] ? S.players[1].name : (S.players[0] ? S.players[0].name : "Joueur 2");
   return text.replace(/\{\{P1\}\}/g, p1).replace(/\{\{P2\}\}/g, p2);
 }
-function P1() { return S.players[0] ? S.players[0].name : "Joueur 1"; }
-function P2() { return S.players[1] ? S.players[1].name : (S.players[0] ? S.players[0].name : "Joueur 2"); }
+function P1() {
+  if (S.gameMode !== "classic" && S.players.length > 2) {
+    var p = S.players[S.hotSeat || 0];
+    return p ? p.name : "Joueur 1";
+  }
+  return S.players[0] ? S.players[0].name : "Joueur 1";
+}
+function P2() {
+  if (S.gameMode !== "classic" && S.players.length > 2) {
+    var idx = ((S.hotSeat || 0) + 1) % S.players.length;
+    return S.players[idx] ? S.players[idx].name : "Joueur 2";
+  }
+  return S.players[1] ? S.players[1].name : (S.players[0] ? S.players[0].name : "Joueur 2");
+}
 function hotP() { return S.players[S.hotSeat] || S.players[0]; }
 function ge(id) { return document.getElementById(id); }
 function qs(sel) { return document.querySelector(sel); }
@@ -1367,7 +1412,6 @@ function setMode(mode, el) {
   if (mode !== "classic" && obPlayers.length < 3) {
     obPlayers.push({name:"",emoji:EMOJIS[2]});
   }
-  v12Boot();
   renderObPlayers();
 }
 
@@ -1562,18 +1606,21 @@ function renderWidget(qObj, wid, lid) {
     if (w) w.innerHTML = '<div class="binary-row"><button class="abt oui" onclick="castVote(\'oui\',\'✅ Oui\')">✅ Oui</button><button class="abt non" onclick="castVote(\'non\',\'❌ Non\')">❌ Non</button></div>';
     return;
   }
+  // Auto-promote binary questions with discuss_starters to discuss type
+  var effectiveType = qObj.type;
+  if (effectiveType === "binary" && qObj.discuss_starters && qObj.discuss_starters.length) effectiveType = "discuss";
   var labels = {binary:"Ta position",scale:"Ton niveau (1=non · 5=oui total)",choice:"Ta reponse",discuss:"Ta conclusion apres debat"};
-  if (l) l.textContent = labels[qObj.type] || "Ta reponse";
-  if (qObj.type === "binary") {
+  if (l) l.textContent = labels[effectiveType] || "Ta reponse";
+  if (effectiveType === "binary") {
     w.innerHTML = '<div class="binary-row"><button class="abt oui" onclick="castVote(\'oui\',\'✅ Oui\')">✅ Oui</button><button class="abt non" onclick="castVote(\'non\',\'❌ Non\')">❌ Non</button></div>';
-  } else if (qObj.type === "scale") {
+  } else if (effectiveType === "scale") {
     var html = '<div class="scale-row">';
     for (var n = 1; n <= 5; n++) {
       html += '<button class="sbt" onclick="castVote(\'' + n + '\',\'' + n + '/5\')">' + n + '</button>';
     }
     html += '</div>';
     w.innerHTML = html;
-  } else if (qObj.type === "choice") {
+  } else if (effectiveType === "choice") {
     var choices = qObj.choices || [];
     var html = '<div class="choices">';
     for (var i = 0; i < choices.length; i++) {
@@ -1581,7 +1628,7 @@ function renderWidget(qObj, wid, lid) {
     }
     html += '</div>';
     w.innerHTML = html;
-  } else if (qObj.type === "discuss" || qObj.type === "open") {
+  } else if (effectiveType === "discuss" || effectiveType === "open") {
     var starters = qObj.discuss_starters || [];
     var spark = DISCUSS_SPARKS[Math.floor(Math.random() * DISCUSS_SPARKS.length)];
     var sHtml = "";
@@ -1607,6 +1654,28 @@ function renderWidget(qObj, wid, lid) {
 function castVoteIdx(i) {
   if (!S.curQObj || !S.curQObj.choices) return;
   castVote("c" + i, inject(S.curQObj.choices[i]).substring(0, 40));
+}
+
+// Normalize any vote value to oui/non/mid for personality tracking
+function normalizeVote(v) {
+  if (v === "oui") return "oui";
+  if (v === "non") return "non";
+  if (v === "mid") return "mid";
+  // Scale 1-5: 1-2=non, 3=mid, 4-5=oui
+  var n = parseInt(v);
+  if (!isNaN(n) && n >= 1 && n <= 5) return n <= 2 ? "non" : (n >= 4 ? "oui" : "mid");
+  // Choice: first option tends toward oui, last toward non
+  if (typeof v === "string" && v.charAt(0) === "c") {
+    var ci = parseInt(v.substring(1));
+    if (!isNaN(ci) && S.curQObj && S.curQObj.choices) {
+      var total = S.curQObj.choices.length;
+      if (total <= 2) return ci === 0 ? "oui" : "non";
+      if (ci === 0) return "oui";
+      if (ci === total - 1) return "non";
+      return "mid";
+    }
+  }
+  return null;
 }
 
 // ── CAST VOTE (selectable, re-selectable) ──
@@ -1644,23 +1713,24 @@ function castVote(value, label) {
       // Remove previous vote
       var pi = S.sV.lastIndexOf(last.vote);
       if (pi >= 0) S.sV.splice(pi, 1);
-      if (last.vote === "oui" || last.vote === "non") {
-        var ai = S.aV[S.curCat].lastIndexOf(last.vote);
+      var prevNorm = normalizeVote(last.vote);
+      if (prevNorm) {
+        var ai = S.aV[S.curCat].lastIndexOf(prevNorm);
         if (ai >= 0) S.aV[S.curCat].splice(ai, 1);
       }
-      S.pts = Math.max(0, S.pts - 3);
+      S.pts = Math.max(0, S.pts - 1);
     }
     S.sV.push(value);
-    if (value === "oui" || value === "non") {
-      S.aV[S.curCat].push(value);
-      // Also track in player's own aV
+    var normVal = normalizeVote(value);
+    if (normVal) {
+      S.aV[S.curCat].push(normVal);
       var p0b = S.players[0];
-      if (p0b) { if(!p0b.aV) p0b.aV={couple:[],sexualite:[],morale:[],jalousie:[],argent:[],religion:[]}; p0b.aV[S.curCat].push(value); }
+      if (p0b) { if(!p0b.aV) p0b.aV={couple:[],sexualite:[],morale:[],jalousie:[],argent:[],religion:[]}; p0b.aV[S.curCat].push(normVal); }
     }
     if (last) { last.vote = value; last.voteLabel = label || value; }
     var p0 = S.players[0];
-    if (p0) { p0.pts += 3; if (value === "oui") p0.ouiV = (p0.ouiV||0) + 1; p0.totalV = (p0.totalV||0) + 1; }
-    addPts(3); renderRadar();
+    if (p0) { p0.pts += 1; if (value === "oui") p0.ouiV = (p0.ouiV||0) + 1; p0.totalV = (p0.totalV||0) + 1; }
+    addPts(1); renderRadar();
     ge("vote-hint").textContent = "✅ Reponse enregistree — modifiable";
   }
 }
@@ -1674,15 +1744,16 @@ function confirmVote() {
   // Commit vote for current player
   var last = S.sH[S.sH.length - 1];
   S.sV.push(value);
-  if (value === "oui" || value === "non") S.aV[S.curCat].push(value);
+  var normV = normalizeVote(value);
+  if (normV) S.aV[S.curCat].push(normV);
   if (last && !last.vote) { last.vote = value; last.voteLabel = label || value; }
   var p = S.players[S.curVoterIdx];
-  if (p) { p.pts += 3; if (value === "oui") p.ouiV = (p.ouiV||0) + 1; p.totalV = (p.totalV||0) + 1; }
+  if (p) { p.pts += 1; if (value === "oui") p.ouiV = (p.ouiV||0) + 1; p.totalV = (p.totalV||0) + 1; }
   // Track vote in player's own aV
   if (!p.aV) p.aV = {couple:[],sexualite:[],morale:[],jalousie:[],argent:[],religion:[]};
-  if (value === "oui" || value === "non") p.aV[S.curCat].push(value);
+  if (normV) p.aV[S.curCat].push(normV);
   S.roundVotes[S.curVoterIdx] = {value:value, label:label, player:{name:p.name, emoji:p.emoji}};
-  addPts(3); renderRadar();
+  addPts(1); renderRadar();
   updateChip(S.curVoterIdx);
   S.curVoterIdx++;
   S.pendingVote = null;
@@ -1736,7 +1807,7 @@ function launchDare() {
 }
 
 function dareDone() {
-  var pts = S._darePts || 15;
+  var pts = S._darePts || 5;
   var hs = hotP();
   hs.pts += pts;
   addPts(pts);
@@ -1751,8 +1822,8 @@ function dareDone() {
 
 function dareFail() {
   var hs = hotP();
-  hs.pts = Math.max(0, hs.pts - 5);
-  addPts(-5);
+  hs.pts = Math.max(0, hs.pts - 2);
+  addPts(-2);
   renderStrip();
   toast("😅 " + hs.name + " passe son tour. -5 pts");
   ge("dare-card").classList.remove("on");
@@ -1845,7 +1916,7 @@ function closeReveal() {
   var sr = ge("rv-share-row"); if(sr) sr.classList.remove("on");
   var votes = Object.values(S.roundVotes);
   if (votes.length && !votes.every(function(v){return v.value === votes[0].value;})) {
-    addPts(5); toast("⚔️ Desaccord bonus +5 pts !");
+    addPts(2); toast("⚔️ Desaccord bonus +2 pts !");
   }
   if (S.gameMode === "group" || S.gameMode === "truth_dare") advHot();
 }
@@ -1963,7 +2034,7 @@ function doDisplayQ(qObj) {
   ge("fav-btn").className = "qab fav";
   if (S.storyMode && qObj.story) showStoryCard(qObj);
   else if (S.storyMode && !qObj.story) hideStoryCard();
-  addPts(5);
+  addPts(1);
   checkBadges();
   // Suggest category change mid-session for variety
   if (S.sQ === Math.ceil(SESSION_LEN / 2)) {
@@ -1992,19 +2063,20 @@ function fromBank() {
 }
 
 async function fromAPI() {
-  var names = {couple:"couple",sexualite:"sexualite",morale:"morale",jalousie:"jalousie",argent:"argent",religion:"religion"};
-  var ints = ["echauffement","tension legere","intense","ultra-polemique","verdict final"];
+  var names = {couple:"couple",sexualite:"sexualité",morale:"morale",jalousie:"jalousie",argent:"argent",religion:"religion"};
+  var ints = ["échauffement","tension légère","intense","ultra-polémique","verdict final"];
   var p1 = P1(), p2 = P2();
-  var prompt = "Genere une question de debat originale en francais sur " + names[S.curCat] + ". Les joueurs s'appellent " + p1 + " et " + p2 + ". Utilise leurs prenoms. Intensite : " + (ints[S.sQ] || "intense") + ". Concrete, 1-2 phrases max. UNIQUEMENT la question.";
+  var prompt = "Génère UNE SEULE question de débat originale en français sur le thème : " + names[S.curCat] + ". Les joueurs s'appellent " + p1 + " et " + p2 + ". Utilise leurs prénoms dans la question. Intensité : " + (ints[S.sQ] || "intense") + ". La question doit être concrète, provocante et personnelle. 1-2 phrases max. Réponds UNIQUEMENT avec la question, sans guillemets ni préambule.";
   try {
-    var r = await fetch("https://api.anthropic.com/v1/messages", {
+    var url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + encodeURIComponent(S.apiKey);
+    var r = await fetch(url, {
       method:"POST",
       headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:200,messages:[{role:"user",content:prompt}]})
+      body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{maxOutputTokens:200,temperature:0.9}})
     });
     var d = await r.json();
-    if (d.content && d.content[0] && d.content[0].text) {
-      var q = d.content[0].text.trim();
+    if (d.candidates && d.candidates[0] && d.candidates[0].content && d.candidates[0].content.parts && d.candidates[0].content.parts[0]) {
+      var q = d.candidates[0].content.parts[0].text.trim().replace(/^["«]|["»]$/g,"");
       S.recent.push(q);
       return {q:q, type:"binary", story:null};
     }
@@ -2067,13 +2139,17 @@ function endSession() {
   // Archetype teaser
   var tv = 0;
   Object.values(S.aV).forEach(function(a){tv += a.length;});
-  ge("pt-lbl").textContent = tv + " / 10";
-  ge("pt-bar").style.width = Math.min(100, (tv/10)*100) + "%";
-  if (tv >= 10) {
+  ge("pt-lbl").textContent = tv + " / 5";
+  ge("pt-bar").style.width = Math.min(100, (tv/5)*100) + "%";
+  if (tv >= 5) {
     var a = getArch();
     ge("pt-ico").textContent = a.icon;
     ge("pt-name").textContent = a.name;
     ge("pt-desc").textContent = "Voir mon profil complet →";
+  } else if (tv > 0) {
+    ge("pt-ico").textContent = "🔮";
+    ge("pt-name").textContent = "En révélation…";
+    ge("pt-desc").textContent = "Vote encore " + (5-tv) + " fois !";
   } else {
     ge("pt-ico").textContent = "🔮";
     ge("pt-name").textContent = "En revelation…";
@@ -2096,7 +2172,7 @@ function endSession() {
   S.lastSessionDate = today;
   var pstr = ge("p-str"); if(pstr) pstr.textContent = S.streak;
   var pnsk = ge("pn-sk"); if(pnsk) pnsk.textContent = S.streak;
-  if (S.streak >= 3) { addPts(S.streak >= 7 ? 40 : 15); toast("🔥 " + S.streak + " jours de suite ! Bonus !"); }
+  if (S.streak >= 3) { addPts(S.streak >= 7 ? 10 : 5); toast("🔥 " + S.streak + " jours de suite ! Bonus !"); }
   ge("ndot").classList.remove("on");
   saveState();
   goTo("pg-end");
@@ -2126,16 +2202,23 @@ function newSession() {
 
 // ── ARCHETYPE ──
 function pct(arr, val) { return arr.length ? Math.round(arr.filter(function(v){return v===val;}).length/arr.length*100) : 50; }
-function getArch() {
-  var av = S.aV;
+function getArch(avSource) {
+  var av = avSource || S.aV;
   var cy=pct(av.couple,"oui"),my=pct(av.morale,"oui"),sy=pct(av.sexualite,"oui"),
       jy=pct(av.jalousie,"oui"),ay=pct(av.argent,"oui"),ry=pct(av.religion,"oui");
+  // Also factor in "mid" votes — nuanced voters get bonus to stratege/pragmatiste
+  var midTotal = 0;
+  Object.values(av).forEach(function(a){midTotal += a.filter(function(v){return v==="mid";}).length;});
   var sc={pragmatiste:0,rebelle:0,gardien:0,libertin:0,stratege:0,anarchiste:0};
+  // Primary combos (strong signal)
   if(cy>60&&my>60)sc.pragmatiste+=3; if(cy>60&&my<50)sc.rebelle+=3;
   if(my>70&&ry>60)sc.gardien+=3;     if(sy>60&&ry<40)sc.libertin+=3;
   if(ay>60&&my>50)sc.stratege+=3;    if(jy<40&&ry<40&&sy>50)sc.anarchiste+=3;
+  // Secondary signals
   if(cy>50)sc.pragmatiste++; if(my<40)sc.rebelle++; if(ry>60)sc.gardien++;
   if(sy>50)sc.libertin++;    if(ay>60)sc.stratege++; if(jy<30)sc.anarchiste++;
+  // Nuanced voters (lots of "mid") lean stratege/pragmatiste
+  if(midTotal >= 3) { sc.stratege += 2; sc.pragmatiste += 1; }
   var entries = Object.entries(sc).sort(function(a,b){return b[1]-a[1];});
   var winner = entries[0][0];
   for (var i = 0; i < ARCHS.length; i++) { if (ARCHS[i].id === winner) return ARCHS[i]; }
@@ -2161,10 +2244,11 @@ function renderProfil() {
   ge("d-fill").style.width = dp + "%";
   ge("d-prog").textContent = Math.min(S.tQ,SESSION_LEN) + " / " + SESSION_LEN;
   ge("d-pct").textContent = Math.round(dp) + "%";
-  var tv = 0; Object.values(S.aV).forEach(function(a){tv+=a.length;});
+  var avSource = (viewP && viewP.aV) ? viewP.aV : S.aV;
+  var tv = 0; Object.values(avSource).forEach(function(a){tv+=a.length;});
   var ab = ge("arch-box");
-  if (tv >= 10) {
-    var a = getArch();
+  if (tv >= 5) {
+    var a = getArch(avSource);
     ab.innerHTML = '<span class="arch-ico">' + a.icon + '</span>'
       + '<div class="arch-name">' + a.name + '</div>'
       + '<div class="arch-desc">' + a.desc + '</div>'
@@ -2174,9 +2258,9 @@ function renderProfil() {
     ab.innerHTML = '<div style="text-align:center;padding:10px 0">'
       + '<span style="font-size:54px;display:block;margin-bottom:12px;filter:grayscale(1);opacity:.5">🔮</span>'
       + '<div style="font-family:Syne,sans-serif;font-size:19px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px">Profil en revelation</div>'
-      + '<div style="font-size:14px;color:var(--text2);line-height:1.55;margin-bottom:14px">Votez encore <strong>' + (10-tv) + ' fois</strong> pour reveler votre archetype.</div>'
-      + '<div class="pbar"><div class="pbar-f" style="width:' + Math.min(100,(tv/10)*100) + '%;background:linear-gradient(90deg,var(--v),var(--o))"></div></div>'
-      + '<div style="font-size:12px;color:var(--text3);margin-top:8px">' + tv + ' / 10 votes</div>'
+      + '<div style="font-size:14px;color:var(--text2);line-height:1.55;margin-bottom:14px">Votez encore <strong>' + (5-tv) + ' fois</strong> pour reveler votre archetype.</div>'
+      + '<div class="pbar"><div class="pbar-f" style="width:' + Math.min(100,(tv/5)*100) + '%;background:linear-gradient(90deg,var(--v),var(--o))"></div></div>'
+      + '<div style="font-size:12px;color:var(--text3);margin-top:8px">' + tv + ' / 5 votes</div>'
       + '</div>';
   }
   renderRadar();
@@ -2210,7 +2294,7 @@ function addPts(n) {
   ge("pn-pts").textContent = S.pts;
   ge("my-wk").textContent = S.pts;
   var pp = ge("p-pts"); if (pp) pp.textContent = S.pts;
-  if (n > 0 && S.pts > 0 && S.pts % 50 === 0) { toast("⭐ " + S.pts + " pts !"); confetti(); }
+  if (n > 0 && S.pts > 0 && S.pts % 25 === 0) { toast("⭐ " + S.pts + " pts !"); confetti(); }
 }
 
 function checkBadges() {
@@ -2243,7 +2327,7 @@ function toggleFav() {
   } else {
     b.classList.add("on"); b.textContent = "❤️";
     if (S.curQ) S.favs.push(S.curQ);
-    addPts(2); checkBadges(); toast("❤️ Favori !");
+    addPts(1); checkBadges(); toast("❤️ Favori !");
   }
   saveState();
 }
@@ -2252,9 +2336,9 @@ function flagQ() { toast("🚩 Signale — merci !"); }
 
 // ── SHARE ──
 function shareApp() {
-  var text = "🔥 Viens debattre avec moi sur Debat Intense ! Des questions qui revelent ce qu'on pense vraiment. 💥";
+  var text = "🔥 Viens debattre avec moi sur Sans Filtre ! Des questions qui revelent ce qu'on pense vraiment. 💥";
   if (navigator.share) {
-    navigator.share({title:"Debat Intense 🔥",text:text,url:location.href}).catch(function(){});
+    navigator.share({title:"Sans Filtre 🔥",text:text,url:location.href}).catch(function(){});
   } else {
     navigator.clipboard.writeText(text + "\n" + location.href).then(function(){toast("📋 Lien copie — envoie-le !");}).catch(function(){toast("📤 Partage l'app !");});
   }
@@ -2265,14 +2349,14 @@ function openShare() {
   openSheet("ov-sh","sht-sh");
 }
 function shareTo(app) {
-  var t = encodeURIComponent("🔥 Debat Intense : \"" + S.curQ + "\" — Reponds si tu oses ! 💥");
+  var t = encodeURIComponent("🔥 Sans Filtre : \"" + S.curQ + "\" — Reponds si tu oses ! 💥");
   var u = {whatsapp:"https://api.whatsapp.com/send?text="+t,instagram:"https://www.instagram.com/",tiktok:"https://www.tiktok.com/",sms:"sms:?body="+t};
   window.open(u[app],"_blank");
   closeSheet("ov-sh","sht-sh");
   toast("📤 Partage !");
 }
 function copyQ() {
-  navigator.clipboard.writeText("🔥 \"" + S.curQ + "\" — Debat Intense").then(function(){toast("📋 Copie !");}).catch(function(){toast("📋 Copie !");});
+  navigator.clipboard.writeText("🔥 \"" + S.curQ + "\" — Sans Filtre").then(function(){toast("📋 Copie !");}).catch(function(){toast("📋 Copie !");});
   closeSheet("ov-sh","sht-sh");
 }
 function genStoryImg() {
@@ -2287,7 +2371,7 @@ function genStoryImg() {
   gv.addColorStop(0,"rgba(124,58,237,.4)"); gv.addColorStop(1,"rgba(0,0,0,0)");
   ctx.fillStyle=gv; ctx.fillRect(0,0,W,H);
   ctx.font="700 52px sans-serif"; ctx.fillStyle="rgba(255,255,255,.5)"; ctx.textAlign="center";
-  ctx.fillText("🔥 DEBAT INTENSE",W/2,130);
+  ctx.fillText("🔥 SANS FILTRE",W/2,130);
   ctx.font="800 68px sans-serif"; ctx.fillStyle="#EDE9FF"; ctx.textAlign="center";
   var words = S.curQ.split(" ");
   var line = "", lines = [];
@@ -2299,18 +2383,18 @@ function genStoryImg() {
   if (line) lines.push(line);
   for (var li = 0; li < lines.length; li++) ctx.fillText(lines[li],W/2,560+li*94);
   ctx.font="600 32px sans-serif"; ctx.fillStyle="rgba(255,255,255,.22)";
-  ctx.fillText("debatintense.app",W/2,H-180);
-  var lk = document.createElement("a"); lk.download="debat-intense.png"; lk.href=cv.toDataURL(); lk.click();
+  ctx.fillText("sansfiltre.app",W/2,H-180);
+  var lk = document.createElement("a"); lk.download="sans-filtre.png"; lk.href=cv.toDataURL(); lk.click();
   closeSheet("ov-sh","sht-sh"); toast("📸 Story creee !");
 }
 function shareReplay() {
   var t = S.sH.slice(-SESSION_LEN).map(function(h,i){return (i+1)+". \""+h.q.substring(0,55)+"...\" → "+(h.voteLabel||"–");}).join("\n");
-  navigator.clipboard.writeText("🔥 Replay Debat Intense :\n"+t+"\ndebatintense.app").then(function(){toast("📋 Replay copie !");}).catch(function(){toast("📤 Pret !");});
+  navigator.clipboard.writeText("🔥 Replay Sans Filtre :\n"+t+"\nsansfiltre.app").then(function(){toast("📋 Replay copie !");}).catch(function(){toast("📤 Pret !");});
 }
 function shareProfil() {
   var tv = 0; Object.values(S.aV).forEach(function(a){tv+=a.length;});
-  var a = tv >= 10 ? getArch() : {name:"Debatteur Mysterieux",icon:"🔮"};
-  navigator.clipboard.writeText(a.icon+" "+a.name+"\n"+P1()+" — Debat Intense\n📊 "+S.tQ+" questions · 🔥 "+S.streak+" jours · ⭐ "+S.pts+" pts\ndebatintense.app").then(function(){toast("📋 Profil copie !");}).catch(function(){toast("📤 Pret !");});
+  var a = tv >= 10 ? getArch() : {name:"Joueur Mysterieux",icon:"🔮"};
+  navigator.clipboard.writeText(a.icon+" "+a.name+"\n"+P1()+" — Sans Filtre\n📊 "+S.tQ+" questions · 🔥 "+S.streak+" jours · ⭐ "+S.pts+" pts\nsansfiltre.app").then(function(){toast("📋 Profil copie !");}).catch(function(){toast("📤 Pret !");});
 }
 
 // ── STREAK ──
@@ -2322,11 +2406,67 @@ function openStreak() {
   openSheet("ov-sk","sht-sk");
 }
 function buyFreeze() {
-  if (S.pts < 50) { toast("⚠️ 50 pts requis"); return; }
-  S.pts -= 50; S.freezes++;
+  if (S.pts < 30) { toast("⚠️ 30 pts requis"); return; }
+  S.pts -= 30; S.freezes++;
   ge("pn-pts").textContent = S.pts;
   ge("sk-fr").textContent = S.freezes;
-  toast("❄️ Freeze achete !");
+  toast("❄️ Freeze acheté !");
+}
+
+var SPICY_PACK = [
+  {q:"{{P1}}, si {{P2}} te demandait de tout quitter demain matin — boulot, appart, amis — tu le ferais sans poser de questions ?",type:"discuss",discuss_starters:["L'amour inconditionnel existe-t-il vraiment ?","Jusqu'où iriez-vous par amour ?"]},
+  {q:"{{P2}}, tu es sur le lit de mort de quelqu'un que tu détestes. Il te demande pardon. Tu l'accordes sincèrement ?",type:"discuss",discuss_starters:["Le pardon sur le lit de mort est-il sincère ou social ?","Peut-on pardonner quelqu'un qu'on méprise ?"]},
+  {q:"{{P1}} et {{P2}}, soyez honnêtes : si vous découvriez que votre partenaire a un enfant caché, vous resteriez vraiment ?",type:"discuss",discuss_starters:["Le mensonge est-il plus grave que le fait lui-même ?","La loyauté a-t-elle des limites absolues ?"]},
+  {q:"{{P2}} confesse avoir eu des sentiments pour le/la meilleur(e) ami(e) de {{P1}} pendant 6 mois. Rien ne s'est passé. {{P1}}, ça change quoi ?",type:"discuss",discuss_starters:["Les sentiments non-agis sont-ils une trahison ?","Peut-on contrôler pour qui on a des sentiments ?"]},
+  {q:"Si {{P1}} apprenait que toute sa relation avec {{P2}} était basée sur un mensonge fondateur — mais que tout le reste était sincère — ça annule tout ?",type:"discuss",discuss_starters:["Un mensonge peut-il coexister avec l'amour sincère ?","La vérité tardive détruit-elle ou libère-t-elle ?"]}
+];
+
+function buyPack() {
+  if (S.spicyUnlocked) { toast("🌶️ Déjà débloqué !"); return; }
+  if (S.pts < 20) { toast("⚠️ 20 pts requis"); return; }
+  S.pts -= 20; S.spicyUnlocked = true;
+  ge("pn-pts").textContent = S.pts;
+  // Add spicy questions to all categories
+  var cats = Object.keys(QB);
+  for (var i = 0; i < SPICY_PACK.length; i++) {
+    var cat = cats[i % cats.length];
+    QB[cat].push(SPICY_PACK[i]);
+  }
+  toast("🌶️ Pack Pimenté débloqué — 5 questions ajoutées !");
+  confetti();
+}
+
+function buySerum() {
+  if (S.pts < 15) { toast("⚠️ 15 pts requis"); return; }
+  S.pts -= 15; S.serums++;
+  ge("pn-pts").textContent = S.pts;
+  toast("💉 Sérum de Vérité acheté ! Utilise-le pendant une question.");
+}
+
+function buyReverse() {
+  if (S.pts < 10) { toast("⚠️ 10 pts requis"); return; }
+  S.pts -= 10; S.reverses++;
+  ge("pn-pts").textContent = S.pts;
+  toast("🔄 Carte Reverse achetée !");
+}
+
+function useSerum() {
+  if (S.serums <= 0) { toast("⚠️ Achète un Sérum dans la boutique !"); return; }
+  S.serums--;
+  toast("💉 SÉRUM DE VÉRITÉ ACTIVÉ — " + P1() + " doit répondre honnêtement !");
+}
+
+function useReverse() {
+  if (S.reverses <= 0) { toast("⚠️ Achète une Carte Reverse dans la boutique !"); return; }
+  S.reverses--;
+  // Swap hotSeat to next player so P1/P2 switch
+  if (S.gameMode !== "classic" && S.players.length > 2) {
+    S.hotSeat = (S.hotSeat + 1) % S.players.length;
+  }
+  S.curQ = inject(S.curQObj.q);
+  var qt = ge("qtxt");
+  if (qt) qt.innerHTML = S.curQ;
+  toast("🔄 REVERSE ! Les rôles sont inversés !");
 }
 
 // ── PERSO ──
@@ -2343,18 +2483,19 @@ async function genPerso() {
   var cx = ge("perso-ctx").value;
   var qObj;
   if (S.apiKey) {
-    var p = "Question de debat concrete en francais avec les prenoms " + P1() + " et " + P2() + ". " + age + " ans, " + evt + ", intensite " + intensity + (cx?", situation: "+cx:"") + ". 1-2 phrases. UNIQUEMENT la question.";
+    var p = "Génère UNE SEULE question de débat concrète et personnelle en français avec les prénoms " + P1() + " et " + P2() + ". Tranche d'âge : " + age + ", contexte : " + evt + ", intensité : " + intensity + (cx?", situation spécifique : "+cx:"") + ". 1-2 phrases max. Réponds UNIQUEMENT avec la question, sans guillemets.";
     try {
-      var r = await fetch("https://api.anthropic.com/v1/messages", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:200,messages:[{role:"user",content:p}]})});
+      var url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + encodeURIComponent(S.apiKey);
+      var r = await fetch(url, {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{parts:[{text:p}]}],generationConfig:{maxOutputTokens:200,temperature:0.9}})});
       var d = await r.json();
-      if (d.content && d.content[0] && d.content[0].text) qObj = {q:d.content[0].text.trim(),type:"binary",story:null};
+      if (d.candidates && d.candidates[0] && d.candidates[0].content && d.candidates[0].content.parts && d.candidates[0].content.parts[0]) qObj = {q:d.candidates[0].content.parts[0].text.trim().replace(/^["«]|["»]$/g,""),type:"binary",story:null};
     } catch(e) {}
   }
   if (!qObj) qObj = fromBank();
   S.curQObj = qObj;
   S.curQ = inject(qObj.q);
   S.tQ++;
-  addPts(5);
+  addPts(1);
   var qt = ge("qtext"); qt.className = "qtext"; qt.textContent = S.curQ;
   renderWidget(qObj, "ans-widget", "ans-label");
   closeSheet("ov-po","sht-po");
@@ -2369,12 +2510,13 @@ function openSettings() { openSheet("ov-st","sht-st"); }
 function saveAPI() {
   S.apiKey = ge("api-key").value.trim();
   saveState();
-  toast(S.apiKey ? "🔑 Clé API sauvegardée !" : "⚠️ Mode démo activé");
+  toast(S.apiKey ? "🔑 Clé Gemini sauvegardée — questions IA activées !" : "⚠️ Questions IA désactivées — banque locale active");
   closeSheet("ov-st","sht-st");
 }
 
 // ── LIVE ──
 function genRoom() {
+  _qrDone = false;
   var c = Math.random().toString(36).substring(2,6).toUpperCase();
   S.roomCode = c; S.liveUsed = true;
   ge("room-code").textContent = c;
@@ -2387,7 +2529,7 @@ function copyRoom() {
 }
 function shareRoom() {
   if (!S.roomCode) { toast("⚠️ Cree une salle"); return; }
-  window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent("⚔️ " + P1() + " te defie sur Debat Intense ! Code : " + S.roomCode + " 🔥"), "_blank");
+  window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent("⚔️ " + P1() + " te defie sur Sans Filtre ! Code : " + S.roomCode + " 🔥"), "_blank");
 }
 function joinRoom() {
   var c = ge("jinp").value.trim().toUpperCase();
@@ -2419,7 +2561,7 @@ function voteWeek(v) {
   var bs = ge("b-st"); if(bs) bs.textContent = "✅ Ton vote est comptabilisé !";
   if (v === "oui") { ge("wvb-y").classList.add("voted"); ge("wvb-y").classList.add("y"); }
   else { ge("wvb-n").classList.add("voted"); ge("wvb-n").classList.add("n"); }
-  addPts(20);
+  addPts(5);
   saveState();
   toast(v==="oui"?"✅ Voté OUI ("+pctY+"%) !":"❌ Voté NON ("+pctN+"%) !");
   confetti();
@@ -2495,318 +2637,15 @@ function confetti() {
   }
 }
 
-// ── BOOT ──
-// ═══════════════════════════════════
-//  V12 ADDITIONS — safe, no overrides
-// ═══════════════════════════════════
-
-// ── PWA ──
-function injectPWA() {
-  try {
-    var manifest = {name:"Débat Intense",short_name:"Débat 🔥",start_url:"./",display:"standalone",background_color:"#09080F",theme_color:"#7C3AED",orientation:"portrait",icons:[{src:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='40' fill='%23090810'/%3E%3Ctext y='140' font-size='130' text-anchor='middle' x='96'%3E%F0%9F%94%A5%3C/text%3E%3C/svg%3E",sizes:"192x192",type:"image/svg+xml"}]};
-    var blob = new Blob([JSON.stringify(manifest)], {type:"application/json"});
-    var link = document.createElement("link");
-    link.rel = "manifest"; link.href = URL.createObjectURL(blob);
-    document.head.appendChild(link);
-    var m1 = document.createElement("meta"); m1.name="theme-color"; m1.content="#7C3AED"; document.head.appendChild(m1);
-    var m2 = document.createElement("meta"); m2.name="apple-mobile-web-app-capable"; m2.content="yes"; document.head.appendChild(m2);
-  } catch(e) {}
-}
-
-function registerSW() {
-  try {
-    if (!navigator.serviceWorker) return;
-    var sw = 'var C="di-v12";self.addEventListener("install",function(e){e.waitUntil(caches.open(C).then(function(c){return c.addAll([location.href]);}));self.skipWaiting();});self.addEventListener("fetch",function(e){e.respondWith(caches.match(e.request).then(function(r){return r||fetch(e.request).catch(function(){return caches.match(e.request);});}));});';
-    var blob = new Blob([sw], {type:"application/javascript"});
-    navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(function(){});
-  } catch(e) {}
-}
-
-var _deferredPrompt = null;
-function setupInstallListeners() {
-  try {
-    window.addEventListener('beforeinstallprompt', function(e) {
-      e.preventDefault(); _deferredPrompt = e;
-      var b = ge("install-banner");
-      if (b) { try { if (!localStorage.getItem("pwa_dismissed")) setTimeout(function(){b.classList.add("on");}, 4000); } catch(ex){} }
-    });
-    window.addEventListener('appinstalled', function() {
-      var b = ge("install-banner"); if(b) b.classList.remove("on");
-      toast("✅ App installée !");
-    });
-  } catch(e) {}
-}
-
-function installPWA() {
-  if (_deferredPrompt) {
-    _deferredPrompt.prompt();
-    _deferredPrompt.userChoice.then(function(r){ _deferredPrompt = null; dismissInstall(); });
-  } else {
-    toast("📱 Safari → Partager → Sur l'écran d'accueil");
-  }
-}
-
-function dismissInstall() {
-  var b = ge("install-banner"); if(b) b.classList.remove("on");
-  try { localStorage.setItem("pwa_dismissed","1"); } catch(e) {}
-}
-
-// ── HAPTIC FEEDBACK ──
-function haptic(style) {
-  try {
-    if (navigator.vibrate) navigator.vibrate(style === "heavy" ? [30,20,30] : style === "medium" ? 20 : 10);
-  } catch(e){}
-}
-
-// ── WEB AUDIO ──
-var _ac = null;
-function getAC() { try { if(!_ac) _ac=new(window.AudioContext||window.webkitAudioContext)(); } catch(e){} return _ac; }
-function playTone(freq, dur, type, vol) {
-  var ctx=getAC(); if(!ctx) return;
-  try {
-    var o=ctx.createOscillator(), g=ctx.createGain();
-    o.connect(g); g.connect(ctx.destination);
-    o.frequency.value=freq; o.type=type||"sine";
-    g.gain.setValueAtTime(vol||.25, ctx.currentTime);
-    g.gain.exponentialRampToValueAtTime(.001, ctx.currentTime+dur);
-    o.start(ctx.currentTime); o.stop(ctx.currentTime+dur);
-  } catch(e){}
-}
-function playTick() { playTone(880, .08, "sine", .2); }
-function playRevealSound() { [523,659,784,1047].forEach(function(f,i){setTimeout(function(){playTone(f,.2,"sine",.2);},i*80);}); }
-function playDisagreeSound() { [440,370,310].forEach(function(f,i){setTimeout(function(){playTone(f,.15,"sawtooth",.12);},i*100);}); }
-function playSuccessSound() { [523,659,784].forEach(function(f,i){setTimeout(function(){playTone(f,.25,"sine",.18);},i*100);}); }
-
-// ── ONBOARDING CAROUSEL ──
-var _obIdx = 0;
-function obUpdateUI() {
-  var slides = ge("ob-slides");
-  if (slides) slides.style.transform = "translateX(-"+(_obIdx*100)+"%)";
-  for (var i=0;i<3;i++) { var d=ge("ocd-"+i); if(d) d.className="ocd"+(i===_obIdx?" on":""); }
-  var back = ge("ob-back"); if(back) { back.style.opacity=_obIdx>0?"1":"0"; back.style.pointerEvents=_obIdx>0?"auto":"none"; }
-  var next = ge("ob-next");
-  if (next) {
-    if (_obIdx===2) { next.textContent="C'est parti ! 🔥"; }
-    else { next.textContent="Suivant →"; }
-  }
-}
-function obSlide(dir) {
-  _obIdx = Math.max(0, Math.min(2, _obIdx+dir));
-  playTick();
-  obUpdateUI();
-}
-function obSlideNext() {
-  if (_obIdx===2) { showObSetup(); return; }
-  obSlide(1);
-}
-function showObSetup() {
-  var cw = ge("ob-carousel-wrap"); if(cw) cw.style.display="none";
-  var setup = ge("ob-setup");
-  if(setup) {
-    setup.style.display="flex";
-    setup.style.animation="pgIn .5s ease";
-    setTimeout(function(){setup.style.animation="";},500);
-  }
-  try { localStorage.setItem("seen_onboard","1"); } catch(e){}
-}
-function checkCarousel() {
-  try { if (localStorage.getItem("seen_onboard")) showObSetup(); }
-  catch(e) { showObSetup(); }
-}
-
-// ── QR CODE ──
-var _qrDone = false;
-function showQR() {
-  if (!S.roomCode) { toast("⚠️ Crée une salle d'abord !"); return; }
-  var val = ge("qr-code-val"); if(val) val.textContent = S.roomCode;
-  if (!_qrDone && typeof QRCode !== "undefined") {
-    var c = ge("qr-canvas"); if(c) { c.innerHTML=""; new QRCode(c,{text:"DEBAT:"+S.roomCode,width:148,height:148,colorDark:"#09080F",colorLight:"#FFFFFF"}); _qrDone=true; }
-  }
-  var m = ge("qr-modal"); if(m) m.classList.add("on");
-}
-function closeQR() { var m=ge("qr-modal"); if(m) m.classList.remove("on"); }
-
-// Reset QR on new room
-var _v12_origGenRoom = genRoom;
-function genRoom() { _qrDone=false; _v12_origGenRoom(); }
-
-// ── TOURNAMENT ──
-var T = { players:[], rounds:[], curR:0, curM:0 };
-
-function openTournament() {
-  if (!S.players||S.players.length<2) { toast("⚠️ Ajoute au moins 2 joueurs !"); return; }
-  ge("tourn-ov").classList.add("on");
-  ge("tr-champ").classList.remove("on");
-  ge("tr-q").style.display="none";
-  T.players = S.players.slice();
-  buildBracket();
-}
-function closeTournament() { ge("tourn-ov").classList.remove("on"); }
-
-function buildBracket() {
-  var n=T.players.length, size=2;
-  while(size<n) size*=2;
-  var padded=T.players.slice();
-  while(padded.length<size) padded.push(null);
-  T.rounds=[];
-  var cur=padded;
-  while(cur.length>1) {
-    var ms=[]; for(var i=0;i<cur.length;i+=2) ms.push({p1:cur[i],p2:cur[i+1],w:null}); T.rounds.push(ms);
-    cur=new Array(ms.length).fill(null);
-  }
-  renderBracket();
-}
-
-function renderBracket() {
-  var el=ge("bracket"); if(!el)return;
-  var rnames=["Quarts de finale","Demi-finales","Finale","Grande Finale"];
-  var rcls=["br-r0","br-r1","br-r2","br-r3"];
-  var html="";
-  for(var ri=0;ri<T.rounds.length;ri++){
-    var rnd=T.rounds[ri];
-    var rn=T.rounds.length===1?"Finale":(rnames[ri]||"Tour "+(ri+1));
-    html+='<div class="br-round '+rcls[ri]+'"><div class="br-lbl">'+rn+'</div>';
-    for(var mi=0;mi<rnd.length;mi++){
-      var m=rnd[mi];
-      var p1n=m.p1?(m.p1.emoji+" "+m.p1.name):"—";
-      var p2n=m.p2?(m.p2.emoji+" "+m.p2.name):"Bye";
-      var c1="br-p"+(m.w===0?" w":(m.w===1?" l":""));
-      var c2="br-p"+(m.w===1?" w":(m.w===0?" l":""));
-      if(!m.p2){c1="br-p w";c2="br-p l";}
-      html+='<div class="br-match"><div class="'+c1+'">'+p1n+'</div><div class="br-vs">VS</div><div class="'+c2+'">'+p2n+'</div></div>';
-    }
-    html+='</div>';
-  }
-  el.innerHTML=html;
-}
-
-function startTournament() {
-  // Auto-advance byes
-  for(var ri=0;ri<T.rounds.length;ri++) for(var mi=0;mi<T.rounds[ri].length;mi++){var m=T.rounds[ri][mi];if(!m.p2&&m.p1){m.w=0;advanceTR(ri,mi,m.p1);}else if(!m.p1&&m.p2){m.w=1;advanceTR(ri,mi,m.p2);}}
-  T.curR=0; T.curM=0; nextTournMatch();
-}
-
-function nextTournMatch(){
-  for(var ri=0;ri<T.rounds.length;ri++) for(var mi=0;mi<T.rounds[ri].length;mi++){
-    var m=T.rounds[ri][mi];
-    if(m.w===null&&m.p1&&m.p2){T.curR=ri;T.curM=mi;showTournMatch(ri,mi);return;}
-  }
-  // Champion
-  var fm=T.rounds[T.rounds.length-1][0];
-  if(fm&&fm.w!==null){var ch=fm.w===0?fm.p1:fm.p2;if(ch)showChampion(ch);}
-}
-
-function showTournMatch(ri,mi){
-  var m=T.rounds[ri][mi];
-  var q=fromBank(); var qtxt=inject(q.q);
-  var txt=ge("tr-q-txt"); if(txt)txt.textContent=qtxt;
-  var b1=ge("tr-btn-p1"); if(b1){b1.textContent=m.p1.emoji+" "+m.p1.name;b1.className="tr-q-btn";}
-  var b2=ge("tr-btn-p2"); if(b2){b2.textContent=m.p2.emoji+" "+m.p2.name;b2.className="tr-q-btn";}
-  ge("tr-q").style.display="block";
-  renderBracket(); playTick();
-}
-
-function tournWin(side){
-  var ri=T.curR, mi=T.curM, m=T.rounds[ri][mi];
-  m.w=side; var winner=side===0?m.p1:m.p2;
-  var b=ge(side===0?"tr-btn-p1":"tr-btn-p2"); if(b)b.className="tr-q-btn "+(side===0?"p1w":"p2w");
-  toast(winner.emoji+" "+winner.name+" remporte le duel !");
-  playSuccessSound(); advanceTR(ri,mi,winner); renderBracket();
-  setTimeout(function(){ge("tr-q").style.display="none"; nextTournMatch();},1200);
-}
-
-function advanceTR(ri,mi,winner){
-  var nri=ri+1; if(nri>=T.rounds.length)return;
-  var nmi=Math.floor(mi/2); if(nmi>=T.rounds[nri].length)return;
-  var nm=T.rounds[nri][nmi]; if(mi%2===0)nm.p1=winner;else nm.p2=winner;
-}
-
-function showChampion(p){
-  var cn=ge("tr-champ-name"); if(cn)cn.textContent=p.emoji+" "+p.name;
-  ge("tr-champ").classList.add("on"); ge("tr-q").style.display="none";
-  renderBracket(); confetti(); playRevealSound();
-  toast("🏆 "+p.name+" est le champion de la soirée !"); addPts(50); saveState();
-}
-
-// ── OVERRIDE shareReveal WITH VIRAL IMAGE ──
-function shareReveal() {
-  var votes=Object.values(S.roundVotes); if(!votes.length)return;
-  var allSame=votes.every(function(v){return v.value===votes[0].value;});
-  var cv=document.createElement("canvas"); var W=1080,H=1080; cv.width=W; cv.height=H;
-  var ctx=cv.getContext("2d");
-  // BG
-  var bg=ctx.createLinearGradient(0,0,W,H);
-  bg.addColorStop(0,allSame?"#041404":"#140404"); bg.addColorStop(1,"#09080F");
-  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
-  var gv=ctx.createRadialGradient(W/2,H*.3,0,W/2,H*.3,500);
-  gv.addColorStop(0,allSame?"rgba(16,185,129,.3)":"rgba(244,63,94,.3)"); gv.addColorStop(1,"rgba(0,0,0,0)");
-  ctx.fillStyle=gv; ctx.fillRect(0,0,W,H);
-  // App name
-  ctx.font="600 38px sans-serif"; ctx.fillStyle="rgba(255,255,255,.4)"; ctx.textAlign="center";
-  ctx.fillText("🔥 DÉBAT INTENSE",W/2,80);
-  // Question
-  ctx.font="700 48px sans-serif"; ctx.fillStyle="#EDE9FF"; ctx.textAlign="center";
-  var q=S.curQ||""; var words=q.split(" "); var line="",lines=[];
-  for(var i=0;i<words.length;i++){var t=line+(line?" ":"")+words[i];if(ctx.measureText(t).width>920){if(line)lines.push(line);line=words[i];}else line=t;}
-  if(line)lines.push(line);
-  for(var li=0;li<Math.min(lines.length,4);li++) ctx.fillText(lines[li],W/2,200+li*66);
-  // Players
-  var voteY=420+Math.min(lines.length-1,3)*66;
-  var colW=W/Math.max(votes.length,1);
-  for(var vi=0;vi<votes.length;vi++){
-    var rv=votes[vi]; var cx2=colW*vi+colW/2;
-    ctx.font="700 72px sans-serif"; ctx.textAlign="center"; ctx.fillText(rv.player.emoji,cx2,voteY);
-    ctx.font="700 34px sans-serif"; ctx.fillStyle="rgba(255,255,255,.8)"; ctx.fillText(rv.player.name,cx2,voteY+70);
-    var vc=rv.value==="oui"?"#10B981":(rv.value==="non"?"#F43F5E":"#F59E0B");
-    ctx.fillStyle=vc+"33";
-    var bw=Math.min(colW-30,240),bh=58,bx=cx2-bw/2,by=voteY+90;
-    ctx.beginPath();ctx.roundRect?ctx.roundRect(bx,by,bw,bh,14):ctx.rect(bx,by,bw,bh);ctx.fill();
-    ctx.strokeStyle=vc+"88"; ctx.lineWidth=2.5; ctx.stroke();
-    ctx.font="700 30px sans-serif"; ctx.fillStyle=vc;
-    ctx.fillText(rv.label||rv.value,cx2,by+37);
-  }
-  // Verdict
-  ctx.font="900 64px sans-serif"; ctx.fillStyle=allSame?"#10B981":"#F43F5E"; ctx.textAlign="center";
-  ctx.fillText(allSame?"✅ CONSENSUS":"⚔️ DÉSACCORD",W/2,voteY+210);
-  ctx.font="500 28px sans-serif"; ctx.fillStyle="rgba(255,255,255,.2)"; ctx.fillText("débatintense.app",W/2,H-40);
-  var lk=document.createElement("a"); lk.download="debat-reveal.png"; lk.href=cv.toDataURL(); lk.click();
-  toast("📸 Image téléchargée !");
-}
-
-// ── VIEWPORT FIX ──
-function setupViewportFix() {
-  try {
-    if (!window.visualViewport) return;
-    window.visualViewport.addEventListener('resize', function() {
-      var offset=window.innerHeight-window.visualViewport.height;
-      var a=ge("app"); if(a) a.style.paddingBottom=offset>50?(offset+10)+"px":"";
-    });
-  } catch(e) {}
-}
-
-// ── SOUNDS IN KEY MOMENTS (direct calls, no overrides) ──
-// These are called from within existing functions — we patch at strategic points
-// Tick in countdown — add via wrapper that v12 boot initializes
-var v12SoundsActive = false;
-
-function v12Boot() {
-  injectPWA();
-  registerSW();
-  setupInstallListeners();
-  setupViewportFix();
-  checkCarousel();
-  v12SoundsActive = true;
-}
-
 // ════════════════════════════════════
-//  V13 PATCHES
+//  V13 — FINAL CLEAN BUILD
 // ════════════════════════════════════
 
 // ── PERSISTENCE ──
 function saveState() {
   try {
     var d = {
-      pts:S.pts, streak:S.streak, freezes:S.freezes,
+      pts:S.pts, streak:S.streak, freezes:S.freezes, serums:S.serums, reverses:S.reverses, spicyUnlocked:S.spicyUnlocked,
       tQ:S.tQ, sess:S.sess, favs:S.favs,
       isPremium:S.isPremium, weekVoted:S.weekVoted,
       wkYpct:S.wkYpct, wkNpct:S.wkNpct, wkTot:S.wkTot, wkVotesY:S.wkVotesY||0, wkVotesN:S.wkVotesN||0,
@@ -2832,6 +2671,9 @@ function loadSave() {
     if (d.pts != null) S.pts = d.pts;
     if (d.streak) S.streak = d.streak;
     if (d.freezes != null) S.freezes = d.freezes;
+    if (d.serums != null) S.serums = d.serums;
+    if (d.reverses != null) S.reverses = d.reverses;
+    if (d.spicyUnlocked) { S.spicyUnlocked = true; var cats = Object.keys(QB); for (var si=0;si<SPICY_PACK.length;si++) QB[cats[si%cats.length]].push(SPICY_PACK[si]); }
     if (d.tQ) S.tQ = d.tQ;
     if (d.sess) S.sess = d.sess;
     if (d.favs) S.favs = d.favs;
@@ -3067,8 +2909,8 @@ function genRevealImg() {
   ctx.font="900 72px sans-serif"; ctx.fillStyle=allSame?"#10B981":"#F43F5E"; ctx.textAlign="center";
   ctx.fillText(allSame?"✅ CONSENSUS":"⚔️ DÉSACCORD TOTAL",W/2,vY+230);
   ctx.font="500 28px sans-serif"; ctx.fillStyle="rgba(255,255,255,.2)";
-  ctx.fillText("débatintense.app",W/2,H-40);
-  var lk=document.createElement("a"); lk.download="debat-reveal.png"; lk.href=cv.toDataURL(); lk.click();
+  ctx.fillText("sansfiltre.app",W/2,H-40);
+  var lk=document.createElement("a"); lk.download="sans-filtre-reveal.png"; lk.href=cv.toDataURL(); lk.click();
   toast("📸 Image téléchargée !");
 }
 
@@ -3076,9 +2918,9 @@ function copyRevealResult() {
   var votes=Object.values(S.roundVotes); if(!votes.length) return;
   var allSame=votes.every(function(v){return v.value===votes[0].value;});
   var lines=votes.map(function(v){return v.player.emoji+" "+v.player.name+" : "+(v.label||v.value);});
-  var text="🔥 Débat Intense\n\""+S.curQ.substring(0,60)+"…\"\n\n"+lines.join("\n")+"\n\n"+(allSame?"✅ CONSENSUS":"⚔️ DÉSACCORD TOTAL")+"\ndébatintense.app";
+  var text="🔥 Sans Filtre\n\""+S.curQ.substring(0,60)+"…\"\n\n"+lines.join("\n")+"\n\n"+(allSame?"✅ CONSENSUS":"⚔️ DÉSACCORD TOTAL")+"\nsansfiltre.app";
   if (navigator.share) {
-    navigator.share({title:"Débat Intense — Révélation",text:text}).catch(function(){});
+    navigator.share({title:"Sans Filtre — Révélation",text:text}).catch(function(){});
   } else {
     navigator.clipboard.writeText(text).then(function(){toast("📋 Résultat copié !");}).catch(function(){toast("📤 Prêt !");});
   }
@@ -3128,15 +2970,15 @@ function genRecapCard() {
     ctx.fillText(h.voteLabel||"–",W-100,y+4);
   }
   ctx.font="500 28px sans-serif"; ctx.fillStyle="rgba(255,255,255,.2)"; ctx.textAlign="center";
-  ctx.fillText("débatintense.app",W/2,H-40);
-  var lk=document.createElement("a"); lk.download="debat-recap.png"; lk.href=cv.toDataURL(); lk.click();
+  ctx.fillText("sansfiltre.app",W/2,H-40);
+  var lk=document.createElement("a"); lk.download="sans-filtre-recap.png"; lk.href=cv.toDataURL(); lk.click();
   toast("🎴 Récap téléchargé !");
 }
 
 // ── PWA ──
 function injectPWA() {
   try {
-    var manifest={name:"Débat Intense",short_name:"Débat 🔥",start_url:"./",display:"standalone",background_color:"#09080F",theme_color:"#7C3AED",orientation:"portrait",icons:[{src:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='40' fill='%23090810'/%3E%3Ctext y='140' font-size='130' text-anchor='middle' x='96'%3E%F0%9F%94%A5%3C/text%3E%3C/svg%3E",sizes:"192x192",type:"image/svg+xml"}]};
+    var manifest={name:"Sans Filtre",short_name:"Sans Filtre 🔥",start_url:"./",display:"standalone",background_color:"#09080F",theme_color:"#7C3AED",orientation:"portrait",icons:[{src:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='40' fill='%23090810'/%3E%3Ctext y='140' font-size='130' text-anchor='middle' x='96'%3E%F0%9F%94%A5%3C/text%3E%3C/svg%3E",sizes:"192x192",type:"image/svg+xml"}]};
     var blob=new Blob([JSON.stringify(manifest)],{type:"application/json"});
     var link=document.createElement("link"); link.rel="manifest"; link.href=URL.createObjectURL(blob); document.head.appendChild(link);
     var m1=document.createElement("meta"); m1.name="theme-color"; m1.content="#7C3AED"; document.head.appendChild(m1);
@@ -3147,7 +2989,7 @@ function injectPWA() {
 function registerSW() {
   try {
     if(!navigator.serviceWorker) return;
-    var sw='var C="di-v13";self.addEventListener("install",function(e){e.waitUntil(caches.open(C).then(function(c){return c.addAll([location.href]);}));self.skipWaiting();});self.addEventListener("fetch",function(e){e.respondWith(caches.match(e.request).then(function(r){return r||fetch(e.request).catch(function(){return caches.match(e.request);});}));});';
+    var sw='var C="di-v14";self.addEventListener("install",function(e){e.waitUntil(caches.open(C).then(function(c){return c.addAll([location.href]);}));self.skipWaiting();});self.addEventListener("fetch",function(e){e.respondWith(caches.match(e.request).then(function(r){return r||fetch(e.request).catch(function(){return caches.match(e.request);});}));});';
     var blob=new Blob([sw],{type:"application/javascript"});
     navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(function(){});
   } catch(e){}
@@ -3169,6 +3011,11 @@ function setupInstallListeners() {
 }
 function installPWA(){if(_deferredPrompt){_deferredPrompt.prompt();_deferredPrompt.userChoice.then(function(){_deferredPrompt=null;dismissInstall();});}else{toast("📱 Safari → Partager → Sur l'écran d'accueil");}}
 function dismissInstall(){var b=ge("install-banner");if(b)b.classList.remove("on");try{localStorage.setItem("pwa_dismissed","1");}catch(e){}}
+
+// ── HAPTIC FEEDBACK ──
+function haptic(style) {
+  try { if (navigator.vibrate) navigator.vibrate(style === "heavy" ? [30,20,30] : style === "medium" ? 20 : 10); } catch(e){}
+}
 
 // ── AUDIO ──
 var _ac=null;
@@ -3451,7 +3298,7 @@ function showChampion(p) {
   ge("tr-q").style.display = "none";
   renderBracket();
   confetti(); playRevealSound();
-  toast("👑 "+p.name+" est le Grand Débatteur de la soirée !");
+  toast("👑 "+p.name+" est le Grand Champion de la soirée !");
   p.pts = (p.pts||0) + 50;
   renderStrip();
   saveState();
