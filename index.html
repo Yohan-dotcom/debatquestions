@@ -2937,6 +2937,16 @@ function showLiveGame() {
   showLiveQuestion();
 }
 
+function liveInject(text) {
+  if (!text) return text;
+  var names = _liveRoom.players.map(function(p){return p.nick || "?";});
+  var p1 = names[0] || _liveRoom.myNick || "Joueur 1";
+  var p2 = names[1] || (names[0] && names[0] !== _liveRoom.myNick ? names[0] : "Joueur 2");
+  // Make sure p1 is always "me" and p2 is the opponent
+  if (p2 === _liveRoom.myNick) { var tmp = p1; p1 = p2; p2 = tmp; }
+  return text.replace(/\{\{P1\}\}/g, p1).replace(/\{\{P2\}\}/g, p2);
+}
+
 function showLiveQuestion() {
   var q = _liveQuestions[_liveRoom.qIndex];
   if (!q) {
@@ -2953,7 +2963,7 @@ function showLiveQuestion() {
     ge("lg-next-btn").style.display = "none";
     return;
   }
-  var txt = inject(q.q);
+  var txt = liveInject(q.q);
   ge("lg-qtxt").textContent = txt;
   ge("lg-cat").textContent = "Question " + (_liveRoom.qIndex + 1) + "/" + _liveQuestions.length;
   ge("lg-vote-btns").style.display = "flex";
