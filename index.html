@@ -1022,6 +1022,9 @@ canvas#sc{display:none}
         <button class="wvb y" id="wvb-y" onclick="voteWeek('oui')">✅ Oui, j'irais</button>
         <button class="wvb n" id="wvb-n" onclick="voteWeek('non')">❌ Non, jamais</button>
       </div>
+      <div id="wk-update-nick" style="display:none;text-align:center;margin-top:8px">
+        <button class="btn-g" onclick="updateWeekNickname()" style="font-size:13px">📝 Enregistrer mon prénom dans le classement</button>
+      </div>
       <div style="font-size:13px;color:var(--text2);line-height:1.65;padding-top:12px;border-top:1px solid var(--border)">💡 <strong>Point de débat :</strong> l'amour peut-il tout justifier, même renoncer à sa vie construite ?</div>
     </div>
     <div class="lb">
@@ -1323,7 +1326,7 @@ async function loadWeeklyQuestion() {
         if (tot > 0) updateWeekBars(yCount, nCount, tot);
         // Check if this device already voted
         var deviceVote = await _sb.from("weekly_votes")
-          .select("vote_value")
+          .select("vote_value, nickname")
           .eq("question_id", wq.id)
           .eq("device_id", getDeviceId())
           .limit(1);
@@ -1333,6 +1336,10 @@ async function loadWeeklyQuestion() {
           if (v === "oui") { ge("wvb-y").classList.add("voted","y"); }
           else { ge("wvb-n").classList.add("voted","n"); }
           var bs = ge("b-st"); if(bs) bs.textContent = "✅ Ton vote est comptabilisé !";
+          // Show update nickname button if voted without nickname
+          if (!deviceVote.data[0].nickname) {
+            var upBtn = ge("wk-update-nick"); if(upBtn) upBtn.style.display = "block";
+          }
         }
       }
       // Update the debate point if available
@@ -2930,6 +2937,16 @@ function showLiveGame() {
   showLiveQuestion();
 }
 
+function liveInject(text) {
+  if (!text) return text;
+  var names = _liveRoom.players.map(function(p){return p.nick || "?";});
+  var p1 = names[0] || _liveRoom.myNick || "Joueur 1";
+  var p2 = names[1] || (names[0] && names[0] !== _liveRoom.myNick ? names[0] : "Joueur 2");
+  // Make sure p1 is always "me" and p2 is the opponent
+  if (p2 === _liveRoom.myNick) { var tmp = p1; p1 = p2; p2 = tmp; }
+  return text.replace(/\{\{P1\}\}/g, p1).replace(/\{\{P2\}\}/g, p2);
+}
+
 function showLiveQuestion() {
   var q = _liveQuestions[_liveRoom.qIndex];
   if (!q) {
@@ -2946,7 +2963,7 @@ function showLiveQuestion() {
     ge("lg-next-btn").style.display = "none";
     return;
   }
-  var txt = inject(q.q);
+  var txt = liveInject(q.q);
   ge("lg-qtxt").textContent = txt;
   ge("lg-cat").textContent = "Question " + (_liveRoom.qIndex + 1) + "/" + _liveQuestions.length;
   ge("lg-vote-btns").style.display = "flex";
@@ -3022,6 +3039,23 @@ function liveLeaveRoom() {
 }
 
 // ── SEMAINE ──
+async function updateWeekNickname() {
+  var nickInput = ge("wk-nick");
+  var nick = nickInput ? nickInput.value.trim() : "";
+  if (!nick) { toast("⚠️ Entre ton prénom !"); if(nickInput) nickInput.focus(); return; }
+  if (!_sb || !S._weekQId) { toast("⚠️ Connexion serveur indisponible"); return; }
+  try {
+    await _sb.from("weekly_votes")
+      .update({nickname: nick})
+      .eq("question_id", S._weekQId)
+      .eq("device_id", getDeviceId());
+    localStorage.setItem("sf_nickname", nick);
+    var upBtn = ge("wk-update-nick"); if(upBtn) upBtn.style.display = "none";
+    toast("✅ Prénom enregistré : " + nick + " !");
+    loadWeeklyLeaderboard();
+  } catch(e) { toast("⚠️ Erreur : " + e.message); }
+}
+
 async function voteWeek(v) {
   if (S.weekVoted) { toast("✅ Déjà voté !"); return; }
   var nickInput = ge("wk-nick");
