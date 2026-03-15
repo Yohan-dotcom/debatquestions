@@ -14,6 +14,7 @@
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='40' fill='%23090810'/%3E%3Ctext y='140' font-size='130' text-anchor='middle' x='96'%3E%F0%9F%94%A5%3C/text%3E%3C/svg%3E">
 <title>Sans Filtre 🔥</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -994,6 +995,18 @@ canvas#sc{display:none}
       </div>
       <div class="lbi" style="border-top:1px solid var(--border);margin-top:8px"><span class="lbr">🔥</span><span class="lbn" id="my-lbn" style="font-weight:600">Toi</span><span class="lbp">+<span id="my-wk">0</span> pts cette semaine</span></div>
     </div>
+    <!-- Community Questions -->
+    <div style="margin-top:18px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+        <h3 style="font-family:Syne,sans-serif;font-size:18px;font-weight:800">🌍 Questions Communautaires</h3>
+        <button class="btn-g" style="width:auto;padding:6px 12px;font-size:11px" onclick="openSheet('ov-admin','sht-admin')">+ Proposer</button>
+      </div>
+      <div id="community-list" style="margin-bottom:14px">
+        <div style="text-align:center;padding:20px;color:var(--text3);font-size:13px">
+          🌍 Configure Supabase pour voir les questions de la communauté
+        </div>
+      </div>
+    </div>
     <div class="bsp"></div>
   </div>
 </div>
@@ -1207,7 +1220,8 @@ canvas#sc{display:none}
     <label class="fl">Choix (un par ligne)</label>
     <textarea id="adm-choices" class="fi" rows="4" placeholder="Option A&#10;Option B&#10;Option C&#10;Option D" style="resize:vertical;font-family:inherit"></textarea>
   </div>
-  <button class="btn-v" onclick="addCustomQ()" style="margin-bottom:14px">Ajouter la question</button>
+  <button class="btn-v" onclick="addCustomQ()" style="margin-bottom:8px">Ajouter au jeu (local)</button>
+  <button class="btn-g" onclick="submitToCommunity()" style="margin-bottom:14px">🌍 Partager avec la communauté</button>
   <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Mes questions ajoutées</div>
   <div id="adm-list" style="margin-bottom:14px"></div>
   <button class="btn-g" onclick="closeSheet('ov-admin','sht-admin')">Fermer</button>
@@ -1217,6 +1231,172 @@ canvas#sc{display:none}
 // ═══════════════════════════════════════════════════
 //  DÉBAT INTENSE v14 — Clean production build
 // ═══════════════════════════════════════════════════
+
+// ── SUPABASE CONFIG ──
+// 👉 Crée un projet sur https://supabase.com puis colle tes clés ici
+var SUPABASE_URL = "";   // ex: "https://xxxxx.supabase.co"
+var SUPABASE_ANON = "";  // ex: "eyJhbGciOi..."
+var _sb = null;
+
+function initSupabase() {
+  if (!SUPABASE_URL || !SUPABASE_ANON) return null;
+  try {
+    if (window.supabase && window.supabase.createClient) {
+      _sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+    }
+  } catch(e) { console.warn("Supabase init failed:", e); }
+  return _sb;
+}
+
+// Device ID for anonymous voting
+function getDeviceId() {
+  var id = localStorage.getItem("sf_device_id");
+  if (!id) { id = "d_" + Math.random().toString(36).substring(2) + Date.now().toString(36); localStorage.setItem("sf_device_id", id); }
+  return id;
+}
+
+// ── WEEKLY QUESTION (Supabase) ──
+async function loadWeeklyQuestion() {
+  if (!_sb) return;
+  try {
+    var now = new Date().toISOString();
+    var res = await _sb.from("weekly_questions")
+      .select("*")
+      .lte("week_start", now)
+      .gte("week_end", now)
+      .order("week_start", {ascending: false})
+      .limit(1);
+    if (res.data && res.data.length > 0) {
+      var wq = res.data[0];
+      var lbl = ge("wk-qlbl"); if(lbl) lbl.textContent = "⚡ Question de la Semaine · " + (wq.category || "Couple");
+      var txt = ge("wk-qtxt"); if(txt) txt.textContent = wq.question;
+      S._weekQId = wq.id;
+      // Load aggregated votes
+      var votes = await _sb.from("weekly_votes")
+        .select("vote_value")
+        .eq("question_id", wq.id);
+      if (votes.data) {
+        var yCount = votes.data.filter(function(v){return v.vote_value === "oui";}).length;
+        var nCount = votes.data.filter(function(v){return v.vote_value === "non";}).length;
+        var tot = yCount + nCount;
+        if (tot > 0) updateWeekBars(yCount, nCount, tot);
+        // Check if this device already voted
+        var deviceVote = await _sb.from("weekly_votes")
+          .select("vote_value")
+          .eq("question_id", wq.id)
+          .eq("device_id", getDeviceId())
+          .limit(1);
+        if (deviceVote.data && deviceVote.data.length > 0) {
+          S.weekVoted = true;
+          var v = deviceVote.data[0].vote_value;
+          if (v === "oui") { ge("wvb-y").classList.add("voted","y"); }
+          else { ge("wvb-n").classList.add("voted","n"); }
+          var bs = ge("b-st"); if(bs) bs.textContent = "✅ Ton vote est comptabilisé !";
+        }
+      }
+      // Update the debate point if available
+      if (wq.debate_point) {
+        var dp = document.querySelector(".wk-q div[style*='border-top']");
+        if (dp) dp.innerHTML = "💡 <strong>Point de débat :</strong> " + wq.debate_point;
+      }
+    }
+  } catch(e) { console.warn("Weekly question load failed:", e); }
+}
+
+function updateWeekBars(yCount, nCount, tot) {
+  var pctY = Math.round(yCount / tot * 100);
+  var pctN = 100 - pctY;
+  S.wkYpct = pctY; S.wkNpct = pctN; S.wkTot = tot;
+  var by = ge("b-yes"); if(by) { by.style.transition="height 1s ease"; by.style.height=(pctY*.88)+"%"; }
+  var bn = ge("b-no");  if(bn) { bn.style.transition="height 1s ease"; bn.style.height=(pctN*.88)+"%"; }
+  var bpy = ge("bp-y"); if(bpy) bpy.textContent = pctY+"%";
+  var bpn = ge("bp-n"); if(bpn) bpn.textContent = pctN+"%";
+  var wt = ge("wk-tot"); if(wt) wt.textContent = tot+(tot===1?" vote":" votes");
+}
+
+// ── COMMUNITY QUESTIONS (Supabase) ──
+async function loadCommunityQuestions() {
+  if (!_sb) return;
+  try {
+    var res = await _sb.from("community_questions")
+      .select("*")
+      .order("likes", {ascending: false})
+      .limit(20);
+    if (res.data) renderCommunityList(res.data);
+  } catch(e) { console.warn("Community load failed:", e); }
+}
+
+function renderCommunityList(questions) {
+  var el = ge("community-list");
+  if (!el) return;
+  if (!questions.length) { el.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text3)">Aucune question communautaire pour le moment</div>'; return; }
+  var html = "";
+  for (var i = 0; i < questions.length; i++) {
+    var q = questions[i];
+    var liked = (S._likedCommunity || []).indexOf(q.id) >= 0;
+    html += '<div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:14px;margin-bottom:10px">'
+      + '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">'
+      + '<div style="flex:1;min-width:0">'
+      + '<div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--text3);margin-bottom:4px">' + CE[q.category] + ' ' + q.category + (q.author_name ? ' · par ' + q.author_name : '') + '</div>'
+      + '<div style="font-size:14px;color:var(--text);line-height:1.45;word-break:break-word">' + q.question + '</div>'
+      + '</div>'
+      + '<div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex-shrink:0">'
+      + '<div style="cursor:pointer;font-size:20px;opacity:' + (liked ? '1' : '.5') + '" onclick="likeCommunityQ(\'' + q.id + '\',this)">❤️</div>'
+      + '<div style="font-size:11px;color:var(--text3)">' + (q.likes || 0) + '</div>'
+      + '</div></div>'
+      + '<div style="margin-top:8px"><button class="btn-g" style="width:100%;padding:8px;font-size:12px" onclick="playCommunityQ(\'' + q.id + '\',' + JSON.stringify(q.question).replace(/'/g, "\\'") + ',\'' + q.category + '\',\'' + (q.type || 'discuss') + '\')">▶ Jouer cette question</button></div>'
+      + '</div>';
+  }
+  el.innerHTML = html;
+}
+
+async function likeCommunityQ(qId, el) {
+  if (!_sb) return;
+  if (!S._likedCommunity) S._likedCommunity = [];
+  if (S._likedCommunity.indexOf(qId) >= 0) { toast("❤️ Déjà liké !"); return; }
+  S._likedCommunity.push(qId);
+  try {
+    await _sb.rpc("increment_likes", {question_id: qId});
+    if (el) el.style.opacity = "1";
+    var countEl = el ? el.nextElementSibling : null;
+    if (countEl) countEl.textContent = parseInt(countEl.textContent || 0) + 1;
+    toast("❤️ Question likée !");
+  } catch(e) { toast("⚠️ Erreur"); }
+}
+
+function playCommunityQ(id, question, category, type) {
+  S.curCat = category;
+  var qObj = {q:question, type:type || "discuss", discuss_starters:[], _community:true};
+  S.curQObj = qObj;
+  S.curQ = inject(qObj.q);
+  var qt = ge("qtext"); qt.className = "qtext"; qt.style.cssText = ""; qt.textContent = S.curQ;
+  renderWidget(qObj, "ans-widget", "ans-label");
+  goTo("pg-home");
+  toast("🌍 Question communautaire !");
+}
+
+async function submitToCommunity() {
+  if (!_sb) { toast("⚠️ Supabase non configuré"); return; }
+  var cat = ge("adm-cat").value;
+  var q = ge("adm-q").value.trim();
+  var type = ge("adm-type").value;
+  if (!q) { toast("⚠️ Écris une question !"); return; }
+  var choices = null;
+  if (type === "choice") {
+    var raw = ge("adm-choices").value.trim();
+    choices = raw.split("\n").map(function(c){return c.trim();}).filter(function(c){return c;});
+    if (choices.length < 2) { toast("⚠️ Ajoute au moins 2 choix !"); return; }
+  }
+  try {
+    var res = await _sb.from("community_questions").insert({
+      question: q, category: cat, type: type,
+      choices: choices, author_name: P1(), likes: 0
+    });
+    if (res.error) throw res.error;
+    toast("🌍 Question partagée avec la communauté !");
+    loadCommunityQuestions();
+  } catch(e) { toast("⚠️ Erreur : " + (e.message || "échec")); }
+}
 
 // ── QUESTION BANK ──
 const QB = {
@@ -2584,29 +2764,47 @@ function joinRoom() {
 }
 
 // ── SEMAINE ──
-function voteWeek(v) {
+async function voteWeek(v) {
   if (S.weekVoted) { toast("✅ Déjà voté !"); return; }
   S.weekVoted = true;
-  var curY = S.wkVotesY || 0;
-  var curN = S.wkVotesN || 0;
-  if (v === "oui") curY++; else curN++;
-  S.wkVotesY = curY;
-  S.wkVotesN = curN;
-  var tot = curY + curN;
-  var pctY = Math.round(curY / tot * 100);
-  var pctN = 100 - pctY;
-  S.wkYpct = pctY; S.wkNpct = pctN; S.wkTot = tot;
-  var by = ge("b-yes"); if(by) { by.style.transition="height 1s ease"; by.style.height=(pctY*.88)+"%"; }
-  var bn = ge("b-no");  if(bn) { bn.style.transition="height 1s ease"; bn.style.height=(pctN*.88)+"%"; }
-  var bpy = ge("bp-y"); if(bpy) bpy.textContent = pctY+"%";
-  var bpn = ge("bp-n"); if(bpn) bpn.textContent = pctN+"%";
-  var wt = ge("wk-tot"); if(wt) wt.textContent = tot+(tot===1?" vote":" votes");
+  // Write to Supabase if available
+  if (_sb && S._weekQId) {
+    try {
+      await _sb.from("weekly_votes").insert({
+        question_id: S._weekQId,
+        vote_value: v,
+        device_id: getDeviceId()
+      });
+      // Reload aggregated results from server
+      var votes = await _sb.from("weekly_votes")
+        .select("vote_value")
+        .eq("question_id", S._weekQId);
+      if (votes.data) {
+        var yCount = votes.data.filter(function(vt){return vt.vote_value === "oui";}).length;
+        var nCount = votes.data.filter(function(vt){return vt.vote_value === "non";}).length;
+        var tot = yCount + nCount;
+        updateWeekBars(yCount, nCount, tot);
+        var pctY = Math.round(yCount / tot * 100);
+        var pctN = 100 - pctY;
+        toast(v==="oui"?"✅ Voté OUI ("+pctY+"%) !":"❌ Voté NON ("+pctN+"%) !");
+      }
+    } catch(e) { console.warn("Vote submit failed:", e); }
+  } else {
+    // Fallback: local only
+    var curY = S.wkVotesY || 0;
+    var curN = S.wkVotesN || 0;
+    if (v === "oui") curY++; else curN++;
+    S.wkVotesY = curY; S.wkVotesN = curN;
+    var tot = curY + curN;
+    updateWeekBars(curY, curN, tot);
+    var pctY = Math.round(curY / tot * 100);
+    toast(v==="oui"?"✅ Voté OUI ("+pctY+"%) !":"❌ Voté NON ("+(100-pctY)+"%) !");
+  }
   var bs = ge("b-st"); if(bs) bs.textContent = "✅ Ton vote est comptabilisé !";
-  if (v === "oui") { ge("wvb-y").classList.add("voted"); ge("wvb-y").classList.add("y"); }
-  else { ge("wvb-n").classList.add("voted"); ge("wvb-n").classList.add("n"); }
+  if (v === "oui") { ge("wvb-y").classList.add("voted","y"); }
+  else { ge("wvb-n").classList.add("voted","n"); }
   addPts(5);
   saveState();
-  toast(v==="oui"?"✅ Voté OUI ("+pctY+"%) !":"❌ Voté NON ("+pctN+"%) !");
   confetti();
 }
 function animBars() {
@@ -3447,6 +3645,7 @@ function v13Boot() {
 function boot() {
   loadSave();
   loadCustomQs();
+  initSupabase();
   v13Boot();
   if (!S.isPremium) {
     LOCKED.forEach(function(c) {
@@ -3458,6 +3657,11 @@ function boot() {
   renderDots();
   renderBadges();
   startCD();
+  // Load Supabase data after UI is ready
+  if (_sb) {
+    loadWeeklyQuestion();
+    loadCommunityQuestions();
+  }
   setTimeout(function() {
     ge("ndot").classList.add("on");
     ge("pill-sk").classList.add("danger");
